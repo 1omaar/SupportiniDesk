@@ -22,14 +22,15 @@ public class EntraineeServices implements IEntrainee{
  Connection cnx = MaConnexion.getInstance().getCnx();
     @Override
     public void addEntrainee(Entrainee e) {
-        String req = "INSERT INTO entrainees (age,taille,poids,phone,fk_idUser) VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO entrainees (age,taille,poids,phone,sexe,fk_idUser) VALUES (?,?,?,?,?,?)";
      try {
          PreparedStatement ps = cnx.prepareStatement(req);
          ps.setInt(1, e.getAge());
          ps.setInt(2, e.getTaille());
          ps.setInt(3, e.getPoids());
          ps.setString(4,e.getPhone());
-         ps.setInt(5, e.getFk_idUser());
+         ps.setString(5, e.getSexe());
+         ps.setInt(6, e.getFk_idUser());
          ps.executeUpdate();
          System.out.println("Vos Informations enregistrés avec succée");
          ps.close();
