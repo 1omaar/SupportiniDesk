@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="781.0" prefWidth="1013.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.choice_profil.ChoiceProfilFXMLController">
+    <stylesheets>
+        <URL value="@choiceprofilfxml.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="443.0" layoutY="140.0" prefHeight="50.0" prefWidth="146.0" text="Je suis...">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="24.0" />
+         </font>
+      </Label>
+      <Pane layoutX="59.0" layoutY="250.0" prefHeight="320.0" prefWidth="235.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="173.0" layoutX="65.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../uicontrolers/96-966814_personal-training-icon-png%20(2).png" />
+               </image>
+            </ImageView>
+            <Button fx:id="entrainé" layoutX="81.0" layoutY="197.0" mnemonicParsing="false" onAction="#secondStepRegister" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #ff8c09; -fx-background-radius: 15555;" styleClass="buttonChoiceProfil" text="Entrainé  &gt;&gt;" textFill="#fffcf9">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="372.0" layoutY="250.0" prefHeight="275.0" prefWidth="247.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../uicontrolers/png-transparent-tapestry-coach-permis-sport-chess-tactics-pro-puzzles-soccer-coach-tshirt-game-jersey.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="coach" layoutX="51.0" layoutY="197.0" mnemonicParsing="false" onAction="#secondStepRegister" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: #ff8c09; -fx-background-radius: 15555;" styleClass="buttonChoiceProfil" text="Entraineur  &gt;&gt;" textFill="#fffcf9">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="663.0" layoutY="250.0" prefHeight="291.0" prefWidth="298.0">
+         <children>
+            <ImageView fitHeight="221.0" fitWidth="302.0" layoutX="-10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../uicontrolers/96-966814_personal-training-icon-png.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="PSS" layoutX="50.0" layoutY="200.0" mnemonicParsing="false" onAction="#secondStepRegister" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #ff8c09; -fx-background-radius: 15555;" styleClass="buttonChoiceProfil" text="Propriété de Gym   &gt;&gt;" textFill="#fffcf9">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

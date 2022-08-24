@@ -1,0 +1,24 @@
+.sideAnchorPane {
+    -fx-background-color: #ffe6cc;
+    -fx-border-color: #ffe6cc;
+    -fx-border-width:2px 2px 2px 2px;
+    -fx-border-raduis: 50px;
+    -fx-background-raduis: 20px;
+    -fx-border-style: solid;
+    
+}
+.btnDashboard{
+    -fx-background-color: #ffe6cc;
+    -fx-border-color: #ffe6cc;
+    -fx-border-width:2px 2px 2px 2px;
+     -fx-border-raduis: 20px;
+    -fx-background-raduis: 20px;
+     -fx-border-style: solid;
+    
+     
+}
+.clientComboBox{
+    -fx-background-color: #ffe6cc;
+    -fx-border-color: #ffe6cc;
+     -fx-border-style: solid;
+}

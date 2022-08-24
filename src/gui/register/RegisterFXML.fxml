@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="944.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.register.RegisterFXMLController">
+    <stylesheets>
+        <URL value="@RegisterFXML.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="653.0" prefWidth="565.0">
+         <children>
+            <ImageView fitHeight="228.0" fitWidth="382.0" layoutX="92.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../uicontrolers/logologo.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="574.0" layoutY="1.0" prefHeight="653.0" prefWidth="370.0">
+         <children>
+            <Label layoutX="110.0" layoutY="48.0" prefHeight="44.0" prefWidth="130.0" text="Inscription" textFill="#171717">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="27.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nomUser" layoutX="51.0" layoutY="106.0" prefHeight="35.0" prefWidth="248.0" promptText="NOM" />
+            <TextField fx:id="prenomUser" layoutX="51.0" layoutY="173.0" prefHeight="35.0" prefWidth="248.0" promptText="PRENOM" />
+            <TextField fx:id="email" layoutX="51.0" layoutY="246.0" prefHeight="35.0" prefWidth="248.0" promptText="E-MAIL" />
+            <PasswordField fx:id="conf_pass" layoutX="51.0" layoutY="375.0" prefHeight="35.0" prefWidth="248.0" promptText="CONFIRM PASSWORD" />
+            <PasswordField fx:id="password" layoutX="51.0" layoutY="309.0" prefHeight="35.0" prefWidth="248.0" promptText="PASSWORD" />
+            <TextField fx:id="cin" layoutX="51.0" layoutY="444.0" prefHeight="35.0" prefWidth="248.0" promptText="NUMERO CIN" />
+            <Label fx:id="validationNom" layoutX="57.0" layoutY="148.0" prefHeight="17.0" prefWidth="236.0" textFill="#da2626">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="validationPrenom" layoutX="57.0" layoutY="218.0" prefHeight="17.0" prefWidth="236.0" textFill="#da2626">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="validationEmail" layoutX="57.0" layoutY="287.0" prefHeight="17.0" prefWidth="236.0" textFill="#da2626" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="validationPass" layoutX="57.0" layoutY="349.0" prefHeight="17.0" prefWidth="236.0" textFill="#da2626">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="validationCPass" layoutX="57.0" layoutY="416.0" prefHeight="17.0" prefWidth="236.0" textFill="#da2626">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="validationCin" layoutX="57.0" layoutY="479.0" prefHeight="17.0" prefWidth="236.0" textFill="#da2626">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="submitRegister" layoutX="102.0" layoutY="508.0" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="146.0" style="-fx-background-color: #ff8c09;" styleClass="buttonRegister" text="Confirmer" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="15.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="login" layoutX="130.0" layoutY="546.0" onAction="#goToLogin" prefHeight="25.0" prefWidth="110.0" style="-fx-font-family: Franklin Gothic Medium;" text="Se connecter..." textFill="#008de4">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="13.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
