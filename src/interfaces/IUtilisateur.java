@@ -7,6 +7,7 @@ package interfaces;
 
 import java.util.List;
 import model.Utilisateur;
+import org.json.JSONObject;
 
 /**
  *
@@ -29,4 +30,5 @@ public interface IUtilisateur {
     public Utilisateur queryByCin(String cin);
 
     public void updateRoleUser(int id, int role);
+ 
 }

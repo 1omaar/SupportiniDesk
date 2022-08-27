@@ -65,6 +65,10 @@ public class RegisterFXMLController implements Initializable {
     private Label validationCin;
     @FXML
     private Hyperlink login;
+    @FXML
+    private TextField numPhone;
+    @FXML
+    private Label phoneValid;
 
     /**
      * Initializes the controller class.
@@ -119,40 +123,46 @@ public class RegisterFXMLController implements Initializable {
             validationCin.setText("Il faut 8 chiffre");
             return;
         }
+        if (!Validation.validationInteger(numPhone, phoneValid)) {
+            return;
+        }
+        if (numPhone.getText().length() != 8) {
+            phoneValid.setText("Num de portable doit 8 chiffres!!");
+            return;
+        }
 
         IUtilisateur iu = new UtilisateurServices();
 
-        Utilisateur newUser = new Utilisateur(nomUser.getText(), prenomUser.getText(), password.getText(), email.getText(), cin.getText());
+        Utilisateur newUser = new Utilisateur(nomUser.getText(), prenomUser.getText(), password.getText(), email.getText(), cin.getText(),numPhone.getText());
 //        UserSession us=  UserSession.getInstace(nomUser.getText(),prenomUser.getText(),email.getText(),cin.getText(),2);
-       
-       
+
         iu.addUser(newUser);
-        Utilisateur queryUser=iu.queryByCin(newUser.getCin());
-        
-        Preferences userPreferences = Preferences.userRoot(); 
-        userPreferences.put("x_id_user",String.valueOf(queryUser.getId()));
+        Utilisateur queryUser = iu.queryByCin(newUser.getCin());
+
+        Preferences userPreferences = Preferences.userRoot();
+        userPreferences.put("x_id_user", String.valueOf(queryUser.getId()));
         Parent root = FXMLLoader.load(getClass().getResource("../choice_profil/ChoiceProfilFXML.fxml"));
         Stage stage = (Stage) submitRegister.getScene().getWindow();
         stage.setScene(new Scene(root));
-         stage.setResizable(false);
+        stage.setResizable(false);
         stage.sizeToScene();
     }
 
- 
-
     private void clear() {
-      
+
         validationNom.setText("");
-        
+
         validationPrenom.setText("");
-      
+
         validationEmail.setText("");
-       
+
         validationPass.setText("");
-      
+
         validationCPass.setText("");
-      
+
         validationCin.setText("");
+
+        phoneValid.setText("");
     }
 
     @FXML
@@ -168,7 +178,7 @@ public class RegisterFXMLController implements Initializable {
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Se Connecter chez Supportini");
         primaryStage.setScene(scene);
-         primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         primaryStage.sizeToScene();
         primaryStage.show();
     }

@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Utilisateur;
+import org.json.JSONException;
+import org.json.JSONObject;
 import util.MaConnexion;
 import util.Validation;
 
@@ -30,7 +32,7 @@ public class UtilisateurServices implements IUtilisateur {
     @Override
     public void addUser(Utilisateur user) {
 
-        String req = "INSERT INTO `utilisateurs`(`nom`, `prenom`, `cin`, `email`, `password`)  VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO `utilisateurs`(`nom`, `prenom`, `cin`, `email`, `password`,`phone`)  VALUES (?,?,?,?,?,?)";
         try {
             String mdp = Validation.hachePassword(user.getPassword());
 
@@ -40,7 +42,7 @@ public class UtilisateurServices implements IUtilisateur {
             ps.setString(3, user.getCin());
             ps.setString(4, user.getEmail());
             ps.setString(5, mdp);
-
+            ps.setString(6, user.getPhone());
             ps.executeUpdate();
             System.out.println("Vous étes s'incrire!!");
             ps.close();
@@ -49,9 +51,6 @@ public class UtilisateurServices implements IUtilisateur {
         }
 
     }
-
-   
-  
 
     @Override
     public List displayUser() {
@@ -67,7 +66,9 @@ public class UtilisateurServices implements IUtilisateur {
                 user.setPrenom(rs.getString(3));
                 user.setCin(rs.getString(4));
                 user.setEmail(rs.getString(5));
-                user.setPassword(rs.getString(5));
+                user.setPassword(rs.getString(6));
+                user.setIdRole(rs.getInt(7));
+                user.setPhone(rs.getString(8));
                 listUser.add(user);
 
             }
@@ -96,6 +97,7 @@ public class UtilisateurServices implements IUtilisateur {
             user.setEmail(res.getString(5));
             user.setPassword(res.getString(6));
             user.setIdRole(res.getInt(7));
+            user.setPhone(res.getString(8));
             ps.close();
             return user;
 
@@ -108,7 +110,7 @@ public class UtilisateurServices implements IUtilisateur {
 
     @Override
     public void updateUser(Utilisateur user) {
-        String req = "UPDATE utilisateurs SET `nom`=?,`prenom`=?,`cin`=?,`email`=?,`password`=? WHERE id=?";
+        String req = "UPDATE utilisateurs SET `nom`=?,`prenom`=?,`cin`=?,`email`=?,`password`=?,`phone`=? WHERE id=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, user.getNom());
@@ -116,8 +118,8 @@ public class UtilisateurServices implements IUtilisateur {
             ps.setString(3, user.getCin());
             ps.setString(4, user.getEmail());
             ps.setString(5, user.getPassword());
-
-            ps.setInt(6, user.getId());
+            ps.setString(6, user.getPhone());
+            ps.setInt(7, user.getId());
             ps.executeUpdate();
             System.out.println("tes données sont enregistré");
             ps.close();
@@ -175,6 +177,7 @@ public class UtilisateurServices implements IUtilisateur {
             user.setEmail(res.getString(5));
             user.setPassword(res.getString(6));
             user.setIdRole(res.getInt(7));
+            user.setPhone(res.getString(8));
             ps.close();
             return user;
 

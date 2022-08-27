@@ -1,24 +1,43 @@
 .sideAnchorPane {
-    -fx-background-color: #ffe6cc;
-    -fx-border-color: #ffe6cc;
-    -fx-border-width:2px 2px 2px 2px;
+    -fx-background-color: white;
+    -fx-border-color: grey;
+    -fx-border-width:0px 0.5px 0px 0px;
     -fx-border-raduis: 50px;
     -fx-background-raduis: 20px;
     -fx-border-style: solid;
-    
+
+}
+
+.iconBar {
+  -fx-background-color: white;  
+}
+.navBar{
+    -fx-background-color:  #EEAB12;
 }
 .btnDashboard{
-    -fx-background-color: #ffe6cc;
-    -fx-border-color: #ffe6cc;
-    -fx-border-width:2px 2px 2px 2px;
-     -fx-border-raduis: 20px;
+    -fx-background-color: white;
+    /*-fx-border-color: gray;*/
+/*    -fx-border-width:0px 0px 1px 0px;*/
+    -fx-border-raduis: 20px;
     -fx-background-raduis: 20px;
-     -fx-border-style: solid;
+    /*-fx-border-bottom-style:  solid;*/
+
+
+
+}
+
+.btnDashboard:hover {
+    -fx-background-color: linear-gradient(to right ,rgba(255,233,218,1) 0%, #EEAB12 100%);
+    -fx-background-radius: 10px;
     
-     
+   
+    -fx-border-raduis: 10px;
+        /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1);*/
+    -fx-cursor:hand;
+
 }
 .clientComboBox{
-    -fx-background-color: #ffe6cc;
-    -fx-border-color: #ffe6cc;
-     -fx-border-style: solid;
+    -fx-background-color: #EEAB12;
+    -fx-border-color: #EEAB12;
+    -fx-border-style: solid;
 }

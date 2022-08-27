@@ -12,27 +12,27 @@ package model;
 public class Entrainee {
 
     private int id, fk_idUser,age, taille, poids;
-    private String  phone, sexe;
+    private String sexe;
 
     public Entrainee() {
     }
 
-    public Entrainee(int fk_idUser, int age, int taille, int poids, String phone, String sexe) {
+    public Entrainee(int fk_idUser, int age, int taille, int poids,  String sexe) {
         this.fk_idUser = fk_idUser;
         this.age = age;
         this.taille = taille;
         this.poids = poids;
-        this.phone = phone;
+       
         this.sexe = sexe;
     }
 
-    public Entrainee(int id, int fk_idUser, int age, int taille, int poids, String phone, String sexe) {
+    public Entrainee(int id, int fk_idUser, int age, int taille, int poids,  String sexe) {
         this.id = id;
         this.fk_idUser = fk_idUser;
         this.age = age;
         this.taille = taille;
         this.poids = poids;
-        this.phone = phone;
+       
         this.sexe = sexe;
     }
 
@@ -76,13 +76,7 @@ public class Entrainee {
         this.poids = poids;
     }
 
-    public String getPhone() {
-        return phone;
-    }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getSexe() {
         return sexe;
@@ -104,7 +98,7 @@ public class Entrainee {
 
     @Override
     public String toString() {
-        return "Entrainee{" + "id=" + id + ", fk_idUser=" + fk_idUser + ", age=" + age + ", taille=" + taille + ", poids=" + poids + ", phone=" + phone + ", sexe=" + sexe + '}';
+        return "Entrainee{" + "id=" + id + ", fk_idUser=" + fk_idUser + ", age=" + age + ", taille=" + taille + ", poids=" + poids + ", sexe=" + sexe + '}';
     }
 
 }

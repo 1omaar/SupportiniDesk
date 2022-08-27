@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="853.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfilFXMLController">
+    <stylesheets>
+        <URL value="@profilfxml.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="579.0" prefWidth="403.0">
+         <children>
+            <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="202.0" layoutY="141.0" radius="76.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="nomPrenom" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="243.0" prefHeight="47.0" prefWidth="228.0" text="name" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="typeUser" alignment="CENTER" layoutX="123.0" layoutY="290.0" prefHeight="47.0" prefWidth="157.0" text="type cpte" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="123.0" layoutY="355.0" prefHeight="47.0" prefWidth="157.0" text="email" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="phone" layoutX="124.0" layoutY="428.0" prefHeight="47.0" prefWidth="157.0" text="phone" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="26.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="47.0" fitWidth="58.0" layoutX="58.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../uicontrolers/png-clipart-gmail-logo-digital-marketing-professional-certification-search-engine-optimization-email-icon-angle-content-marketing.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="68.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../uicontrolers/téléchargement.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="detailProfilPane" layoutX="427.0" prefHeight="579.0" prefWidth="426.0">
+         <children>
+            <Label layoutX="57.0" layoutY="98.0" prefHeight="40.0" prefWidth="67.0" text="age:">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="57.0" layoutY="188.0" prefHeight="40.0" prefWidth="67.0" text="Poids">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="poids" layoutX="147.0" layoutY="188.0" prefHeight="40.0" prefWidth="109.0">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="age" layoutX="124.0" layoutY="98.0" prefHeight="40.0" prefWidth="109.0">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="57.0" layoutY="290.0" prefHeight="40.0" prefWidth="67.0" text="taille">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="taille" layoutX="147.0" layoutY="290.0" prefHeight="40.0" prefWidth="109.0">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="57.0" layoutY="374.0" prefHeight="40.0" prefWidth="67.0" text="sexe:">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="iconSexe" fitHeight="56.0" fitWidth="67.0" layoutX="180.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

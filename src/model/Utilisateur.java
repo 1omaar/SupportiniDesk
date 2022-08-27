@@ -10,32 +10,43 @@ package model;
  * @author Elife-Kef-130
  */
 public class Utilisateur {
-    private int id,idRole;
-    private String nom, prenom , password,email,cin;
+
+    private int id, idRole;
+    private String nom, prenom, password, email, cin, phone;
     //constructeur
 
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String password, String email,String cin) {
+    public Utilisateur(String nom, String prenom, String password, String email, String cin, String phone) {
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
         this.email = email;
-        this.cin=cin;
-        
+        this.cin = cin;
+        this.phone = phone;
     }
 
-    public Utilisateur(int id, String nom, String prenom, String password, String email,String cin , int idRole) {
+    public Utilisateur(int id, String nom, String prenom, String password, String email, String cin, String phone, int idRole) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
         this.email = email;
-        this.cin=cin;
-        this.idRole=idRole;
+        this.cin = cin;
+        this.idRole = idRole;
+        this.phone = phone;
+
     }
     //getters & setters
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
 
     public int getIdRole() {
         return idRole;
@@ -57,8 +68,6 @@ public class Utilisateur {
         this.cin = cin;
     }
 
-
-
     public String getNom() {
         return nom;
     }
@@ -79,6 +88,11 @@ public class Utilisateur {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "Utilisateur{" + "id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", prenom=" + prenom +", email=" + email + ", cin=" + cin + ", phone=" + phone + '}';
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -91,20 +105,10 @@ public class Utilisateur {
         return password;
     }
 
-
     public String getEmail() {
         return email;
     }
 
-    @Override
-    public String toString() {
-        return "Utilisateur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", cin=" + cin + '}';
-    }
+   
 
-    
-  
-
- 
-    
-    
 }
