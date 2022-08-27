@@ -3,16 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/supportini/MainSupportini.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/model/Utilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/interfaces/IAuthentification.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/Exception/AuthException.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/gui/register/RegisterFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/services/AuthServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/gui/login/LoginFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/util/JWebToken.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/gui/dashboard/dashboardfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini-hassen/src/gui/dashboard/DashboardFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/dashboardfxml.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/CoachServices.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/itemDash/itemdashfxml.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/itemDash/ItemDashFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/SalleDeSportFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IUtilisateur.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Utilisateur.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Entrainee.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/salledesportfxml.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/register/RegisterFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/itemDash/ItemDashFXML.fxml</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/UtilisateurServices.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/EntraineeServices.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXML.fxml</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/profilfxml.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/ICoach.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/SalleDeSportFXML.fxml</file>
         </group>
     </open-files>
 </project-private>

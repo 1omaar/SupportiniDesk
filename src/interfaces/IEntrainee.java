@@ -13,5 +13,5 @@ import model.Entrainee;
  */
 public interface IEntrainee {
     public void addEntrainee (Entrainee e);
-   
+   public  Entrainee queryById (int id);
 }

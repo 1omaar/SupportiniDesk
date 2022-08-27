@@ -13,4 +13,5 @@ import model.Coach;
  */
 public interface ICoach {
     public void addCoach (Coach c);
+    public Coach queryById (int id);
 }

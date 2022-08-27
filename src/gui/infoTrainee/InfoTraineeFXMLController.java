@@ -34,7 +34,6 @@ public class InfoTraineeFXMLController implements Initializable {
     private TextField tailleEnt;
     @FXML
     private TextField poidsEnt;
-    @FXML
     private TextField numPhone;
     @FXML
     private Button confEntInfo;
@@ -44,7 +43,6 @@ public class InfoTraineeFXMLController implements Initializable {
     private RadioButton femme;
     @FXML
     private Label ageValid;
-    @FXML
     private Label phoneValid;
     @FXML
     private Label poidsValid;
@@ -78,13 +76,7 @@ public class InfoTraineeFXMLController implements Initializable {
         if (!Validation.validationInteger(poidsEnt, poidsValid)) {
             return;
         }
-        if (!Validation.validationInteger(numPhone, phoneValid)) {
-            return;
-        }
-        if(numPhone.getText().length()!=8) {
-            phoneValid.setText("Num de portable doit 8 chiffres!!");
-            return;
-        }
+     
         if(!(femme.isSelected()|| homme.isSelected())){
             sexeValid.setText("Ajouter votre sexe !!");
             return;
@@ -93,10 +85,10 @@ public class InfoTraineeFXMLController implements Initializable {
         String idUser = userPreferences.get("x_id_user", "root");
         IEntrainee ie = new EntraineeServices();
         if (homme.isSelected()) {
-            Entrainee ent = new Entrainee(Integer.parseInt(idUser), Integer.parseInt(ageEnt.getText()), Integer.parseInt(tailleEnt.getText()), Integer.parseInt(poidsEnt.getText()), numPhone.getText(), "homme");
+            Entrainee ent = new Entrainee(Integer.parseInt(idUser), Integer.parseInt(ageEnt.getText()), Integer.parseInt(tailleEnt.getText()), Integer.parseInt(poidsEnt.getText()), "homme");
             ie.addEntrainee(ent);
         } else {
-            Entrainee ent = new Entrainee(Integer.parseInt(idUser), Integer.parseInt(ageEnt.getText()), Integer.parseInt(tailleEnt.getText()), Integer.parseInt(poidsEnt.getText()), numPhone.getText(), "femme");
+            Entrainee ent = new Entrainee(Integer.parseInt(idUser), Integer.parseInt(ageEnt.getText()), Integer.parseInt(tailleEnt.getText()), Integer.parseInt(poidsEnt.getText()),  "femme");
             ie.addEntrainee(ent);
         }
 
@@ -108,8 +100,7 @@ public class InfoTraineeFXMLController implements Initializable {
          tailleValid.setText("");
     
          poidsValid.setText("");
-      
-        phoneValid.setText("");
+     
         sexeValid.setText("");
     }
 }
