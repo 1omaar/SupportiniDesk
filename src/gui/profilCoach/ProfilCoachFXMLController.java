@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.profil;
+package gui.profilCoach;
 
 import Exception.AuthException;
-import interfaces.IEntrainee;
+import gui.profil.ProfilFXMLController;
+import interfaces.ICoach;
 import interfaces.IUtilisateur;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -20,14 +21,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import model.Utilisateur;
 import org.json.JSONException;
-import services.EntraineeServices;
+import services.CoachServices;
 import services.UtilisateurServices;
 import util.JWebToken;
 
@@ -36,7 +34,7 @@ import util.JWebToken;
  *
  * @author Asus
  */
-public class ProfilFXMLController implements Initializable {
+public class ProfilCoachFXMLController implements Initializable {
 
     @FXML
     private Circle myCircle;
@@ -49,21 +47,12 @@ public class ProfilFXMLController implements Initializable {
     @FXML
     private Label phone;
     @FXML
-    private Pane detailProfilPane;
-    @FXML
-    private Label poids;
-    @FXML
-    private Label age;
-    @FXML
-    private Label taille;
-   
-    @FXML
-    private ImageView iconSexe;
+    private Label description;
 
     /**
      * Initializes the controller class.
      */
-    @Override
+      @Override
     public void initialize(URL url, ResourceBundle rb) {
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
@@ -88,40 +77,15 @@ public class ProfilFXMLController implements Initializable {
         myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
     }
-
-    private void getInfoCurrentUser(int id) throws URISyntaxException {
-        IUtilisateur iu = new UtilisateurServices();
+      private void getInfoCurrentUser(int id){
+           IUtilisateur iu = new UtilisateurServices();
           String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
         String prenom = iu.queryUserById(id).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getPrenom().substring(1);
         nomPrenom.setText(nom + " " + prenom);
         email.setText(iu.queryUserById(id).getEmail());
         phone.setText(iu.queryUserById(id).getPhone());
-        detailProfilPane.setVisible(false);
-        detailProfilPane.setManaged(false);
-       if(iu.queryUserById(id).getIdRole()==2){
-             IEntrainee ie = new EntraineeServices();
-            age.setText(String.valueOf(ie.queryById(id).getAge())+" ans");
-            poids.setText(String.valueOf(ie.queryById(id).getPoids()+" kg"));
-            taille.setText(String.valueOf(ie.queryById(id).getTaille())+" cm");
-            typeUser.setText("Entrainé");
-            if("homme".equals(ie.queryById(id).getSexe())){
-               Image imageSexe = new Image(getClass().getResource("../uicontrolers/male.jpg").toURI().toString());
-            iconSexe.setImage(imageSexe);
-            iconSexe.setFitWidth(50);
-            iconSexe.setFitHeight(50);   
-            }else {
-                 Image imageSexe = new Image(getClass().getResource("../uicontrolers/femine.jpg").toURI().toString());
-            iconSexe.setImage(imageSexe);
-            iconSexe.setFitWidth(50);
-            iconSexe.setFitHeight(50);
-             detailProfilPane.setVisible(true);
-        detailProfilPane.setManaged(true);
-            } 
-       }
-         
-          
-        
-        
-    }
-
+        typeUser.setText("Entraineur");
+        ICoach ic = new CoachServices();
+        description.setText(ic.queryById(id).getSpecialite());
+      }
 }

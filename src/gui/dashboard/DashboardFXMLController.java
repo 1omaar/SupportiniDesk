@@ -105,13 +105,14 @@ public class DashboardFXMLController implements Initializable {
         try {
             incomingToken = new JWebToken(bearerToken);
             if (!incomingToken.isValid()) {
-                itemComboBox();
+
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
                 int idRole = Integer.parseInt(audience);
                 int idUser = Integer.parseInt(subject);
 //                control user  side bar
+                itemComboBox(idRole);
                 sideBarBtn2.setVisible(idRole != 3);
                 sideBarBtn2.setManaged(idRole != 3);
                 iconCoach.setVisible(idRole != 3);
@@ -192,8 +193,8 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    private void itemComboBox() {
-        
+    private void itemComboBox(int idRole) {
+
         ObservableList<String> items = FXCollections.observableArrayList("Profile", "Déconnexion");
         clientComboBox.setItems(items);
         clientComboBox.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
@@ -202,7 +203,7 @@ public class DashboardFXMLController implements Initializable {
                 if (newValue.equals(clientComboBox.getItems().get(0))) {
                     ActionEvent event = null;
                     try {
-                        profil(event);
+                        profil(event, idRole);
 
 //                   oldValue=observable.getValue();
                     } catch (IOException ex) {
@@ -223,20 +224,35 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    public void profil(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../profil/ProfilFXML.fxml"));
-        scenePane.getChildren().removeAll();
-        scenePane.getChildren().setAll(root);
+    public void profil(ActionEvent event, int idRole) throws IOException {
+        switch (idRole) {
+
+            case 3: {
+                Parent root = FXMLLoader.load(getClass().getResource("../profilCoach/ProfilCoachFXML.fxml"));
+                scenePane.getChildren().removeAll();
+                scenePane.getChildren().setAll(root);
+                break;
+            }
+            default: {
+                Parent root = FXMLLoader.load(getClass().getResource("../profil/ProfilFXML.fxml"));
+                scenePane.getChildren().removeAll();
+                scenePane.getChildren().setAll(root);
+                break;
+            }
+
+        }
 
     }
+
     @FXML
     public void listProduit(ActionEvent event) throws IOException {
-         clientComboBox.getSelectionModel().clearSelection();
+        clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../produits/ProduitsFXML.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
 
     }
+
     @FXML
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();

@@ -59,27 +59,27 @@ public class InfoCoachFXMLController implements Initializable {
           validationSpec.setText("Précise vos spécialités sportives !!");
           return ;
        }
-       String DescrSpecialite = null ;
+       String DescrSpecialite="Maitre en:\n"  ;
        if(fitness.isSelected()){
-           DescrSpecialite="fitness";
+           DescrSpecialite="-fitness\n";
        }
         if (musculation.isSelected()) {
-            DescrSpecialite+=", musculation";
+            DescrSpecialite+="-musculation\n";
         }
         if(dance.isSelected()){
-            DescrSpecialite+=", dance";
+            DescrSpecialite+="-dance\n";
         }
         if(boxing.isSelected()){
-            DescrSpecialite+=", boxing";
+            DescrSpecialite+="-boxing\n";
         }
         if(karate.isSelected()){
-            DescrSpecialite+=", karate";
+            DescrSpecialite+="-karate\n";
         }
         if(taik.isSelected()){
-            DescrSpecialite+=", taikwando";
+            DescrSpecialite+="-taikwando\n";
         }
         if(autre.isSelected()){
-            DescrSpecialite+=", autres...";
+            DescrSpecialite+="-autres...";
         }
         ICoach ic =new CoachServices();
         Preferences userPreferences = Preferences.userRoot();
