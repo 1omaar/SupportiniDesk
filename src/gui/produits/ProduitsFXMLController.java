@@ -22,6 +22,10 @@ public class ProduitsFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+       // interface instanciation  li service produits 
+       // instantication list <Produit> 
+       // list = fonction affichage produit 
+       
     }    
     
 }

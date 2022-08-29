@@ -5,6 +5,9 @@
  */
 package services;
 
+import gui.choice_profil.ChoiceProfilFXMLController;
+import gui.login.LoginFXMLController;
+import interfaces.IAuthentification;
 import interfaces.IUtilisateur;
 import java.security.MessageDigest;
 import java.sql.Connection;
@@ -19,6 +22,7 @@ import model.Utilisateur;
 import org.json.JSONException;
 import org.json.JSONObject;
 import util.MaConnexion;
+import util.Notification;
 import util.Validation;
 
 /**
@@ -44,10 +48,12 @@ public class UtilisateurServices implements IUtilisateur {
             ps.setString(5, mdp);
             ps.setString(6, user.getPhone());
             ps.executeUpdate();
-            System.out.println("Vous étes s'incrire!!");
+           
             ps.close();
         } catch (Exception ex) {
             System.err.println("Utilisateur existe déja");
+            Notification.notificationError("DESOLE", "E-mail ou Mot De Passe existe déja !!");
+            
         }
 
     }
@@ -154,6 +160,9 @@ public class UtilisateurServices implements IUtilisateur {
 
             ps.executeUpdate();
             ps.close();
+            
+          
+            
         } catch (SQLException ex) {
             System.err.println(ex);
         }

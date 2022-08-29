@@ -134,8 +134,9 @@ public class RegisterFXMLController implements Initializable {
         IUtilisateur iu = new UtilisateurServices();
 
         Utilisateur newUser = new Utilisateur(nomUser.getText(), prenomUser.getText(), password.getText(), email.getText(), cin.getText(),numPhone.getText());
-//        UserSession us=  UserSession.getInstace(nomUser.getText(),prenomUser.getText(),email.getText(),cin.getText(),2);
-
+        Preferences userPerferences = Preferences.userRoot();
+        userPerferences.put("pwd", password.getText());
+        
         iu.addUser(newUser);
         Utilisateur queryUser = iu.queryByCin(newUser.getCin());
 

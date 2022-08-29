@@ -16,6 +16,7 @@ import model.Utilisateur;
 import org.json.JSONArray;
 import util.JWebToken;
 import util.MaConnexion;
+import util.Notification;
 import util.Validation;
 
 /**
@@ -46,14 +47,15 @@ public class AuthServices implements IAuthentification {
             existUser.setPassword(res.getString(6));
             existUser.setIdRole(res.getInt(7));
             ps.close();
+           
           if (existUser.getPassword().equals(hachePwd)){
-
+              
             return existUser;
           }else{
-              System.err.println("Mot de Passe incorrect");
+            Notification.notificationError("DESOLE", "Mot de Passe incorrect !!");
           }
         } catch (Exception ex) {
-            System.err.println(ex);
+            Notification.notificationError("DESOLE", "E-mail incorrect !!");
         }
 return null ;
     }
