@@ -33,7 +33,7 @@ public class CoachServices implements ICoach {
             ps.setInt(2, c.getIdUser());
             ps.setInt(3, 0);
             ps.executeUpdate();
-            System.out.println("Inscription avec succée");
+          
             ps.close();
         } catch (SQLException ex) {
             System.err.println(ex);

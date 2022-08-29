@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import services.AuthServices;
 import util.JWebToken;
+import util.Notification;
 import util.Validation;
 
 /**
@@ -61,7 +62,7 @@ public class LoginFXMLController implements Initializable {
     }
 
     @FXML
-    private void login(ActionEvent event) throws NoSuchAlgorithmException, JSONException, InvalidKeyException, IOException {
+    public void login(ActionEvent event) throws NoSuchAlgorithmException, JSONException, InvalidKeyException, IOException {
         final String regex = "^(.+)@(\\S+)$";
 
         if (emailLogin.getText().isEmpty()) {
@@ -79,7 +80,9 @@ public class LoginFXMLController implements Initializable {
         IAuthentification ia = new AuthServices();
         if (ia.login(emailLogin.getText(), pwdLogin.getText()) instanceof Utilisateur) {
             generateCurrentUserJwt(ia.login(emailLogin.getText(), pwdLogin.getText()));
-            redirectToDashboard(event);
+            String prenom =ia.login(emailLogin.getText(), pwdLogin.getText()).getPrenom().substring(0, 1).toUpperCase() + ia.login(emailLogin.getText(), pwdLogin.getText()).getPrenom().substring(1);
+              Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, "+prenom);
+            redirectToDashboard(event,buttonConf);
         }
     }
 
@@ -100,7 +103,7 @@ public class LoginFXMLController implements Initializable {
         primaryStage.show();
     }
 
-    private void generateCurrentUserJwt(Utilisateur user) throws JSONException, InvalidKeyException {
+    public void generateCurrentUserJwt(Utilisateur user) throws JSONException, InvalidKeyException {
         JSONObject payload = new JSONObject();
         
         payload.put("sub", String.valueOf(user.getId()));
@@ -112,8 +115,8 @@ public class LoginFXMLController implements Initializable {
         userPreferences.put("BearerToken", BearerToken);
      
     }
-    private void redirectToDashboard (ActionEvent event) throws IOException{
-         Stage stage = (Stage) buttonConf.getScene().getWindow();
+    public void redirectToDashboard (ActionEvent event,Button btn) throws IOException{
+         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));

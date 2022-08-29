@@ -74,7 +74,7 @@ public class ProfilCoachFXMLController implements Initializable {
     private void getImageProfil() throws URISyntaxException {
         Image im = new Image(getClass().getResource("../uicontrolers/user.png").toURI().toString());
         myCircle.setFill(new ImagePattern(im));
-        myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
+//        myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
     }
       private void getInfoCurrentUser(int id){

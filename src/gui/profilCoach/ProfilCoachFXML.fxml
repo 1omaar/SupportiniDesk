@@ -2,59 +2,68 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="674.0" prefWidth="882.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profilCoach.ProfilCoachFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1512.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profilCoach.ProfilCoachFXMLController">
     <stylesheets>
         <URL value="@profilcoachfxml.css" />
     </stylesheets>
    <children>
-      <Pane layoutX="10.0" layoutY="14.0" prefHeight="651.0" prefWidth="861.0">
+      <Pane layoutX="76.0" layoutY="47.0" prefHeight="807.0" prefWidth="1360.0">
          <children>
-            <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="227.0" layoutY="178.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label fx:id="nomPrenom" alignment="CENTER" contentDisplay="CENTER" layoutX="501.0" layoutY="146.0" prefHeight="47.0" prefWidth="251.0" text="name" wrapText="true">
+            <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="380.0" layoutY="210.0" radius="115.0" stroke="BLACK" strokeType="INSIDE">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.5394737124443054" green="0.5394737124443054" blue="0.5394737124443054" />
+                     </color>
+                  </DropShadow>
+               </effect></Circle>
+            <Label fx:id="nomPrenom" alignment="CENTER" contentDisplay="CENTER" layoutX="907.0" layoutY="175.0" prefHeight="47.0" prefWidth="251.0" text="name" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="38.0" />
+               </font>
+            </Label>
+            <Label fx:id="typeUser" alignment="CENTER" layoutX="954.0" layoutY="249.0" prefHeight="47.0" prefWidth="157.0" text="type cpte" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="938.0" layoutY="426.0" prefHeight="47.0" prefWidth="220.0" text="email" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="typeUser" alignment="CENTER" layoutX="548.0" layoutY="225.0" prefHeight="47.0" prefWidth="157.0" text="type cpte" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Franklin Gothic Medium Cond" size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="email" layoutX="536.0" layoutY="355.0" prefHeight="47.0" prefWidth="220.0" text="email" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="phone" layoutX="937.0" layoutY="508.0" prefHeight="47.0" prefWidth="220.0" text="phone" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="phone" layoutX="535.0" layoutY="437.0" prefHeight="47.0" prefWidth="220.0" text="phone" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Franklin Gothic Medium Cond" size="26.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="47.0" fitWidth="58.0" layoutX="462.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="47.0" fitWidth="58.0" layoutX="864.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../uicontrolers/png-clipart-gmail-logo-digital-marketing-professional-certification-search-engine-optimization-email-icon-angle-content-marketing.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="471.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="873.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../uicontrolers/téléchargement.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="description" alignment="TOP_LEFT" layoutX="67.0" layoutY="355.0" prefHeight="211.0" prefWidth="314.0" wrapText="true">
+            <Label fx:id="description" alignment="TOP_LEFT" layoutX="265.0" layoutY="464.0" prefHeight="211.0" prefWidth="314.0" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Medium" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="67.0" layoutY="315.0" prefHeight="40.0" prefWidth="202.0" text="Spécialité:">
+            <Label layoutX="265.0" layoutY="399.0" prefHeight="40.0" prefWidth="202.0" text="Spécialité:">
                <font>
-                  <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                  <Font name="Franklin Gothic Medium Cond" size="26.0" />
                </font>
             </Label>
          </children>

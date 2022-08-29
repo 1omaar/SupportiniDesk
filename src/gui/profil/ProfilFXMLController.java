@@ -56,7 +56,7 @@ public class ProfilFXMLController implements Initializable {
     private Label age;
     @FXML
     private Label taille;
-   
+
     @FXML
     private ImageView iconSexe;
 
@@ -85,43 +85,41 @@ public class ProfilFXMLController implements Initializable {
     private void getImageProfil() throws URISyntaxException {
         Image im = new Image(getClass().getResource("../uicontrolers/user.png").toURI().toString());
         myCircle.setFill(new ImagePattern(im));
-        myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
+//        myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
     }
 
     private void getInfoCurrentUser(int id) throws URISyntaxException {
         IUtilisateur iu = new UtilisateurServices();
-          String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
+        String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
         String prenom = iu.queryUserById(id).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getPrenom().substring(1);
         nomPrenom.setText(nom + " " + prenom);
         email.setText(iu.queryUserById(id).getEmail());
         phone.setText(iu.queryUserById(id).getPhone());
         detailProfilPane.setVisible(false);
         detailProfilPane.setManaged(false);
-       if(iu.queryUserById(id).getIdRole()==2){
-             IEntrainee ie = new EntraineeServices();
-            age.setText(String.valueOf(ie.queryById(id).getAge())+" ans");
-            poids.setText(String.valueOf(ie.queryById(id).getPoids()+" kg"));
-            taille.setText(String.valueOf(ie.queryById(id).getTaille())+" cm");
+        if (iu.queryUserById(id).getIdRole() == 2) {
+            detailProfilPane.setVisible(true);
+            detailProfilPane.setManaged(true);
+            IEntrainee ie = new EntraineeServices();
+            age.setText(String.valueOf(ie.queryById(id).getAge()) + " ans");
+            poids.setText(String.valueOf(ie.queryById(id).getPoids() + " kg"));
+            taille.setText(String.valueOf(ie.queryById(id).getTaille()) + " cm");
             typeUser.setText("Entrainé");
-            if("homme".equals(ie.queryById(id).getSexe())){
-               Image imageSexe = new Image(getClass().getResource("../uicontrolers/male.jpg").toURI().toString());
-            iconSexe.setImage(imageSexe);
-            iconSexe.setFitWidth(50);
-            iconSexe.setFitHeight(50);   
-            }else {
-                 Image imageSexe = new Image(getClass().getResource("../uicontrolers/femine.jpg").toURI().toString());
-            iconSexe.setImage(imageSexe);
-            iconSexe.setFitWidth(50);
-            iconSexe.setFitHeight(50);
-             detailProfilPane.setVisible(true);
-        detailProfilPane.setManaged(true);
-            } 
-       }
-         
-          
-        
-        
+            if ("homme".equals(ie.queryById(id).getSexe())) {
+                Image imageSexe = new Image(getClass().getResource("../uicontrolers/male.jpg").toURI().toString());
+                iconSexe.setImage(imageSexe);
+                iconSexe.setFitWidth(50);
+                iconSexe.setFitHeight(50);
+            } else {
+                Image imageSexe = new Image(getClass().getResource("../uicontrolers/femine.jpg").toURI().toString());
+                iconSexe.setImage(imageSexe);
+                iconSexe.setFitWidth(70);
+                iconSexe.setFitHeight(70);
+
+            }
+        }
+
     }
 
 }

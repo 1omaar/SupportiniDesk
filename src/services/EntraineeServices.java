@@ -34,7 +34,7 @@ public class EntraineeServices implements IEntrainee{
          ps.setString(4, e.getSexe());
          ps.setInt(5, e.getFk_idUser());
          ps.executeUpdate();
-         System.out.println("Vos Informations enregistrés avec succée");
+        
          ps.close();
      } catch (SQLException ex) {
          Logger.getLogger(EntraineeServices.class.getName()).log(Level.SEVERE, null, ex);
