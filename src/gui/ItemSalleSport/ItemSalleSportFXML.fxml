@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="Itemsalle" prefHeight="167.0" prefWidth="610.0" styleClass="itemsalle" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ItemSalleSport.ItemSalleSportFXMLController">
+    <stylesheets>
+        <URL value="@itemsallesportfxml.css" />
+    </stylesheets>
+   <children>
+      <ImageView fx:id="image" fitHeight="158.0" fitWidth="193.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="salledesportfxml">
+         <image>
+            <Image url="@../uicontrolers/96-966814_personal-training-icon-png%20(2).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nom" layoutX="184.0" layoutY="10.0" prefHeight="28.0" prefWidth="199.0" styleClass="nom" stylesheets="@itemsallesportfxml.css" text="Nom salle de sport" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="prix" alignment="CENTER_RIGHT" layoutX="505.0" layoutY="10.0" prefHeight="28.0" prefWidth="98.0" styleClass="prix" stylesheets="@itemsallesportfxml.css" text="prix participation " textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="adress" alignment="CENTER_RIGHT" layoutX="405.0" layoutY="130.0" prefHeight="28.0" prefWidth="199.0" styleClass="adress" stylesheets="@itemsallesportfxml.css" text="adress" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="classs" layoutX="184.0" layoutY="42.0" prefHeight="84.0" prefWidth="421.0" styleClass="classs" stylesheets="@itemsallesportfxml.css" text="class" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Medium" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
