@@ -5,7 +5,10 @@
 
 
 
-.mainFxmlClass {
-
+.listSalle{
+    -fx-background-color:transparent; 
 }
 
+.scrollListSalle{
+    -fx-border-style:none;
+}

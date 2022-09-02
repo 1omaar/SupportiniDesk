@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import model.SalleSport;
 
 /**
@@ -26,19 +27,20 @@ import model.SalleSport;
 public class ItemSalleSportFXMLController implements Initializable {
 
     @FXML
-    private AnchorPane Itemsalle;
-    @FXML
     private Label nom;
     @FXML
     private Label prix;
-    @FXML
-    private Label adress;
-    @FXML
-    private Label classs;
+
 
     private SalleSport Salle;
     @FXML
     private ImageView image;
+    @FXML
+    private HBox itemsalle;
+    @FXML
+    private Label description;
+    @FXML
+    private Label adresse;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
@@ -51,9 +53,9 @@ public class ItemSalleSportFXMLController implements Initializable {
 //        System.out.println(Salle);
     
         nom.setText(Salle.getNomSalle());
-        prix.setText(String.valueOf(Salle.getPrix()));
-        adress.setText(Salle.getVille()+" ,"+Salle.getRue()+" "+Salle.getCodePostal());
-        classs.setText(Salle.getDescription());
+        prix.setText(String.valueOf(Salle.getPrix())+" DT");
+        adresse.setText(Salle.getVille()+" ,"+Salle.getRue()+" "+Salle.getCodePostal());
+        description.setText(Salle.getDescription());
        
     Image im;
         try {

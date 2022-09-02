@@ -40,9 +40,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
@@ -121,8 +123,8 @@ public class DashboardFXMLController implements Initializable {
                 sideAnchorPane.setManaged(false);
                 nomPrenom.setAlignment(Pos.CENTER);
                 displayMenu();
-                getImageProfil();
-                getNameOfCurrentUser(idUser);
+               
+                getInfoCurrentUser(idUser);
 
             } else {
                 redirectToLogin();
@@ -257,9 +259,12 @@ public class DashboardFXMLController implements Initializable {
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
-        scenePane.getChildren().removeAll();
-        scenePane.getChildren().setAll(root);
+        Scene newScene;
+        newScene = new Scene(root);
+        Stage mainWindow;
+        mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        mainWindow.setScene(newScene);
     }
 
     @FXML
@@ -272,7 +277,7 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    private void logout(ActionEvent event) {
+    public void logout(ActionEvent event) {
         Preferences userPreferences = Preferences.userRoot();
         try {
             userPreferences.clear();
@@ -305,17 +310,15 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    private void getImageProfil() throws URISyntaxException {
-        Image im = new Image(getClass().getResource("../uicontrolers/user.png").toURI().toString());
-        myCircle.setFill(new ImagePattern(im));
-        myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
-        myCircle.setStroke(Color.WHITESMOKE);
-    }
 
-    private void getNameOfCurrentUser(int id) {
+    public void getInfoCurrentUser(int id) throws URISyntaxException {
         IUtilisateur iu = new UtilisateurServices();
         String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
         String prenom = iu.queryUserById(id).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getPrenom().substring(1);
         nomPrenom.setText(nom + " " + prenom);
+               Image im = new Image(getClass().getResource("../uicontrolers/user.png").toURI().toString());
+        myCircle.setFill(new ImagePattern(im));
+        myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
+        myCircle.setStroke(Color.WHITESMOKE);
     }
 }
