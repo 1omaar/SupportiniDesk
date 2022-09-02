@@ -256,7 +256,7 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
-        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ItemSalleSportFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
 
