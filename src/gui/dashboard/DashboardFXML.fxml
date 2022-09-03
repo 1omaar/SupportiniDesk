@@ -9,12 +9,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="969.0" prefWidth="1744.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.dashboard.DashboardFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1686.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.dashboard.DashboardFXMLController">
    <children>
-      <AnchorPane fx:id="navbar" prefHeight="71.0" prefWidth="1744.0" styleClass="navBar" stylesheets="@dashboardfxml.css">
+      <AnchorPane fx:id="navbar" prefHeight="71.0" prefWidth="1592.0" styleClass="navBar" stylesheets="@dashboardfxml.css">
          <children>
+
             <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="1608.0" layoutY="36.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
-            <ComboBox fx:id="clientComboBox" accessibleRole="MENU_BAR" focusTraversable="false" layoutX="1637.0" layoutY="22.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="10.0" prefWidth="19.0" styleClass="clientComboBox" stylesheets="@dashboardfxml.css">
+             <ComboBox fx:id="clientComboBox" accessibleRole="MENU_BAR" focusTraversable="false" layoutX="1637.0" layoutY="22.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="10.0" prefWidth="19.0" styleClass="clientComboBox" stylesheets="@dashboardfxml.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ComboBox>
@@ -30,7 +31,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="sideAnchorPane" layoutX="47.0" layoutY="71.0" prefHeight="900.0" prefWidth="188.0" styleClass="sideAnchorPane" stylesheets="@dashboardfxml.css">
+      <AnchorPane fx:id="sideAnchorPane" layoutX="47.0" layoutY="71.0" prefHeight="579.0" prefWidth="188.0" styleClass="sideAnchorPane" stylesheets="@dashboardfxml.css">
          <children>
             <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#itemDash" prefHeight="47.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Dashboard">
                <font>
@@ -54,7 +55,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="iconBar" layoutX="-2.0" layoutY="71.0" prefHeight="900.0" prefWidth="57.0" styleClass="iconBar" stylesheets="@dashboardfxml.css">
+      <AnchorPane fx:id="iconBar" layoutX="-2.0" layoutY="71.0" prefHeight="579.0" prefWidth="57.0" styleClass="iconBar" stylesheets="@dashboardfxml.css">
          <children>
             <ImageView fx:id="iconDash" fitHeight="40.0" fitWidth="34.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
