@@ -3,21 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/UpdateProfilController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IUtilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/Validation.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Utilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/ProfilCoachFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Entrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/register/RegisterFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/UtilisateurServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXML.fxml</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/updateprofil.css</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/dashPss/dashpss.css</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/dashPss/DashPssController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/dashPss/dashPss.fxml</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/updateProfil/UpdateProfilController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/dashboard/DashboardFXML.fxml</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/salleDeSport/ListSalleSportController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/addSalleDeSport/addSalleDeSport.fxml</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/addSalleDeSport/AddSalleDeSportController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/addSalleDeSport/addsalledesport.css</file>
         </group>
     </open-files>
 </project-private>

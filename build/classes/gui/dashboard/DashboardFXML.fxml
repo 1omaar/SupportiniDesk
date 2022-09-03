@@ -33,7 +33,7 @@
       </AnchorPane>
       <AnchorPane fx:id="sideAnchorPane" layoutX="47.0" layoutY="71.0" prefHeight="579.0" prefWidth="188.0" styleClass="sideAnchorPane" stylesheets="@dashboardfxml.css">
          <children>
-            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#itemDash" prefHeight="47.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Dashboard">
+            <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#dashPss" prefHeight="47.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Dashboard">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Font name="Cambria" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="sideBarBtn3" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="125.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Salle De Sports">
+            <Button fx:id="sideBarBtn3" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="125.0" mnemonicParsing="false" onAction="#salleDeSport" prefHeight="58.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Salle De Sports">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>

@@ -92,7 +92,7 @@ public class DashboardFXMLController implements Initializable {
     private ImageView iconMenu;
     @FXML
     private AnchorPane scenePane;
-
+    private int idUser,idRole;
     /**
      * Initializes the controller class.
      */
@@ -112,8 +112,8 @@ public class DashboardFXMLController implements Initializable {
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
-                int idRole = Integer.parseInt(audience);
-                int idUser = Integer.parseInt(subject);
+                 idRole = Integer.parseInt(audience);
+                 idUser = Integer.parseInt(subject);
 //                control user  side bar
                 itemComboBox(idRole);
                 sideBarBtn2.setVisible(idRole != 3);
@@ -270,6 +270,7 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
+    @FXML
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
@@ -282,15 +283,29 @@ public class DashboardFXMLController implements Initializable {
     }
 
     @FXML
-    public void itemDash(ActionEvent event) throws IOException {
-
-        clientComboBox.getSelectionModel().clearSelection();
-        Parent root = FXMLLoader.load(getClass().getResource("../itemDash/ItemDashFXML.fxml"));
+    public void dashPss(ActionEvent event) throws IOException {
+    switch (idRole) {
+        case 4:{
+               clientComboBox.getSelectionModel().clearSelection();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashPss/dashPss.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
+        }
+        default:{
+               clientComboBox.getSelectionModel().clearSelection();
+        Parent root = FXMLLoader.load(getClass().getResource("../xxx/xxx.fxml"));
+        scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);
+        }
+    }
+     
 
     }
 
+    public AnchorPane getScenePane() {
+        return scenePane;
+    }
+    
     public void logout(ActionEvent event) {
         Preferences userPreferences = Preferences.userRoot();
         try {

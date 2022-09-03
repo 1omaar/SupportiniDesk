@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.itemDash;
+package gui.addSalleDeSport;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,9 +12,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author Asus
+ * @author Elife-Kef-113
  */
-public class ItemDashFXMLController implements Initializable {
+public class AddSalleDeSportController implements Initializable {
 
     /**
      * Initializes the controller class.
