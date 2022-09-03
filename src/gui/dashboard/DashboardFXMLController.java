@@ -40,9 +40,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
@@ -124,6 +126,7 @@ public class DashboardFXMLController implements Initializable {
                 displayMenu();
                
                 getCurrentUser(idUser);
+
 
             } else {
                 redirectToLogin();
@@ -269,10 +272,13 @@ public class DashboardFXMLController implements Initializable {
 
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
-        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ItemSalleSportFXML.fxml"));
-        scenePane.getChildren().removeAll();
-        scenePane.getChildren().setAll(root);
+        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
+        Scene newScene;
+        newScene = new Scene(root);
+        Stage mainWindow;
+        mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        mainWindow.setScene(newScene);
     }
 
     @FXML
@@ -285,7 +291,7 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    private void logout(ActionEvent event) {
+    public void logout(ActionEvent event) {
         Preferences userPreferences = Preferences.userRoot();
         try {
             userPreferences.clear();
@@ -318,6 +324,7 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
+
     public void getImageProfil(String path) throws URISyntaxException {
          System.out.println(path);
             Image im = new Image(getClass().getResource(path).toURI().toString());
@@ -340,9 +347,6 @@ public class DashboardFXMLController implements Initializable {
              getImageProfil(path);
          }
         nomPrenom.setText(nom + " " + prenom);
-       
-       
-           
-        
+
     }
 }
