@@ -3,7 +3,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,11 +14,6 @@
       <AnchorPane fx:id="navbar" prefHeight="71.0" prefWidth="1744.0" styleClass="navBar" stylesheets="@dashboardfxml.css">
          <children>
             <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="1608.0" layoutY="36.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label fx:id="nomPrenom" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1319.0" layoutY="22.0" prefHeight="28.0" prefWidth="230.0" text="name" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="Franklin Gothic Medium Cond" size="20.0" />
-               </font>
-            </Label>
             <ComboBox fx:id="clientComboBox" accessibleRole="MENU_BAR" focusTraversable="false" layoutX="1637.0" layoutY="22.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="10.0" prefWidth="19.0" styleClass="clientComboBox" stylesheets="@dashboardfxml.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -29,28 +23,33 @@
                   <Image url="@../uicontrolers/36-365828_navbar-toggle-icon-menu-hamburger-png-white.png" />
                </image>
             </ImageView>
+            <Button fx:id="nomPrenom" alignment="CENTER_RIGHT" layoutX="1321.0" layoutY="19.0" mnemonicParsing="false" onAction="#listProduit" prefHeight="34.0" prefWidth="230.0" style="-fx-background-color: #EEAB12;" text="n">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="sideAnchorPane" layoutX="47.0" layoutY="71.0" prefHeight="900.0" prefWidth="188.0" styleClass="sideAnchorPane" stylesheets="@dashboardfxml.css">
          <children>
             <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#itemDash" prefHeight="47.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Dashboard">
                <font>
-                  <Font name="Franklin Gothic Medium" size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="sideBarBtn3" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="130.0" mnemonicParsing="false" onAction="#salleDeSport" prefHeight="47.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Salles De Sport">
-               <font>
-                  <Font name="Franklin Gothic Medium" size="18.0" />
+                  <Font name="Cambria" size="18.0" />
                </font>
             </Button>
             <Button fx:id="btnCommerce" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="72.0" mnemonicParsing="false" onAction="#listProduit" prefHeight="47.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Produits Sportifs">
                <font>
-                  <Font name="Franklin Gothic Medium" size="18.0" />
+                  <Font name="Cambria" size="18.0" />
                </font>
             </Button>
             <Button fx:id="sideBarBtn2" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="177.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Entraineurs">
                <font>
-                  <Font name="Franklin Gothic Medium" size="18.0" />
+                  <Font name="Cambria" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="sideBarBtn3" alignment="BASELINE_LEFT" layoutX="6.0" layoutY="125.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="176.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Salle De Sports">
+               <font>
+                  <Font name="Cambria" size="18.0" />
                </font>
             </Button>
          </children>

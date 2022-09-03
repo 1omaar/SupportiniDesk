@@ -21,8 +21,6 @@ public interface IUtilisateur {
 
     public Utilisateur queryUserById(int id);
 
-  
-
     public void updateUser(Utilisateur user);
 
     public void deleteUser(Utilisateur user);
@@ -30,5 +28,6 @@ public interface IUtilisateur {
     public Utilisateur queryByCin(String cin);
 
     public void updateRoleUser(int id, int role);
+    public void uploadUserImg(String path,int id);
  
 }

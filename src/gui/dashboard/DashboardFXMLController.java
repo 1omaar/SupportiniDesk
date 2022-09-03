@@ -60,7 +60,7 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private AnchorPane sideAnchorPane;
     @FXML
-    private Label nomPrenom;
+    private Button nomPrenom;
     @FXML
     private Circle myCircle;
     @FXML
@@ -98,8 +98,9 @@ public class DashboardFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
+       
         String bearerToken = userPreferences.get("BearerToken", "root");
-        //verify and use
+     
         JWebToken incomingToken;
 
         try {
@@ -121,8 +122,8 @@ public class DashboardFXMLController implements Initializable {
                 sideAnchorPane.setManaged(false);
                 nomPrenom.setAlignment(Pos.CENTER);
                 displayMenu();
-                getImageProfil();
-                getNameOfCurrentUser(idUser);
+               
+                getCurrentUser(idUser);
 
             } else {
                 redirectToLogin();
@@ -195,7 +196,7 @@ public class DashboardFXMLController implements Initializable {
 
     private void itemComboBox(int idRole) {
 
-        ObservableList<String> items = FXCollections.observableArrayList("Profile", "Déconnexion");
+        ObservableList<String> items = FXCollections.observableArrayList("Profile","Configuration", "Déconnexion");
         clientComboBox.setItems(items);
         clientComboBox.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
 
@@ -211,7 +212,14 @@ public class DashboardFXMLController implements Initializable {
                     }
 
                 }
-                if (newValue.equals(clientComboBox.getItems().get(1))) {
+                if (newValue.equals(clientComboBox.getItems().get(1))){
+                    try {
+                        profilUpdate();
+                    } catch (IOException ex) {
+                        Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                if (newValue.equals(clientComboBox.getItems().get(2))) {
                     ActionEvent event = null;
 
                     logout(event);
@@ -222,6 +230,12 @@ public class DashboardFXMLController implements Initializable {
 
         });
 
+    }
+    public void profilUpdate() throws IOException{
+          Parent root = FXMLLoader.load(getClass().getResource("../updateProfil/UpdateProfil.fxml"));
+                scenePane.getChildren().removeAll();
+                scenePane.getChildren().setAll(root);
+        
     }
 
     public void profil(ActionEvent event, int idRole) throws IOException {
@@ -253,7 +267,6 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    @FXML
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ItemSalleSportFXML.fxml"));
@@ -305,17 +318,31 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    private void getImageProfil() throws URISyntaxException {
-        Image im = new Image(getClass().getResource("../uicontrolers/user.png").toURI().toString());
+    public void getImageProfil(String path) throws URISyntaxException {
+         System.out.println(path);
+            Image im = new Image(getClass().getResource(path).toURI().toString());
         myCircle.setFill(new ImagePattern(im));
         myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
     }
 
-    private void getNameOfCurrentUser(int id) {
+    public void getCurrentUser(int id) throws URISyntaxException {
         IUtilisateur iu = new UtilisateurServices();
+              
+
         String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
         String prenom = iu.queryUserById(id).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getPrenom().substring(1);
+         if (iu.queryUserById(id).getImageName()== null){
+        String path = "../uicontrolers/user.png";
+        getImageProfil(path);
+         }else {
+             String path = "../uicontrolers/users/"+iu.queryUserById(id).getImageName();
+             getImageProfil(path);
+         }
         nomPrenom.setText(nom + " " + prenom);
+       
+       
+           
+        
     }
 }

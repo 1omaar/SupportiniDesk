@@ -6,6 +6,7 @@
 package util;
 
 import java.security.MessageDigest;
+import java.util.Random;
 import java.util.regex.Pattern;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -30,7 +31,7 @@ public class Validation {
             isValid = false;
 
         }
-        
+
         return isValid;
     }
 
@@ -41,21 +42,22 @@ public class Validation {
             isValid = false;
 
         }
-        
+
         return isValid;
     }
 
     public static boolean validationInteger(TextField inputTextField, Label inputLabel) {
-        
+
         try {
             Integer.parseInt(inputTextField.getText());
             return true;
         } catch (NumberFormatException e) {
-            inputLabel.setText(inputTextField.getPromptText()+" doit se composer de chiffre");
+            inputLabel.setText(inputTextField.getPromptText() + " doit se composer de chiffre");
             return false;
         }
     }
-      public static String hachePassword(String pwd) throws Exception {
+
+    public static String hachePassword(String pwd) throws Exception {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 
         md.update(pwd.getBytes());
@@ -70,4 +72,31 @@ public class Validation {
 
         return sb.toString();
     }
+ public static  String randomString(){
+            // create a string of all characters
+    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    // create random string builder
+    StringBuilder sb = new StringBuilder();
+
+    // create an object of Random class
+    Random random = new Random();
+
+    // specify length of random string
+    int length = 7;
+
+    for(int i = 0; i < length; i++) {
+
+      // generate random index number
+      int index = random.nextInt(alphabet.length());
+
+      // get character specified by index
+      // from the string
+      char randomChar = alphabet.charAt(index);
+
+      // append the character to string builder
+      sb.append(randomChar);
+    }
+    return sb.toString();
+   }
 }
