@@ -75,6 +75,7 @@ public class UtilisateurServices implements IUtilisateur {
                 user.setPassword(rs.getString(6));
                 user.setIdRole(rs.getInt(7));
                 user.setPhone(rs.getString(8));
+                 user.setImageName(rs.getString(9));
                 listUser.add(user);
 
             }
@@ -104,6 +105,7 @@ public class UtilisateurServices implements IUtilisateur {
             user.setPassword(res.getString(6));
             user.setIdRole(res.getInt(7));
             user.setPhone(res.getString(8));
+             user.setImageName(res.getString(9));
             ps.close();
             return user;
 
@@ -116,20 +118,24 @@ public class UtilisateurServices implements IUtilisateur {
 
     @Override
     public void updateUser(Utilisateur user) {
-        String req = "UPDATE utilisateurs SET `nom`=?,`prenom`=?,`cin`=?,`email`=?,`password`=?,`phone`=? WHERE id=?";
+        String req = "UPDATE utilisateurs SET `nom`=?,`prenom`=?,`email`=?,`password`=?,`phone`=? WHERE id=?";
+       
         try {
+             String hachePwd = Validation.hachePassword(user.getPassword());
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, user.getNom());
             ps.setString(2, user.getPrenom());
-            ps.setString(3, user.getCin());
-            ps.setString(4, user.getEmail());
-            ps.setString(5, user.getPassword());
-            ps.setString(6, user.getPhone());
-            ps.setInt(7, user.getId());
+          
+            ps.setString(3, user.getEmail());
+            ps.setString(4, hachePwd);
+            ps.setString(5, user.getPhone());
+            ps.setInt(6, user.getId());
             ps.executeUpdate();
-            System.out.println("tes données sont enregistré");
+          Notification.notificationSuccess("SUCCEE", "  Tes Données sont enregistré");
             ps.close();
         } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -187,12 +193,29 @@ public class UtilisateurServices implements IUtilisateur {
             user.setPassword(res.getString(6));
             user.setIdRole(res.getInt(7));
             user.setPhone(res.getString(8));
+            user.setImageName(res.getString(9));
             ps.close();
             return user;
 
         } catch (SQLException ex) {
             System.err.println(ex);
             return null;
+        }
+    }
+
+    @Override
+    public void uploadUserImg(String path,int id) {
+        String req="UPDATE utilisateurs SET 'image_name`=? WHERE id=?";
+        try {
+            PreparedStatement ps =  cnx.prepareStatement(req);
+            ps.setString(1, path);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            Notification.notificationSuccess("SUCCEES", "Photo Enregistrée");
+            ps.close();
+        } catch (SQLException ex) {
+            Notification.notificationError("ERREUR", "Fichier Incompatible");
+            
         }
     }
 

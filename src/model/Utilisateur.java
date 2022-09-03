@@ -12,7 +12,7 @@ package model;
 public class Utilisateur {
 
     private int id, idRole;
-    private String nom, prenom, password, email, cin, phone;
+    private String nom, prenom, password, email, cin, phone,imageName;
     //constructeur
 
     public Utilisateur() {
@@ -27,7 +27,7 @@ public class Utilisateur {
         this.phone = phone;
     }
 
-    public Utilisateur(int id, String nom, String prenom, String password, String email, String cin, String phone, int idRole) {
+    public Utilisateur(int id, String nom, String prenom, String password, String email, String cin, String phone, int idRole,String image) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -36,9 +36,20 @@ public class Utilisateur {
         this.cin = cin;
         this.idRole = idRole;
         this.phone = phone;
+        this.imageName=image;
 
     }
     //getters & setters
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+   
 
     public void setPhone(String phone) {
         this.phone = phone;

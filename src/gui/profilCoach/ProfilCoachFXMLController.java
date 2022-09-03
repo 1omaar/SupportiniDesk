@@ -64,26 +64,34 @@ public class ProfilCoachFXMLController implements Initializable {
             String subject = incomingToken.getSubject();
             int idRole = Integer.parseInt(audience);
             int idUser = Integer.parseInt(subject);
-            getImageProfil();
+           
             getInfoCurrentUser(idUser);
         } catch (URISyntaxException | JSONException | AuthException | IOException ex) {
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void getImageProfil() throws URISyntaxException {
-        Image im = new Image(getClass().getResource("../uicontrolers/user.png").toURI().toString());
+    private void getImageProfil(String path) throws URISyntaxException {
+        Image im = new Image(getClass().getResource(path).toURI().toString());
         myCircle.setFill(new ImagePattern(im));
 //        myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
     }
-      private void getInfoCurrentUser(int id){
+      private void getInfoCurrentUser(int id) throws URISyntaxException{
            IUtilisateur iu = new UtilisateurServices();
           String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
         String prenom = iu.queryUserById(id).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getPrenom().substring(1);
+      
         nomPrenom.setText(nom + " " + prenom);
         email.setText(iu.queryUserById(id).getEmail());
         phone.setText(iu.queryUserById(id).getPhone());
+          if (iu.queryUserById(id).getImageName()== null){
+        String pathLocale = "../uicontrolers/user.png";
+        getImageProfil(pathLocale);
+         }else {
+             String pathLocale = "../uicontrolers/users/"+iu.queryUserById(id).getImageName();
+             getImageProfil(pathLocale);
+         }
         typeUser.setText("Entraineur");
         ICoach ic = new CoachServices();
         description.setText(ic.queryById(id).getSpecialite());
