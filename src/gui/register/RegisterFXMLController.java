@@ -179,7 +179,7 @@ public class RegisterFXMLController implements Initializable {
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Se Connecter chez Supportini");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+       
         primaryStage.sizeToScene();
         primaryStage.show();
     }

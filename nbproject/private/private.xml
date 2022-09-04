@@ -6,6 +6,7 @@
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/UpdateProfilController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/login/LoginFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IUtilisateur.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/Validation.java</file>
@@ -15,9 +16,11 @@
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/register/RegisterFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/UtilisateurServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXML.fxml</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/ItemSalleSport/ItemSalleSportFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/updateprofil.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/login/LoginFXML.fxml</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/ListSalleSportController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -47,7 +47,7 @@ public class MainSupportini extends Application {
             primaryStage.getIcons().add(icon);
 
             primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
+          
             primaryStage.sizeToScene();
 
             primaryStage.show();
