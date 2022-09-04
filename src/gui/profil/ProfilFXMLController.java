@@ -18,14 +18,13 @@ import java.util.prefs.Preferences;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import model.Utilisateur;
 import org.json.JSONException;
 import services.EntraineeServices;
 import services.UtilisateurServices;
@@ -48,7 +47,6 @@ public class ProfilFXMLController implements Initializable {
     private Label email;
     @FXML
     private Label phone;
-    @FXML
     private Pane detailProfilPane;
     @FXML
     private Label poids;
@@ -59,6 +57,8 @@ public class ProfilFXMLController implements Initializable {
 
     @FXML
     private ImageView iconSexe;
+    @FXML
+    private ScrollPane scrollProfil;
 
     /**
      * Initializes the controller class.
@@ -97,8 +97,7 @@ public class ProfilFXMLController implements Initializable {
         nomPrenom.setText(nom + " " + prenom);
         email.setText(iu.queryUserById(id).getEmail());
         phone.setText(iu.queryUserById(id).getPhone());
-        detailProfilPane.setVisible(false);
-        detailProfilPane.setManaged(false);
+       
          if (iu.queryUserById(id).getImageName()== null){
         String pathLocale = "../uicontrolers/user.png";
         getImageProfil(pathLocale);
@@ -106,9 +105,8 @@ public class ProfilFXMLController implements Initializable {
              String pathLocale = "../uicontrolers/users/"+iu.queryUserById(id).getImageName();
              getImageProfil(pathLocale);
          }
-        if (iu.queryUserById(id).getIdRole() == 2) {
-            detailProfilPane.setVisible(true);
-            detailProfilPane.setManaged(true);
+      
+        
             IEntrainee ie = new EntraineeServices();
             age.setText(String.valueOf(ie.queryById(id).getAge()) + " ans");
             poids.setText(String.valueOf(ie.queryById(id).getPoids() + " kg"));
@@ -126,7 +124,7 @@ public class ProfilFXMLController implements Initializable {
                 iconSexe.setFitHeight(70);
 
             }
-        }
+       
 
     }
 

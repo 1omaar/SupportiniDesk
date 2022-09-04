@@ -98,7 +98,7 @@ public class LoginFXMLController implements Initializable {
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Inscription chez Supportini");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+     
         primaryStage.sizeToScene();
         primaryStage.show();
     }
@@ -126,7 +126,7 @@ public class LoginFXMLController implements Initializable {
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Dashboard");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+     
         primaryStage.sizeToScene();
         primaryStage.show();
     }

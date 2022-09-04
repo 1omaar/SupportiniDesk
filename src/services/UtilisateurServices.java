@@ -89,6 +89,7 @@ public class UtilisateurServices implements IUtilisateur {
 
     @Override
     public Utilisateur queryUserById(int id) {
+    
         String req = "SELECT * FROM utilisateurs WHERE id=?";
         PreparedStatement ps;
         try {
@@ -105,8 +106,9 @@ public class UtilisateurServices implements IUtilisateur {
             user.setPassword(res.getString(6));
             user.setIdRole(res.getInt(7));
             user.setPhone(res.getString(8));
-             user.setImageName(res.getString(9));
+            user.setImageName(res.getString(9));
             ps.close();
+           
             return user;
 
         } catch (SQLException ex) {

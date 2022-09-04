@@ -18,6 +18,10 @@ import java.util.logging.Logger;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -41,10 +45,15 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
@@ -58,11 +67,11 @@ import util.JWebToken;
  * @author Asus
  */
 public class DashboardFXMLController implements Initializable {
-
+    
     @FXML
-    private AnchorPane sideAnchorPane;
+    private VBox sideAnchorPane;
     @FXML
-    private Button nomPrenom;
+    private Label nomPrenom;
     @FXML
     private Circle myCircle;
     @FXML
@@ -70,16 +79,13 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private Button btnDashboard;
     @FXML
-    private Button sideBarBtn3;
-    @FXML
     private Button btnCommerce;
-    @FXML
-    private Button sideBarBtn2;
+   
 //    private Button btnLogout = new Button("Déconnexion");
     @FXML
-    private AnchorPane navbar;
+    private HBox navbar;
     @FXML
-    private AnchorPane iconBar;
+    private VBox iconBar;
     @FXML
     private ImageView iconDash;
     @FXML
@@ -91,7 +97,12 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private ImageView iconMenu;
     @FXML
-    private AnchorPane scenePane;
+    private HBox scenePane;
+    private int idUser, idRole;
+    @FXML
+    private Button btnSalleDeSport;
+    @FXML
+    private Button btnCoachs;
 
     /**
      * Initializes the controller class.
@@ -100,46 +111,51 @@ public class DashboardFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
-       
         String bearerToken = userPreferences.get("BearerToken", "root");
-     
+        
         JWebToken incomingToken;
-
+        
         try {
             incomingToken = new JWebToken(bearerToken);
+            
             if (!incomingToken.isValid()) {
 
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
-                int idRole = Integer.parseInt(audience);
-                int idUser = Integer.parseInt(subject);
+                idRole = Integer.parseInt(audience);
+                idUser = Integer.parseInt(subject);
 //                control user  side bar
                 itemComboBox(idRole);
-                sideBarBtn2.setVisible(idRole != 3);
-                sideBarBtn2.setManaged(idRole != 3);
+                btnCoachs.setVisible(idRole != 3);
+                btnCoachs.setManaged(idRole != 3);
                 iconCoach.setVisible(idRole != 3);
                 iconCoach.setManaged(idRole != 3);
                 sideAnchorPane.setVisible(false);
                 sideAnchorPane.setManaged(false);
                 nomPrenom.setAlignment(Pos.CENTER);
                 displayMenu();
-               
-                getCurrentUser(idUser);
-
-
+                
+                getCurrentUser();
+                btnDashSideBar(btnDashboard);
+                btnDashSideBar(btnCommerce);
+                btnDashSideBar(btnSalleDeSport);
+                btnDashSideBar(btnCoachs);
+                
+                
             } else {
                 redirectToLogin();
-
+                
             }
-
+            
         } catch (JSONException | InvalidKeyException | IOException ex) {
             redirectToLogin();
-            System.err.println(ex);
+            
         } catch (URISyntaxException | AuthException ex) {
+            redirectToLogin();
             Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
 //      private  void makeStyleNavSideBar(Button btn){
@@ -154,8 +170,18 @@ public class DashboardFXMLController implements Initializable {
 //            btn.setCursor(Cursor.DEFAULT);
 //        });
 //      }
-    private void displayMenu() {
+    private void btnDashSideBar(Button btn) {
+        
+        btn.setOnMouseClicked((event) -> {
+              FadeTransition fadeButtons = new FadeTransition(Duration.millis(500),btn);
+            fadeButtons.setFromValue(0.0);
+            fadeButtons.setToValue(1.0);
+            fadeButtons.play();
+        });
+    }
 
+    private void displayMenu() {
+        
         iconMenu.onMouseEnteredProperty().set((EventHandler<MouseEvent>) (MouseEvent event) -> {
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), sideAnchorPane);
             fadeTransition.setFromValue(0);
@@ -165,7 +191,7 @@ public class DashboardFXMLController implements Initializable {
             sideAnchorPane.setManaged(true);
         });
         sideAnchorPane.onMouseEnteredProperty().set((EventHandler<MouseEvent>) (MouseEvent event) -> {
-
+            
             sideAnchorPane.setVisible(true);
             sideAnchorPane.setManaged(true);
         });
@@ -177,7 +203,7 @@ public class DashboardFXMLController implements Initializable {
             sideAnchorPane.setVisible(true);
             sideAnchorPane.setManaged(true);
         });
-
+        
         navbar.onMouseEnteredProperty().set((EventHandler<MouseEvent>) (MouseEvent event) -> {
             FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), sideAnchorPane);
             fadeTransition.setFromValue(1);
@@ -194,15 +220,15 @@ public class DashboardFXMLController implements Initializable {
             sideAnchorPane.setVisible(false);
             sideAnchorPane.setManaged(false);
         });
-
+        
     }
-
+    
     private void itemComboBox(int idRole) {
-
-        ObservableList<String> items = FXCollections.observableArrayList("Profile","Configuration", "Déconnexion");
+        
+        ObservableList<String> items = FXCollections.observableArrayList("Profile", "Configuration", "Déconnexion");
         clientComboBox.setItems(items);
         clientComboBox.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-
+            
             if (newValue != null) {
                 if (newValue.equals(clientComboBox.getItems().get(0))) {
                     ActionEvent event = null;
@@ -213,9 +239,9 @@ public class DashboardFXMLController implements Initializable {
                     } catch (IOException ex) {
                         Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
+                    
                 }
-                if (newValue.equals(clientComboBox.getItems().get(1))){
+                if (newValue.equals(clientComboBox.getItems().get(1))) {
                     try {
                         profilUpdate();
                     } catch (IOException ex) {
@@ -224,52 +250,55 @@ public class DashboardFXMLController implements Initializable {
                 }
                 if (newValue.equals(clientComboBox.getItems().get(2))) {
                     ActionEvent event = null;
-
+                    
                     logout(event);
-
+                    
                 }
-
+                
             }
-
+            
         });
-
-    }
-    public void profilUpdate() throws IOException{
-          Parent root = FXMLLoader.load(getClass().getResource("../updateProfil/UpdateProfil.fxml"));
-                scenePane.getChildren().removeAll();
-                scenePane.getChildren().setAll(root);
         
     }
 
+    public void profilUpdate() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../updateProfil/UpdateProfil.fxml"));
+        scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);
+        
+    }
+    
     public void profil(ActionEvent event, int idRole) throws IOException {
         switch (idRole) {
-
-            case 3: {
-                Parent root = FXMLLoader.load(getClass().getResource("../profilCoach/ProfilCoachFXML.fxml"));
+            
+            case 2: {
+                  Parent root = FXMLLoader.load(getClass().getResource("../profil/ProfilFXML.fxml"));
                 scenePane.getChildren().removeAll();
                 scenePane.getChildren().setAll(root);
+               
                 break;
+               
             }
             default: {
-                Parent root = FXMLLoader.load(getClass().getResource("../profil/ProfilFXML.fxml"));
+               Parent root = FXMLLoader.load(getClass().getResource("../profilCoach/ProfilCoachFXML.fxml"));
                 scenePane.getChildren().removeAll();
                 scenePane.getChildren().setAll(root);
                 break;
             }
-
+            
         }
-
+        
     }
-
+    
     @FXML
     public void listProduit(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../produits/ProduitsFXML.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-
+        
     }
-
+    
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
@@ -277,20 +306,20 @@ public class DashboardFXMLController implements Initializable {
         newScene = new Scene(root);
         Stage mainWindow;
         mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+        
         mainWindow.setScene(newScene);
     }
-
+    
     @FXML
     public void itemDash(ActionEvent event) throws IOException {
-
+        
         clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../itemDash/ItemDashFXML.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-
+        
     }
-
+    
     public void logout(ActionEvent event) {
         Preferences userPreferences = Preferences.userRoot();
         try {
@@ -299,9 +328,9 @@ public class DashboardFXMLController implements Initializable {
         } catch (BackingStoreException ex) {
             Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     private void redirectToLogin() {
         Parent root;
         try {
@@ -321,32 +350,30 @@ public class DashboardFXMLController implements Initializable {
         } catch (IOException ex) {
             System.err.println(ex);
         }
-
+        
     }
-
-
+    
     public void getImageProfil(String path) throws URISyntaxException {
-         System.out.println(path);
-            Image im = new Image(getClass().getResource(path).toURI().toString());
+        
+        Image im = new Image(getClass().getResource(path).toURI().toString());
         myCircle.setFill(new ImagePattern(im));
         myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
     }
-
-    public void getCurrentUser(int id) throws URISyntaxException {
+    
+    public void getCurrentUser() throws URISyntaxException {
         IUtilisateur iu = new UtilisateurServices();
-              
-
-        String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
-        String prenom = iu.queryUserById(id).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getPrenom().substring(1);
-         if (iu.queryUserById(id).getImageName()== null){
-        String path = "../uicontrolers/user.png";
-        getImageProfil(path);
-         }else {
-             String path = "../uicontrolers/users/"+iu.queryUserById(id).getImageName();
-             getImageProfil(path);
-         }
+        
+        String nom = iu.queryUserById(idUser).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getNom().substring(1);
+        String prenom = iu.queryUserById(idUser).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getPrenom().substring(1);
+        if (iu.queryUserById(idUser).getImageName() == null) {
+            String path = "../uicontrolers/user.png";
+            getImageProfil(path);
+        } else {
+            String path = "../uicontrolers/users/" + iu.queryUserById(idUser).getImageName();
+            getImageProfil(path);
+        }
         nomPrenom.setText(nom + " " + prenom);
-
+        
     }
 }

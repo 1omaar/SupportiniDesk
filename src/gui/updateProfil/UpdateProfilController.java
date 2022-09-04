@@ -203,7 +203,7 @@ public class UpdateProfilController implements Initializable {
 //            FXMLLoader loader = new FXMLLoader();
 //            loader.setLocation(getClass().getResource("../dashboard/DashboardFXML.fxml"));
             DashboardFXMLController dashboardController = new DashboardFXMLController();
-            dashboardController.getCurrentUser(idUser);
+            dashboardController.getCurrentUser();
         }
     }
 

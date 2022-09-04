@@ -27,13 +27,9 @@
 }
 
 .btnDashboard:hover {
-    -fx-background-color: linear-gradient(to right ,rgba(255,233,218,1) 0%, #EEAB12 100%);
-    -fx-background-radius: 10px;
+  
+-fx-background-color:#c0c0c2;
     
-   
-    -fx-border-raduis: 10px;
-        /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1);*/
-    -fx-cursor:hand;
 
 }
 .clientComboBox{
