@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import services.AuthServices;
+import supportini.MainSupportini;
 import util.JWebToken;
 import util.Notification;
 import util.Validation;
@@ -78,12 +79,11 @@ public class LoginFXMLController implements Initializable {
             return;
         }
         IAuthentification ia = new AuthServices();
-        if (ia.login(emailLogin.getText(), pwdLogin.getText()) instanceof Utilisateur) {
-            generateCurrentUserJwt(ia.login(emailLogin.getText(), pwdLogin.getText()));
-            String prenom =ia.login(emailLogin.getText(), pwdLogin.getText()).getPrenom().substring(0, 1).toUpperCase() + ia.login(emailLogin.getText(), pwdLogin.getText()).getPrenom().substring(1);
-              Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, "+prenom);
-            redirectToDashboard(event,buttonConf);
-        }
+        Utilisateur currentUser = ia.login(emailLogin.getText(), pwdLogin.getText(), buttonConf);
+        generateCurrentUserJwt(currentUser);
+        String prenom = currentUser.getPrenom().substring(0, 1).toUpperCase() + currentUser.getPrenom().substring(1);
+        Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, " + prenom);
+
     }
 
     @FXML
@@ -98,36 +98,22 @@ public class LoginFXMLController implements Initializable {
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Inscription chez Supportini");
         primaryStage.setScene(scene);
-     
+
         primaryStage.sizeToScene();
         primaryStage.show();
     }
 
     public void generateCurrentUserJwt(Utilisateur user) throws JSONException, InvalidKeyException {
         JSONObject payload = new JSONObject();
-        
+
         payload.put("sub", String.valueOf(user.getId()));
-       payload.put("aud", String.valueOf(user.getIdRole()));
+        payload.put("aud", String.valueOf(user.getIdRole()));
         payload.put("exp", 10);
 
         String BearerToken = new JWebToken(payload).toString();
         Preferences userPreferences = Preferences.userRoot();
         userPreferences.put("BearerToken", BearerToken);
-     
+
     }
-    public void redirectToDashboard (ActionEvent event,Button btn) throws IOException{
-         Stage stage = (Stage) btn.getScene().getWindow();
-        stage.close();
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
-        Scene scene = new Scene(root);
-        Image icon;
-        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
-        primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Dashboard");
-        primaryStage.setScene(scene);
-     
-        primaryStage.sizeToScene();
-        primaryStage.show();
-    }
+
 }
