@@ -46,12 +46,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -209,6 +211,7 @@ public class DashboardFXMLController implements Initializable {
             fadeTransition.setFromValue(1);
             fadeTransition.setToValue(0);
             fadeTransition.play();
+            iconBar.setEffect(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 5, 0.05, 0, 1));
             sideAnchorPane.setVisible(false);
             sideAnchorPane.setManaged(false);
         });
@@ -217,6 +220,7 @@ public class DashboardFXMLController implements Initializable {
             fadeTransition.setFromValue(1);
             fadeTransition.setToValue(0);
             fadeTransition.play();
+            iconBar.setEffect(new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 5, 0.05, 0, 1));
             sideAnchorPane.setVisible(false);
             sideAnchorPane.setManaged(false);
         });
@@ -265,6 +269,8 @@ public class DashboardFXMLController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../updateProfil/UpdateProfil.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow( root, Priority.ALWAYS);
         
     }
     
@@ -275,7 +281,8 @@ public class DashboardFXMLController implements Initializable {
                   Parent root = FXMLLoader.load(getClass().getResource("../profil/ProfilFXML.fxml"));
                 scenePane.getChildren().removeAll();
                 scenePane.getChildren().setAll(root);
-               
+                scenePane.setAlignment(Pos.CENTER);
+                scenePane.setHgrow( root, Priority.ALWAYS);
                 break;
                
             }
@@ -283,6 +290,8 @@ public class DashboardFXMLController implements Initializable {
                Parent root = FXMLLoader.load(getClass().getResource("../profilCoach/ProfilCoachFXML.fxml"));
                 scenePane.getChildren().removeAll();
                 scenePane.getChildren().setAll(root);
+                 scenePane.setAlignment(Pos.CENTER);
+                 scenePane.setHgrow( root, Priority.ALWAYS);
                 break;
             }
             
@@ -296,18 +305,27 @@ public class DashboardFXMLController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../produits/ProduitsFXML.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
+         scenePane.setAlignment(Pos.CENTER);
+         scenePane.setHgrow( root, Priority.ALWAYS);
         
     }
     
+    @FXML
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
-        Scene newScene;
-        newScene = new Scene(root);
-        Stage mainWindow;
-        mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+          scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);
         
-        mainWindow.setScene(newScene);
+         scenePane.setHgrow( root, Priority.ALWAYS);
+          scenePane.setAlignment(Pos.CENTER);
+          scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+//        Scene newScene;
+//        newScene = new Scene(root);
+//        Stage mainWindow;
+//        mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        
+//        mainWindow.setScene(newScene);
     }
     
     @FXML
@@ -317,7 +335,8 @@ public class DashboardFXMLController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../itemDash/ItemDashFXML.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-        
+         scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow( root, Priority.ALWAYS);
     }
     
     public void logout(ActionEvent event) {

@@ -207,7 +207,7 @@ public class UtilisateurServices implements IUtilisateur {
 
     @Override
     public void uploadUserImg(String path,int id) {
-        String req="UPDATE utilisateurs SET 'image_name`=? WHERE id=?";
+        String req="UPDATE utilisateurs SET image_name =? WHERE id=?";
         try {
             PreparedStatement ps =  cnx.prepareStatement(req);
             ps.setString(1, path);
