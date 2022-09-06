@@ -116,6 +116,7 @@ public class DashboardFXMLController implements Initializable {
         String bearerToken = userPreferences.get("BearerToken", "root");
         
         JWebToken incomingToken;
+    
         
         try {
             incomingToken = new JWebToken(bearerToken);

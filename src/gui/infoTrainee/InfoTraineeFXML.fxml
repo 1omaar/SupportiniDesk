@@ -15,11 +15,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
-<VBox prefHeight="784.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.infoTrainee.InfoTraineeFXMLController">
-=======
+
 <VBox prefHeight="784.0" prefWidth="537.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.infoTrainee.InfoTraineeFXMLController">
->>>>>>> f5a75e8fc5af033bb26107cf58a64e1dcfde6455
+
    <children>
       <GridPane VBox.vgrow="ALWAYS">
         <columnConstraints>
