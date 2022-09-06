@@ -29,7 +29,7 @@ public class MainSupportini extends Application {
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
 
-        
+     
       try {
             if (!bearerToken.equals("root")) {
            

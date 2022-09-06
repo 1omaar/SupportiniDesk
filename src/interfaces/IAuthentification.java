@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import javafx.scene.control.Button;
 import model.Utilisateur;
 
 /**
@@ -12,5 +13,5 @@ import model.Utilisateur;
  * @author Asus
  */
 public interface IAuthentification {
-  public Utilisateur login (String email , String pwd);
+  public Utilisateur login (String email , String pwd );
 }
