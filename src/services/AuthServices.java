@@ -29,13 +29,13 @@ public class AuthServices implements IAuthentification {
 
     @Override
     public Utilisateur login(String email, String pwd) {
-        String req = "SELECT * FROM utilisateurs WHERE email = ?";
+        String req = "SELECT * FROM utilisateurs WHERE email = ? AND password = ?";
         try {
             String hachePwd = Validation.hachePassword(pwd);
 
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, email);
-          
+           ps.setString(2, hachePwd);
             ResultSet res = ps.executeQuery();
             Utilisateur existUser = new Utilisateur();
             res.first();
@@ -47,14 +47,15 @@ public class AuthServices implements IAuthentification {
             existUser.setPassword(res.getString(6));
             existUser.setIdRole(res.getInt(7));
             ps.close();
-           
-          if (existUser.getPassword().equals(hachePwd)){
+//           
+//          if (existUser.getPassword().equals(hachePwd)){
               
             return existUser;
-          }else{
-            Notification.notificationError("DESOLE", "Mot de Passe incorrect !!");
-          }
+//          }else{
+//            Notification.notificationError("DESOLE", "Mot de Passe incorrect !!");
+//          }
         } catch (Exception ex) {
+             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
             Notification.notificationError("DESOLE", "E-mail incorrect !!");
         }
 return null ;

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Anis-PC/Desktop/Supportini/Supportini/src/interfaces/IProduits.java</file>
             <file>file:/C:/Users/Anis-PC/Desktop/Supportini/Supportini/src/gui/Categorie/CategoriesController.java</file>
             <file>file:/C:/Users/Anis-PC/Desktop/Supportini/Supportini/src/gui/produits/ItemController.java</file>
@@ -17,6 +18,33 @@
             <file>file:/C:/Users/Anis-PC/Desktop/Supportini/Supportini/src/gestionproduit/ProductMarketMain.java</file>
             <file>file:/C:/Users/Anis-PC/Desktop/Supportini/Supportini/src/model/Categories.java</file>
             <file>file:/C:/Users/Anis-PC/Desktop/Supportini/Supportini/src/services/Produitservices.java</file>
+=======
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/profilcoachfxml.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/UpdateProfilController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/dashboardfxml.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/listsallesport.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IUtilisateur.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/ProfilCoachFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Entrainee.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/UtilisateurServices.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/ItemSalleSport/ItemSalleSportFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/updateprofil.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IAuthentification.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/profilfxml.css</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/ListSalleSportController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/login/LoginFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/Validation.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Utilisateur.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/choice_profil/ChoiceProfilFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/register/RegisterFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoCoach/InfoCoachFXMLController.java</file>
+            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/AuthServices.java</file>
+>>>>>>> 845a58845f48e9f87907de3e4212ea1c1e8d91e4
         </group>
     </open-files>
 </project-private>

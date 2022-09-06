@@ -29,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -61,18 +62,11 @@ public class ListSalleSportController implements Initializable {
 
     @FXML
     private GridPane Lsport;
-    @FXML
     private Label nomPrenom;
-    @FXML
     private Circle myCircle;
-    @FXML
     private ComboBox<String> clientComboBox;
     @FXML
-    private AnchorPane listSalle;
-    @FXML
     private ScrollPane scrollListSalle;
-    @FXML
-    private Button backDash;
     private int idRole, idUser;
 
     /**
@@ -123,12 +117,14 @@ public class ListSalleSportController implements Initializable {
 //                Lsport.setMaxHeight(400);
 
                     GridPane.setMargin(hbox, new Insets(25));
+                    GridPane.setValignment(scrollListSalle, VPos.CENTER);
                 }
-                getInfoCurrentUser(idUser);
-                itemComboBox();
+//                getInfoCurrentUser(idUser);
+//                itemComboBox();
+                
             }
 
-        } catch (IOException | JSONException | AuthException | InvalidKeyException | URISyntaxException ex) {
+        } catch (IOException | JSONException | AuthException | InvalidKeyException ex) {
             Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -180,7 +176,6 @@ public void logout(ActionEvent event) {
         }
 
     }
-    @FXML
     public void goDashboard(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
         Scene newScene;
