@@ -19,16 +19,11 @@ import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
 import model.Entrainee;
 import model.Utilisateur;
 import org.json.JSONException;
@@ -77,7 +72,7 @@ public class InfoTraineeFXMLController implements Initializable {
     }
 
     @FXML
-    public void registerInfoAdditionnel(ActionEvent event) throws JSONException, InvalidKeyException {
+    public void registerInfoAdditionnel(ActionEvent event) {
         clear();
         if (!Validation.validationInteger(ageEnt, ageValid)) {
             return;
@@ -104,43 +99,37 @@ public class InfoTraineeFXMLController implements Initializable {
         IUtilisateur iu = new UtilisateurServices();
         IAuthentification ia = new AuthServices();
         LoginFXMLController login = new LoginFXMLController();
-        String pwd = userPreferences.get("pwd", "root");
+          String pwd = userPreferences.get("pwd", "root");
         if (homme.isSelected()) {
             Entrainee ent = new Entrainee(Integer.parseInt(idUser), Integer.parseInt(ageEnt.getText()), Integer.parseInt(tailleEnt.getText()), Integer.parseInt(poidsEnt.getText()), "homme");
             ie.addEntrainee(ent);
             Utilisateur newUser = iu.queryUserById(Integer.parseInt(idUser));
-            Utilisateur currentUser = ia.login(newUser.getEmail(), newUser.getPassword(), confEntInfo);
-            login.generateCurrentUserJwt(currentUser);
-            String prenom = currentUser.getPrenom().substring(0, 1).toUpperCase() + currentUser.getPrenom().substring(1);
-            Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, " + prenom);
+            if (ia.login(newUser.getEmail(), pwd) instanceof Utilisateur) {
+                try {
+                    login.generateCurrentUserJwt(newUser);
+                    login.redirectToDashboard(event, confEntInfo);
+                } catch (JSONException | InvalidKeyException | IOException ex) {
+                    Logger.getLogger(ChoiceProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
+            }
         } else {
             Entrainee ent = new Entrainee(Integer.parseInt(idUser), Integer.parseInt(ageEnt.getText()), Integer.parseInt(tailleEnt.getText()), Integer.parseInt(poidsEnt.getText()), "femme");
             ie.addEntrainee(ent);
             Utilisateur newUser = iu.queryUserById(Integer.parseInt(idUser));
-            Utilisateur currentUser = ia.login(newUser.getEmail(), newUser.getPassword(), confEntInfo);
-            login.generateCurrentUserJwt(currentUser);
-            String prenom = currentUser.getPrenom().substring(0, 1).toUpperCase() + currentUser.getPrenom().substring(1);
-            Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, " + prenom);
+            if (ia.login(newUser.getEmail(), pwd) instanceof Utilisateur) {
+                try {
+                    login.generateCurrentUserJwt(newUser);
+                    String prenom =newUser.getPrenom().substring(0, 1).toUpperCase() + newUser.getPrenom().substring(1);
+                    Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, "+prenom);
+                    login.redirectToDashboard(event,confEntInfo);
+                } catch (JSONException | InvalidKeyException | IOException ex) {
+                    Logger.getLogger(ChoiceProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
+            }
         }
 
-    }
-
-    private void redirectToDashboard(ActionEvent event, Button btn) throws IOException {
-        Stage stage = (Stage) btn.getScene().getWindow();
-        stage.close();
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
-        Scene scene = new Scene(root);
-        Image icon;
-        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
-        primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Dashboard");
-        primaryStage.setScene(scene);
-
-        primaryStage.sizeToScene();
-        primaryStage.show();
     }
 
     public void clear() {

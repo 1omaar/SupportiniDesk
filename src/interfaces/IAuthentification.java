@@ -13,5 +13,5 @@ import model.Utilisateur;
  * @author Asus
  */
 public interface IAuthentification {
-  public Utilisateur login (String email , String pwd ,Button btn);
+  public Utilisateur login (String email , String pwd );
 }

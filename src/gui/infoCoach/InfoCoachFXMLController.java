@@ -19,15 +19,10 @@ import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
 import model.Coach;
 import model.Utilisateur;
 import org.json.JSONException;
@@ -71,7 +66,7 @@ public class InfoCoachFXMLController implements Initializable {
     }
 
     @FXML
-    private void secondStepRegister(ActionEvent event) throws JSONException, InvalidKeyException {
+    private void secondStepRegister(ActionEvent event) {
         validationSpec.setText("");
         if (!(fitness.isSelected() || musculation.isSelected() || dance.isSelected() || boxing.isSelected() || karate.isSelected() || taik.isSelected() || autre.isSelected())) {
             validationSpec.setText("Précise vos spécialités sportives !!");
@@ -111,26 +106,17 @@ public class InfoCoachFXMLController implements Initializable {
         IAuthentification ia = new AuthServices();
         
              String pwd = userPreferences.get("pwd", "root");
-          Utilisateur currentUser = ia.login(newUser.getEmail(), newUser.getPassword(), confInfCoach);
-            login.generateCurrentUserJwt(currentUser);
-            String prenom = currentUser.getPrenom().substring(0, 1).toUpperCase() + currentUser.getPrenom().substring(1);
-            Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, " + prenom);
+        if (ia.login(newUser.getEmail(), pwd) instanceof Utilisateur) {
+            try {
+                login.generateCurrentUserJwt(newUser);
+                String prenom =newUser.getPrenom().substring(0, 1).toUpperCase() + newUser.getPrenom().substring(1);
+                  Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue notre Coach, "+prenom);
+                login.redirectToDashboard(event,confInfCoach);
+            } catch (JSONException | InvalidKeyException | IOException ex) {
+                Logger.getLogger(ChoiceProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-    }
-      private void redirectToDashboard (ActionEvent event,Button btn) throws IOException{
-         Stage stage = (Stage) btn.getScene().getWindow();
-        stage.close();
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
-        Scene scene = new Scene(root);
-        Image icon;
-        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
-        primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Dashboard");
-        primaryStage.setScene(scene);
-     
-        primaryStage.sizeToScene();
-        primaryStage.show();
+        }
     }
 
 }
