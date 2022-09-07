@@ -161,6 +161,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -202,6 +203,18 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
                               <Button fx:id="btnCoachs" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="62.0" prefWidth="171.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Entraineurs">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                           <children>
+                              <Button fx:id="btnMesSalleDeSport" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#MesSalleDeSport" prefHeight="62.0" prefWidth="171.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Mes salle de sport">
                                  <font>
                                     <Font name="Cambria" size="18.0" />
                                  </font>
