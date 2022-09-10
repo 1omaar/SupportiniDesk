@@ -76,6 +76,7 @@ public class UtilisateurServices implements IUtilisateur {
                 user.setIdRole(rs.getInt(7));
                 user.setPhone(rs.getString(8));
                  user.setImageName(rs.getString(9));
+                  user.setStatus(rs.getInt(10));
                 listUser.add(user);
 
             }
@@ -107,6 +108,7 @@ public class UtilisateurServices implements IUtilisateur {
             user.setIdRole(res.getInt(7));
             user.setPhone(res.getString(8));
             user.setImageName(res.getString(9));
+             user.setStatus(res.getInt(10));
             ps.close();
            
             return user;
@@ -196,6 +198,7 @@ public class UtilisateurServices implements IUtilisateur {
             user.setIdRole(res.getInt(7));
             user.setPhone(res.getString(8));
             user.setImageName(res.getString(9));
+            user.setStatus(res.getInt(10));
             ps.close();
             return user;
 
@@ -221,6 +224,65 @@ public class UtilisateurServices implements IUtilisateur {
             Notification.notificationError("ERREUR", "Fichier Incompatible");
             
         }
+    }
+
+    @Override
+    public void banUser(int id,int status ) {
+        System.out.println("service "+status);
+        String req="UPDATE utilisateurs SET status=? WHERE id=?";
+          try {
+            PreparedStatement ps =  cnx.prepareStatement(req);
+            if(status==1){
+                ps.setInt(1, 0); 
+            }else{
+                ps.setInt(1, 1); 
+            }
+           
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            if(status==1){
+                 
+                      Notification.notificationSuccess("SUCCEES", "Utilisateur a été bannie"); 
+            }else {
+                  Notification.notificationSuccess("SUCCEES", "Utilisateur a été unbannie");
+            }
+          
+            ps.close();
+             } catch (SQLException ex) {
+            Notification.notificationError("ERREUR", "ban est insuccée");
+            
+        }
+    }
+
+    @Override
+    public List queryUserByRoleId(int idRole) {
+          List<Utilisateur> listUser = new ArrayList<>();
+        String req = "SELECT * FROM utilisateurs WHERE fk_idRole = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, idRole);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Utilisateur user = new Utilisateur();
+                user.setId(rs.getInt(1));
+                user.setNom(rs.getString(2));
+                user.setPrenom(rs.getString(3));
+                user.setCin(rs.getString(4));
+                user.setEmail(rs.getString(5));
+                user.setPassword(rs.getString(6));
+                user.setIdRole(rs.getInt(7));
+                user.setPhone(rs.getString(8));
+                 user.setImageName(rs.getString(9));
+                  user.setStatus(rs.getInt(10));
+                listUser.add(user);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+
+        }
+        return listUser;
     }
 
 }

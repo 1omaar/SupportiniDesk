@@ -20,7 +20,7 @@ public interface IUtilisateur {
     public List displayUser();
 
     public Utilisateur queryUserById(int id);
-
+        public List queryUserByRoleId(int idRole);
     public void updateUser(Utilisateur user);
 
     public void deleteUser(Utilisateur user);
@@ -29,5 +29,7 @@ public interface IUtilisateur {
 
     public void updateRoleUser(int id, int role);
     public void uploadUserImg(String path,int id);
+    
+    public void banUser (int id, int status);
  
 }
