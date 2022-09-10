@@ -127,7 +127,6 @@ public class UtilisateurServices implements IUtilisateur {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, user.getNom());
             ps.setString(2, user.getPrenom());
-          
             ps.setString(3, user.getEmail());
             ps.setString(4, hachePwd);
             ps.setString(5, user.getPhone());
@@ -207,15 +206,19 @@ public class UtilisateurServices implements IUtilisateur {
 
     @Override
     public void uploadUserImg(String path,int id) {
-        String req="UPDATE utilisateurs SET 'image_name`=? WHERE id=?";
+        String req="UPDATE utilisateurs SET image_name =? WHERE id=?";
         try {
+            System.out.println(path+" "+id);
             PreparedStatement ps =  cnx.prepareStatement(req);
+           
             ps.setString(1, path);
             ps.setInt(2, id);
+             System.out.println(ps);
             ps.executeUpdate();
             Notification.notificationSuccess("SUCCEES", "Photo Enregistrée");
-            ps.close();
+//            ps.close();
         } catch (SQLException ex) {
+             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
             Notification.notificationError("ERREUR", "Fichier Incompatible");
             
         }

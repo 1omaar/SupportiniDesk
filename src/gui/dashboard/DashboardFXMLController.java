@@ -103,6 +103,10 @@ public class DashboardFXMLController implements Initializable {
     private Button btnSalleDeSport;
     @FXML
     private Button btnCoachs;
+    @FXML
+    private ImageView iConSuivi;
+    @FXML
+    private Button btnSuivi1;
 
     /**
      * Initializes the controller class.
@@ -111,6 +115,7 @@ public class DashboardFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
+        
         String bearerToken = userPreferences.get("BearerToken", "root");
         
         JWebToken incomingToken;
@@ -376,4 +381,25 @@ public class DashboardFXMLController implements Initializable {
         nomPrenom.setText(nom + " " + prenom);
         
     }
+
+    @FXML
+    private void affsuivi(ActionEvent event) throws IOException {
+        itemComboBox(idRole);
+
+                if (idRole == 3 ){
+                clientComboBox.getSelectionModel().clearSelection();
+        Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivicoach/SuiviCoach.fxml"));
+        scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);}
+                else{
+                     clientComboBox.getSelectionModel().clearSelection();
+        Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivitrainer/SuiviTrainer.fxml"));
+        scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);}
+        
+        
+    }
+    
+    
+    
 }
