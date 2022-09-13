@@ -131,6 +131,8 @@ public class ListSalleSportController implements Initializable {
 
         } catch (IOException | JSONException | AuthException | InvalidKeyException ex) {
             Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

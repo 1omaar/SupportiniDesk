@@ -6,6 +6,7 @@
 package gui.ItemSalleSport;
 
 import Exception.AuthException;
+import gui.PssAffiche.PssAfficheController;
 import gui.addSalleDeSport.AddSalleDeSportController;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -49,13 +50,16 @@ public class ItemSalleSportFXMLController implements Initializable {
     private Label description;
     @FXML
     private Label adresse;
+    @FXML
+    private Label id;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
   
     
     }    
     
-    public void  setData (SalleSport SalleSport)   {
+    public void  setData (SalleSport SalleSport) throws URISyntaxException   {
        
     
     this.Salle=SalleSport;
@@ -65,13 +69,15 @@ public class ItemSalleSportFXMLController implements Initializable {
         prix.setText(String.valueOf(Salle.getPrix())+" DT");
         adresse.setText(Salle.getVille()+" ,"+Salle.getRue()+" "+Salle.getCodePostal());
         description.setText(Salle.getDescription());
+        id.setText(String.valueOf(Salle.getId()));
+        System.out.println(Salle.getImageVitrine());
        
-    Image im;
+   Image im;
         try {
-            im = new Image(getClass().getResource("../uicontrolers/imageSalleSport/"+Salle.getImageVitrine()).toURI().toString());
-              image.setImage(im);
+            im = new Image(getClass().getResource("../uicontrolers/imageSalleSport/" + Salle.getImageVitrine()).toURI().toString());
+            image.setImage(im);
         } catch (URISyntaxException ex) {
-            Logger.getLogger(ItemSalleSportFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
         }
       
         

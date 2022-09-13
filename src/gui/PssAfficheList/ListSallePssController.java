@@ -77,9 +77,9 @@ public class ListSallePssController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       ISalleSport ss = new SalleSportServices();
+        ISalleSport ss = new SalleSportServices();
         List<SalleSport> listSalleSport = new ArrayList<>();
-        
+
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
         //verify and use
@@ -91,7 +91,7 @@ public class ListSallePssController implements Initializable {
             incomingToken = new JWebToken(bearerToken);
             System.out.println(bearerToken);
             if (!incomingToken.isValid()) {
-                
+
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
@@ -99,6 +99,7 @@ public class ListSallePssController implements Initializable {
                 idUser = Integer.parseInt(subject);
                 listSalleSport.addAll(ss.affichageByIdPss(idUser));
                 
+
                 for (int i = 0; i < listSalleSport.size(); i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../PssAffiche/PssAffiche.fxml"));
 
@@ -123,7 +124,7 @@ public class ListSallePssController implements Initializable {
                 }
 //                getInfoCurrentUser(idUser);
 //                itemComboBox();
-                
+
             }
 
         } catch (IOException | JSONException | AuthException | InvalidKeyException ex) {
@@ -131,6 +132,63 @@ public class ListSallePssController implements Initializable {
         }
     }
 
+    
+    public void affiche(){
+         ISalleSport ss = new SalleSportServices();
+        List<SalleSport> listSalleSport = new ArrayList<>();
+
+        Preferences userPreferences = Preferences.userRoot();
+        String bearerToken = userPreferences.get("BearerToken", "root");
+        //verify and use
+        JWebToken incomingToken;
+
+        int column = 0;
+        int row = 1;
+        try {
+            incomingToken = new JWebToken(bearerToken);
+            System.out.println(bearerToken);
+            if (!incomingToken.isValid()) {
+
+//                get id and idRole for current user
+                String audience = incomingToken.getAudience();
+                String subject = incomingToken.getSubject();
+                idRole = Integer.parseInt(audience);
+                idUser = Integer.parseInt(subject);
+                listSalleSport.addAll(ss.affichageByIdPss(idUser));
+                
+
+                for (int i = 0; i < listSalleSport.size(); i++) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../PssAffiche/PssAffiche.fxml"));
+
+                    HBox hbox = loader.load();
+
+                    PssAfficheController c = loader.getController();
+                    c.setData(listSalleSport.get(i));
+                    Lsport.add(hbox, column, row++);
+//                System.out.println(column+" "+row);
+                    //set grid width
+                    Lsport.setMinWidth(500);
+                    Lsport.setPrefWidth(500);
+                    Lsport.setMaxWidth(500);
+//
+//                //set grid height
+//                Lsport.setMinHeight(300);
+//                Lsport.setPrefHeight(400);
+//                Lsport.setMaxHeight(400);
+
+                    GridPane.setMargin(hbox, new Insets(25));
+                    GridPane.setValignment(scrollListSalle, VPos.CENTER);
+                }
+//                getInfoCurrentUser(idUser);
+//                itemComboBox();
+
+            }
+
+        } catch (IOException | JSONException | AuthException | InvalidKeyException ex) {
+            Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void itemComboBox() {
 
         ObservableList<String> items = FXCollections.observableArrayList("Déconnexion");
@@ -146,7 +204,8 @@ public class ListSallePssController implements Initializable {
         });
 
     }
-public void logout(ActionEvent event) {
+
+    public void logout(ActionEvent event) {
         Preferences userPreferences = Preferences.userRoot();
         try {
             userPreferences.clear();
@@ -178,6 +237,7 @@ public void logout(ActionEvent event) {
         }
 
     }
+
     public void goDashboard(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
         Scene newScene;

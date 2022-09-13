@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.InvalidKeyException;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -85,15 +86,16 @@ public class AddSalleDeSportController implements Initializable {
     private Label validationtDescription;
     @FXML
     private ImageView imgVitrine;
-     @FXML
-     private TextField taimage;
     final FileChooser fc = new FileChooser();
     private File file;
+    private Path filepath;
     File xxx = null;
     String filename = null;
      private String path;
     
     private int idRole, idUser ;
+    @FXML
+    private TextField taimage;
    
 
     /**
@@ -182,7 +184,7 @@ public class AddSalleDeSportController implements Initializable {
         p.setDescription(txtDescription.getText());
         p.setDuration(txtDuration.getText());
         p.setPrix(Float.valueOf(txtPrix.getText()));
-        p.setImageVitrine(String.valueOf(imgVitrine));
+        p.setImageVitrine(String.valueOf(filepath.getFileName()));
         p.setFk_idUser(idUser);
         ip.ajouterSalleSport(p);
 //        init();
@@ -210,11 +212,15 @@ public class AddSalleDeSportController implements Initializable {
             String extension = x.substring(x.lastIndexOf('.') + 1);
             sourceFile = new File(x);
             xxx = new File(newpath + randomStringforimage() + "." + extension);
-            Files.copy(sourceFile.toPath(), xxx.toPath());
-               System.out.println(destinationFile);
+            filepath = Files.copy(sourceFile.toPath(), xxx.toPath());
+            System.out.println(filepath);
+               //System.out.println(destinationFile);
             System.out.println(xxx);
-            taimage.appendText(file.getAbsolutePath() + "\n");
+            //taimage.appendText(file.getAbsolutePath() + "\n");
             imgVitrine.setImage(new Image(file.toURI().toString()));
+            //System.out.println(imgVitrine);
+            System.out.println("********************"+file.toURI().toString());
+            System.out.println("filename = " +filepath.getFileName());
         } else {
             System.out.println("file is invalide");
         }

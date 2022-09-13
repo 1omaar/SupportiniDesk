@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="829.0" prefWidth="1165.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.addSalleDeSport.AddSalleDeSportController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="829.0" prefWidth="1165.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.addMaterielSalleDeSport.AddMaterielSalleDeSportController">
    <children>
       <GridPane prefHeight="861.0" prefWidth="802.0">
          <columnConstraints>
@@ -57,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="validationtNumtel" prefHeight="25.0" prefWidth="158.0" textFill="#ff0202">
+                  <Label fx:id="validationtSpecialite" prefHeight="25.0" prefWidth="158.0" textFill="#ff0202">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -74,7 +74,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="validationtVille" prefHeight="25.0" prefWidth="189.0" textFill="#ff0202">
+                  <Label fx:id="validationtQuantite" prefHeight="25.0" prefWidth="189.0" textFill="#ff0202">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -85,18 +85,7 @@
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <Label fx:id="validationtRue" prefHeight="25.0" prefWidth="166.0" textFill="#ff0202">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
                   <TextField fx:id="txtDescription" alignment="TOP_LEFT" prefHeight="77.0" prefWidth="271.0" promptText="description" />
@@ -104,7 +93,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="validationtCodePostal" prefHeight="25.0" prefWidth="206.0" textFill="#ff0202">
+                  <Label fx:id="validationtDescription" prefHeight="25.0" prefWidth="206.0" textFill="#ff0202">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -115,96 +104,12 @@
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <children>
-                  <Label fx:id="validationtPrix" prefHeight="25.0" prefWidth="177.0" textFill="#ff0202">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Modifier">
-                     <font>
-                        <Font name="Cambria Bold" size="17.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Supprimer">
-                     <font>
-                        <Font name="Cambria Bold" size="17.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <children>
-                  <Label fx:id="validationtDuration" prefHeight="25.0" prefWidth="142.0" textFill="#ff0202">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <children>
-                  <Label fx:id="validationtDescription" prefHeight="25.0" prefWidth="142.0" textFill="#ff0202">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Autre Images">
-                     <font>
-                        <Font name="Cambria Bold" size="17.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-               </children>
-            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
