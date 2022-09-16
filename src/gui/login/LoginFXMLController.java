@@ -52,6 +52,8 @@ public class LoginFXMLController implements Initializable {
     private Label validationPass;
     @FXML
     private Hyperlink register;
+    @FXML
+    private Hyperlink forgetPwd;
 
     /**
      * Initializes the controller class.
@@ -139,7 +141,7 @@ public class LoginFXMLController implements Initializable {
          Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../admin/dashboardUser/GestionUser.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../admin/dashboard/Dashboard.fxml"));
         Scene scene = new Scene(root);
         Image icon;
         icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
@@ -150,4 +152,20 @@ public class LoginFXMLController implements Initializable {
         primaryStage.sizeToScene();
         primaryStage.show();
     }
+    @FXML
+        private void redirectToCodeSend () throws IOException{
+          Stage stage = (Stage) forgetPwd.getScene().getWindow();
+        stage.close();
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../forgetPassword/sendCodeToEmail.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Envoyée votre code ...");
+        primaryStage.setScene(scene);
+     
+        primaryStage.sizeToScene();
+        primaryStage.show(); 
+      }
 }

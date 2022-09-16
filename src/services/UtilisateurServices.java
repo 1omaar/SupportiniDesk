@@ -285,4 +285,68 @@ public class UtilisateurServices implements IUtilisateur {
         return listUser;
     }
 
+    @Override
+    public void updateUserByAdmin(int id,String nom, String prenom, String email, String cin, String phone, int role) {
+        String req = "UPDATE utilisateurs SET `nom`=?,`prenom`=?,`email`=? ,cin=?,`phone`=? , fk_idRole = ? WHERE id=?";
+        try {
+            PreparedStatement ps= cnx.prepareStatement(req);
+            ps.setString(1, nom);
+            ps.setString(2, prenom);
+            ps.setString(3, email);
+            ps.setString(4, cin);
+            ps.setString(5, phone);
+            ps.setInt(6, role);
+            ps.setInt(7, id);
+            ps.executeUpdate();
+            ps.close();
+            Notification.notificationSuccess("SUCCESS", "Données enregistréé");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+            Notification.notificationError("ERREUR", "Donnée n'est pas enregistré");
+        }
+        
+    }
+
+    @Override
+    public int checkUser(String email) {
+        String req= "SELECT id FROM utilisateurs WHERE email = ?";
+        PreparedStatement ps;
+        try {
+            ps=cnx.prepareStatement(req);
+              ps.setString(1, email);
+            
+          ResultSet res =  ps.executeQuery();
+          res.first();
+           int id  = res.getInt(1);
+           ps.close();
+           return id;
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return -1;
+        
+    }
+
+    @Override
+    public void resetPwd(int id, String pwd) {
+              String req = "UPDATE utilisateurs SET password = ? WHERE id=?";
+              PreparedStatement ps;
+        try {
+            ps=cnx.prepareStatement(req);
+            String mdp = Validation.hachePassword(pwd);
+            ps.setString(1, mdp);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            Notification.notificationSuccess("SUCCEE", "Mot de Passe Réinitialisé");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+            Notification.notificationError("ERREUR", "Mot de Passe incorrect");
+        } catch (Exception ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+             Notification.notificationError("ERREUR", "Mot de Passe incorrect");
+        }
+              
+    }
+
 }

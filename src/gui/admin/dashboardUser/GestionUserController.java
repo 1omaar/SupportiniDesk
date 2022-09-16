@@ -5,21 +5,15 @@
  */
 package gui.admin.dashboardUser;
 
-import Exception.AuthException;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import gui.dashboard.DashboardFXMLController;
 import interfaces.IUtilisateur;
 import java.io.IOException;
 import java.net.URL;
-import java.security.InvalidKeyException;
-import java.util.ArrayList;
-import java.util.List;
+import static java.nio.file.Files.list;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,17 +29,14 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import model.Utilisateur;
-import org.json.JSONException;
 import services.UtilisateurServices;
-import util.JWebToken;
 
 /**
  * FXML Controller class
@@ -55,10 +46,13 @@ import util.JWebToken;
 public class GestionUserController implements Initializable {
 
     @FXML
-    private Circle myCircle;
-    private int id, idRole;
+    private VBox scene;
     @FXML
-    private Button btnLogout;
+    private Button searchEnt;
+    @FXML
+    private Button searchCoachs;
+    @FXML
+    private Button seachPss;
     @FXML
     private TableView<Utilisateur> tableUser;
     @FXML
@@ -75,75 +69,15 @@ public class GestionUserController implements Initializable {
     private TableColumn<Utilisateur, String> colBtn;
     @FXML
     private TableColumn<Utilisateur, String> colId;
-    ObservableList<Utilisateur> list = FXCollections.observableArrayList();
-    @FXML
-    private Button searchEnt;
-    @FXML
-    private Button searchCoachs;
-    @FXML
-    private Button seachPss;
-
+ ObservableList<Utilisateur> list = FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Preferences userPreferences = Preferences.userRoot();
-        String bearerToken = userPreferences.get("BearerToken", "root");
-
-        JWebToken incomingToken;
-
-        try {
-            incomingToken = new JWebToken(bearerToken);
-
-            if (!incomingToken.isValid()) {
-                String audience = incomingToken.getAudience();
-                String subject = incomingToken.getSubject();
-                idRole = Integer.parseInt(audience);
-                id = Integer.parseInt(subject);
-
-                listUsers();
-            }
-        } catch (JSONException | AuthException | IOException | InvalidKeyException ex) {
-            Logger.getLogger(GestionUserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    public void logout(ActionEvent event) {
-        Preferences userPreferences = Preferences.userRoot();
-        try {
-            userPreferences.clear();
-            redirectToLogin();
-        } catch (BackingStoreException ex) {
-            Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    private void redirectToLogin() {
-        Parent root;
-        try {
-            root = FXMLLoader.load(getClass().getResource("../../login/LoginFXML.fxml"));
-            Stage primaryStage = (Stage) btnLogout.getScene().getWindow();
-            primaryStage.close();
-            Scene scene = new Scene(root);
-            Image icon;
-            icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
-            Stage stage = new Stage();
-            stage.getIcons().add(icon);
-            stage.setTitle("Se Connecter chez Supportini");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.sizeToScene();
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-
-    }
-
-    private void refreshTable() {
+       listUsers();
+    }    
+        private void refreshTable() {
 
         list.clear();
         IUtilisateur iu = new UtilisateurServices();
@@ -154,7 +88,7 @@ public class GestionUserController implements Initializable {
 
     }
 
-    private void listUsers() {
+    public void listUsers() {
         refreshTable();
 
         colId.setCellValueFactory(
@@ -176,6 +110,7 @@ public class GestionUserController implements Initializable {
 //            Image.setImage(img);
 //            listImg.add(Image);
 //        }
+
         IUtilisateur iu = new UtilisateurServices();
         tableUser.setFixedCellSize(50);
         tableUser.prefHeightProperty().bind(tableUser.fixedCellSizeProperty().multiply(Bindings.size(tableUser.getItems()).add(1.01)));
@@ -183,9 +118,11 @@ public class GestionUserController implements Initializable {
         tableUser.maxHeightProperty().bind(tableUser.prefHeightProperty());
 
         Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>> cellFoctory;
+
         cellFoctory = (TableColumn<Utilisateur, String> param) -> {
+
             // make cell containing buttons
-            final TableCell<Utilisateur, String> cell;
+            TableCell<Utilisateur, String> cell;
             cell = new TableCell<Utilisateur, String>() {
                 @Override
                 public void updateItem(String item, boolean empty) {
@@ -211,6 +148,7 @@ public class GestionUserController implements Initializable {
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#00E676;"
                         );
+                        boolean x = false;
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
                             Utilisateur user = tableUser.getSelectionModel().getSelectedItem();
@@ -220,21 +158,57 @@ public class GestionUserController implements Initializable {
                             refreshTable();
 
                         });
-                        
+
+                        editIcon.setOnMouseClicked((MouseEvent event) -> {
+
+                            Utilisateur user = tableUser.getSelectionModel().getSelectedItem();
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("./updateModal.fxml"));
+                            try {
+                                loader.load();
+                            } catch (IOException ex) {
+                                Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+//                            loader.setLocation();
+                            UpdateModalController umc = loader.getController();
+
+                            umc.setData(user.getId(), user.getNom(), user.getPrenom(), user.getEmail(), user.getCin(), user.getPhone(), user.getIdRole());
+
+                            Parent parent = loader.getRoot();
+                            Stage stage = new Stage();
+                            stage.initStyle(StageStyle.UTILITY);
+                            stage.setScene(new Scene(parent));
+
+                            stage.show();
+
+                        });
+
                         HBox managebtn = new HBox(editIcon, deleteIcon);
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
                         HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+
                         setGraphic(managebtn);
 
                         setText(null);
+//                            } else {
+//                                HBox managebtn = new HBox(editIcon, unlockIcon);
+//                                managebtn.setStyle("-fx-alignment:center");
+//                                HBox.setMargin(unlockIcon, new Insets(2, 2, 0, 3));
+//                                HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+//                                setGraphic(managebtn);
+//
+//                                setText(null);
+//                            }
 
 //                     
                     }
                 }
             };
+
             return cell;
+
         };
+
         colBtn.setCellFactory(cellFoctory);
 
         tableUser.setFixedCellSize(50);
@@ -243,29 +217,30 @@ public class GestionUserController implements Initializable {
         tableUser.maxHeightProperty().bind(tableUser.prefHeightProperty());
     }
 
+  
     @FXML
-    public void searchByIdRole() {
-        searchEnt.setOnAction((event) -> {
+    private void searchByIdRole() {
+            searchEnt.setOnAction((event) -> {
             IUtilisateur iu = new UtilisateurServices();
             list.clear();
             list.addAll(iu.queryUserByRoleId(2));
-            
-             tableUser.setItems(list);
+
+            tableUser.setItems(list);
         });
-            searchCoachs.setOnAction((event) -> {
+        searchCoachs.setOnAction((event) -> {
             IUtilisateur iu = new UtilisateurServices();
             list.clear();
             list.addAll(iu.queryUserByRoleId(3));
-            
-             tableUser.setItems(list);
+
+            tableUser.setItems(list);
         });
-                seachPss.setOnAction((event) -> {
+        seachPss.setOnAction((event) -> {
             IUtilisateur iu = new UtilisateurServices();
             list.clear();
             list.addAll(iu.queryUserByRoleId(4));
-            
-             tableUser.setItems(list);
+
+            tableUser.setItems(list);
         });
     }
-
+    
 }
