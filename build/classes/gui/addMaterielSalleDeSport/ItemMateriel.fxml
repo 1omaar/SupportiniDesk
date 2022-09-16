@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="itemMateriel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="433.0" styleClass="itemMateriel" stylesheets="@itemmateriel.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.addMaterielSalleDeSport.ItemMaterielController">
+   <children>
+      <HBox prefHeight="41.0" prefWidth="433.0" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="433.0">
+         <children>
+            <Label fx:id="nomMateriel" alignment="CENTER" prefHeight="39.0" prefWidth="253.0" text="NomMteriel" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="Specialite" prefHeight="38.0" prefWidth="321.0" text="Specialite" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="Quantite" prefHeight="42.0" prefWidth="148.0" text="Quantite DE MATERIEL" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="descreption" prefHeight="107.0" prefWidth="443.0" text="descreption" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

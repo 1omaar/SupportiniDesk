@@ -68,6 +68,10 @@ public class ListSalleSportController implements Initializable {
     @FXML
     private ScrollPane scrollListSalle;
     private int idRole, idUser;
+    @FXML
+    private ScrollPane scrollListSalle1;
+    @FXML
+    private GridPane Lsport1;
 
     /**
      * Initializes the controller class.
@@ -90,8 +94,9 @@ public class ListSalleSportController implements Initializable {
         int row = 1;
         try {
             incomingToken = new JWebToken(bearerToken);
+            System.out.println(bearerToken);
             if (!incomingToken.isValid()) {
-
+                
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
@@ -125,6 +130,8 @@ public class ListSalleSportController implements Initializable {
             }
 
         } catch (IOException | JSONException | AuthException | InvalidKeyException ex) {
+            Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
