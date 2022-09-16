@@ -20,7 +20,7 @@ public interface ISalleSport {
    public List<SalleSport> affichageByIdPss(int idUser);
      public void supprimerSalleSport( SalleSport s);
       public void modifierSalleSport( SalleSport s );
-      ///////////////////////////////////////////////
+ public SalleSport affichageById (int id);
      
    
    

@@ -27,8 +27,6 @@ import util.Statics;
 public class SalleSportServices implements ISalleSport {
 
     Connection cnx = MaConnexion.getInstance().getCnx();
-    
-
 
     @Override
     public List<SalleSport> affichage() {
@@ -142,13 +140,13 @@ public class SalleSportServices implements ISalleSport {
             ps.setInt(1, s.getId());
             ps.executeUpdate();
             System.out.println("PS : sallesport supprimé avec succés!");
-             
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("supprimer de coaching");
 
             alert.setHeaderText("supprission de caoching terminée");
             alert.setContentText("supprission de caoching terminée");
- alert.showAndWait();
+            alert.showAndWait();
         } catch (SQLException ex) {
             Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -176,7 +174,34 @@ public class SalleSportServices implements ISalleSport {
 //            Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    
-}
+    }
 
-  
+    @Override
+    public SalleSport affichageById(int id) {
+        String req = "select * from salledessport where id = ?";
+        PreparedStatement ps;
+        try {
+            ps = cnx.prepareStatement(req);
+            ps.setInt(1, id);
+            ResultSet res = ps.executeQuery();
+            res.first();
+            SalleSport st = new SalleSport();
+            st.setId(res.getInt(1));
+            st.setNomSalle(res.getString(2));
+            st.setNumTel(res.getInt(3));
+            st.setVille(res.getString(4));
+            st.setRue(res.getString(5));
+            st.setCodePostal(res.getString(6));
+            st.setDescription(res.getString(7));
+            st.setPrix(res.getFloat(8));
+            st.setDuration(res.getString(9));
+            st.setFk_idUser(res.getInt(10));
+            st.setImageVitrine(res.getString(11));
+            return st;
+        } catch (SQLException ex) {
+            Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

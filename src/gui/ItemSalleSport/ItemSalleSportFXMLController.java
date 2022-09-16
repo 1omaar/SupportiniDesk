@@ -16,13 +16,19 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import model.SalleSport;
 import org.json.JSONException;
 import util.JWebToken;
@@ -52,6 +58,8 @@ public class ItemSalleSportFXMLController implements Initializable {
     private Label adresse;
     @FXML
     private Label id;
+    @FXML
+    private Button detail;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -81,5 +89,25 @@ public class ItemSalleSportFXMLController implements Initializable {
         }
       
         
+    }
+
+    @FXML
+    private void goToDetails(ActionEvent event) throws IOException {
+        Stage stage = (Stage) detail.getScene().getWindow();
+        
+        stage.close();
+        Preferences userPreferences = Preferences.userRoot();
+        userPreferences.put("id_salle", String.valueOf(Salle.getId()));
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/addMaterielSalleDeSport.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Salle "+Salle.getNomSalle());
+        primaryStage.setScene(scene);
+       
+        primaryStage.sizeToScene();
+        primaryStage.show();
     }
 }

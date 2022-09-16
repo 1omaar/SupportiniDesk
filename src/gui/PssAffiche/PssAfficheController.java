@@ -62,7 +62,7 @@ public class PssAfficheController implements Initializable {
     private SalleSport Salle;
     private Label id;
     int index = -1;
-    private int idRole, idUser;
+    private int idRole, idUser, idSalleSport;
     @FXML
     private Hyperlink goToAddMateriel;
 
@@ -83,7 +83,7 @@ public class PssAfficheController implements Initializable {
         prix.setText(String.valueOf(Salle.getPrix()) + " DT");
         adresse.setText(Salle.getVille() + " ," + Salle.getRue() + " " + Salle.getCodePostal());
         description.setText(Salle.getDescription());
-//        id.setText(String.valueOf(Salle.getId()));
+        idSalleSport = Salle.getId();
 
         Image im;
         try {
@@ -107,16 +107,18 @@ public class PssAfficheController implements Initializable {
 
         Statics.xx.setId(Salle.getId());
         Statics.xx.setNomSalle(Salle.getNomSalle());
-          Statics.xx.setNumTel(Salle.getNumTel());
-          Statics.xx.setVille(Salle.getVille());
-          Statics.xx.setRue(Salle.getRue());
-          Statics.xx.setCodePostal(Salle.getCodePostal());
-          Statics.xx.setPrix(Salle.getPrix());
-          Statics.xx.setDescription(Salle.getDescription());
-          Statics.xx.setDuration(Salle.getDuration());
-          Statics.xx.setImageVitrine(Salle.getImageVitrine());
-        
-               
+        Statics.xx.setNumTel(Salle.getNumTel());
+        Statics.xx.setVille(Salle.getVille());
+        Statics.xx.setRue(Salle.getRue());
+        Statics.xx.setCodePostal(Salle.getCodePostal());
+        Statics.xx.setPrix(Salle.getPrix());
+        Statics.xx.setDescription(Salle.getDescription());
+        Statics.xx.setDuration(Salle.getDuration());
+        Statics.xx.setImageVitrine(Salle.getImageVitrine());
+//                idSalleSport = Salle.getId();
+//                      nom.setText(Salle.getNomSalle());
+//                       description.setText(Salle.getDescription());
+
         Parent root = FXMLLoader.load(getClass().getResource("../modifierSalleSport/ModifierSalleSport.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -127,17 +129,16 @@ public class PssAfficheController implements Initializable {
 
     @FXML
     private void redirectToAddMateriel(ActionEvent event) throws IOException {
-        
-             Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/addMaterielSalleDeSport.fxml"));
-  Stage stage = new Stage();
+        idSalleSport = Salle.getId();
+        Statics.xx.setId(idSalleSport);
+        Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/addMaterielSalleDeSport.fxml"));
+        Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-         
+        System.out.println(idSalleSport);
 //        
 //        itemsalle.getChildren().removeAll();
 //        itemsalle.getChildren().setAll(root);
-    } 
     }
-
-
+}

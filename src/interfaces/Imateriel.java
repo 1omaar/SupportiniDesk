@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+
+import java.util.List;
 import model.MaterielSalle;
+import model.SalleSport;
 
 /**
  *
@@ -13,5 +16,6 @@ import model.MaterielSalle;
  */
 public interface Imateriel {
            public void ajouterMaterielSalle(MaterielSalle m);
+         public List<MaterielSalle> affichageById(int fk_idSalle);
 
 }
