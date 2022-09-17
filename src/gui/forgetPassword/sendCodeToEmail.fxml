@@ -74,7 +74,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnCode" mnemonicParsing="false" onAction="#checkEmail" prefHeight="32.0" prefWidth="124.0" style="-fx-background-color: #ff8c09;" styleClass="btnreset" stylesheets="@resetpassword.css" text="Confirmer" textFill="WHITE">
+                  <Button fx:id="btnCode" mnemonicParsing="false" onAction="#checkEmail" prefHeight="32.0" prefWidth="124.0" style="-fx-background-color: #ff8c09;" text="Confirmer" textFill="WHITE">
                      <font>
                         <Font name="Cambria" size="16.0" />
                      </font>

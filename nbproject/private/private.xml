@@ -40,11 +40,13 @@
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/dashboardUser/GestionUserController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/forgetPassword/resetpassword.css</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
+<<<<<<< HEAD
+=======
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/forgetPassword/SendCodeToEmailController.java</file>
+>>>>>>> f252fc9af51bb63c2cc1a4e96fdb4b86d8b663bf
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoCoach/InfoCoachFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/CodeReset.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/AuthServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/dashboardUser/gestionuser.css</file>
         </group>
     </open-files>
 </project-private>
