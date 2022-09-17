@@ -8,6 +8,7 @@ package gui.suivi.histosuivi;
 import Exception.AuthException;
 import gui.profil.ProfilFXMLController;
 import gui.suivi.suivitrainer.SuiviTrainerController;
+import interfaces.IEntrainee;
 import interfaces.Isuivi;
 import java.io.File;
 import java.io.IOException;
@@ -25,14 +26,17 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +46,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Suivi;
 import org.json.JSONException;
+import services.EntraineeServices;
 import services.Suivie_Services;
 import util.JWebToken;
 import util.MaConnexion;
@@ -72,11 +77,15 @@ public class DatePickerController implements Initializable {
     private Label name_perdate2;
     @FXML
     private Label name_perdate3;
+    @FXML
+    private TextField search;
+    @FXML
+    private Button btnsearch;
 
     private List<Suivi> getData(int id) throws SQLException {
         List<Suivi> suivis = new ArrayList<>();
         Suivi suivi;
-        String tt = "SELECT * FROM suivi WHERE fk_idUser_Suivi = ? ORDER BY id DESC";
+        String tt = "SELECT * FROM suivi WHERE fk_id_entr = ? ORDER BY id DESC";
 
         //Statement statement;
 
@@ -87,7 +96,10 @@ public class DatePickerController implements Initializable {
             suivi = new Suivi();
             suivi.setNomE(queryoutput.getString("nom"));
             suivi.setDateSuivi(queryoutput.getDate("date_suivi"));
-            suivi.setId(queryoutput.getInt("fk_idUser_Suivi"));
+            suivi.setId(queryoutput.getInt("fk_id_entr"));
+            suivi.setImc(queryoutput.getDouble("imc"));
+            suivi.setTaille(queryoutput.getInt("taille"));
+            suivi.setPoidsActuelle(queryoutput.getInt("poids"));
 
             //System.out.println("Empty");
             suivis.add(suivi);
@@ -98,8 +110,11 @@ public class DatePickerController implements Initializable {
     }
 
     private void setChosenSuivi(Suivi suivi) {
-        name_perdate.setText(suivi.getNomE());
-        System.out.println(suivi.getNomE());
+        name_perdate.setText(String.valueOf("Date Suivi : " + suivi.getDateSuivi()));
+        name_perdate1.setText(String.valueOf("Taille : " + suivi.getTaille()));
+        name_perdate2.setText(String.valueOf("Poids : " + suivi.getPoidsActuelle()));
+        name_perdate3.setText(String.valueOf("IMC : " +suivi.getImc()));
+        //System.out.println(suivi.getNomE());
     }
 
     @Override
@@ -114,8 +129,10 @@ public class DatePickerController implements Initializable {
             String subject = incomingToken.getSubject();
             //int idRole = Integer.parseInt(audience);
             int idUser = Integer.parseInt(subject);
+            IEntrainee ie = new EntraineeServices();
+            int identr = ie.queryById(idUser).getId();
             try {
-                suivis.addAll(getData(idUser));
+                suivis.addAll(getData(identr));
                 if (suivis.size() > 0) {
                     setChosenSuivi(suivis.get(0));
                     myListener = new MyListener_Suivi() {
@@ -168,5 +185,9 @@ public class DatePickerController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(DatePickerController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void search(ActionEvent event) {
     }
 }

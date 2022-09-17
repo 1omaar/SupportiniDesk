@@ -8,6 +8,7 @@ package gui.suivi.ajoutSuivi;
 import Exception.AuthException;
 import gui.profil.ProfilFXMLController;
 import gui.suivi.suivitrainer.SuiviTrainerController;
+import interfaces.ICoach;
 import interfaces.IEntrainee;
 import interfaces.IUtilisateur;
 import interfaces.Isuivi;
@@ -29,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Suivi;
 import org.json.JSONException;
+import services.CoachServices;
 import services.EntraineeServices;
 import services.Suivie_Services;
 import services.UtilisateurServices;
@@ -49,21 +51,19 @@ public class AjoutSuiviController implements Initializable {
     private TextField poidsajout;
     @FXML
     private TextField tailleajout;
-   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
         // TODO
     }
 
     @FXML
-    private void closescene(ActionEvent event) {
-        
-         
+    private void closescene(ActionEvent event) throws URISyntaxException {
+
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
         //verify and use
@@ -77,9 +77,10 @@ public class AjoutSuiviController implements Initializable {
             Suivi suivi = new Suivi();
             IUtilisateur iu = new UtilisateurServices();
             IEntrainee ie = new EntraineeServices();
+            int identrain = ie.queryById(idUser).getId();
             int age = ie.queryById(idUser).getAge();
-        String nom = iu.queryUserById(idUser).getNom();
-        String prenom = iu.queryUserById(idUser).getPrenom();
+            String nom = iu.queryUserById(idUser).getNom();
+            String prenom = iu.queryUserById(idUser).getPrenom();
 //        int tailletxt =Integer.parseInt(tailleajout.getText());
 //        int poidtxt = Integer.parseInt(poidsajout.getText());
 //            System.out.println(poidtxt);
@@ -87,29 +88,27 @@ public class AjoutSuiviController implements Initializable {
 //        float taille = tailletxt/100;
 //        float tailleimc = taille*taille;
 //        float imc = poidtxt/tailleimc;
-        
+
             Isuivi is = new Suivie_Services();
+            ICoach ic = new CoachServices();
+//            int idcoach = ic.queryById(idUser).getId();
             double imc = is.queryById(idUser).getImc();
             long miliseconds = System.currentTimeMillis();
             Date date = new Date(miliseconds);
-            Suivi s = new Suivi(idUser, age,Integer.parseInt(tailleajout.getText()) ,Integer.parseInt(poidsajout.getText()), date, nom, prenom,imc);
+            Suivi s = new Suivi(identrain, age, Integer.parseInt(tailleajout.getText()), Integer.parseInt(poidsajout.getText()), date, nom, prenom, imc);
 //           Suivi s = new Suivi(idUser, age ,,, date, nom, prenom);
             is.ajouterSuivi(s);
             SuiviTrainerController st = new SuiviTrainerController();
-            
-        //sceneAdd.getChildren().removeAll();
-        sceneAdd.getChildren().clear();
+            //st.refreshing(idUser);
+            sceneAdd.getChildren().clear();
+
         } catch (JSONException | AuthException | IOException ex) {
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
-        
-        
 
 //        Stage stage = (Stage) closebtn.getScene().getWindow();
 //        // do what you have to do
 //        stage.close();
-
-    }
-
-
+}

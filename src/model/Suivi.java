@@ -18,11 +18,10 @@ public class Suivi {
     
         
     private int id;
-    private int fk_idUser_Suivi;
+    private int fk_id_entr;
     private int age;
     private int taille;
     private int poidsActuelle;
-    
     private Date dateSuivi; 
     private String nomE;
     private String prenomE;
@@ -42,8 +41,8 @@ public class Suivi {
 
  
 
-    public Suivi(int fk_idUser_Suivi, int age, int taille, int poidsActuelle, Date dateSuivi, String nomE, String prenomE) {
-        this.fk_idUser_Suivi = fk_idUser_Suivi;
+    public Suivi(int fk_id_entr, int age, int taille, int poidsActuelle, Date dateSuivi, String nomE, String prenomE) {
+        this.fk_id_entr = fk_id_entr;
         this.age = age;
         this.taille = taille;
         this.poidsActuelle = poidsActuelle;
@@ -52,8 +51,8 @@ public class Suivi {
         this.prenomE = prenomE;
     }
 
-    public Suivi(int fk_idUser_Suivi, int age, int taille, int poidsActuelle, Date dateSuivi, String nomE, String prenomE, double imc) {
-        this.fk_idUser_Suivi = fk_idUser_Suivi;
+    public Suivi(int fk_id_entr, int age, int taille, int poidsActuelle, Date dateSuivi, String nomE, String prenomE, double imc) {
+        this.fk_id_entr = fk_id_entr;
         this.age = age;
         this.taille = taille;
         this.poidsActuelle = poidsActuelle;
@@ -63,8 +62,8 @@ public class Suivi {
         this.imc = imc;
     }
 
-    public Suivi(int fk_idUser_Suivi, int age, int taille, int poidsActuelle, Date dateSuivi, String nomE, String prenomE, double imc, int id_coach) {
-        this.fk_idUser_Suivi = fk_idUser_Suivi;
+    public Suivi(int fk_id_entr, int age, int taille, int poidsActuelle, Date dateSuivi, String nomE, String prenomE, double imc, int id_coach) {
+        this.fk_id_entr = fk_id_entr;
         this.age = age;
         this.taille = taille;
         this.poidsActuelle = poidsActuelle;
@@ -92,14 +91,6 @@ public class Suivi {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getfk_idUser_Suivi() {
-        return fk_idUser_Suivi;
-    }
-
-    public void setfk_idUser_Suivi(int fk_idUser_Suivi) {
-        this.fk_idUser_Suivi = fk_idUser_Suivi;
     }
 
     public int getAge() {
@@ -150,12 +141,12 @@ public class Suivi {
         this.prenomE = prenomE;
     }
 
-    public int getFk_idUser_Suivi() {
-        return fk_idUser_Suivi;
+    public int getFk_id_entr() {
+        return fk_id_entr;
     }
 
-    public void setFk_idUser_Suivi(int fk_idUser_Suivi) {
-        this.fk_idUser_Suivi = fk_idUser_Suivi;
+    public void setFk_id_entr(int fk_id_entr) {
+        this.fk_id_entr = fk_id_entr;
     }
 
     public double getImc() {
@@ -175,21 +166,41 @@ public class Suivi {
     public void setImc(double imc) {
         this.imc = imc;
     }
-    
 
-   
+    @Override   
+    public int hashCode() {
+        return Objects.hash(fk_id_entr) ;
+    }
 
 //    @Override
 //    public String toString() {
 //        return "Suivi{" + "age=" + age + ", taille=" + taille + ", poidsActuelle=" + poidsActuelle + ", dateSuivi=" + dateSuivi + ", nomE=" + nomE + ", prenomE=" + prenomE + '}';
 //    }
-
-   
-
 //    @Override
 //    public String toString() {
 //        return "Suivi{" + "id=" + id + ", age=" + age + ", taille=" + taille + ", poidsActuelle=" + poidsActuelle + ", dateSuivi=" + dateSuivi + ", nomE=" + nomE + ", prenomE=" + prenomE + '}';
 //    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Suivi other = (Suivi) obj;
+        if (this.fk_id_entr != other.fk_id_entr) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
 
     @Override
     public String toString() {

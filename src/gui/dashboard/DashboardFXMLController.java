@@ -115,7 +115,11 @@ public class DashboardFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
-        
+//        try {
+//            userPreferences.clear();
+//        } catch (BackingStoreException ex) {
+//            Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         String bearerToken = userPreferences.get("BearerToken", "root");
         
         JWebToken incomingToken;

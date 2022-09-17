@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import java.util.List;
 import model.Feedback;
 
 /**
@@ -15,6 +16,6 @@ public interface Ifeedback {
     public void ajouterfeedback(Feedback feedback);
     public void supprimerFeedback();
     public void modifierFeedback();
-    public void afficherfeedback();
+    public Feedback afficherfeedback(int id);
     
 }

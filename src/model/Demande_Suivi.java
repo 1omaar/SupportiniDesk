@@ -10,18 +10,17 @@ package model;
  * @author GIGABYTE
  */
 public class Demande_Suivi {
-    private int id;
-    private String demande_suivi;
-    private int id_suivi;
-    private int id_user;
-    private int id_entrainee;
-    private int id_coach;
+   private int id;
+   private String demande;
+   private int id_entr;
+   private int id_coach;
 
-    public Demande_Suivi(String demande_suivi, int id_suivi, int id_user, int id_entrainee, int id_coach) {
-        this.demande_suivi = demande_suivi;
-        this.id_suivi = id_suivi;
-        this.id_user = id_user;
-        this.id_entrainee = id_entrainee;
+    public Demande_Suivi() {
+    }
+
+    public Demande_Suivi(String demande, int id_entr, int id_coach) {
+        this.demande = demande;
+        this.id_entr = id_entr;
         this.id_coach = id_coach;
     }
 
@@ -33,36 +32,20 @@ public class Demande_Suivi {
         this.id = id;
     }
 
-    public String getDemande_suivi() {
-        return demande_suivi;
+    public String getDemande() {
+        return demande;
     }
 
-    public void setDemande_suivi(String demande_suivi) {
-        this.demande_suivi = demande_suivi;
+    public void setDemande(String demande) {
+        this.demande = demande;
     }
 
-    public int getId_suivi() {
-        return id_suivi;
+    public int getId_entr() {
+        return id_entr;
     }
 
-    public void setId_suivi(int id_suivi) {
-        this.id_suivi = id_suivi;
-    }
-
-    public int getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
-    }
-
-    public int getId_entrainee() {
-        return id_entrainee;
-    }
-
-    public void setId_entrainee(int id_entrainee) {
-        this.id_entrainee = id_entrainee;
+    public void setId_entr(int id_entr) {
+        this.id_entr = id_entr;
     }
 
     public int getId_coach() {
@@ -74,10 +57,38 @@ public class Demande_Suivi {
     }
 
     @Override
-    public String toString() {
-        return "Demande_Suivi{" + "demande_suivi=" + demande_suivi + '}';
+    public int hashCode() {
+        int hash = 5;
+        return hash;
     }
-    
-    
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Demande_Suivi other = (Demande_Suivi) obj;
+        if (this.id_entr != other.id_entr) {
+            return false;
+        }
+        if (this.id_coach != other.id_coach) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Demande_Suivi{" + "demande=" + demande + '}';
+    }
+   
+   
+
+
 }

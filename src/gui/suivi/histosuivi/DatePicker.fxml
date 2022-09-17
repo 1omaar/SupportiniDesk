@@ -41,22 +41,22 @@
             <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
             <AnchorPane prefHeight="870.0" prefWidth="486.0" styleClass="chosen-fruit-card" stylesheets="@style.css">
                <children>
-                  <Label fx:id="name_perdate" layoutX="62.0" layoutY="62.0" prefHeight="48.0" prefWidth="383.0" text="Peach" textFill="WHITE">
+                  <Label fx:id="name_perdate" layoutX="62.0" layoutY="62.0" prefHeight="48.0" prefWidth="383.0" textFill="WHITE">
                      <font>
                         <Font name="Cambria" size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="name_perdate1" layoutX="62.0" layoutY="126.0" prefHeight="48.0" prefWidth="352.0" text="Peach" textFill="WHITE">
+                  <Label fx:id="name_perdate1" layoutX="62.0" layoutY="126.0" prefHeight="48.0" prefWidth="352.0" textFill="WHITE">
                      <font>
                         <Font name="Cambria" size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="name_perdate2" layoutX="63.0" layoutY="185.0" prefHeight="48.0" prefWidth="352.0" text="Peach" textFill="WHITE">
+                  <Label fx:id="name_perdate2" layoutX="63.0" layoutY="185.0" prefHeight="48.0" prefWidth="352.0" textFill="WHITE">
                      <font>
                         <Font name="Cambria" size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="name_perdate3" layoutX="61.0" layoutY="240.0" prefHeight="48.0" prefWidth="352.0" text="Peach" textFill="WHITE">
+                  <Label fx:id="name_perdate3" layoutX="61.0" layoutY="240.0" prefHeight="48.0" prefWidth="352.0" textFill="WHITE">
                      <font>
                         <Font name="Cambria" size="36.0" />
                      </font>
@@ -86,12 +86,12 @@
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <TextField prefHeight="40.0" prefWidth="362.0" promptText="Type here to search" styleClass="transparent" stylesheets="@style.css">
+            <TextField fx:id="search" prefHeight="40.0" prefWidth="362.0" promptText="Type here to search" styleClass="transparent" stylesheets="@style.css">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" styleClass="search-button" stylesheets="@style.css" text="Search" textFill="WHITE" />
+            <Button fx:id="btnsearch" mnemonicParsing="false" onAction="#search" prefHeight="55.0" prefWidth="200.0" styleClass="search-button" stylesheets="@style.css" text="Search" textFill="WHITE" />
          </children>
       </HBox>
    </children>

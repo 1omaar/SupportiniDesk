@@ -5,12 +5,16 @@
  */
 package interfaces;
 
+import java.util.List;
+import model.Demande_Suivi;
+
 /**
  *
  * @author GIGABYTE
  */
 public interface IDemandeSuivi {
     
-    public void AjouterDemanderSuivi();
+    public void AjouterDemanderSuivi(Demande_Suivi demande);
+    public Demande_Suivi afficherDemandeSuivi(int id);
     
 }

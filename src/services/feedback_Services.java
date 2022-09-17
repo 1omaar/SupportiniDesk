@@ -8,8 +8,12 @@ package services;
 import interfaces.Ifeedback;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Coach;
+import model.Demande_Suivi;
 import model.Feedback;
 import util.MaConnexion;
 
@@ -17,39 +21,58 @@ import util.MaConnexion;
  *
  * @author GIGABYTE
  */
-public class feedback_Services implements Ifeedback{
-Connection cnx = MaConnexion.getInstance().getCnx();
+public class feedback_Services implements Ifeedback {
+
+    Connection cnx = MaConnexion.getInstance().getCnx();
+
     @Override
     public void ajouterfeedback(Feedback feedback) {
-        String req = "INSERT INTO `feedback`(`feedback`, `id_suivi`, `id_user`, `id_coach`, `id_entrainee`) VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO `feedback`(`feedback`, `id_suivi`) VALUES (?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, feedback.getFeedback());
             ps.setInt(2, feedback.getId_suivi());
-            ps.setInt(3, feedback.getId_user_feedback());
-            ps.setInt(4, feedback.getId_coach_feedback());
-            ps.setInt(5, feedback.getId_entrainee());
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex);
         }
     }
-       
 
     @Override
     public void supprimerFeedback() {
-        
+
     }
-       
 
     @Override
     public void modifierFeedback() {
-       
+
     }
 
     @Override
-    public void afficherfeedback() {
+    public Feedback afficherfeedback(int id) {
+        Feedback feedback = new Feedback();
+        List<Feedback> feedbacks = new ArrayList<>();
+        String req2 = "SELECT * FROM feedback WHERE id_suivi = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req2);
+            ps.setInt(1, id);
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                feedback.setId(res.getInt(1));
+                feedback.setFeedback(res.getString(2));
+                feedback.setId_suivi(res.getInt(3));
 
+                feedbacks.add(feedback);
+                if (feedbacks != null && !feedbacks.isEmpty()) {
+                    feedback = feedbacks.get(feedbacks.size() - 1);
+
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return null;
+        }
+        return feedback;
     }
-    
+
 }

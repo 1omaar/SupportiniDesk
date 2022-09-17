@@ -13,16 +13,13 @@ public class Feedback {
     private int id;
     private String feedback;
     private int id_suivi;
-    private int id_user_feedback;
-    private int id_coach_feedback;
-    private int id_entrainee;
 
-    public Feedback(String feedback, int id_suivi, int id_user_feedback, int id_coach_feedback, int id_entrainee) {
+    public Feedback(String feedback, int id_suivi) {
         this.feedback = feedback;
         this.id_suivi = id_suivi;
-        this.id_user_feedback = id_user_feedback;
-        this.id_coach_feedback = id_coach_feedback;
-        this.id_entrainee = id_entrainee;
+    }
+
+    public Feedback() {
     }
 
     public int getId() {
@@ -49,34 +46,36 @@ public class Feedback {
         this.id_suivi = id_suivi;
     }
 
-    public int getId_user_feedback() {
-        return id_user_feedback;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.id_suivi;
+        return hash;
     }
 
-    public void setId_user_feedback(int id_user_feedback) {
-        this.id_user_feedback = id_user_feedback;
-    }
-
-    public int getId_coach_feedback() {
-        return id_coach_feedback;
-    }
-
-    public void setId_coach_feedback(int id_coach_feedback) {
-        this.id_coach_feedback = id_coach_feedback;
-    }
-
-    public int getId_entrainee() {
-        return id_entrainee;
-    }
-
-    public void setId_entrainee(int id_entrainee) {
-        this.id_entrainee = id_entrainee;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Feedback other = (Feedback) obj;
+        if (this.id_suivi != other.id_suivi) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "feedback{" + "feedback=" + feedback + '}';
+        return "Feedback{" + "feedback=" + feedback + '}';
     }
+    
     
     
     

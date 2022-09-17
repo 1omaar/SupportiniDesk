@@ -7,6 +7,7 @@ package supportini;
 
 import Exception.AuthException;
 import gui.profil.ProfilFXMLController;
+import interfaces.IDemandeSuivi;
 import interfaces.Isuivi;
 import java.io.IOException;
 import java.sql.Date;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import model.Suivi;
 import org.json.JSONException;
+import services.DemandeSuivi_Service;
 import services.Suivie_Services;
 import util.JWebToken;
 
@@ -49,7 +51,9 @@ public class Supportini {
         } catch (JSONException | AuthException | IOException ex) {
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        IDemandeSuivi ids = new DemandeSuivi_Service();
+        System.out.println(ids.afficherDemandeSuivi(4).getDemande());
+        
     }
 
 }

@@ -101,7 +101,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", prenom=" + prenom +", email=" + email + ", cin=" + cin + ", phone=" + phone + '}';
+        return nom + " " + prenom;
     }
 
     public void setEmail(String email) {

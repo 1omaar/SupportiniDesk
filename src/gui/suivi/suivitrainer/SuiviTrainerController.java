@@ -7,6 +7,7 @@ package gui.suivi.suivitrainer;
 
 import Exception.AuthException;
 import gui.profil.ProfilFXMLController;
+import interfaces.IDemandeSuivi;
 import interfaces.IEntrainee;
 import interfaces.IUtilisateur;
 import interfaces.Isuivi;
@@ -20,6 +21,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -43,6 +45,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Suivi;
 import org.json.JSONException;
+import services.DemandeSuivi_Service;
 import services.EntraineeServices;
 import services.Suivi_Service_Trainer;
 import services.Suivie_Services;
@@ -85,6 +88,8 @@ public class SuiviTrainerController implements Initializable {
     private Label imclbl;
     @FXML
     private AnchorPane scenesuivi;
+    @FXML
+    private Label alerteDemande;
 
     /**
      * Initializes the controller class.
@@ -100,15 +105,19 @@ public class SuiviTrainerController implements Initializable {
             String audience = incomingToken.getAudience();
             String subject = incomingToken.getSubject();
             //int idRole = Integer.parseInt(audience);
+            IEntrainee ie = new EntraineeServices();
+
             int idUser = Integer.parseInt(subject);
-            getInfoCurrentUser(idUser);
-            refreshing(idUser);
+            int identr = ie.queryById(idUser).getId();
+            getInfoCurrentUser(identr);
+            //refreshing(identr);
             //scenesuivi.getScene().getWindow().setWidth(scenesuivi.getScene().getWidth()+0.001);
             try {
                 getForChart();
             } catch (SQLException ex) {
                 Logger.getLogger(SuiviTrainerController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //refreshing(idUser);
         } catch (URISyntaxException | JSONException | AuthException | IOException ex) {
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,55 +125,72 @@ public class SuiviTrainerController implements Initializable {
     }
 
     private void getInfoCurrentUser(int id) throws URISyntaxException {
-        IUtilisateur iu = new UtilisateurServices();
-        String nom = iu.queryUserById(id).getNom();
-        String prenom = iu.queryUserById(id).getPrenom();
-        Isuivi is = new Suivie_Services();
+        Preferences userPreferences = Preferences.userRoot();
+        String bearerToken = userPreferences.get("BearerToken", "root");
+        //verify and use
+        JWebToken incomingToken;
+        try {
+            incomingToken = new JWebToken(bearerToken);
+            String audience = incomingToken.getAudience();
+            String subject = incomingToken.getSubject();
+            //int idRole = Integer.parseInt(audience);
+            int idUser = Integer.parseInt(subject);
+            IEntrainee ie = new EntraineeServices();
+            int identr = ie.queryById(idUser).getId();
+            IDemandeSuivi iDemandeSuivi = new DemandeSuivi_Service();
+            IUtilisateur iu = new UtilisateurServices();
+            String nom = iu.queryUserById(idUser).getNom();
+            String prenom = iu.queryUserById(idUser).getPrenom();
+            Isuivi is = new Suivie_Services();
+            
+            NomEntrainer.setText(nom);
+            PrenomEntrainer.setText(prenom);
+            //Isuivi is = new Suivie_Services();
+            //Suivi s = new Suivi();
+            if (is.queryById(id).getPoidsActuelle() != 0 || is.queryById(id).getTaille() != 0 || is.queryById(id).getDateSuivi() != null || is.queryById(id).getImc() != 0) {
+                PoidsActuelle.setText(String.valueOf(is.queryById(id).getPoidsActuelle()));
+                DateSuivi.setText(String.valueOf(is.queryById(id).getDateSuivi()));
+                tailleshow.setText(String.valueOf(is.queryById(id).getTaille()));
+                if (is.queryById(id).getImc() < 18.5) {
+                    imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Maigreur");
+                    imclbl.setStyle("-fx-text-fill: DeepSkyBlue;");
+                } else if (is.queryById(id).getImc() < 25) {
+                    imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Normal");
+                    imclbl.setStyle("-fx-text-fill: #00FF7F;");
+                } else if (is.queryById(id).getImc() < 30) {
+                    imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Surpoids");
+                    imclbl.setStyle("-fx-text-fill: #FFEA00;-fx-font-weight: bolder;");
 
-        NomEntrainer.setText(nom);
-        PrenomEntrainer.setText(prenom);
-        //Isuivi is = new Suivie_Services();
-        //Suivi s = new Suivi();
-        IEntrainee ie = new EntraineeServices();
-        if (is.queryById(id).getPoidsActuelle() != 0 || is.queryById(id).getTaille() != 0 || is.queryById(id).getDateSuivi() != null || is.queryById(id).getImc() != 0) {
-            PoidsActuelle.setText(String.valueOf(is.queryById(id).getPoidsActuelle()));
-            DateSuivi.setText(String.valueOf(is.queryById(id).getDateSuivi()));
-            tailleshow.setText(String.valueOf(is.queryById(id).getTaille()));
-            if (is.queryById(id).getImc() < 18.5) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Maigreur");
-                imclbl.setStyle("-fx-text-fill: DeepSkyBlue;");
-            } else if (is.queryById(id).getImc() < 25) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Normal");
-                imclbl.setStyle("-fx-text-fill: #00FF7F;");
-            } else if (is.queryById(id).getImc() < 30) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Suproids");
-                imclbl.setStyle("-fx-text-fill: #FFFF00;");
+                } else if (is.queryById(id).getImc() < 35) {
+                    imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité modérée");
+                    imclbl.setStyle("-fx-text-fill: #FFD700;");
+                } else if (is.queryById(id).getImc() < 40) {
+                    imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité sévére");
+                    imclbl.setStyle("-fx-text-fill: #FF4500;");
+                } else {
+                    imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité massive");
+                    imclbl.setStyle("-fx-text-fill: #FF0000;");
+                }
 
-            } else if (is.queryById(id).getImc() < 35) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité modérée");
-                imclbl.setStyle("-fx-text-fill: #FFD700;");
-            } else if (is.queryById(id).getImc() < 40) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité sévére");
-                imclbl.setStyle("-fx-text-fill: #FF4500;");
             } else {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité massive");
-                imclbl.setStyle("-fx-text-fill: #FF0000;");
+                PoidsActuelle.setText("Ajouter une nouvelle Suivi");
+                DateSuivi.setText("Ajouter une nouvelle Suivi");
+                tailleshow.setText("Ajouter une nouvelle Suivi");
+                imclbl.setText("Ajouter une nouvelle Suivi");
+
             }
+            LocalDate currentDate = LocalDate.now();
+            LocalDate currentDateMinus = currentDate.minusDays(5);
+            Date date_suiviDate = is.queryById(id).getDateSuivi();
+            ageSuivi.setText(String.valueOf(ie.queryById(idUser).getAge()));
+            
+            alerteDemande.setText((iDemandeSuivi.afficherDemandeSuivi(identr).getDemande()));
+            //System.out.println(iDemandeSuivi.afficherDemandeSuivi(idUser).getDemande());
 
-        } else {
-            PoidsActuelle.setText("Ajouter une nouvelle Suivi");
-            DateSuivi.setText("Ajouter une nouvelle Suivi");
-            tailleshow.setText("Ajouter une nouvelle Suivi");
-            imclbl.setText("Ajouter une nouvelle Suivi");
 
+        } catch (JSONException | AuthException | IOException ex) {
+            Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        ageSuivi.setText(String.valueOf(ie.queryById(id).getAge()));
-//        XYChart.Series<Date, Integer> series = new XYChart.Series<>();
-//        series.getData().add(new XYChart.Data<>(is.queryById(id).getDateSuivi(), is.queryById(id).getPoidsActuelle()));
-//        chart.getData().add(series);
-//
-//        series.setName("Poids");
 
     }
 
@@ -173,20 +199,26 @@ public class SuiviTrainerController implements Initializable {
         String bearerToken = userPreferences.get("BearerToken", "root");
         //verify and use
         JWebToken incomingToken;
-        String req2 = "SELECT * FROM suivi WHERE fk_idUser_Suivi = ? ORDER BY date_suivi ASC";
+        String req2 = "SELECT * FROM suivi WHERE fk_id_entr = ? ORDER BY date_suivi ASC";
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         try {
             incomingToken = new JWebToken(bearerToken);
             String audience = incomingToken.getAudience();
             String subject = incomingToken.getSubject();
             //int idRole = Integer.parseInt(audience);
+            IEntrainee ie = new EntraineeServices();
+
             int idUser = Integer.parseInt(subject);
+            int identr = ie.queryById(idUser).getId();
+
             PreparedStatement ps = cnx.prepareStatement(req2);
-            ps.setInt(1, idUser);
+            ps.setInt(1, identr);
             ResultSet res = ps.executeQuery();
             while (res.next()) {
-                series.getData().add(new XYChart.Data<>(String.valueOf(res.getDate(7)), res.getInt(5)));
+                series.getData().add(new XYChart.Data<>(String.valueOf(res.getDate(8)), res.getInt(5)));
             }
+            chart.getData().clear();
+            chart.layout();
             chart.getData().add(series);
         } catch (JSONException | AuthException | IOException ex) {
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,64 +266,33 @@ public class SuiviTrainerController implements Initializable {
     }
 
     @FXML
-    private void refresh(MouseEvent event) {
-    }
-    
-    
+    private void refresh(MouseEvent event) throws URISyntaxException {
+        Preferences userPreferences = Preferences.userRoot();
+        String bearerToken = userPreferences.get("BearerToken", "root");
+        //verify and use
+        JWebToken incomingToken;
+        try {
+            incomingToken = new JWebToken(bearerToken);
+            String audience = incomingToken.getAudience();
+            String subject = incomingToken.getSubject();
+            //int idRole = Integer.parseInt(audience);
+            IEntrainee ie = new EntraineeServices();
 
-    private void refreshing (int id) throws URISyntaxException {
-        IUtilisateur iu = new UtilisateurServices();
-        String nom = iu.queryUserById(id).getNom();
-        String prenom = iu.queryUserById(id).getPrenom();
-        Isuivi is = new Suivie_Services();
-
-        NomEntrainer.setText(nom);
-        PrenomEntrainer.setText(prenom);
-        //Isuivi is = new Suivie_Services();
-        //Suivi s = new Suivi();
-        IEntrainee ie = new EntraineeServices();
-        if (is.queryById(id).getPoidsActuelle() != 0 || is.queryById(id).getTaille() != 0 || is.queryById(id).getDateSuivi() != null || is.queryById(id).getImc() != 0) {
-            PoidsActuelle.setText(String.valueOf(is.queryById(id).getPoidsActuelle()));
-            DateSuivi.setText(String.valueOf(is.queryById(id).getDateSuivi()));
-            tailleshow.setText(String.valueOf(is.queryById(id).getTaille()));
-            if (is.queryById(id).getImc() < 18.5) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Maigreur");
-                imclbl.setStyle("-fx-text-fill: DeepSkyBlue;");
-            } else if (is.queryById(id).getImc() < 25) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Normal");
-                imclbl.setStyle("-fx-text-fill: #00FF7F;");
-            } else if (is.queryById(id).getImc() < 30) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Suproids");
-                imclbl.setStyle("-fx-text-fill: #FFFF00;");
-
-            } else if (is.queryById(id).getImc() < 35) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité modérée");
-                imclbl.setStyle("-fx-text-fill: #FFD700;");
-            } else if (is.queryById(id).getImc() < 40) {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité sévére");
-                imclbl.setStyle("-fx-text-fill: #FF4500;");
-            } else {
-                imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Obésité massive");
-                imclbl.setStyle("-fx-text-fill: #FF0000;");
+            int idUser = Integer.parseInt(subject);
+            int identr = ie.queryById(idUser).getId();
+            getInfoCurrentUser(identr);
+            //refreshing(identr);
+            //scenesuivi.getScene().getWindow().setWidth(scenesuivi.getScene().getWidth()+0.001);
+            try {
+                getForChart();
+            } catch (SQLException ex) {
+                Logger.getLogger(SuiviTrainerController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } else {
-            PoidsActuelle.setText("Ajouter une nouvelle Suivi");
-            DateSuivi.setText("Ajouter une nouvelle Suivi");
-            tailleshow.setText("Ajouter une nouvelle Suivi");
-            imclbl.setText("Ajouter une nouvelle Suivi");
-
+            //refreshing(idUser);
+        } catch (URISyntaxException | JSONException | AuthException | IOException ex) {
+            Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        ageSuivi.setText(String.valueOf(ie.queryById(id).getAge()));
-//        XYChart.Series<Date, Integer> series = new XYChart.Series<>();
-//        series.getData().add(new XYChart.Data<>(is.queryById(id).getDateSuivi(), is.queryById(id).getPoidsActuelle()));
-//        chart.getData().add(series);
-//
-//        series.setName("Poids");
 
     }
 
 }
-
-
