@@ -107,6 +107,8 @@ public class DashboardFXMLController implements Initializable {
     private Button btnCoachs;
     @FXML
     private Button btnMesSalleDeSport;
+    @FXML
+    private ImageView iconMesSalle;
 
     /**
      * Initializes the controller class.
@@ -137,6 +139,8 @@ public class DashboardFXMLController implements Initializable {
                 btnCoachs.setManaged(idRole != 3);
                  btnMesSalleDeSport.setVisible(idRole == 4);
                 btnMesSalleDeSport.setManaged(idRole == 4);
+                iconMesSalle.setVisible(idRole == 4);
+                iconMesSalle.setManaged(idRole == 4);
                 iconCoach.setVisible(idRole != 3);
                 iconCoach.setManaged(idRole != 3);
             

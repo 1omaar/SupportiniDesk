@@ -68,9 +68,8 @@ public class ListSallePssController implements Initializable {
     private ScrollPane scrollListSalle;
     @FXML
     private int idRole, idUser;
-    private ScrollPane scrollListSalle1;
-    @FXML
-    private GridPane Lsport1;
+   
+ 
 
     /**
      * Initializes the controller class.

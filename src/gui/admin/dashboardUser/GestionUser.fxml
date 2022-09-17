@@ -7,86 +7,55 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1275.0" style="-fx-background-color: #333645;" stylesheets="@gestionuser.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.admin.dashboardUser.GestionUserController">
-   <left>
-      <VBox alignment="TOP_CENTER" prefHeight="694.0" prefWidth="245.0" BorderPane.alignment="CENTER">
+<VBox fx:id="scene" prefHeight="592.0" prefWidth="939.0" style="-fx-background-color: #333645;" stylesheets="@gestionuser.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.admin.dashboardUser.GestionUserController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1030.0" styleClass="btnFilter" stylesheets="@gestionuser.css">
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="211.0" styleClass="btnSidebar" text="Gestion Utilisateurs">
+            <Button fx:id="searchEnt" mnemonicParsing="false" onAction="#searchByIdRole" styleClass="btnFilter" text="Entrainé">
                <font>
-                  <Font name="Cambria" size="19.0" />
+                  <Font name="Cambria" size="18.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="211.0" styleClass="btnSidebar" text="Gestion Produits">
-               <font>
-                  <Font name="Cambria" size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="211.0" styleClass="btnSidebar" text="Gestion Salle de Sports">
-               <font>
-                  <Font name="Cambria" size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" styleClass="btnSidebar" text="Gestion Coaching">
-               <font>
-                  <Font name="Cambria" size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="210.0" styleClass="btnSidebar" text="Gestion Suivis">
-               <font>
-                  <Font name="Cambria" size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
-   </left>
-   <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="1275.0" BorderPane.alignment="CENTER">
-         <children>
-            <Circle fx:id="myCircle" fill="DODGERBLUE" radius="29.0" stroke="BLACK" strokeType="INSIDE" />
-            <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #333645;">
                <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../uicontrolers/icon.jpg" />
+                        <Image url="@../../uicontrolers/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="searchCoachs" mnemonicParsing="false" onAction="#searchByIdRole" styleClass="btnFilter" text="Coachs">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="60.0" right="60.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../uicontrolers/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="seachPss" mnemonicParsing="false" onAction="#searchByIdRole" styleClass="btnFilter" text="Propriétaire ">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../uicontrolers/search.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -95,87 +64,29 @@
                </cursor>
             </Button>
          </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
       </HBox>
-   </top>
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1030.0" styleClass="btnNavBar" stylesheets="@gestionuser.css">
-               <children>
-                  <Button fx:id="searchEnt" mnemonicParsing="false" onAction="#searchByIdRole" styleClass="btnFilter" text="Entrainé">
-                     <font>
-                        <Font name="Cambria" size="18.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../uicontrolers/search.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="searchCoachs" mnemonicParsing="false" onAction="#searchByIdRole" styleClass="btnFilter" text="Coachs">
-                     <font>
-                        <Font name="Cambria" size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="60.0" right="60.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../uicontrolers/search.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="seachPss" mnemonicParsing="false" onAction="#searchByIdRole" styleClass="btnFilter" text="Propriétaire ">
-                     <font>
-                        <Font name="Cambria" size="18.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../uicontrolers/search.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <TableView fx:id="tableUser" editable="true" prefWidth="200.0" stylesheets="@gestionuser.css" VBox.vgrow="SOMETIMES">
-              <columns>
-                <TableColumn fx:id="colId" prefWidth="52.0" text="Id" />
-                <TableColumn fx:id="colNom" prefWidth="133.0" text="Nom" />
-                  <TableColumn fx:id="colPrenom" prefWidth="139.0" text="Prénom" />
-                  <TableColumn fx:id="colEmail" prefWidth="177.0" text="E-mail" />
-                  <TableColumn fx:id="colCin" prefWidth="181.0" text="Cin" />
-                  <TableColumn fx:id="colPhone" prefWidth="239.0" text="Numéro téléphone" />
-                  <TableColumn fx:id="colBtn" prefWidth="88.0" />
-              </columns>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-         </children>
-      </VBox>
-   </center>
-</BorderPane>
+      <TableView fx:id="tableUser" editable="true" prefWidth="200.0" stylesheets="@gestionuser.css" VBox.vgrow="SOMETIMES">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="52.0" text="Id" />
+            <TableColumn fx:id="colNom" prefWidth="133.0" text="Nom" />
+            <TableColumn fx:id="colPrenom" prefWidth="139.0" text="Prénom" />
+            <TableColumn fx:id="colEmail" prefWidth="177.0" text="E-mail" />
+            <TableColumn fx:id="colCin" prefWidth="181.0" text="Cin" />
+            <TableColumn fx:id="colPhone" prefWidth="239.0" text="Numéro téléphone" />
+            <TableColumn fx:id="colBtn" prefWidth="88.0" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </VBox.margin>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</VBox>

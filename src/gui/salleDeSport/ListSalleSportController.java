@@ -68,10 +68,6 @@ public class ListSalleSportController implements Initializable {
     @FXML
     private ScrollPane scrollListSalle;
     private int idRole, idUser;
-    @FXML
-    private ScrollPane scrollListSalle1;
-    @FXML
-    private GridPane Lsport1;
 
     /**
      * Initializes the controller class.
@@ -105,7 +101,8 @@ public class ListSalleSportController implements Initializable {
                 for (int i = 0; i < listSalleSport.size(); i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../ItemSalleSport/ItemSalleSportFXML.fxml"));
 
-                    HBox hbox = loader.load();
+                    HBox hbox;
+                    hbox = loader.load();
 
                     ItemSalleSportFXMLController c = loader.getController();
                     c.setData(listSalleSport.get(i));
@@ -129,9 +126,7 @@ public class ListSalleSportController implements Initializable {
                 
             }
 
-        } catch (IOException | JSONException | AuthException | InvalidKeyException ex) {
-            Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
+        } catch (IOException | JSONException | AuthException | InvalidKeyException | URISyntaxException ex) {
             Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

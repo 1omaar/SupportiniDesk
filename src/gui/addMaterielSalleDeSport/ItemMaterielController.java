@@ -56,17 +56,19 @@ public class ItemMaterielController implements Initializable {
     this.Materiel=MaterielSalle;
 //        System.out.println(Materiel);
 //       id.setText(String.valueOf(Materiel.getId()));
-        nomMateriel.setText(Materiel.getNomMaterial());
-        Specialite.setText(Materiel.getSpecialite());
-        descreption.setText(Materiel.getDescription());
-        Quantite.setText(String.valueOf(Materiel.getQuantite()));
-     
 
-       
-   Image im;
+        nomMateriel.setText("Nom: "+Materiel.getNomMaterial());
+        Specialite.setText("Type Sport:\n"+Materiel.getSpecialite());
+        descreption.setText("Desciption:\n"+Materiel.getDescription());
+        Quantite.setText("Quantité:\n"+String.valueOf(Materiel.getQuantite()));
+     
+         
+   Image img;
         try {
-            im = new Image(getClass().getResource("../uicontrolers/imageSalleSport/" + Materiel.getImageVitrine()).toURI().toString());
-            image.setImage(im);
+            img = new Image(getClass().getResource("../uicontrolers/materiel/" + Materiel.getImageVitrine()).toURI().toString());
+      
+         
+            image.setImage(img);
         } catch (URISyntaxException ex) {
             Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
         }

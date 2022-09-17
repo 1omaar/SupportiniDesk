@@ -77,13 +77,14 @@ public class AddMaterielSalleDeSportController implements Initializable {
     private Label adress;
     @FXML
     private Button back;
+
+    
+  
+    @FXML
+    private ScrollPane scrollListMateriel;
   
     @FXML
     private GridPane gridMateriel;
-    @FXML
-    private GridPane gridMateriel1;
-    @FXML
-    private ScrollPane scrollListMateriel;
 
     /**
      * Initializes the controller class.
@@ -100,21 +101,23 @@ public class AddMaterielSalleDeSportController implements Initializable {
         Imateriel im = new MaterielServices();
         List<MaterielSalle> listMateriel = new ArrayList<>();
         listMateriel.addAll(im.affichageById(Salle.getId()));
-         int column = 1;
-        int row = 1;
-          
-         try {
-//                for (int i = 0; i < listMateriel.size(); i++) {
+        int column = 1;
+        int row = 0;
+        if (listMateriel.size() != 0) {
+            try {
+                for (int i = 0; i < listMateriel.size(); i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("./ItemMateriel.fxml"));
 
                     VBox vbox = loader.load();
 
                     ItemMaterielController c = loader.getController();
-                 
-                c.setData(listMateriel.get(0));
-                
-                    gridMateriel.add(vbox, column, row);
-//                System.out.println(column+" "+row);
+
+                    c.setData(listMateriel.get(i));
+                   
+                        gridMateriel.add(vbox, column++, row);
+                    
+
+                System.out.println(column+" "+row);
                     //set grid width
                     gridMateriel.setMinWidth(500);
                     gridMateriel.setPrefWidth(500);
@@ -127,13 +130,12 @@ public class AddMaterielSalleDeSportController implements Initializable {
 
                     GridPane.setMargin(vbox, new Insets(15));
                     GridPane.setValignment(scrollListMateriel, VPos.CENTER);
-//                }
-            } catch (URISyntaxException ex) {
+                }
+            } catch (URISyntaxException | IOException ex) {
                 Logger.getLogger(AddMaterielSalleDeSportController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-            Logger.getLogger(AddMaterielSalleDeSportController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
+
     }
 
     public void displaySalle() {
