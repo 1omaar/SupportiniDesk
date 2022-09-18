@@ -52,6 +52,8 @@ public class LoginFXMLController implements Initializable {
     private Label validationPass;
     @FXML
     private Hyperlink register;
+    @FXML
+    private Hyperlink forgetPwd;
 
     /**
      * Initializes the controller class.
@@ -82,7 +84,12 @@ public class LoginFXMLController implements Initializable {
             generateCurrentUserJwt(ia.login(emailLogin.getText(), pwdLogin.getText()));
             String prenom =ia.login(emailLogin.getText(), pwdLogin.getText()).getPrenom().substring(0, 1).toUpperCase() + ia.login(emailLogin.getText(), pwdLogin.getText()).getPrenom().substring(1);
               Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Bienvenue, "+prenom);
-            redirectToDashboard(event,buttonConf);
+              if(ia.login(emailLogin.getText(), pwdLogin.getText()).getIdRole()==1){
+                  redirectToDashboardAdmin(event,buttonConf);
+              }else {
+                 redirectToDashboard(event,buttonConf);  
+              }
+           
         }
     }
 
@@ -130,4 +137,35 @@ public class LoginFXMLController implements Initializable {
         primaryStage.sizeToScene();
         primaryStage.show();
     }
+      private void redirectToDashboardAdmin (ActionEvent event,Button btn) throws IOException{
+         Stage stage = (Stage) btn.getScene().getWindow();
+        stage.close();
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../admin/dashboard/Dashboard.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Dashboard Administrateur");
+        primaryStage.setScene(scene);
+     
+        primaryStage.sizeToScene();
+        primaryStage.show();
+    }
+    @FXML
+        private void redirectToCodeSend () throws IOException{
+          Stage stage = (Stage) forgetPwd.getScene().getWindow();
+        stage.close();
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../forgetPassword/sendCodeToEmail.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Envoyée votre code ...");
+        primaryStage.setScene(scene);
+     
+        primaryStage.sizeToScene();
+        primaryStage.show(); 
+      }
 }

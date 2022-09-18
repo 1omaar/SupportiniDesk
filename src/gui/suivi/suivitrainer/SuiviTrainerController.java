@@ -22,6 +22,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,7 +154,7 @@ public class SuiviTrainerController implements Initializable {
             //Suivi s = new Suivi();
             if (is.queryById(id).getPoidsActuelle() != 0 || is.queryById(id).getTaille() != 0 || is.queryById(id).getDateSuivi() != null || is.queryById(id).getImc() != 0) {
                 PoidsActuelle.setText(String.valueOf(is.queryById(id).getPoidsActuelle()));
-                DateSuivi.setText(String.valueOf(is.queryById(id).getDateSuivi()));
+                
                 tailleshow.setText(String.valueOf(is.queryById(id).getTaille()));
                 if (is.queryById(id).getImc() < 18.5) {
                     imclbl.setText(String.valueOf(is.queryById(id).getImc()) + " --> Maigreur");
@@ -188,12 +189,20 @@ public class SuiviTrainerController implements Initializable {
             Date date = new Date(miliseconds);
             Date date_suiviDate = is.queryById(id).getDateSuivi();
             ageSuivi.setText(String.valueOf(ie.queryById(idUser).getAge()));
-            System.out.println(date.toLocalDate().isEqual(date_suiviDate.toLocalDate()));
-            System.out.println(date);
-            System.out.println(date_suiviDate);
-            if (date.before(date_suiviDate) || date.toLocalDate().isEqual(date_suiviDate.toLocalDate())) {
+//            System.out.println(date.toLocalDate().isEqual(date_suiviDate.toLocalDate()));
+            //System.out.println(date);
+            //System.out.println(date_suiviDate);
+            if (date_suiviDate == null){
+                DateSuivi.setText(String.valueOf(is.queryById(id).getDateSuivi()));
+            }
+            else if (date.before(date_suiviDate) || date.toLocalDate().isEqual(date_suiviDate.toLocalDate())) {
+                if (ifeedback.afficherfeedback(idsuivi) == null){
+                    System.out.println("no");
+                }else{
+                    System.out.println(" yet");
                 alerteDemande.setText((ifeedback.afficherfeedback(idsuivi).getFeedback()));
-                
+                }
+             
             } else {
                 //alerteDemande.setText((ifeedback.afficherfeedback(idsuivi).getFeedback()));
                 alerteDemande.setText(("Merci d'envoyer votre nouvelle Suivi"));
@@ -240,6 +249,7 @@ public class SuiviTrainerController implements Initializable {
 
     }
 
+    @FXML
     private void goToHisto(ActionEvent event) throws IOException {
         try {
             Stage stage = (Stage) histo.getScene().getWindow();

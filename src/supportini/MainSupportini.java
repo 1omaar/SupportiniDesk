@@ -5,7 +5,9 @@
  */
 package supportini;
 
+import Exception.AuthException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import util.JWebToken;
 
 /**
  *
@@ -24,37 +28,58 @@ import javafx.stage.Stage;
 public class MainSupportini extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         Parent root;
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
+        JWebToken jwt = null;
 
-        
-      try {
-            if (!bearerToken.equals("root")) {
-           
-                root = FXMLLoader.load(getClass().getResource("../gui/dashboard/DashboardFXML.fxml"));
-        
-                primaryStage.setTitle("Dashboard");
-            } else {
-                root = FXMLLoader.load(getClass().getResource("../gui/login/LoginFXML.fxml"));
-                primaryStage.setTitle("Se Connecter chez Supportini");
+        try {
+
+            jwt = new JWebToken(bearerToken);
+
+            if (!jwt.isValid()) {
+                String audience = jwt.getAudience();
+                String subject = jwt.getSubject();
+                int idRole = Integer.parseInt(audience);
+
+                if (idRole == 1) {
+                    root = FXMLLoader.load(getClass().getResource("../gui/admin/dashboard/Dashboard.fxml"));
+
+                    primaryStage.setTitle("Dashboard Administrateur ");
+                } else {
+                    root = FXMLLoader.load(getClass().getResource("../gui/dashboard/DashboardFXML.fxml"));
+
+                    primaryStage.setTitle("Dashboard");
+                }
+                Scene scene = new Scene(root);
+                Image icon;
+                icon = new Image(getClass().getResourceAsStream("../gui/uicontrolers/logosportstrnsprt.png"));
+                primaryStage.getIcons().add(icon);
+
+                primaryStage.setScene(scene);
+
+                primaryStage.sizeToScene();
+
+                primaryStage.show();
+
             }
 
+        } catch (IOException | JSONException | InvalidKeyException | AuthException ex) {
+            Logger.getLogger(MainSupportini.class.getName()).log(Level.SEVERE, null, ex);
+            root = FXMLLoader.load(getClass().getResource("../gui/login/LoginFXML.fxml"));
+            primaryStage.setTitle("Se Connecter chez Supportini");
             Scene scene = new Scene(root);
             Image icon;
             icon = new Image(getClass().getResourceAsStream("../gui/uicontrolers/logosportstrnsprt.png"));
             primaryStage.getIcons().add(icon);
 
             primaryStage.setScene(scene);
-          
+
             primaryStage.sizeToScene();
 
             primaryStage.show();
-    } catch (IOException ex) {
-                Logger.getLogger(MainSupportini.class.getName()).log(Level.SEVERE, null, ex);
-            }
-      
+        }
 
     }
 

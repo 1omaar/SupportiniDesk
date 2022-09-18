@@ -133,11 +133,13 @@ public class DatePickerController implements Initializable {
             int identr = ie.queryById(idUser).getId();
             try {
                 suivis.addAll(getData(identr));
+                    
                 if (suivis.size() > 0) {
                     setChosenSuivi(suivis.get(0));
                     myListener = new MyListener_Suivi() {
                         @Override
                         public void onClickListener(Suivi suivi) {
+                            System.out.println("laaaaaaaaaaaaaaaaaaaaaaaaaaa");
                             setChosenSuivi(suivi);
 
                         }

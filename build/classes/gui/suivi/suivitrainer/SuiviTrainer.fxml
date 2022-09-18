@@ -214,7 +214,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="histo" mnemonicParsing="false" style="-fx-background-color: #0e99df;" text="Historique" textAlignment="CENTER" textFill="#f2f4f4">
+            <Button fx:id="histo" mnemonicParsing="false" onAction="#goToHisto" style="-fx-background-color: #0e99df;" text="Historique" textAlignment="CENTER" textFill="#f2f4f4">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -35,6 +35,7 @@ import model.Utilisateur;
 import org.json.JSONException;
 import util.JWebToken;
 import util.MaConnexion;
+import util.Notification;
 
 /**
  *
@@ -245,7 +246,7 @@ public class Suivie_Services implements Isuivi {
                 //ps.close();
             }
         } catch (SQLException ex) {
-            System.err.println(ex);
+            Notification.notificationError("DESOLE", "Vous allez inscrire d'abord avec l'un de nos Coach");
             return null;
         }
         return date_suivi;

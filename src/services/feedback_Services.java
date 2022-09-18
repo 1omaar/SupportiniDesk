@@ -51,28 +51,27 @@ public class feedback_Services implements Ifeedback {
     @Override
     public Feedback afficherfeedback(int id) {
         Feedback feedback = new Feedback();
-        List<Feedback> feedbacks = new ArrayList<>();
+
         String req2 = "SELECT * FROM feedback WHERE id_suivi = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req2);
             ps.setInt(1, id);
             ResultSet res = ps.executeQuery();
-            while (res.next()) {
+               res.first();
                 feedback.setId(res.getInt(1));
                 feedback.setFeedback(res.getString(2));
                 feedback.setId_suivi(res.getInt(3));
-
+                  return feedback;
 //                feedbacks.add(feedback);
 //                if (feedbacks != null && !feedbacks.isEmpty()) {
 //                    feedback = feedbacks.get(feedbacks.size() - 1);
 //
-//                }
-            }
+//     
         } catch (SQLException ex) {
             System.err.println(ex);
             return null;
         }
-        return feedback;
+      
     }
 
 }

@@ -35,14 +35,13 @@ public class Suivi_ItemController {
 
  @FXML
     private void showHisto(MouseEvent event) {
+        System.out.println("laaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        
         myListener.onClickListener(suivi);
-    }
-
-    @FXML
-    private void showHisto(TouchEvent event) {
-                myListener.onClickListener(suivi);
+                
 
     }
+
     public void setData(Suivi suivi, MyListener_Suivi myListener) {
         this.suivi = suivi;
         this.myListener = myListener;
