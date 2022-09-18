@@ -10,6 +10,7 @@ import gui.profil.ProfilFXMLController;
 import interfaces.IDemandeSuivi;
 import interfaces.IEntrainee;
 import interfaces.IUtilisateur;
+import interfaces.Ifeedback;
 import interfaces.Isuivi;
 import java.io.File;
 import java.io.IOException;
@@ -50,6 +51,7 @@ import services.EntraineeServices;
 import services.Suivi_Service_Trainer;
 import services.Suivie_Services;
 import services.UtilisateurServices;
+import services.feedback_Services;
 import util.JWebToken;
 import util.MaConnexion;
 
@@ -138,11 +140,14 @@ public class SuiviTrainerController implements Initializable {
             IEntrainee ie = new EntraineeServices();
             int identr = ie.queryById(idUser).getId();
             IDemandeSuivi iDemandeSuivi = new DemandeSuivi_Service();
+            Ifeedback ifeedback = new feedback_Services();
             IUtilisateur iu = new UtilisateurServices();
             String nom = iu.queryUserById(idUser).getNom();
             String prenom = iu.queryUserById(idUser).getPrenom();
             Isuivi is = new Suivie_Services();
-            
+            int idsuivi = is.queryById(id).getId();
+            //System.out.println(is.queryById(idUser).getId());
+
             NomEntrainer.setText(nom);
             PrenomEntrainer.setText(prenom);
             //Isuivi is = new Suivie_Services();
@@ -179,15 +184,25 @@ public class SuiviTrainerController implements Initializable {
                 imclbl.setText("Ajouter une nouvelle Suivi");
 
             }
-            LocalDate currentDate = LocalDate.now();
-            LocalDate currentDateMinus = currentDate.minusDays(5);
+            
+            long miliseconds = System.currentTimeMillis();
+            Date date = new Date(miliseconds);
             Date date_suiviDate = is.queryById(id).getDateSuivi();
             ageSuivi.setText(String.valueOf(ie.queryById(idUser).getAge()));
-            
-            alerteDemande.setText((iDemandeSuivi.afficherDemandeSuivi(identr).getDemande()));
+            System.out.println(date.toLocalDate().isEqual(date_suiviDate.toLocalDate()));
+            System.out.println(date);
+            System.out.println(date_suiviDate);
+            if (date.before(date_suiviDate) || date.toLocalDate().isEqual(date_suiviDate.toLocalDate())) {
+                alerteDemande.setText((ifeedback.afficherfeedback(idsuivi).getFeedback()));
+                
+            } else {
+                //alerteDemande.setText((ifeedback.afficherfeedback(idsuivi).getFeedback()));
+                alerteDemande.setText(("Merci d'envoyer votre nouvelle Suivi"));
+                //System.out.println(idsuivi);
+                //System.out.println(ifeedback.afficherfeedback(10).getFeedback());
+            }
+
             //System.out.println(iDemandeSuivi.afficherDemandeSuivi(idUser).getDemande());
-
-
         } catch (JSONException | AuthException | IOException ex) {
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }

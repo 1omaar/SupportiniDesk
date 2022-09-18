@@ -62,11 +62,11 @@ public class feedback_Services implements Ifeedback {
                 feedback.setFeedback(res.getString(2));
                 feedback.setId_suivi(res.getInt(3));
 
-                feedbacks.add(feedback);
-                if (feedbacks != null && !feedbacks.isEmpty()) {
-                    feedback = feedbacks.get(feedbacks.size() - 1);
-
-                }
+//                feedbacks.add(feedback);
+//                if (feedbacks != null && !feedbacks.isEmpty()) {
+//                    feedback = feedbacks.get(feedbacks.size() - 1);
+//
+//                }
             }
         } catch (SQLException ex) {
             System.err.println(ex);

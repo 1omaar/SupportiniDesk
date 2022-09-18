@@ -40,7 +40,7 @@ import util.MaConnexion;
  *
  * @author GIGABYTE
  */
-public class Suivie_Services implements Isuivi{
+public class Suivie_Services implements Isuivi {
 
     Connection cnx = MaConnexion.getInstance().getCnx();
 
@@ -94,7 +94,7 @@ public class Suivie_Services implements Isuivi{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
-//                p.setId(rs.getInt("id"));
+                s.setId(rs.getInt("id"));
                 s.setNomE(rs.getString("nom"));
 //                p.setNom(rs.getString(2));
 //                p.setPrenom(rs.getString("prenom"));
@@ -218,10 +218,7 @@ public class Suivie_Services implements Isuivi{
         List<Suivi> suivis = new ArrayList<>();
 
         Suivi date_suivi = new Suivi();
-        Suivi taille = new Suivi();
-        Suivi pods = new Suivi();
-        String req = "SELECT * FROM suivi";
-        String req2 = "SELECT * FROM suivi WHERE fk_id_entr = ? ORDER BY fk_id_entr DESC";
+        String req2 = "SELECT * FROM suivi WHERE fk_id_entr = ? ORDER BY date_suivi ASC";
         try {
             PreparedStatement ps = cnx.prepareStatement(req2);
             ps.setInt(1, id);
@@ -229,7 +226,8 @@ public class Suivie_Services implements Isuivi{
             while (res.next()) {
 
                 //res.first();
-//                date_suivi.setId(res.getInt(1));
+                date_suivi.setId(res.getInt(1));
+                
 //                date_suivi.setNomE(res.getString(2));
 //                date_suivi.setPrenomE(res.getString(3));
                 date_suivi.setPoidsActuelle(res.getInt(5));
@@ -237,26 +235,19 @@ public class Suivie_Services implements Isuivi{
 //                date_suivi.setAge(res.getInt(4));
                 date_suivi.setTaille(res.getInt(6));
                 date_suivi.setImc(res.getDouble(7));
-                //System.out.println(date_suivi);
-
-//                date_suivi.setfk_idUser_Suivi(res.getInt(8));
-//                int retval=suivis.size();
-                //System.out.println(retval);
                 suivis.add(date_suivi);
+                
                 if (suivis != null && !suivis.isEmpty()) {
                     date_suivi = suivis.get(suivis.size() - 1);
 
                 }
 
-                //System.out.println(date_suivi);
-                //ystem.out.println(date_suivi);
                 //ps.close();
             }
         } catch (SQLException ex) {
             System.err.println(ex);
             return null;
         }
-        ///System.out.println(date_suivi);
         return date_suivi;
     }
 
@@ -264,53 +255,34 @@ public class Suivie_Services implements Isuivi{
     public Set<Suivi> queryByidCoach(int id) {
 
         Set<Suivi> suivis = new HashSet<>();
+        String req = "SELECT * FROM suivi WHERE fk_id_coach = ? ORDER BY date_suivi ASC";
 
-        Suivi date_suivi = new Suivi();
-        Suivi taille = new Suivi();
-        Suivi pods = new Suivi();
-        String req = "SELECT * FROM suivi";
-        String req2 = "SELECT * FROM suivi WHERE fk_id_coach = ?";
         try {
-            PreparedStatement ps = cnx.prepareStatement(req2);
+            PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
-            ResultSet res = ps.executeQuery();
-            while (res.next()) {
-
-                //res.first();
-//                date_suivi.setId(res.getInt(1));
-                date_suivi.setNomE(res.getString(2));
-                date_suivi.setPrenomE(res.getString(3));
-                date_suivi.setPoidsActuelle(res.getInt(5));
-                date_suivi.setDateSuivi(res.getDate(8));
-//                date_suivi.setAge(res.getInt(4));
-                date_suivi.setTaille(res.getInt(6));
-                date_suivi.setImc(res.getDouble(7));
-                suivis.add(date_suivi);
-
-                //set.add(suivis);
-//                date_suivi.setfk_idUser_Suivi(res.getInt(8));
-//                int retval=suivis.size();
-                //System.out.println(retval);
-//                suivis.add(date_suivi);
-//                if (suivis != null && !suivis.isEmpty()) {
-//                    date_suivi = suivis.get(suivis.size() - 1);
-//
-//                }
-                System.out.println(suivis);
-
-                //System.out.println(date_suivi);
-                //ystem.out.println(date_suivi);
-                //ps.close();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Suivi s = new Suivi();
+                s.setId(rs.getInt("id"));
+                s.setNomE(rs.getString("nom"));
+                s.setPoidsActuelle(rs.getInt("poids"));
+                s.setDateSuivi(rs.getDate("date_suivi"));
+//                p.setNom(rs.getString(2));
+//                p.setPrenom(rs.getString("prenom"));
+                s.setPrenomE(rs.getString("prenom"));
+                s.setAge(rs.getInt("age"));
+                s.setTaille(rs.getInt("taille"));
+                s.setFk_id_entr(rs.getInt("fk_id_entr"));
+                s.setId_coach(rs.getInt("fk_id_coach"));
+//                p.setCin(rs.getInt(4));
+//                p.setAge(rs.getInt(5));
+                suivis.add(s);
             }
+
         } catch (SQLException ex) {
-            System.err.println(ex);
-            return null;
+            Logger.getLogger(Suivie_Services.class.getName()).log(Level.SEVERE, null, ex);
         }
         return suivis;
     }
 
-    
-
 }
-
-
