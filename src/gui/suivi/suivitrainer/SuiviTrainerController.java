@@ -43,6 +43,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Suivi;
 import org.json.JSONException;
@@ -81,15 +82,13 @@ public class SuiviTrainerController implements Initializable {
     @FXML
     private Button addsuivi;
     @FXML
-    private AnchorPane sceneAdd;
+    private HBox sceneAdd;
 
     Suivi s = new Suivi();
 
     Connection cnx = MaConnexion.getInstance().getCnx();
     @FXML
     private Label imclbl;
-    @FXML
-    private AnchorPane scenesuivi;
     @FXML
     private Label alerteDemande;
 
@@ -241,7 +240,6 @@ public class SuiviTrainerController implements Initializable {
 
     }
 
-    @FXML
     private void goToHisto(ActionEvent event) throws IOException {
         try {
             Stage stage = (Stage) histo.getScene().getWindow();

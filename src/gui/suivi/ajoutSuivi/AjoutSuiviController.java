@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Suivi;
 import org.json.JSONException;
@@ -46,7 +47,7 @@ public class AjoutSuiviController implements Initializable {
     @FXML
     private Button closebtn;
     @FXML
-    private AnchorPane sceneAdd;
+    private HBox sceneAdd;
     @FXML
     private TextField poidsajout;
     @FXML
