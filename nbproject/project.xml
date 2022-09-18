@@ -3,7 +3,11 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
+<<<<<<< HEAD
+            <name>Supportini_Mouhib</name>
+=======
             <name>SupportiniHassen</name>
+>>>>>>> 651dfc5c180193db3190608696d60e406e298779
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
