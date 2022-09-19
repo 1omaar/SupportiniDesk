@@ -3,6 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/model/Demande_Suivi.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/gui/suivi/suivicoach/SuiviCoachController.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/gui/suivi/ajoutSuivi/AjoutSuiviController.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/interfaces/Ifeedback.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/gui/suivi/suivitrainer/SuiviTrainerController.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/model/Suivi.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/services/Suivie_Services.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/services/DemandeSuivi_Service.java</file>
+            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/services/feedback_Services.java</file>
+=======
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/profilcoachfxml.css</file>
@@ -34,7 +45,11 @@
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoCoach/InfoCoachFXMLController.java</file>
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/AuthServices.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/GalerieImage.java</file>
+=======
+>>>>>>> 651dfc5c180193db3190608696d60e406e298779
+>>>>>>> 0029165c57ba3cc850239614e105514a082817ca
         </group>
     </open-files>
 </project-private>
