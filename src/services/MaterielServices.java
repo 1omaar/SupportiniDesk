@@ -95,4 +95,25 @@ public class MaterielServices implements Imateriel {
         }
         return null;
     }
+
+    @Override
+    public void supprimerMateriel(MaterielSalle m) {
+                String req = "DELETE FROM materialsalle where id =?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, m.getId());
+            ps.executeUpdate();
+            System.out.println("PS : materialsalle supprimé avec succés!");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("supprimer de materialsalle");
+
+            alert.setHeaderText("supprission de materialsalle terminée");
+            alert.setContentText("supprission de materialsalle terminée");
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

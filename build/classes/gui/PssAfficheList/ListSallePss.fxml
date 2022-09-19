@@ -16,9 +16,9 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <HBox prefHeight="515.0" prefWidth="914.0">
+      <HBox prefHeight="515.0" prefWidth="119.0">
          <children>
-            <ScrollPane fx:id="scrollListSalle1" prefHeight="288.0" prefWidth="343.0" styleClass="listSalle" stylesheets="@../salleDeSport/listsallesport.css" HBox.hgrow="ALWAYS">
+            <ScrollPane fx:id="scrollListSalle1" prefHeight="515.0" prefWidth="120.0" styleClass="listSalle" stylesheets="@../salleDeSport/listsallesport.css" HBox.hgrow="ALWAYS">
                <content>
                   <GridPane fx:id="Lsport1" prefHeight="4.0" prefWidth="0.0">
                      <columnConstraints>

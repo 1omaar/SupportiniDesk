@@ -17,5 +17,7 @@ import model.SalleSport;
 public interface Imateriel {
            public void ajouterMaterielSalle(MaterielSalle m);
          public List<MaterielSalle> affichageById(int fk_idSalle);
+              public void supprimerMateriel( MaterielSalle m);
+
 
 }

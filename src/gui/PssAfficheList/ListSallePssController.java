@@ -66,8 +66,13 @@ public class ListSallePssController implements Initializable {
     private ComboBox<String> clientComboBox;
     @FXML
     private ScrollPane scrollListSalle;
+    private int idRole;
     @FXML
-    private int idRole, idUser;
+    private int idUser;
+    @FXML
+    private ScrollPane scrollListSalle1;
+    @FXML
+    private GridPane Lsport1;
    
  
 

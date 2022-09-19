@@ -343,13 +343,7 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
-        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
-          scenePane.getChildren().removeAll();
-        scenePane.getChildren().setAll(root);
-        
-         scenePane.setHgrow( root, Priority.ALWAYS);
-          scenePane.setAlignment(Pos.CENTER);
-          scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        mesSalle();
 //        Scene newScene;
 //        newScene = new Scene(root);
 //        Stage mainWindow;
@@ -357,6 +351,17 @@ public class DashboardFXMLController implements Initializable {
 //        
 //        mainWindow.setScene(newScene);
     }
+     public void mesSalle () throws IOException{
+         
+        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
+          scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);
+        
+         scenePane.setHgrow( root, Priority.ALWAYS);
+          scenePane.setAlignment(Pos.CENTER);
+          scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    }
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 //    public void dashPss(ActionEvent event) throws IOException {
 //    switch (idRole) {
@@ -461,5 +466,10 @@ public class DashboardFXMLController implements Initializable {
 //    }
 
     
-    }
+   
+
+
+}
+
+
 

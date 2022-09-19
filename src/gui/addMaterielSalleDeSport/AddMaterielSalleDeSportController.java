@@ -5,21 +5,15 @@
  */
 package gui.addMaterielSalleDeSport;
 
-import Exception.AuthException;
 import gui.PssAffiche.PssAfficheController;
-import gui.dashPss.DashPssController;
+import gui.dashboard.DashboardFXMLController;
 import interfaces.ISalleSport;
 import interfaces.Imateriel;
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,21 +29,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.MaterielSalle;
 import model.SalleSport;
-import org.json.JSONException;
 import services.MaterielServices;
 import services.SalleSportServices;
-import util.JWebToken;
-import util.Statics;
 
 /**
  * FXML Controller class
@@ -78,13 +66,16 @@ public class AddMaterielSalleDeSportController implements Initializable {
     @FXML
     private Button back;
 
-    
+        private MaterielSalle Materiel;
+
   
     @FXML
     private ScrollPane scrollListMateriel;
   
     @FXML
     private GridPane gridMateriel;
+    @FXML
+    private Button ajouter;
 
     /**
      * Initializes the controller class.
@@ -166,7 +157,7 @@ public class AddMaterielSalleDeSportController implements Initializable {
         Stage stage = (Stage) back.getScene().getWindow();
 
         stage.close();
-
+        
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
         Scene scene = new Scene(root);
@@ -180,7 +171,52 @@ public class AddMaterielSalleDeSportController implements Initializable {
         primaryStage.show();
     }
 
-}
+    @FXML
+    private void ajouterMateriel(ActionEvent event) throws IOException {
+        
+         Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/AjouterDeMaterielFXML.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+//
+  
+//  
+    }
+
+    
+    
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
 //
 //    @FXML
 //    private void uploadimage(ActionEvent event) throws IOException {

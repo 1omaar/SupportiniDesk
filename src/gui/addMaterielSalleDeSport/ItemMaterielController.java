@@ -6,18 +6,24 @@
 package gui.addMaterielSalleDeSport;
 
 import gui.PssAffiche.PssAfficheController;
+import interfaces.Imateriel;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import model.MaterielSalle;
+import services.MaterielServices;
 
 
 /**
@@ -41,6 +47,8 @@ public class ItemMaterielController implements Initializable {
         private MaterielSalle Materiel;
     @FXML
     private ImageView image;
+    @FXML
+    private Button supprimer;
 
     /**
      * Initializes the controller class.
@@ -61,7 +69,7 @@ public class ItemMaterielController implements Initializable {
         Specialite.setText("Type Sport:\n"+Materiel.getSpecialite());
         descreption.setText("Desciption:\n"+Materiel.getDescription());
         Quantite.setText("Quantité:\n"+String.valueOf(Materiel.getQuantite()));
-     
+  
          
    Image img;
         try {
@@ -74,6 +82,13 @@ public class ItemMaterielController implements Initializable {
         }
       
         
+    }
+    
+
+    @FXML
+    private void supprimerMateriel(ActionEvent event) {
+         Imateriel iMateriel = new MaterielServices();
+        iMateriel.supprimerMateriel(Materiel);
     }
     
 }
