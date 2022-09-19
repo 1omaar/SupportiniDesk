@@ -5,3 +5,21 @@
 .scrollProfil{
     -fx-border-style:none;
 }
+.btnAdd {
+    -fx-border-style:solid;
+    -fx-border-color:#5093ff;
+    -fx-background-color:white;
+    -fx-border-width:3 3 3 3;
+}
+.btnAdd:hover {
+      -fx-border-style:solid;
+    -fx-text-fill:white  ;
+    -fx-background-color:#5093ff;
+    -fx-border-width:3 3 3 3;
+}
+.container {
+    -fx-border-style:solid;
+    -fx-border-color:white;
+   
+    -fx-border-width:3 3 3 3;
+}
