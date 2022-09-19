@@ -76,6 +76,7 @@ public class UtilisateurServices implements IUtilisateur {
                 user.setIdRole(rs.getInt(7));
                 user.setPhone(rs.getString(8));
                  user.setImageName(rs.getString(9));
+                  user.setStatus(rs.getInt(10));
                 listUser.add(user);
 
             }
@@ -107,6 +108,7 @@ public class UtilisateurServices implements IUtilisateur {
             user.setIdRole(res.getInt(7));
             user.setPhone(res.getString(8));
             user.setImageName(res.getString(9));
+             user.setStatus(res.getInt(10));
             ps.close();
            
             return user;
@@ -196,6 +198,7 @@ public class UtilisateurServices implements IUtilisateur {
             user.setIdRole(res.getInt(7));
             user.setPhone(res.getString(8));
             user.setImageName(res.getString(9));
+            user.setStatus(res.getInt(10));
             ps.close();
             return user;
 
@@ -221,6 +224,129 @@ public class UtilisateurServices implements IUtilisateur {
             Notification.notificationError("ERREUR", "Fichier Incompatible");
             
         }
+    }
+
+    @Override
+    public void banUser(int id,int status ) {
+        System.out.println("service "+status);
+        String req="UPDATE utilisateurs SET status=? WHERE id=?";
+          try {
+            PreparedStatement ps =  cnx.prepareStatement(req);
+            if(status==1){
+                ps.setInt(1, 0); 
+            }else{
+                ps.setInt(1, 1); 
+            }
+           
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            if(status==1){
+                 
+                      Notification.notificationSuccess("SUCCEES", "Utilisateur a été bannie"); 
+            }else {
+                  Notification.notificationSuccess("SUCCEES", "Utilisateur a été unbannie");
+            }
+          
+            ps.close();
+             } catch (SQLException ex) {
+            Notification.notificationError("ERREUR", "ban est insuccée");
+            
+        }
+    }
+
+    @Override
+    public List queryUserByRoleId(int idRole) {
+          List<Utilisateur> listUser = new ArrayList<>();
+        String req = "SELECT * FROM utilisateurs WHERE fk_idRole = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, idRole);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Utilisateur user = new Utilisateur();
+                user.setId(rs.getInt(1));
+                user.setNom(rs.getString(2));
+                user.setPrenom(rs.getString(3));
+                user.setCin(rs.getString(4));
+                user.setEmail(rs.getString(5));
+                user.setPassword(rs.getString(6));
+                user.setIdRole(rs.getInt(7));
+                user.setPhone(rs.getString(8));
+                 user.setImageName(rs.getString(9));
+                  user.setStatus(rs.getInt(10));
+                listUser.add(user);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+
+        }
+        return listUser;
+    }
+
+    @Override
+    public void updateUserByAdmin(int id,String nom, String prenom, String email, String cin, String phone, int role) {
+        String req = "UPDATE utilisateurs SET `nom`=?,`prenom`=?,`email`=? ,cin=?,`phone`=? , fk_idRole = ? WHERE id=?";
+        try {
+            PreparedStatement ps= cnx.prepareStatement(req);
+            ps.setString(1, nom);
+            ps.setString(2, prenom);
+            ps.setString(3, email);
+            ps.setString(4, cin);
+            ps.setString(5, phone);
+            ps.setInt(6, role);
+            ps.setInt(7, id);
+            ps.executeUpdate();
+            ps.close();
+            Notification.notificationSuccess("SUCCESS", "Données enregistréé");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+            Notification.notificationError("ERREUR", "Donnée n'est pas enregistré");
+        }
+        
+    }
+
+    @Override
+    public int checkUser(String email) {
+        String req= "SELECT id FROM utilisateurs WHERE email = ?";
+        PreparedStatement ps;
+        try {
+            ps=cnx.prepareStatement(req);
+              ps.setString(1, email);
+            
+          ResultSet res =  ps.executeQuery();
+          res.first();
+           int id  = res.getInt(1);
+           ps.close();
+           return id;
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return -1;
+        
+    }
+
+    @Override
+    public void resetPwd(int id, String pwd) {
+              String req = "UPDATE utilisateurs SET password = ? WHERE id=?";
+              PreparedStatement ps;
+        try {
+            ps=cnx.prepareStatement(req);
+            String mdp = Validation.hachePassword(pwd);
+            ps.setString(1, mdp);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            Notification.notificationSuccess("SUCCEE", "Mot de Passe Réinitialisé");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+            Notification.notificationError("ERREUR", "Mot de Passe incorrect");
+        } catch (Exception ex) {
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+             Notification.notificationError("ERREUR", "Mot de Passe incorrect");
+        }
+              
     }
 
 }

@@ -119,20 +119,34 @@ public class PssAfficheController implements Initializable {
 //                      nom.setText(Salle.getNomSalle());
 //                       description.setText(Salle.getDescription());
 
-        Parent root = FXMLLoader.load(getClass().getResource("../modifierSalleSport/ModifierSalleSport.fxml"));
-        Stage stage = new Stage();
+//        Parent root = FXMLLoader.load(getClass().getResource("../modifierSalleSport/ModifierSalleSport.fxml"));
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+
+
+  Stage stage = (Stage)description.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("../modifierSalleSport/ModifierSalleSport.fxml"));
+     
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
 
     }
 
     @FXML
     private void redirectToAddMateriel(ActionEvent event) throws IOException {
+          Stage stage = (Stage) goToAddMateriel.getScene().getWindow();
+
+        stage.close();
         idSalleSport = Salle.getId();
         Statics.xx.setId(idSalleSport);
         Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/addMaterielSalleDeSport.fxml"));
-        Stage stage = new Stage();
+//        Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

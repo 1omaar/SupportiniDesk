@@ -8,11 +8,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static final String CURRENCY = "TND";
+   
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../gui/AfficheMateriel/ListeMateriel.fxml"));
-        primaryStage.setTitle("Fruits Marker");
+        Parent root = FXMLLoader.load(getClass().getResource("../gui/ajoutCoaching/AjouterCoach.fxml"));
+        primaryStage.setTitle("liste des annonces");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
