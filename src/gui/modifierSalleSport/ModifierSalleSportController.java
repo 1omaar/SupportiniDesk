@@ -7,6 +7,7 @@ package gui.modifierSalleSport;
 
 import gui.ItemSalleSport.ItemSalleSportFXMLController;
 import interfaces.ISalleSport;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
@@ -20,16 +21,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import model.SalleSport;
 import services.SalleSportServices;
 import util.MaConnexion;
+import util.Notification;
 import util.Statics;
 
 /**
@@ -75,65 +81,91 @@ public class ModifierSalleSportController implements Initializable {
     private Button BtnUpload;
     @FXML
     private TextField taimage;
-  
+
     @FXML
     private TextField txtId;
     @FXML
     private TextField txtNom;
     @FXML
     private Button btnModifier;
-     private SalleSport Salle;
+    private SalleSport Salle;
     Connection cnx = MaConnexion.getInstance().getCnx();
+    @FXML
+    private Button back;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-  /////contriller modifier recuperer donnees
-txtId.setText(String.valueOf( Statics.xx.getId()));
-txtNom.setText(Statics.xx.getNomSalle());
-txtNumtel.setText(String.valueOf(Statics.xx.getNumTel()));
-txtVille.setText(Statics.xx.getVille());
-txtRue.setText(Statics.xx.getRue());
-txtCodePostal.setText(String.valueOf(Statics.xx.getCodePostal()));
-txtDescription.setText(Statics.xx.getDescription());
-txtDuration.setText(Statics.xx.getDuration());
-txtPrix.setText(String.valueOf(Statics.xx.getNumTel()));
+        /////contriller modifier recuperer donnees
+        txtId.setText(String.valueOf(Statics.xx.getId()));
+        txtNom.setText(Statics.xx.getNomSalle());
+        txtNumtel.setText(String.valueOf(Statics.xx.getNumTel()));
+        txtVille.setText(Statics.xx.getVille());
+        txtRue.setText(Statics.xx.getRue());
+        txtCodePostal.setText(String.valueOf(Statics.xx.getCodePostal()));
+        txtDescription.setText(Statics.xx.getDescription());
+        txtDuration.setText(Statics.xx.getDuration());
+        txtPrix.setText(String.valueOf(Statics.xx.getNumTel()));
 
-    }
-   @FXML
-        private void uploadimage(ActionEvent event) {
     }
 
     @FXML
-        private void Modifier(ActionEvent event) {
-                 ISalleSport iSport = new SalleSportServices();
-        iSport.modifierSalleSport(Salle);
-         String req = "UPDATE salledessport SET nomSalle=?,numTel=?,ville= ?,rue=?,codePostal=?,description=?,prix=?,duration=? WHERE id= ?";
+    private void uploadimage(ActionEvent event) {
+    }
+
+    @FXML
+    private void Modifier(ActionEvent event) throws IOException {
+//                 ISalleSport iSport = new SalleSportServices();
+//        iSport.modifierSalleSport(Salle);
+        String req = "UPDATE salledessport SET nomSalle=?,numTel=?,ville= ?,rue=?,codePostal=?,description=?,prix=?,duration=? WHERE id= ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, txtNom.getText());
-            ps.setString(2,txtNumtel.getText());
+            ps.setString(2, txtNumtel.getText());
             ps.setString(3, txtVille.getText());
             ps.setString(4, txtRue.getText());
             ps.setString(5, txtCodePostal.getText());
             ps.setString(6, txtDescription.getText());
-            ps.setString(7,txtPrix.getText());
-            ps.setString(8,txtDuration.getText());
+            ps.setString(7, txtPrix.getText());
+            ps.setString(8, txtDuration.getText());
             ps.setInt(9, Statics.xx.getId());
 
-            ps.executeUpdate();
-            System.out.println("PS : Salle Mise A jour avec succés!");
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("modification terminée");
-
-            alert.setHeaderText("modification terminée");
-            alert.setContentText("modification de salle de sport!");
-              alert.showAndWait();
         } catch (SQLException ex) {
             Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
+        Notification.notificationSuccess("SALLE DE SPORT MODIFIER AVEC SUCCESS", "Merci");
+
+        Stage stage = (Stage) btnModifier.getScene().getWindow();
+        stage.close();
+
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-}
+    @FXML
+    private void backToDashboard(ActionEvent event) throws IOException {
+             Stage stage = (Stage) back.getScene().getWindow();
+
+        stage.close();
+        
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Dashboard");
+        primaryStage.setScene(scene);
+
+        primaryStage.sizeToScene();
+        primaryStage.show();
+    }
+    }
+
+

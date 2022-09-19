@@ -23,14 +23,18 @@ import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -68,7 +72,7 @@ public class AddSalleDeSportController implements Initializable {
     private Button BtnUpload;
     @FXML
     private Button btnAjouter;
-     @FXML
+    @FXML
     private Label validationNom;
     @FXML
     private Label validationtNumtel;
@@ -129,8 +133,9 @@ public class AddSalleDeSportController implements Initializable {
     }
 
     @FXML
-    private void Ajouter(ActionEvent event) {
+    private void Ajouter(ActionEvent event) throws IOException {
         ISalleSport ip = new SalleSportServices();
+        clear();
         if (txtNom.getText().isEmpty()) {
             validationNom.setText("svp entrer le nom de salle de sport");
             return;
@@ -142,8 +147,12 @@ public class AddSalleDeSportController implements Initializable {
         if (txtNumtel.getText().length() != 8) {
             validationtNumtel.setText("Il faut 8 chiffre");
             return;
-
         }
+//          if (txtNumtel.getText() <=0 ) {
+//            validationtNumtel.setText("test");
+//            return;
+//
+//        }
         if (txtVille.getText().isEmpty()) {
             validationtVille.setText("svp entrer le nom de la ville");
             return;
@@ -163,7 +172,15 @@ public class AddSalleDeSportController implements Initializable {
         if (txtPrix.getText().isEmpty()) {
             validationtPrix.setText("svp entrer le prix");
             return;
+            
+  
         }
+        if(Integer.valueOf(txtPrix.getText())<=0){
+            validationtPrix.setText("Prix doit étre positif");
+            return ;
+        }
+        
+        
         if (txtDuration.getText().isEmpty()){
         validationtDuration.setText("svp entrer la duration ");
         return;
@@ -186,9 +203,33 @@ public class AddSalleDeSportController implements Initializable {
         p.setPrix(Float.valueOf(txtPrix.getText()));
         p.setImageVitrine(String.valueOf(filepath.getFileName()));
         p.setFk_idUser(idUser);
+        System.out.println();
         ip.ajouterSalleSport(p);
-//        init();
+           Notification.notificationSuccess("SALLE DE SPORT AJOUTER AVEC SUCCESS", "Merci");
+      Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+        Scene scene = new Scene(root);
+        
     }
+      private void clear() {
+
+        validationNom.setText("");
+
+        validationtNumtel.setText("");
+
+        validationtVille.setText("");
+
+        validationtRue.setText("");
+        //////
+         validationtCodePostal.setText("");
+
+        validationtDuration.setText("");
+
+        validationtDescription.setText("");
+
+      
+        
+      }
 
     @FXML
     private void uploadimage(ActionEvent event) throws IOException {
@@ -222,6 +263,7 @@ public class AddSalleDeSportController implements Initializable {
             System.out.println("********************"+file.toURI().toString());
             System.out.println("filename = " +filepath.getFileName());
         } else {
+            
             System.out.println("file is invalide");
         }
     }

@@ -56,7 +56,6 @@ public class ItemSalleSportFXMLController implements Initializable {
     private Label description;
     @FXML
     private Label adresse;
-    @FXML
     private Label id;
     @FXML
     private Button detail;
@@ -77,7 +76,7 @@ public class ItemSalleSportFXMLController implements Initializable {
         prix.setText(String.valueOf(Salle.getPrix())+" DT");
         adresse.setText(Salle.getVille()+" ,"+Salle.getRue()+" "+Salle.getCodePostal());
         description.setText(Salle.getDescription());
-        id.setText(String.valueOf(Salle.getId()));
+//        id.setText(String.valueOf(Salle.getId()));
         System.out.println(Salle.getImageVitrine());
        
    Image im;
@@ -99,7 +98,8 @@ public class ItemSalleSportFXMLController implements Initializable {
         Preferences userPreferences = Preferences.userRoot();
         userPreferences.put("id_salle", String.valueOf(Salle.getId()));
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/addMaterielSalleDeSport.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/addMaterielSalleDeSport.fxml"));
+          Parent root = FXMLLoader.load(getClass().getResource("../AffichageListeSalle/addMaterielSalle.fxml"));
         Scene scene = new Scene(root);
         Image icon;
         icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));

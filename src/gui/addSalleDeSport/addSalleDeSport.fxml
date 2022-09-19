@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="829.0" prefWidth="1165.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.addSalleDeSport.AddSalleDeSportController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.addSalleDeSport.AddSalleDeSportController">
    <children>
       <GridPane prefHeight="861.0" prefWidth="802.0">
         <columnConstraints>
@@ -35,7 +35,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="txtNom" prefHeight="31.0" prefWidth="191.0" promptText="Nom Salle De Sport" />
+                  <TextField fx:id="txtNom" prefHeight="31.0" prefWidth="155.0" promptText="Nom Salle De Sport" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -52,7 +52,12 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="txtNumtel" prefHeight="34.0" prefWidth="162.0" promptText="Numéro de téléphone" />
+                  <Label prefHeight="40.0" prefWidth="150.0" text="Numéro de téléphone">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtNumtel" prefHeight="34.0" prefWidth="160.0" promptText="Numéro de téléphone" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -69,6 +74,11 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
+                  <Label prefHeight="40.0" prefWidth="145.0" text="Ville :">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="txtVille" prefHeight="31.0" prefWidth="157.0" promptText="Ville" />
                </children>
             </HBox>
@@ -86,6 +96,11 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
+                  <Label prefHeight="40.0" prefWidth="147.0" text="Rue:">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="txtRue" prefHeight="32.0" prefWidth="156.0" promptText="Rue" />
                </children>
             </HBox>
@@ -103,6 +118,11 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
+                  <Label prefHeight="40.0" prefWidth="147.0" text="Code Postal:">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="txtCodePostal" prefHeight="33.0" prefWidth="156.0" promptText="Code Postal" />
                </children>
             </HBox>
@@ -120,6 +140,11 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                <children>
+                  <Label prefHeight="40.0" prefWidth="144.0" text="prix:">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="txtPrix" prefHeight="33.0" prefWidth="159.0" promptText="prix" />
                </children>
             </HBox>
@@ -137,6 +162,11 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                <children>
+                  <Label prefHeight="40.0" prefWidth="145.0" text="Duration:">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="txtDuration" prefHeight="36.0" prefWidth="158.0" promptText="duration" />
                </children>
             </HBox>
@@ -154,12 +184,22 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
                <children>
-                  <TextField fx:id="txtDescription" alignment="TOP_LEFT" prefHeight="77.0" prefWidth="271.0" promptText="description" />
+                  <Label prefHeight="40.0" prefWidth="300.0" text="description :">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
-                  <Label fx:id="validationtDescription" prefHeight="25.0" prefWidth="142.0" textFill="#ff0202">
+                  <TextField fx:id="txtDescription" alignment="TOP_LEFT" prefHeight="71.0" prefWidth="316.0" promptText="description" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8" />
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <children>
+                  <Label fx:id="validationtDescription" prefHeight="25.0" prefWidth="273.0" textFill="#ff0202">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -167,28 +207,12 @@
                         <Font name="Franklin Gothic Medium" size="14.0" />
                      </font>
                   </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Autre Images">
-                     <font>
-                        <Font name="Cambria Bold" size="17.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.6578947305679321" green="0.6578947305679321" blue="0.6578947305679321" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+               </children></HBox>
+            <Label prefHeight="40.0" prefWidth="136.0" text="Nom Salle De Sport:">
+               <font>
+                  <Font name="Cambria Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
       <GridPane prefHeight="769.0" prefWidth="533.0" HBox.hgrow="ALWAYS">

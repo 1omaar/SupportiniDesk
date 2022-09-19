@@ -37,3 +37,6 @@
      -fx-font-family: "Franklin Gothic Medium";
       -fx-text-fill: #ffffff;
 }
+.image{
+    border-radius: 20px;
+}

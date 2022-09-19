@@ -6,7 +6,7 @@
 package util;
 
 import model.SalleSport;
-
+import model.Coachings;
 /**
  *
  * @author Elife-Kef-107
@@ -14,4 +14,6 @@ import model.SalleSport;
 public class Statics {
     public static SalleSport xx = new SalleSport();
     ///////////// coachings cc = new coaching ();
+        public static Coachings cc = new Coachings();
+
 }

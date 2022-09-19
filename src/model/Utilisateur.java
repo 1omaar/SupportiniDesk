@@ -11,8 +11,9 @@ package model;
  */
 public class Utilisateur {
 
-    private int id, idRole;
+    private int id, idRole ,status;
     private String nom, prenom, password, email, cin, phone,imageName;
+  
     //constructeur
 
     public Utilisateur() {
@@ -27,7 +28,7 @@ public class Utilisateur {
         this.phone = phone;
     }
 
-    public Utilisateur(int id, String nom, String prenom, String password, String email, String cin, String phone, int idRole,String image) {
+    public Utilisateur(int id, String nom, String prenom, String password, String email, String cin, String phone, int idRole,String image, int status) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -37,9 +38,18 @@ public class Utilisateur {
         this.idRole = idRole;
         this.phone = phone;
         this.imageName=image;
+        this.status=status;
 
     }
     //getters & setters
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getImageName() {
         return imageName;
@@ -101,8 +111,9 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", prenom=" + prenom +", email=" + email + ", cin=" + cin + ", phone=" + phone + '}';
+        return "Utilisateur{" + "id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + ", cin=" + cin + ", phone=" + phone + ", imageName=" + imageName + ", status=" + status + '}';
     }
+
 
     public void setEmail(String email) {
         this.email = email;

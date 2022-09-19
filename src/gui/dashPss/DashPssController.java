@@ -35,10 +35,6 @@ public class DashPssController implements Initializable {
 
     @FXML
     private HBox hboxScene;
-    @FXML
-    private Button goToAddSalle;
-    @FXML
-    private Button goToAddMateriel;
 
     /**
      * Initializes the controller class.
@@ -67,28 +63,7 @@ public class DashPssController implements Initializable {
         Logger.getLogger(DashPssController.class.getName()).log(Level.SEVERE, null, ex);
     }
            
-    }
-    @FXML
-    private void redirectToAddSalleSport (ActionEvent event) throws IOException{
-         Parent root = FXMLLoader.load(getClass().getResource("../addSalleDeSport/addSalleDeSport.fxml"));
- 
-         
-        
-        hboxScene.getChildren().removeAll();
-        hboxScene.getChildren().setAll(root);
-    }  
+    }}
 
-    @FXML
-    private void redirectToAddMateriel(ActionEvent event) throws IOException {
-        
-             Parent root = FXMLLoader.load(getClass().getResource("../addMaterielSalleDeSport/addMaterielSalleDeSport.fxml"));
- 
-         
-        
-        hboxScene.getChildren().removeAll();
-        hboxScene.getChildren().setAll(root);
-    }  
-    }
-    
     
 
