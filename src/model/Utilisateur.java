@@ -17,7 +17,9 @@ public class Utilisateur {
 
     public Utilisateur() {
     }
-
+public Utilisateur(int id){
+    this.id=id;
+}
     public Utilisateur(String nom, String prenom, String password, String email, String cin, String phone) {
         this.nom = nom;
         this.prenom = prenom;
@@ -39,7 +41,16 @@ public class Utilisateur {
         this.imageName=image;
 
     }
+     
     //getters & setters
+
+    
+
+   
+   
+   
+
+   
 
     public String getImageName() {
         return imageName;

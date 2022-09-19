@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="rt" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionpaiement.PanierController">
+   <stylesheets>
+        <URL value="@../../../../GestionPanier-Paiement-finale-master/src/gestionpaiement/StyleSheet.css" />
+    </stylesheets>  
+    <children>
+      <Circle fill="#ffb61f" layoutX="907.0" layoutY="51.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="labPanier" layoutX="906.0" layoutY="43.0" prefHeight="17.0" prefWidth="7.0" text="0" />
+      <ScrollPane fx:id="panelProduit" layoutX="169.0" layoutY="51.0" prefHeight="500.0" prefWidth="600.0">
+         <padding>
+            <Insets right="50.0" />
+         </padding>
+      </ScrollPane>
+      <VBox fx:id="panelAllPanier" layoutX="913.0" layoutY="236.0" prefHeight="194.0" prefWidth="140.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="btnVider" layoutX="907.0" layoutY="453.0" mnemonicParsing="false" onAction="#CommandeViderAction" prefHeight="25.0" prefWidth="138.0" style="-fx-background-radius: white;" text="Vider Panier">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font></Button>
+      <Label layoutX="962.0" layoutY="60.0" onDragDetected="#deconnexionHandleAction" text="Déconnexion">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Circle fill="#35ab0d" layoutX="949.0" layoutY="70.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="29.0" fitWidth="27.0" layoutX="907.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../unicontrollers/imagesproduits/panierFront.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

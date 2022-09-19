@@ -3,35 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/profilcoachfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/UpdateProfilController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXML.fxml</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/dashboardfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/listsallesport.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IUtilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/ProfilCoachFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Entrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/MaConnexion.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/UtilisateurServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/ItemSalleSport/ItemSalleSportFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/updateprofil.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IAuthentification.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/profilfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/ListSalleSportController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/login/LoginFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/Validation.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Utilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/choice_profil/ChoiceProfilFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/register/RegisterFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXML.fxml</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/Produitservices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoCoach/InfoCoachFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/AuthServices.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/PanierFXMain.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/ConsulterCommande_Produit.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/CommanderFXMain.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/services/Commandeservices.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/ConsulterCommande.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/PaiementMain.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/PaiementController.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/CommanderController.java</file>
+            <file>file:/C:/Users/Anis-PC/Desktop/Supportini/src/gestionpaiement/PanierController.java</file>
         </group>
     </open-files>
 </project-private>
