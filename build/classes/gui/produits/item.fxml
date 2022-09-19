@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="351.0" prefWidth="312.0" style="-fx-border-radius: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.produits.ItemController">
+<VBox alignment="TOP_CENTER" onMousePressed="#click" prefHeight="351.0" prefWidth="312.0" style="-fx-border-radius: white;" styleClass="produitsfxml" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.produits.ItemController">
    <children>
       <HBox prefHeight="51.0" prefWidth="185.0">
          <children>

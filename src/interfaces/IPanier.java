@@ -16,5 +16,7 @@ public interface IPanier {
     public void addPanier (Panier p );
     public List<Panier>getAllPanier();
     public Panier querypanier(int idUser);
+    public Panier updateprixpanier(Panier p);
+    public void deletepanier(Panier p);
 }
 

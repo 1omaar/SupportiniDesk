@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.produits;
 import Exception.AuthException;
 import interfaces.ILignePanier;
 import interfaces.IPanier;
-import interfaces.MyListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -67,21 +62,22 @@ public class ItemController implements Initializable{
     }
     
 
+    @FXML
     private void click(MouseEvent mouseEvent) {
         myListener.onClickListener(Prod);
     }
 
     private Produit Prod;
-    private MyListener myListener;
+    private MyListener_Produit myListener;
 
-    public void setData(Produit Prod, MyListener myListener) throws URISyntaxException {
+    public void setData(Produit Prod, MyListener_Produit myListener) throws URISyntaxException {
         this.Prod = Prod;
         this.myListener = myListener;
         nameLabel.setText(Prod.getNom_produit());
         priceLable.setText(Prod.getPrix()+"DT" );
         String path = Prod.getImage();
         Image aa = new Image(getClass().getResource("../uicontrolers/imagesproduits/"+Prod.getImage()).toURI().toString());
-        
+      
         img.setImage(aa);
     }
 
@@ -89,21 +85,46 @@ public class ItemController implements Initializable{
     private void Ajoutpanier(ActionEvent event) {
         IPanier ip =new Panierservices();
            ILignePanier il = new LignePanierservices();
+           
            if (ip.querypanier(idUser)instanceof Panier){
-              //fama panier
+               Panier panier= ip.querypanier(idUser);
+               
+//               if (il.queryByIdProd(idPro)instanceof LignePanier) {
+//                 
+//                  
+//                 il.updateLignePanier(il.queryByIdProd(idPro), true);
+//                 
+//                   System.out.println(il.calcPanier(idPanier));
+////                 float prixtot= il.queryByIdProd(idPro).getPrix_total();
+////                 int quant = il.queryByIdProd(idPro).getQuantité();
+////                 float prix = prixtot*quant;
+////                 Panier finpp = new Panier();
+////                 finpp.setPrix(prix);
+//                
+////                 ip.updateprixpanier(finpp);
+//                 
+//               }else{
+                  // create ligne  panier 
+                 LignePanier newLignePanier = new LignePanier(panier.getId(), Prod.getId(), 1, Prod.getPrix());
+                    il.AjoutLignePanier(newLignePanier);
+         
+                    panier.setPrix( ip.querypanier(idUser).getPrix()+Prod.getPrix());
+                   ip.updateprixpanier(panier);
+              
+               
+               
                System.out.println("panier");
            }else{
-               Panier p = new Panier(12, idUser);
+               Panier p = new Panier(Prod.getPrix(), idUser);
                ip.addPanier(p);
                int idPanier= ip.querypanier(idUser).getId();
-               if (il.queryByIdProd(idPro)instanceof LignePanier) {
-                 
-                  
-                  String yy= "UPDATE `ligne_panier` SET `quantité`" ;
-                 
-               }else{
+               System.out.println(ip.querypanier(idUser));
+             
                   // create ligne  panier 
-               }
+                 LignePanier newLignePanier = new LignePanier(idPanier, Prod.getId(), 1, Prod.getPrix());
+                   System.out.println(newLignePanier);
+                 il.AjoutLignePanier(newLignePanier);
+               
            }
     }
     

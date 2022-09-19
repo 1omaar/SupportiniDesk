@@ -1,4 +1,6 @@
-package gui.produits;import interfaces.ICategories;
+package gui.produits;
+
+import interfaces.ICategories;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -18,23 +20,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import util.MaConnexion;
 import model.Produit;
 import javafx.scene.layout.GridPane;
-import interfaces.MyListener;
 import java.net.URISyntaxException;
 import services.Categorieservices;
 
 public class ProduitsFXMLController implements Initializable {
+
     Produit chosenproduct;
-        
-   
+
     @FXML
     private ImageView ProdImg;
-
 
     @FXML
     private Label ProdNameLable;
@@ -47,28 +46,27 @@ public class ProduitsFXMLController implements Initializable {
 
     @FXML
     private GridPane grid;
-    
-  
-   
+
     @FXML
     private ScrollPane scroll;
-    
-  
-    
+
     Connection cnx = MaConnexion.getInstance().getCnx();
     private ArrayList<Produit> produits = new ArrayList<Produit>();
 
     private String image;
-    private MyListener myListener;
+    private MyListener_Produit myListener;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             produits.addAll(getData());
             if (produits.size() > 0) {
                 setChosenProd(produits.get(0));
-                myListener = new MyListener() {
+               
+                myListener = new MyListener_Produit() {
                     @Override
                     public void onClickListener(Produit produits) {
+                       
                         setChosenProd(produits);
                     }
                 };
@@ -142,27 +140,19 @@ public class ProduitsFXMLController implements Initializable {
         ProdNameLable.setText(prod.getNom_produit());
         ProdPriceLabel.setText(prod.getPrix() + "DT");
         String path;
- 
+
 //          this.img.setImage(image);
         path = prod.getImage();
-        
- Image aa;
+
+        Image aa;
         try {
-            aa = new Image(getClass().getResource("../uicontrolers/imagesproduits/"+prod.getImage()).toURI().toString());
-            
-        ProdImg.setImage(aa);
-          chosenproduct=prod;
+            aa = new Image(getClass().getResource("../uicontrolers/imagesproduits/" + prod.getImage()).toURI().toString());
+
+            ProdImg.setImage(aa);
+            chosenproduct = prod;
         } catch (URISyntaxException ex) {
             Logger.getLogger(ProduitsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-       
-       
     }
 }
-
-  
-        
-   
- 
-
