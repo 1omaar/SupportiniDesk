@@ -17,9 +17,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="scrollProfil" prefHeight="922.0" prefWidth="1551.0" styleClass="scrollProfil" stylesheets="@profilfxml.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfilFXMLController">
+<ScrollPane fx:id="scrollProfil" prefHeight="922.0" prefWidth="1600.0" styleClass="scrollProfil" stylesheets="@profilfxml.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfilFXMLController">
    <content>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="886.0" prefWidth="1485.0">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="883.0" prefWidth="1564.0">
          <children>
             <GridPane fx:id="gridInfo" prefHeight="857.0" prefWidth="583.0">
                <columnConstraints>
@@ -160,7 +160,7 @@
                   </HBox>
                </children>
             </GridPane>
-            <VBox prefHeight="857.0" prefWidth="294.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="883.0" prefWidth="921.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="8.0" prefWidth="593.0" />
                   <HBox fx:id="boxGalerie" alignment="BOTTOM_CENTER" prefHeight="66.0" prefWidth="775.0">
@@ -195,7 +195,7 @@
                         </DropShadow>
                      </effect>
                      <children>
-                        <ScrollPane fx:id="scrolImg" prefHeight="695.0" prefWidth="807.0" HBox.hgrow="ALWAYS">
+                        <ScrollPane fx:id="scrolImg" prefHeight="728.0" prefWidth="887.0" HBox.hgrow="ALWAYS">
                            <content>
                               <GridPane fx:id="gridImg" prefHeight="10.0" prefWidth="8.0">
                                 <columnConstraints>

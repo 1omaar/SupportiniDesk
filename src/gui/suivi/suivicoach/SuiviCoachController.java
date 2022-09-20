@@ -7,8 +7,6 @@ package gui.suivi.suivicoach;
 
 import Exception.AuthException;
 import gui.profil.ProfilFXMLController;
-import gui.suivi.histosuivi.HistoSuiviController;
-import gui.suivi.suivitrainer.SuiviTrainerController;
 import interfaces.ICoach;
 import interfaces.IDemandeSuivi;
 import interfaces.IEntrainee;
@@ -46,6 +44,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Demande_Suivi;
 import model.Feedback;
@@ -60,6 +59,7 @@ import services.UtilisateurServices;
 import services.feedback_Services;
 import util.JWebToken;
 import util.MaConnexion;
+import util.Notification;
 //import supportini_app.SuiviCoach;
 
 /**
@@ -69,7 +69,6 @@ import util.MaConnexion;
  */
 public class SuiviCoachController implements Initializable {
 
-    @FXML
     private ListView<Suivi> ListEntrainer;
     Isuivi iS = new Suivie_Services();
     @FXML
@@ -93,7 +92,7 @@ public class SuiviCoachController implements Initializable {
     Connection cnx = MaConnexion.getInstance().getCnx();
     @FXML
     private TextField sendfeedback;
-
+    @FXML
     /**
      * Initializes the controller class.
      */
@@ -126,62 +125,64 @@ public class SuiviCoachController implements Initializable {
         //if(iS.queryByidCoach().get(7)!=2){
     }
 
-    @FXML
     private void show(MouseEvent event) throws SQLException {
 
         Suivi s = ListEntrainer.getSelectionModel().getSelectedItem();
-        
-        NomEntrainer.setText(s.getNomE());
-        PrenomEntrainer.setText(s.getPrenomE());
-        DateSuivi.setText(String.valueOf(s.getDateSuivi()));
-        PoidsActuelle.setText(String.valueOf(s.getPoidsActuelle()));
-        ageSuivi.setText(String.valueOf(s.getAge()));
-        tailleshow.setText(String.valueOf(s.getTaille()));
-        //System.out.println(s.getId());
-        if (s.getImc() < 18.5) {
-                    imclbl.setText(String.valueOf(s.getImc()) + " --> Maigreur");
-                    imclbl.setStyle("-fx-text-fill: DeepSkyBlue;");
-                } else if (s.getImc() < 25) {
-                    imclbl.setText(String.valueOf(s.getImc()) + " --> Normal");
-                    imclbl.setStyle("-fx-text-fill: #00FF7F;");
-                } else if (s.getImc() < 30) {
-                    imclbl.setText(String.valueOf(s.getImc()) + " --> Surpoids");
-                    imclbl.setStyle("-fx-text-fill: #FFEA00;-fx-font-weight: bolder;");
+        if (ListEntrainer == null) {
+            ListEntrainer.setVisible(false);
+        } else {
+            NomEntrainer.setText(s.getNomE());
+            PrenomEntrainer.setText(s.getPrenomE());
+            DateSuivi.setText(String.valueOf(s.getDateSuivi()));
+            PoidsActuelle.setText(String.valueOf(s.getPoidsActuelle()));
+            ageSuivi.setText(String.valueOf(s.getAge()));
+            tailleshow.setText(String.valueOf(s.getTaille()));
+            //System.out.println(s.getId());
+            if (s.getImc() < 18.5) {
+                imclbl.setText(String.valueOf(s.getImc()) + " --> Maigreur");
+                imclbl.setStyle("-fx-text-fill: DeepSkyBlue;");
+            } else if (s.getImc() < 25) {
+                imclbl.setText(String.valueOf(s.getImc()) + " --> Normal");
+                imclbl.setStyle("-fx-text-fill: #00FF7F;");
+            } else if (s.getImc() < 30) {
+                imclbl.setText(String.valueOf(s.getImc()) + " --> Surpoids");
+                imclbl.setStyle("-fx-text-fill: #FFEA00;-fx-font-weight: bolder;");
 
-                } else if (s.getImc() < 35) {
-                    imclbl.setText(String.valueOf(s.getImc()) + " --> Obésité modérée");
-                    imclbl.setStyle("-fx-text-fill: #FFD700;");
-                } else if (s.getImc() < 40) {
-                    imclbl.setText(String.valueOf(s.getImc()) + " --> Obésité sévére");
-                    imclbl.setStyle("-fx-text-fill: #FF4500;");
-                } else {
-                    imclbl.setText(String.valueOf(s.getImc()) + " --> Obésité massive");
-                    imclbl.setStyle("-fx-text-fill: #FF0000;");
-                }
-        String req2 = "SELECT * FROM suivi WHERE fk_id_entr = ? ORDER BY date_suivi ASC";
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        PreparedStatement ps = cnx.prepareStatement(req2);//        XYChart.Series<Date,Double> series = new XYChart.Series<>();
+            } else if (s.getImc() < 35) {
+                imclbl.setText(String.valueOf(s.getImc()) + " --> Obésité modérée");
+                imclbl.setStyle("-fx-text-fill: #FFD700;");
+            } else if (s.getImc() < 40) {
+                imclbl.setText(String.valueOf(s.getImc()) + " --> Obésité sévére");
+                imclbl.setStyle("-fx-text-fill: #FF4500;");
+            } else {
+                imclbl.setText(String.valueOf(s.getImc()) + " --> Obésité massive");
+                imclbl.setStyle("-fx-text-fill: #FF0000;");
+            }
+            String req2 = "SELECT * FROM suivi WHERE fk_id_entr = ? ORDER BY date_suivi ASC";
+            XYChart.Series<String, Integer> series = new XYChart.Series<>();
+            PreparedStatement ps = cnx.prepareStatement(req2);//        XYChart.Series<Date,Double> series = new XYChart.Series<>();
 //        series.getData().add(new XYChart.Data<>(s.getDateSuivi(),Double.valueOf(s.getPoidsActuelle())));
 //        chart.getData().add(series);
 //        
 //        series.setName("Poids");
-        //series.getData().add(new XYChart.Data("Jan", 100));
+            //series.getData().add(new XYChart.Data("Jan", 100));
 //        for(int i = 1; i < 5; i++) {
 //        series.getData().add(new XYChart.Data(i, DateSuivi[i]));
 //        }
 //        chart.getData().add(series);
-        ps.setInt(1, s.getFk_id_entr());
-        ResultSet res = ps.executeQuery();
-        while (res.next()) {
-            series.getData().add(new XYChart.Data<>(String.valueOf(res.getDate(8)), res.getInt(5)));
+            ps.setInt(1, s.getFk_id_entr());
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                series.getData().add(new XYChart.Data<>(String.valueOf(res.getDate(8)), res.getInt(5)));
 
-            //chart.getData().clear();
+                //chart.getData().clear();
+            }
+            chart.getData().clear();
+            chart.layout();
+            chart.getData().add(series);
+
+            //chart.getData().add(series);
         }
-        chart.getData().clear();
-        chart.layout();
-        chart.getData().add(series);
-
-        //chart.getData().add(series);
     }
 
     @FXML
@@ -224,38 +225,91 @@ public class SuiviCoachController implements Initializable {
         }
     }
 
-    @FXML
     private void demanderSuivi(ActionEvent event) throws SQLException, JSONException, AuthException, IOException {
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
         //verify and use
         JWebToken incomingToken;
-        
+
         incomingToken = new JWebToken(bearerToken);
         String audience = incomingToken.getAudience();
         String subject = incomingToken.getSubject();
         //int idRole = Integer.parseInt(audience);
         int idUser = Integer.parseInt(subject);
-        ICoach ie = new CoachServices();
-        int idcoach = ie.queryById(idUser).getId();
+        ICoach ic = new CoachServices();
+        int idcoach = ic.queryById(idUser).getId();
         IDemandeSuivi id = new DemandeSuivi_Service();
-        
+
         Suivi s = ListEntrainer.getSelectionModel().getSelectedItem();
         Demande_Suivi ds = new Demande_Suivi("Merci d'envoyer Mois votre Nouvelle Suivi", s.getFk_id_entr(), idcoach);
         id.AjouterDemanderSuivi(ds);
         //System.out.println("Demande envoyer");
-        
+
     }
 
     @FXML
-    private void add_feedback(ActionEvent event) {
+    private void add_feedback(ActionEvent event) throws JSONException, AuthException, IOException {
+        Preferences userPreferences = Preferences.userRoot();
+        String bearerToken = userPreferences.get("BearerToken", "root");
+        //verify and use
+        JWebToken incomingToken;
+
+        incomingToken = new JWebToken(bearerToken);
+        String audience = incomingToken.getAudience();
+        String subject = incomingToken.getSubject();
+        //int idRole = Integer.parseInt(audience);
+        int idUser = Integer.parseInt(subject);
         Ifeedback ifeedback = new feedback_Services();
+        Isuivi is = new Suivie_Services();
+        IEntrainee ie = new EntraineeServices();
+
         Suivi s = ListEntrainer.getSelectionModel().getSelectedItem();
-        //String feedbacktext =;
-        System.out.println(sendfeedback.getText());
-        Feedback feedback = new Feedback(sendfeedback.getText(), s.getId());
-        ifeedback.ajouterfeedback(feedback);
-        
+        //int identr = ie.queryById(s.getFk_id_entr()).getId();
+        int idSuivi = is.afficherEntrainerList().getId();
+        System.out.println(idSuivi);
+        //System.out.println(idfeedback);
+        if (ifeedback.afficherfeedback(idSuivi) == null) {
+            Feedback feedback = new Feedback(sendfeedback.getText(), s.getId());
+            ifeedback.ajouterfeedback(feedback);
+            sendfeedback.setStyle("-fx-border: 12px; -fx-text-box-border: green; -fx-focus-color: green;");
+            System.out.println(sendfeedback.getText());
+        } else if (ifeedback.afficherfeedback(idSuivi) != null && ifeedback.afficherfeedback(idSuivi).getId_suivi() == s.getId()) {
+            System.out.println("Un feedback pour ce suivi existe déja");
+            Notification.notificationError("Alerte !", "Un feedback pour ce suivi existe déja");
+            sendfeedback.setStyle("-fx-border: 12px; -fx-text-box-border: red; -fx-focus-color: red;");
+        }
     }
 
+    @FXML
+    private void add_feedback(MouseEvent event) throws JSONException, AuthException, IOException {
+        Preferences userPreferences = Preferences.userRoot();
+        String bearerToken = userPreferences.get("BearerToken", "root");
+        //verify and use
+        JWebToken incomingToken;
+
+        incomingToken = new JWebToken(bearerToken);
+        String audience = incomingToken.getAudience();
+        String subject = incomingToken.getSubject();
+        //int idRole = Integer.parseInt(audience);
+        int idUser = Integer.parseInt(subject);
+        Ifeedback ifeedback = new feedback_Services();
+        Isuivi is = new Suivie_Services();
+        IEntrainee ie = new EntraineeServices();
+
+        Suivi s = ListEntrainer.getSelectionModel().getSelectedItem();
+        //int identr = ie.queryById(s.getFk_id_entr()).getId();
+        int idSuivi = is.afficherEntrainerList().getId();
+        System.out.println(idSuivi);
+        //System.out.println(idfeedback);
+        if (ifeedback.afficherfeedback(idSuivi) == null) {
+            Feedback feedback = new Feedback(sendfeedback.getText(), s.getId());
+            ifeedback.ajouterfeedback(feedback);
+            sendfeedback.setStyle("-fx-border: 12px; -fx-text-box-border: green; -fx-focus-color: green;");
+            System.out.println(sendfeedback.getText());
+        } else if (ifeedback.afficherfeedback(idSuivi) != null && ifeedback.afficherfeedback(idSuivi).getId_suivi() == s.getId()) {
+            System.out.println("Un feedback pour ce suivi existe déja");
+            Notification.notificationError("Alerte !", "Un feedback pour ce suivi existe déja");
+            sendfeedback.setStyle("-fx-border: 12px; -fx-text-box-border: red; -fx-focus-color: red;");
+        }
+    }
 }

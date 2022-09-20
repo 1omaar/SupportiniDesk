@@ -8,7 +8,10 @@ package gui.dashboard;
 import Exception.AuthException;
 import interfaces.IUtilisateur;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.InvalidKeyException;
@@ -384,9 +387,9 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     public void itemDash(ActionEvent event) throws IOException {
         switch (idRole) {
-            case 4: {
+            case 2: {
                 clientComboBox.getSelectionModel().clearSelection();
-                Parent root = FXMLLoader.load(getClass().getResource("../dashPss/dashPss.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../../gui/AffichCoaching/ListCoachings.fxml"));
                 scenePane.getChildren().removeAll();
                 scenePane.getChildren().setAll(root);
             }
@@ -433,24 +436,26 @@ public class DashboardFXMLController implements Initializable {
 
     }
 
-    public void getImageProfil(String path) throws URISyntaxException {
+    public void getImageProfil(String path) throws URISyntaxException, FileNotFoundException {
+                       File initialFile = new File(path);
 
-        Image im = new Image(getClass().getResource(path).toURI().toString());
+                InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
+        Image im = new Image(is);
         myCircle.setFill(new ImagePattern(im));
         myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
     }
 
-    public void getCurrentUser() throws URISyntaxException {
+    public void getCurrentUser() throws URISyntaxException, FileNotFoundException {
         IUtilisateur iu = new UtilisateurServices();
 
         String nom = iu.queryUserById(idUser).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getNom().substring(1);
         String prenom = iu.queryUserById(idUser).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getPrenom().substring(1);
         if (iu.queryUserById(idUser).getImageName() == null) {
-            String path = "../uicontrolers/user.png";
+            String path = "src/gui/uicontrolers/user.png";
             getImageProfil(path);
         } else {
-            String path = "../uicontrolers/users/" + iu.queryUserById(idUser).getImageName();
+            String path = "src/gui/uicontrolers/users/" + iu.queryUserById(idUser).getImageName();
             getImageProfil(path);
         }
         nomPrenom.setText(nom + " " + prenom);
@@ -479,7 +484,7 @@ public class DashboardFXMLController implements Initializable {
             clientComboBox.getSelectionModel().clearSelection();
         if (idRole == 3) {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivicoach/SuiviCoach.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivicoach/SuiviCoach2.fxml"));
             scenePane.getChildren().removeAll();
             scenePane.getChildren().setAll(root);
         } else {

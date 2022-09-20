@@ -88,7 +88,7 @@ public class PssAfficheController implements Initializable {
 
         Image im;
         try {
-            im = new Image(getClass().getResource("../uicontrolers/imageSalleSport/" + Salle.getImageVitrine()).toURI().toString());
+            im = new Image(getClass().getResource("../uicontrolers/imageSalleSport" + Salle.getImageVitrine()).toURI().toString());
             image.setImage(im);
         } catch (URISyntaxException ex) {
             Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);

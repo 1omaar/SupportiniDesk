@@ -174,12 +174,15 @@ public class Suivi {
 
 //    @Override
 //    public String toString() {
-//        return "Suivi{" + "age=" + age + ", taille=" + taille + ", poidsActuelle=" + poidsActuelle + ", dateSuivi=" + dateSuivi + ", nomE=" + nomE + ", prenomE=" + prenomE + '}';
+//        return "Suivi{" + "id=" + id + ", fk_id_entr=" + fk_id_entr + ", age=" + age + ", taille=" + taille + ", poidsActuelle=" + poidsActuelle + ", dateSuivi=" + dateSuivi + ", nomE=" + nomE + ", prenomE=" + prenomE + ", imc=" + imc + ", id_coach=" + id_coach + '}';
 //    }
-//    @Override
-//    public String toString() {
-//        return "Suivi{" + "id=" + id + ", age=" + age + ", taille=" + taille + ", poidsActuelle=" + poidsActuelle + ", dateSuivi=" + dateSuivi + ", nomE=" + nomE + ", prenomE=" + prenomE + '}';
-//    }
+
+    @Override
+    public String toString() {
+        return nomE + " " + prenomE ;
+    }
+    
+
 
     @Override
     public boolean equals(Object obj) {
@@ -199,15 +202,24 @@ public class Suivi {
         return true;
     }
 
+    public Suivi(int id, int fk_id_entr, int age, int taille, int poidsActuelle, Date dateSuivi, String nomE, String prenomE, double imc, int id_coach) {
+        this.id = id;
+        this.fk_id_entr = fk_id_entr;
+        this.age = age;
+        this.taille = taille;
+        this.poidsActuelle = poidsActuelle;
+        this.dateSuivi = dateSuivi;
+        this.nomE = nomE;
+        this.prenomE = prenomE;
+        this.imc = imc;
+        this.id_coach = id_coach;
+    }
+
    
 
     
     
 
-    @Override
-    public String toString() {
-        return nomE + " " +prenomE ;
-    }
     
     
     
