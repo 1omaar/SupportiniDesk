@@ -75,7 +75,7 @@ public class AjouterRecetteController implements Initializable {
 
  
         p.setImage(nameImage);
-      
+        System.out.println(nameImage);
         ip.ajouterRecette(p);
         
         Stage stage = (Stage)Txtnom.getScene().getWindow();
@@ -100,7 +100,7 @@ public class AjouterRecetteController implements Initializable {
         if (file != null) {
 
             String x = file.getAbsolutePath();
-            String newpath = "src/gui/uicontrolers/images/";
+            String newpath = "src/gui/images/";
             File dir = new File(newpath);
             if (!dir.exists()) {
                 // folder wa7dd ken barchaa mkdirs

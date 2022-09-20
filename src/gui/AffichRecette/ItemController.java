@@ -19,31 +19,33 @@ public class ItemController {
 
     @FXML
     private Label nameLabel;
-    @FXML
     private ImageView img;
+    @FXML
+    private ImageView imgRecette;
 
-
+private Recette Recette;
+    private RecetteListener RecetteListener;
     @FXML
     private void click(MouseEvent mouseEvent) {
       RecetteListener.onClickListener(Recette);
     }
- private Recette Recette;
-    private RecetteListener RecetteListener;
+ 
 
     public void setData(Recette Recette, RecetteListener RecetteListener) {
       this.Recette = Recette;
+        System.out.println(Recette);
         this.RecetteListener = RecetteListener;
         nameLabel.setText(Recette.getNomrecette());
         
-// Image im;
-//      
-//        try {
-//            im = new Image(getClass().getResource("../images/" + Recette.getImage()).toURI().toString());
-//          
-//            img.setImage(im);
-//    
-//        } catch (URISyntaxException ex) {
-//            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+ Image im;
+      
+        try {
+            im = new Image(getClass().getResource("../images/" + Recette.getImage()).toURI().toString());
+          
+            imgRecette.setImage(im);
+    
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -192,7 +192,7 @@ public class ListCoachings implements Initializable {
                     fxmlLoader.setLocation(getClass().getResource("./item.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
 
-                    gui.ModifSuppCoaching.ItemController itemController = fxmlLoader.getController();
+                   ItemController itemController = fxmlLoader.getController();
                     itemController.setData(clist.get(i), CoachingsListener);
 
                     if (column == 1) {

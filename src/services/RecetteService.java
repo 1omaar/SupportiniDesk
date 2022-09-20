@@ -40,7 +40,7 @@ public class RecetteService implements IRecette{
             ps.setString(3, r.getPrepatation());
             ps.setString(4, r.getImage());
             ps.setInt(5, r.getIdRegime());
-               System.out.println(r.getIdRegime());
+               System.out.println(r.getImage());
             
 //            
             

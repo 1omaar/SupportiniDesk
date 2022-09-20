@@ -14,10 +14,16 @@ public class ItemController {
 
    @FXML
     private Label nameLabel;
+    @FXML
     private Label TxtType;
 
 
+    @FXML
     private Label nbkg;
+    @FXML
+    private Label message;
+    @FXML
+    private Label kfparmois;
 
     @FXML
     private void click(MouseEvent mouseEvent) {
@@ -30,8 +36,9 @@ public class ItemController {
     public void setData(Regime Regime, RegimeListen RegimeListen) {
         this.Regime = Regime;
         this.RegimeListen = RegimeListen;
+    
         nameLabel.setText(Regime.getNom());
-//        nbkg.setText(String.valueOf(Regime.getNbkg()));
-//        TxtType.setText(Regime.getType());
+        nbkg.setText(String.valueOf(Regime.getNbkg()));
+        TxtType.setText(Regime.getType());
     }
 }

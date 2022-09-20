@@ -100,7 +100,7 @@ public class ListRegime implements Initializable {
                 idRole = Integer.parseInt(audience);
                 idUser = Integer.parseInt(subject);
 
-                System.out.println(idUser);
+          
 
             }
         } catch (JSONException | AuthException | IOException | InvalidKeyException ex) {
@@ -198,6 +198,7 @@ public class ListRegime implements Initializable {
                     AnchorPane anchorPane = fxmlLoader.load();
 
                     ItemController itemController = fxmlLoader.getController();
+             
                     itemController.setData(regimes.get(i), RegimeListen);
 
                     if (column == 1) {
@@ -258,7 +259,7 @@ public class ListRegime implements Initializable {
     private void ModifierR(ActionEvent event) throws IOException {
        
            Statics.rr.setIdregime(IdRegime);
-        System.out.println(IdRegime);
+      
         Statics.rr.setNbkg(nbkg);
          Statics.rr.setIdcoach(idcoach);
           Statics.rr.setDej(dej);

@@ -92,6 +92,7 @@ public class ListRecette implements Initializable {
         
         try {
             clist.addAll(getData());
+            System.out.println(clist.get(0).getImage());
             if (clist.size() > 0) {
                 seletedRecette(clist.get(0));
                 RecetteListener = new RecetteListener() {

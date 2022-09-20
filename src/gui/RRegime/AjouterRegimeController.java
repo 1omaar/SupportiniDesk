@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -70,10 +71,23 @@ public class AjouterRegimeController implements Initializable {
     private TextArea TxtDej;
     @FXML
     private Button btnRetour;
+    @FXML
+    private Label labVerif;
     /**
      * Initializes the controller class.
      */
   
+    
+    
+     private void clear() {
+
+        labVerif.setText("");
+
+    
+
+    }
+    
+    
     public void initialize(URL url, ResourceBundle rb) {
        //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
@@ -104,16 +118,44 @@ public class AjouterRegimeController implements Initializable {
          r.setIdcoach(idUser);
           r.setNom(TxtNom.getText());
           //////////////////////////////////
-          if (!(vegetarien.isSelected() || vegan.isSelected() || omnivore.isSelected() )) {
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("choix");
-
-            alert.setHeaderText("choix");
-            alert.setContentText("il faut choisir un type");
-
-            alert.showAndWait();
+  
+           clear();
+          
+         if (TxtNom.getText().isEmpty()) {
+            labVerif.setText("Entrez un nom");
+            return;
         }
-    
+          
+          
+               if (TxtKg.getText().isEmpty()) {
+            labVerif.setText("Entrez un nombre de kg");
+            return;
+        }
+          
+          
+           if (TxtPtDej.getText().isEmpty()) {
+            labVerif.setText("Entrez un petit dejene");
+            return;
+        }
+           if (TxtDej.getText().isEmpty()) {
+            labVerif.setText("Entrez un dejene");
+            return;
+        }
+           if (TxtDinner.getText().isEmpty()) {
+            labVerif.setText("Entrez un dinner");
+            return;
+        }
+          
+          
+          if (!(vegetarien.isSelected() || vegan.isSelected() || omnivore.isSelected() )) {
+             labVerif.setText("Entrez un type");
+       
+        }
+          
+          
+          
+          
+          //////////////////////////////////////////////////////
            if (vegetarien.isSelected()) {
             r.setType("vegetarien");
         }

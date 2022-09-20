@@ -132,7 +132,7 @@ public class ListRegime implements Initializable {
         
            
             clist.add(Regime);
- System.out.println(clist);
+
         }
 
         return clist;
