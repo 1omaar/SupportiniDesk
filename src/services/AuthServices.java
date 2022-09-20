@@ -56,12 +56,19 @@ public class AuthServices implements IAuthentification {
             existUser.setEmail(res.getString(5));
             existUser.setPassword(res.getString(6));
             existUser.setIdRole(res.getInt(7));
+            existUser.setPhone(res.getString(8));
+            existUser.setImageName(res.getString(9));
+            existUser.setStatus(res.getInt(10));
             ps.close();
 
 //           
 //          if (existUser.getPassword().equals(hachePwd)){
-              
-            return existUser;
+              if(existUser.getStatus()!=0){
+                     return existUser; 
+              }else{
+                  Notification.notificationError("ERREUR", "Compte bannie! Cause Mal Comportement");
+              }
+        
 //          }else{
 //            Notification.notificationError("DESOLE", "Mot de Passe incorrect !!");
 //          }
