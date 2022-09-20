@@ -17,9 +17,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="scrollProfil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="741.0" prefWidth="1277.0" styleClass="scrollProfil" stylesheets="@profilcoachfxml.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profilCoach.ProfilCoachFXMLController">
+<ScrollPane fx:id="scrollProfil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="879.0" prefWidth="1397.0" styleClass="scrollProfil" stylesheets="@profilcoachfxml.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profilCoach.ProfilCoachFXMLController">
    <content>
-      <HBox prefHeight="812.0" prefWidth="1179.0">
+      <HBox prefHeight="871.0" prefWidth="1388.0">
          <children>
             <GridPane prefHeight="812.0" prefWidth="630.0">
               <columnConstraints>
@@ -120,7 +120,7 @@
                   </VBox>
                </children>
             </GridPane>
-            <VBox prefHeight="857.0" prefWidth="294.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="812.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="8.0" prefWidth="593.0" />
                   <HBox alignment="BOTTOM_CENTER" prefHeight="66.0" prefWidth="775.0">

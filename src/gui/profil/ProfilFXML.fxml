@@ -17,11 +17,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="scrollProfil" prefHeight="871.0" prefWidth="1451.0" styleClass="scrollProfil" stylesheets="@profilfxml.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfilFXMLController">
+<ScrollPane fx:id="scrollProfil" prefHeight="922.0" prefWidth="1551.0" styleClass="scrollProfil" stylesheets="@profilfxml.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfilFXMLController">
    <content>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="850.0" prefWidth="1358.0">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="886.0" prefWidth="1485.0">
          <children>
-            <GridPane prefHeight="857.0" prefWidth="583.0">
+            <GridPane fx:id="gridInfo" prefHeight="857.0" prefWidth="583.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -163,7 +163,7 @@
             <VBox prefHeight="857.0" prefWidth="294.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="8.0" prefWidth="593.0" />
-                  <HBox alignment="BOTTOM_CENTER" prefHeight="66.0" prefWidth="775.0">
+                  <HBox fx:id="boxGalerie" alignment="BOTTOM_CENTER" prefHeight="66.0" prefWidth="775.0">
                      <children>
                         <Label text="Ma Galerie">
                            <font>
@@ -172,7 +172,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="775.0">
+                  <HBox fx:id="boxAdd" alignment="CENTER" prefHeight="65.0" prefWidth="775.0">
                      <children>
                         <Button fx:id="addImages" mnemonicParsing="false" onAction="#attachImages" styleClass="btnAdd" stylesheets="@profilfxml.css" text="+ Ajouter vos photos" textFill="#5093ff">
                            <font>
@@ -195,7 +195,7 @@
                         </DropShadow>
                      </effect>
                      <children>
-                        <ScrollPane fx:id="scrolImg" prefHeight="680.0" prefWidth="769.0" HBox.hgrow="ALWAYS">
+                        <ScrollPane fx:id="scrolImg" prefHeight="695.0" prefWidth="807.0" HBox.hgrow="ALWAYS">
                            <content>
                               <GridPane fx:id="gridImg" prefHeight="10.0" prefWidth="8.0">
                                 <columnConstraints>

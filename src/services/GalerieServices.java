@@ -62,5 +62,22 @@ public class GalerieServices implements IGalerie{
      }
      return null;
     }
+
+    @Override
+    public void deleteImg(int id) {
+       String req = "DELETE FROM galerie WHERE id = ?";
+       PreparedStatement ps ; 
+     try {
+         ps=cnx.prepareStatement(req);
+          ps.setInt(1, id);
+          ps.executeUpdate();
+          ps.close();
+          Notification.notificationSuccess("SUCCEES", "Votre photo supprimé avec succées");
+     } catch (SQLException ex) {
+         Logger.getLogger(GalerieServices.class.getName()).log(Level.SEVERE, null, ex);
+         Notification.notificationError("ERREUR", "Cette photo n'éxiste pas");
+     }
+      
+    }
     
 }

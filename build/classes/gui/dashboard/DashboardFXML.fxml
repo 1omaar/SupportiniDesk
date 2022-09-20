@@ -250,7 +250,6 @@
                               </Button>
                            </children>
                         </HBox>
-
                      </children>
                   </GridPane>
                </children>
