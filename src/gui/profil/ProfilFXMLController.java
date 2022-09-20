@@ -6,31 +6,44 @@
 package gui.profil;
 
 import Exception.AuthException;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gui.ItemSalleSport.ItemSalleSportFXMLController;
 import interfaces.IEntrainee;
 import interfaces.IGalerie;
 import interfaces.IUtilisateur;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -87,6 +100,13 @@ public class ProfilFXMLController implements Initializable {
     @FXML
     private ScrollPane scrolImg;
     private List<GalerieImage> listImg = new ArrayList<>();
+    @FXML
+    private GridPane gridInfo;
+    @FXML
+    private HBox boxGalerie;
+    @FXML
+    private HBox boxAdd;
+
     /**
      * Initializes the controller class.
      */
@@ -102,6 +122,7 @@ public class ProfilFXMLController implements Initializable {
             String subject = incomingToken.getSubject();
             idRole = Integer.parseInt(audience);
             idUser = Integer.parseInt(subject);
+
             getGalerie();
             getInfoCurrentUser(idUser);
         } catch (URISyntaxException | JSONException | AuthException | IOException ex) {
@@ -116,10 +137,12 @@ public class ProfilFXMLController implements Initializable {
         myCircle.setStroke(Color.WHITESMOKE);
     }
 
-    private void getGalerie() throws URISyntaxException {
+    private void getGalerie() throws URISyntaxException, FileNotFoundException {
         IGalerie ig = new GalerieServices();
-       
+
+        listImg.clear();
         listImg.addAll(ig.selectImageById(idUser));
+
         if (listImg.size() == 0) {
             sceneGalerie.setVisible(false);
         } else {
@@ -130,16 +153,29 @@ public class ProfilFXMLController implements Initializable {
                     column = 1;
                     row++;
                 }
+                FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+                deleteIcon.setStyle(
+                        " -fx-cursor: hand ;"
+                        + "-glyph-size:28px;"
+                        + "-fx-fill:#ff1744;"
+                );
+                Button btnDelete = new Button("", deleteIcon);
+                int id = listImg.get(i).getId();
+                String name = listImg.get(i).getImageName();
+                btnDelete.setOnAction((ActionEvent event) -> {
+                    deleteImage(id, name);
+                });
 
                 HBox hBox = new HBox();
-                      Image im = new Image(getClass().getResource("../uicontrolers/galerie/" + listImg.get(i).getImageName()).toURI().toString(), 350, 200, false, false);
-                ImageView image = new ImageView(im);
-                   hBox.getChildren().add(image);
-                
+                File initialFile = new File("src/gui/uicontrolers/galerie/" + listImg.get(i).getImageName());
 
-               
+                InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
 
-                System.out.println(column + " " + row);
+                ImageView image = new ImageView(new Image(is, 350, 200, false, false));
+
+                hBox.getChildren().add(image);
+
+                hBox.getChildren().add(btnDelete);
 
                 gridImg.add(hBox, column++, row);
 //                System.out.println(column+" "+row);
@@ -147,7 +183,7 @@ public class ProfilFXMLController implements Initializable {
                 gridImg.setMinWidth(100);
                 gridImg.setPrefWidth(100);
                 gridImg.setMaxWidth(100);
-//
+//              
 //                //set grid height
 //                Lsport.setMinHeight(300);
 //                Lsport.setPrefHeight(400);
@@ -160,8 +196,38 @@ public class ProfilFXMLController implements Initializable {
         }
     }
 
+    private void deleteImage(int id, String name) {
+        IGalerie ig = new GalerieServices();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de la suppression");
+        alert.setHeaderText(null);
+        alert.setContentText("Vous étes sur pour la sppression de cette photo !!");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+
+                Path path = FileSystems.getDefault().getPath("./src/gui/uicontrolers/galerie/" + name);
+
+                try {
+                    Files.delete(path);
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ig.deleteImg(id);
+                try {
+                    gridImg.getChildren().clear();
+                    getGalerie();
+
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
     @FXML
-    private void attachImages() throws IOException {
+    private void attachImages() throws IOException, URISyntaxException {
         FileChooser chooser = new FileChooser();
         IGalerie ig = new GalerieServices();
         chooser.setTitle("Choisir vos Images");
@@ -192,6 +258,9 @@ public class ProfilFXMLController implements Initializable {
                 ig.addImage(new GalerieImage(idUser, path));
                 listImg.clear();
                 listImg.addAll(ig.selectImageById(idUser));
+                gridImg.getChildren().clear();
+                getGalerie();
+
             } else {
                 Notification.notificationError("ERREUR", "Il faut choisir une image");
             }
@@ -200,28 +269,27 @@ public class ProfilFXMLController implements Initializable {
     }
 
     private void getInfoCurrentUser(int id) throws URISyntaxException {
-        IUtilisateur iu = new UtilisateurServices();
-        String nom = iu.queryUserById(id).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getNom().substring(1);
-        String prenom = iu.queryUserById(id).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(id).getPrenom().substring(1);
+        IEntrainee ie = new EntraineeServices();
+        String nom = ie.selectProfil(id).nom.substring(0, 1).toUpperCase() + ie.selectProfil(id).nom.substring(1);
+        String prenom = ie.selectProfil(id).prenom.substring(0, 1).toUpperCase() + ie.selectProfil(id).prenom.substring(1);
 
         nomPrenom.setText(nom + " " + prenom);
-        email.setText(iu.queryUserById(id).getEmail());
-        phone.setText(iu.queryUserById(id).getPhone());
+        email.setText(ie.selectProfil(id).email);
+        phone.setText(ie.selectProfil(id).phone);
 
-        if (iu.queryUserById(id).getImageName() == null) {
+        if (ie.selectProfil(id).image == null) {
             String pathLocale = "../uicontrolers/user.png";
             getImageProfil(pathLocale);
         } else {
-            String pathLocale = "../uicontrolers/users/" + iu.queryUserById(id).getImageName();
+            String pathLocale = "../uicontrolers/users/" + ie.selectProfil(id).image;
             getImageProfil(pathLocale);
         }
 
-        IEntrainee ie = new EntraineeServices();
-        age.setText(String.valueOf(ie.queryById(id).getAge()) + " ans");
-        poids.setText(String.valueOf(ie.queryById(id).getPoids() + " kg"));
-        taille.setText(String.valueOf(ie.queryById(id).getTaille()) + " cm");
+        age.setText(String.valueOf(ie.selectProfil(id).getAge()) + " ans");
+        poids.setText(String.valueOf(ie.selectProfil(id).getPoids() + " kg"));
+        taille.setText(String.valueOf(ie.selectProfil(id).getTaille()) + " cm");
         typeUser.setText("Entrainé");
-        if ("homme".equals(ie.queryById(id).getSexe())) {
+        if ("homme".equals(ie.selectProfil(id).getSexe())) {
             Image imageSexe = new Image(getClass().getResource("../uicontrolers/male.jpg").toURI().toString());
             iconSexe.setImage(imageSexe);
             iconSexe.setFitWidth(50);

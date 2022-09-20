@@ -77,12 +77,23 @@ public class InfoTraineeFXMLController implements Initializable {
         if (!Validation.validationInteger(ageEnt, ageValid)) {
             return;
         }
-
+          if (Integer.parseInt(ageEnt.getText())< 0 ) {
+            ageValid.setText("Age doit etre  positif ");
+            return;
+        }
         if (!Validation.validationInteger(tailleEnt, tailleValid)) {
             return;
         }
         if (tailleEnt.getText().length() != 3) {
             tailleValid.setText("Taille doit se composer de 3 chiffres");
+            return;
+        }
+         if (Integer.parseInt(tailleEnt.getText())> 210 || Integer.parseInt(tailleEnt.getText())<130) {
+            tailleValid.setText("Taille entre 130 cm et 210 cm ");
+            return;
+        }
+           if (Integer.parseInt(poidsEnt.getText())< 0 ) {
+            poidsEnt.setText("Poids doit etre  positif ");
             return;
         }
         if (!Validation.validationInteger(poidsEnt, poidsValid)) {

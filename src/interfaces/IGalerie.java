@@ -15,5 +15,5 @@ import model.GalerieImage;
 public interface IGalerie {
     public void addImage (GalerieImage gi);
     public List<GalerieImage> selectImageById(int idUser);
-    
+    public void deleteImg(int id);
 }

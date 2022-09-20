@@ -12,6 +12,8 @@ package model;
 public class Coach {
     private int id ,idUser, idPlanning;
     private String specialite;
+     public String nom, prenom,email, phone, image;
+    public int idRole;
 
     public Coach() {
     }
@@ -29,6 +31,17 @@ public class Coach {
         this.specialite = specialite;
     }
 
+    public Coach(int id, String specialite, String nom, String prenom, String email, String phone, int idRole, String image) {
+        this.id = id;
+        this.specialite = specialite;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.phone = phone;
+        this.image = image;
+        this.idRole = idRole;
+    }
+    
     public int getId() {
         return id;
     }

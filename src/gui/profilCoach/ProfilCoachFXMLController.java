@@ -6,15 +6,22 @@
 package gui.profilCoach;
 
 import Exception.AuthException;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gui.profil.ProfilFXMLController;
 import interfaces.ICoach;
 import interfaces.IGalerie;
 import interfaces.IUtilisateur;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,7 +33,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
@@ -54,7 +63,7 @@ import util.Validation;
  * @author Asus
  */
 public class ProfilCoachFXMLController implements Initializable {
-    
+
     @FXML
     private Circle myCircle;
     @FXML
@@ -80,7 +89,7 @@ public class ProfilCoachFXMLController implements Initializable {
     private ScrollPane scrolImg;
     @FXML
     private GridPane gridImg;
-private List<GalerieImage> listImg = new ArrayList<>();
+    private List<GalerieImage> listImg = new ArrayList<>();
 
     /**
      * Initializes the controller class.
@@ -103,7 +112,37 @@ private List<GalerieImage> listImg = new ArrayList<>();
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    private void deleteImage(int id, String name) {
+        IGalerie ig = new GalerieServices();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de la suppression");
+        alert.setHeaderText(null);
+        alert.setContentText("Vous étes sur pour la sppression de cette photo !!");
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+
+                Path path = FileSystems.getDefault().getPath("./src/gui/uicontrolers/galerie/" + name);
+
+                try {
+                    Files.delete(path);
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ig.deleteImg(id);
+                try {
+                    gridImg.getChildren().clear();
+                    getGalerie();
+
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
     private void getImageProfil(String path) throws URISyntaxException {
         Image im = new Image(getClass().getResource(path).toURI().toString());
         myCircle.setFill(new ImagePattern(im));
@@ -115,6 +154,7 @@ private List<GalerieImage> listImg = new ArrayList<>();
         IUtilisateur iu = new UtilisateurServices();
         String nom = iu.queryUserById(idUser).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getNom().substring(1);
         String prenom = iu.queryUserById(idUser).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getPrenom().substring(1);
+        
         vboxSpec.setVisible(false);
         vboxSpec.setManaged(false);
         nomPrenom.setText(nom + " " + prenom);
@@ -132,15 +172,17 @@ private List<GalerieImage> listImg = new ArrayList<>();
             vboxSpec.setManaged(true);
             typeUser.setText("Entraineur");
             ICoach ic = new CoachServices();
-            description.setText(ic.queryById(idUser).getSpecialite());            
+            description.setText(ic.queryById(idUser).getSpecialite());
         } else {
             typeUser.setText("Propriétaire d'un Gym");
         }
-        
+
     }
-     private void getGalerie() throws URISyntaxException {
+
+    private void getGalerie() throws URISyntaxException, FileNotFoundException {
         IGalerie ig = new GalerieServices();
-       
+
+        listImg.clear();
         listImg.addAll(ig.selectImageById(idUser));
         if (listImg.size() == 0) {
             sceneGalerie.setVisible(false);
@@ -153,13 +195,29 @@ private List<GalerieImage> listImg = new ArrayList<>();
                     row++;
                 }
 
-                HBox hBox = new HBox();
-                      Image im = new Image(getClass().getResource("../uicontrolers/galerie/" + listImg.get(i).getImageName()).toURI().toString(), 350, 200, false, false);
-                ImageView image = new ImageView(im);
-                   hBox.getChildren().add(image);
-                
+                FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+                deleteIcon.setStyle(
+                        " -fx-cursor: hand ;"
+                        + "-glyph-size:28px;"
+                        + "-fx-fill:#ff1744;"
+                );
+                Button btnDelete = new Button("", deleteIcon);
+                int id = listImg.get(i).getId();
+                String name = listImg.get(i).getImageName();
+                btnDelete.setOnAction((ActionEvent event) -> {
+                    deleteImage(id, name);
+                });
 
-               
+                HBox hBox = new HBox();
+                File initialFile = new File("src/gui/uicontrolers/galerie/" + listImg.get(i).getImageName());
+
+                InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
+
+                ImageView image = new ImageView(new Image(is, 350, 200, false, false));
+
+                hBox.getChildren().add(image);
+
+                hBox.getChildren().add(btnDelete);
 
                 System.out.println(column + " " + row);
 
@@ -182,11 +240,9 @@ private List<GalerieImage> listImg = new ArrayList<>();
         }
     }
 
-   
-
     @FXML
-    private void attachImages(ActionEvent event) throws IOException {
-          FileChooser chooser = new FileChooser();
+    private void attachImages(ActionEvent event) throws IOException, URISyntaxException {
+        FileChooser chooser = new FileChooser();
         IGalerie ig = new GalerieServices();
         chooser.setTitle("Choisir vos Images");
         chooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -216,6 +272,8 @@ private List<GalerieImage> listImg = new ArrayList<>();
                 ig.addImage(new GalerieImage(idUser, path));
                 listImg.clear();
                 listImg.addAll(ig.selectImageById(idUser));
+                gridImg.getChildren().clear();
+                getGalerie();
             } else {
                 Notification.notificationError("ERREUR", "Il faut choisir une image");
             }
