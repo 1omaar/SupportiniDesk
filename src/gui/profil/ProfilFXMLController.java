@@ -146,6 +146,7 @@ public class ProfilFXMLController implements Initializable {
         if (listImg.size() == 0) {
             sceneGalerie.setVisible(false);
         } else {
+              sceneGalerie.setVisible(true);
             int column = 1;
             int row = 0;
             for (int i = 0; i < listImg.size(); i++) {

@@ -137,9 +137,9 @@ public class UtilisateurServices implements IUtilisateur {
           Notification.notificationSuccess("SUCCEE", "  Tes Données sont enregistré");
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+     
         } catch (Exception ex) {
-            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+         
         }
 
     }
@@ -154,7 +154,7 @@ public class UtilisateurServices implements IUtilisateur {
             System.out.println("Utilisateur supprimé avec succés");
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+     
         }
 
     }
@@ -173,7 +173,7 @@ public class UtilisateurServices implements IUtilisateur {
           
             
         } catch (SQLException ex) {
-            System.err.println(ex);
+        
         }
 
     }
@@ -202,7 +202,7 @@ public class UtilisateurServices implements IUtilisateur {
             return user;
 
         } catch (SQLException ex) {
-            System.err.println(ex);
+          
             return null;
         }
     }
@@ -221,7 +221,7 @@ public class UtilisateurServices implements IUtilisateur {
             Notification.notificationSuccess("SUCCEES", "Photo Enregistrée");
 //            ps.close();
         } catch (SQLException ex) {
-             Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+             
             Notification.notificationError("ERREUR", "Fichier Incompatible");
             
         }
@@ -302,7 +302,7 @@ public class UtilisateurServices implements IUtilisateur {
             ps.close();
             Notification.notificationSuccess("SUCCESS", "Données enregistréé");
         } catch (SQLException ex) {
-            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+       
             Notification.notificationError("ERREUR", "Donnée n'est pas enregistré");
         }
         
@@ -322,7 +322,7 @@ public class UtilisateurServices implements IUtilisateur {
            ps.close();
            return id;
         } catch (SQLException ex) {
-            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
       return -1;
         
@@ -341,10 +341,10 @@ public class UtilisateurServices implements IUtilisateur {
             ps.close();
             Notification.notificationSuccess("SUCCEE", "Mot de Passe Réinitialisé");
         } catch (SQLException ex) {
-            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+           
             Notification.notificationError("ERREUR", "Mot de Passe incorrect");
         } catch (Exception ex) {
-            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex);
+       
              Notification.notificationError("ERREUR", "Mot de Passe incorrect");
         }
               
