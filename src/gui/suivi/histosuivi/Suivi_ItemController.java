@@ -34,9 +34,7 @@ public class Suivi_ItemController {
 
 
  @FXML
-    private void showHisto(MouseEvent event) {
-        System.out.println("laaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        
+    private void showHisto(MouseEvent event) {        
         myListener.onClickListener(suivi);
                 
 

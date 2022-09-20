@@ -2,63 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/model/Demande_Suivi.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/gui/suivi/suivicoach/SuiviCoachController.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/gui/suivi/ajoutSuivi/AjoutSuiviController.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/interfaces/Ifeedback.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/gui/suivi/suivitrainer/SuiviTrainerController.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/model/Suivi.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/services/Suivie_Services.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/services/DemandeSuivi_Service.java</file>
-            <file>file:/C:/Users/GIGABYTE/Documents/NetBeansProjects/Elife/LastPulled/supportini/Supportini/src/services/feedback_Services.java</file>
-=======
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/profilcoachfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/forgetPassword/ResetPasswordController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/UpdateProfilController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/dashboardfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/listsallesport.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IUtilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/ProfilCoachFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/dashboardUser/UpdateModalController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Entrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/updateProfilAdmin/UpdateProfilAdminController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/MaConnexion.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/ICodeReset.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/UtilisateurServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/forgetPassword/ValidCodeController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/ItemSalleSport/ItemSalleSportFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/updateprofil.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IAuthentification.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/profilfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/Categorie/CategoriesController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/ListSalleSportController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/dashboard/dashboard.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/CodeResetServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/dashboard/DashboardController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/login/LoginFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/updateProfilAdmin/updateprofiladmin.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/Validation.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Utilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/choice_profil/ChoiceProfilFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/ItemSalleSport/itemsallesportfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/register/RegisterFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/dashboardUser/GestionUserController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/forgetPassword/resetpassword.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
-<<<<<<< HEAD
-=======
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/forgetPassword/SendCodeToEmailController.java</file>
->>>>>>> f252fc9af51bb63c2cc1a4e96fdb4b86d8b663bf
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoCoach/InfoCoachFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/CodeReset.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/AuthServices.java</file>
->>>>>>> 651dfc5c180193db3190608696d60e406e298779
-        </group>
+        <group/>
     </open-files>
 </project-private>

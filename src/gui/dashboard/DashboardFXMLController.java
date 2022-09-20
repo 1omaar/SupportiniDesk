@@ -373,9 +373,9 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     public void itemDash(ActionEvent event) throws IOException {
         switch (idRole) {
-            case 4: {
+            case 2: {
                 clientComboBox.getSelectionModel().clearSelection();
-                Parent root = FXMLLoader.load(getClass().getResource("../dashPss/dashPss.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../../gui/AffichCoaching/ListCoachings.fxml"));
                 scenePane.getChildren().removeAll();
                 scenePane.getChildren().setAll(root);
             }
@@ -447,7 +447,7 @@ public class DashboardFXMLController implements Initializable {
             clientComboBox.getSelectionModel().clearSelection();
         if (idRole == 3) {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivicoach/SuiviCoach.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivicoach/SuiviCoach2.fxml"));
             scenePane.getChildren().removeAll();
             scenePane.getChildren().setAll(root);
         } else {

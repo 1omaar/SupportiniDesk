@@ -36,9 +36,9 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="830.0" prefHeight="810.0" prefWidth="486.0" styleClass="right-bar" stylesheets="@style.css">
+      <VBox layoutX="830.0" prefHeight="810.0" prefWidth="522.0" style="-fx-background-color: transparent;" styleClass="right-bar" stylesheets="@style.css">
          <children>
-            <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+            <Pane prefHeight="57.0" prefWidth="435.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS" />
             <AnchorPane prefHeight="870.0" prefWidth="486.0" styleClass="chosen-fruit-card" stylesheets="@style.css">
                <children>
                   <Label fx:id="name_perdate" layoutX="62.0" layoutY="62.0" prefHeight="48.0" prefWidth="383.0" textFill="WHITE">
@@ -86,12 +86,12 @@
             <String fx:value="shadow" />
          </styleClass>
          <children>
-            <TextField fx:id="search" prefHeight="40.0" prefWidth="362.0" promptText="Type here to search" styleClass="transparent" stylesheets="@style.css">
+            <TextField fx:id="search" onAction="#add_feedback" prefHeight="40.0" prefWidth="362.0" promptText="Rechercher ici" styleClass="transparent" stylesheets="@style.css">
                <font>
                   <Font name="Cambria" size="18.0" />
                </font>
             </TextField>
-            <Button fx:id="btnsearch" mnemonicParsing="false" onAction="#search" prefHeight="55.0" prefWidth="200.0" styleClass="search-button" stylesheets="@style.css" text="Search" textFill="WHITE" />
+            <Button fx:id="btnsearch" mnemonicParsing="false" onAction="#search" prefHeight="55.0" prefWidth="200.0" styleClass="search-button" stylesheets="@style.css" text="Rechercher" textFill="WHITE" />
          </children>
       </HBox>
    </children>

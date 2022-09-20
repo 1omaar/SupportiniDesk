@@ -5,13 +5,13 @@
  */
 package util;
 
-import model.SalleSport;
+import model.Coachings;
 
 /**
  *
  * @author Elife-Kef-107
  */
 public class Statics {
-    public static SalleSport xx = new SalleSport();
+    public static Coachings xx = new Coachings();
     ///////////// coachings cc = new coaching ();
 }

@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,6 +51,7 @@ import services.EntraineeServices;
 import services.Suivie_Services;
 import util.JWebToken;
 import util.MaConnexion;
+import util.Notification;
 
 /**
  * FXML Controller class
@@ -88,7 +90,6 @@ public class DatePickerController implements Initializable {
         String tt = "SELECT * FROM suivi WHERE fk_id_entr = ? ORDER BY id DESC";
 
         //Statement statement;
-
         PreparedStatement ps = cnx.prepareStatement(tt);
         ps.setInt(1, id);
         ResultSet queryoutput = ps.executeQuery();
@@ -108,13 +109,19 @@ public class DatePickerController implements Initializable {
 
         return suivis;
     }
+    
+    public <List>Suivi filterData(Date date){
+
+        
+        return null;
+        
+    }
 
     private void setChosenSuivi(Suivi suivi) {
         name_perdate.setText(String.valueOf("Date Suivi : " + suivi.getDateSuivi()));
         name_perdate1.setText(String.valueOf("Taille : " + suivi.getTaille()));
         name_perdate2.setText(String.valueOf("Poids : " + suivi.getPoidsActuelle()));
-        name_perdate3.setText(String.valueOf("IMC : " +suivi.getImc()));
-        //System.out.println(suivi.getNomE());
+        name_perdate3.setText(String.valueOf("IMC : " + suivi.getImc()));
     }
 
     @Override
@@ -133,17 +140,19 @@ public class DatePickerController implements Initializable {
             int identr = ie.queryById(idUser).getId();
             try {
                 suivis.addAll(getData(identr));
-                    
+
                 if (suivis.size() > 0) {
                     setChosenSuivi(suivis.get(0));
                     myListener = new MyListener_Suivi() {
                         @Override
                         public void onClickListener(Suivi suivi) {
-                            System.out.println("laaaaaaaaaaaaaaaaaaaaaaaaaaa");
                             setChosenSuivi(suivi);
 
                         }
                     };
+                } else {
+                    Notification.notificationError("DESOLE", "Vous allez inscrire d'abord avec l'un de nos Coach");
+
                 }
                 int column = 0;
                 int row = 1;
@@ -190,6 +199,78 @@ public class DatePickerController implements Initializable {
     }
 
     @FXML
-    private void search(ActionEvent event) {
+    private void search(ActionEvent event) throws JSONException, AuthException, IOException, SQLException {
+        Preferences userPreferences = Preferences.userRoot();
+        String bearerToken = userPreferences.get("BearerToken", "root");
+        //verify and use
+        JWebToken incomingToken;
+        try {
+            incomingToken = new JWebToken(bearerToken);
+            String audience = incomingToken.getAudience();
+            String subject = incomingToken.getSubject();
+            //int idRole = Integer.parseInt(audience);
+            int idUser = Integer.parseInt(subject);
+            IEntrainee ie = new EntraineeServices();
+            int identr = ie.queryById(idUser).getId();
+            try {
+                suivis.addAll(getData(identr));
+
+                if (suivis.size() > 0) {
+                    setChosenSuivi(suivis.get(0));
+                    myListener = new MyListener_Suivi() {
+                        @Override
+                        public void onClickListener(Suivi suivi) {
+                            System.out.println("laaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                            setChosenSuivi(suivi);
+
+                        }
+                    };
+                } else {
+                    Notification.notificationError("DESOLE", "Vous allez inscrire d'abord avec l'un de nos Coach");
+
+                }
+                int column = 0;
+                int row = 1;
+                try {
+                    for (int i = 0; i < suivis.size(); i++) {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/gui/suivi/histosuivi/Suivi_Item.fxml"));
+                        AnchorPane anchorPane = fxmlLoader.load();
+                        Suivi_ItemController itemController = fxmlLoader.getController();
+                        itemController.setData(suivis.get(i), myListener);
+
+                        if (column == 2) {
+                            column = 0;
+                            row++;
+                        }
+
+                        grid.add(anchorPane, column++, row); //(child,column,row)
+                        //set grid width
+                        grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                        grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                        grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                        //set grid height
+                        grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                        grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                        grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                        GridPane.setMargin(anchorPane, new Insets(10));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DatePickerController.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+        } catch (JSONException ex) {
+            Logger.getLogger(DatePickerController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AuthException ex) {
+            Logger.getLogger(DatePickerController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DatePickerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
 }
