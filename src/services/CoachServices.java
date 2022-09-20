@@ -27,12 +27,12 @@ public class CoachServices implements ICoach {
 
     @Override
     public void addCoach(Coach c) {
-        String req = "INSERT INTO coachs (specialite , fk_idUser, fk_idPlaning) VALUES (?,?,?)";
+        String req = "INSERT INTO coachs (specialite , fk_idUser) VALUES (?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, c.getSpecialite());
             ps.setInt(2, c.getIdUser());
-            ps.setInt(3, 0);
+         
             ps.executeUpdate();
           
             ps.close();
@@ -54,7 +54,7 @@ public class CoachServices implements ICoach {
             coach.setId(res.getInt(1));
             coach.setSpecialite(res.getString(2));
 
-            coach.setIdPlanning(res.getInt(4));
+
 
             ps.close();
             return coach;

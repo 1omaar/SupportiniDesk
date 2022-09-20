@@ -10,7 +10,7 @@ package model;
  * @author Asus
  */
 public class Coach {
-    private int id ,idUser, idPlanning;
+    private int id ,idUser;
     private String specialite;
      public String nom, prenom,email, phone, image;
     public int idRole;
@@ -18,16 +18,16 @@ public class Coach {
     public Coach() {
     }
 
-    public Coach(int idUser, int idPlanning, String specialite) {
+    public Coach(int idUser,  String specialite) {
         this.idUser = idUser;
-        this.idPlanning = idPlanning;
+       
         this.specialite = specialite;
     }
 
-    public Coach(int id, int idUser, int idPlanning, String specialite) {
+    public Coach(int id, int idUser,  String specialite) {
         this.id = id;
         this.idUser = idUser;
-        this.idPlanning = idPlanning;
+      
         this.specialite = specialite;
     }
 
@@ -58,13 +58,6 @@ public class Coach {
         this.idUser = idUser;
     }
 
-    public int getIdPlanning() {
-        return idPlanning;
-    }
-
-    public void setIdPlanning(int idPlanning) {
-        this.idPlanning = idPlanning;
-    }
 
     public String getSpecialite() {
         return specialite;
@@ -76,7 +69,7 @@ public class Coach {
 
     @Override
     public String toString() {
-        return "Coach{" + "id=" + id + ", idUser=" + idUser + ", idPlanning=" + idPlanning + ", specialite=" + specialite + '}';
+        return "Coach{" + "id=" + id + ", idUser=" + idUser + ", specialite=" + specialite + '}';
     }
     
 }

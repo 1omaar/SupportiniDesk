@@ -47,9 +47,10 @@ public class Suivie_Services implements Isuivi {
 
     @Override
     public void ajouterSuivi(Suivi s) {
-        String req = "INSERT INTO `suivi`(`nom`, `prenom`, `age`, `poids`, `taille`, `imc`, `date_suivi`, `fk_id_entr`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String req = "INSERT INTO `suivi`(`nom`, `prenom`, `age`, `poids`, `taille`, `imc`, `date_suivi`, `fk_id_coach`, `fk_id_entr`) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
+            System.out.println(s);
             ps.setString(1, s.getNomE());
             ps.setString(2, s.getPrenomE());
             ps.setInt(3, s.getAge());
@@ -57,8 +58,8 @@ public class Suivie_Services implements Isuivi {
             ps.setInt(5, s.getTaille());
             ps.setDate(7, s.getDateSuivi());
             ps.setDouble(6, s.getImc());
-            ps.setInt(8, s.getFk_id_entr());
-            //ps.setInt(9, s.getId_coach());
+            ps.setInt(9, s.getFk_id_entr());
+            ps.setInt(8, s.getId_coach());
             ps.executeUpdate();
             System.out.println("PS : Suivi ajoutée avec succés!");
         } catch (SQLException ex) {
@@ -89,7 +90,7 @@ public class Suivie_Services implements Isuivi {
 
         List<Suivi> suivis = new ArrayList<>();
         Suivi s = new Suivi();
-        String req = "SELECT `nom`,`prenom` FROM `suivi`";
+        String req = "SELECT * FROM `suivi`";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ResultSet rs = ps.executeQuery();
@@ -100,7 +101,8 @@ public class Suivie_Services implements Isuivi {
 //                p.setNom(rs.getString(2));
 //                p.setPrenom(rs.getString("prenom"));
                 s.setPrenomE(rs.getString("prenom"));
-                s.setId_coach(rs.getInt(12));
+                s.setFk_id_entr(rs.getInt(10));
+                s.setId_coach(rs.getInt(9));
 //                p.setCin(rs.getInt(4));
 //                p.setAge(rs.getInt(5));
                 suivis.add(s);
@@ -236,6 +238,8 @@ public class Suivie_Services implements Isuivi {
 //                date_suivi.setAge(res.getInt(4));
                 date_suivi.setTaille(res.getInt(6));
                 date_suivi.setImc(res.getDouble(7));
+                date_suivi.setFk_id_entr(res.getInt(10));
+                date_suivi.setId_coach(res.getInt(9));
                 suivis.add(date_suivi);
                 
                 if (suivis != null && !suivis.isEmpty()) {

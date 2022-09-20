@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AffichCoaching.ListCoachings">
+   <children>
+      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="810.0" prefWidth="571.0" styleClass="right-bar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="873.0" prefWidth="471.0" stylesheets="@style.css">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <Pane prefHeight="151.0" prefWidth="471.0">
+                           <children>
+                              <ImageView fx:id="fruitImg" fitHeight="337.0" fitWidth="390.0" layoutX="41.0" layoutY="-35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/peach.png" />
+                                 </image>
+                              </ImageView>
+                           </children></Pane>
+                        <HBox prefHeight="158.0" prefWidth="471.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Pane prefHeight="154.0" prefWidth="458.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="118.0" prefWidth="471.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="559.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="83.0" prefHeight="0.0" prefWidth="116.0" text="Prix :" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cambria" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="prixlab" layoutX="147.0" layoutY="78.0" prefHeight="53.0" prefWidth="147.0" text="Label">
+                                       <font>
+                                          <Font name="Cambria" size="36.0" />
+                                       </font>
+                                       <textFill>
+                                          <LinearGradient endX="0.023696682464455" endY="1.0" startY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                    </Label>
+                                    <Label fx:id="fruitNameLable" layoutX="8.0" layoutY="22.0" prefHeight="50.0" prefWidth="206.0" text="Peach" textFill="WHITE">
+                                       <font>
+                                          <Font name="Cambria" size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="143.0" prefWidth="465.0">
+                                 <children>
+                                    <TextArea fx:id="txtDescription" layoutX="8.0" layoutY="16.0" prefHeight="198.0" prefWidth="450.0" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="190.0" prefWidth="471.0">
+                           <children>
+                              <Button fx:id="addcoaching" layoutX="196.0" layoutY="140.0" mnemonicParsing="false" onAction="#addcoachingSuivi" text="S'inscrire" />
+                           </children>
+                        </Pane>
+                     </children>
+                     <styleClass>
+                        <String fx:value="chosen-fruit-card" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label layoutX="84.0" layoutY="14.0" prefHeight="46.0" prefWidth="819.0" text="Liste des annonces de coachings">
+                                 <font>
+                                    <Font name="Cambria" size="38.0" />
+                                 </font>
+                              </Label>
+                           </children></Pane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="100.0" prefWidth="656.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <ComboBox fx:id="CombiDiscipline" layoutX="261.0" layoutY="38.0" onAction="#FiltreDiscipline" prefWidth="150.0" />
+                              <Label layoutX="91.0" layoutY="40.0" text="Choisir par discipline">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children></Pane>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@style.css">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="53.0" prefWidth="0.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
