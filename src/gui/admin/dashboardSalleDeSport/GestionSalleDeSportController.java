@@ -28,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import model.SalleSport;
 import util.MaConnexion;
+import util.Notification;
 
 /**
  * FXML Controller class
@@ -64,11 +65,13 @@ public class GestionSalleDeSportController implements Initializable {
     @FXML
     private TableColumn<?, ?> CodePostalColmn;
     @FXML
-    private Button btnAjouter;
-    @FXML
     private Button btnModifier;
     @FXML
     private Button btnSupprimer;
+    @FXML
+    private TextField txtPrix;
+    @FXML
+    private TableColumn<?, ?> PrixColmn;
 
     /**
      * Initializes the controller class.
@@ -85,7 +88,7 @@ public class GestionSalleDeSportController implements Initializable {
 
         ObservableList<SalleSport> SalleDesSports = FXCollections.observableArrayList();
         try {
-            pst = (PreparedStatement) cnx.prepareStatement("SELECT  `id`,`nomSalle`, `numTel`, `Ville`, `Rue`, `codePostal` FROM `salledessport`");
+            pst = (PreparedStatement) cnx.prepareStatement("SELECT  `id`,`nomSalle`, `numTel`, `Ville`, `Rue`, `codePostal`, `prix` FROM `salledessport`");
 
             ResultSet rs = pst.executeQuery();
             {
@@ -97,6 +100,7 @@ public class GestionSalleDeSportController implements Initializable {
                     st.setVille(rs.getString("Ville"));
                     st.setRue(rs.getString("Rue"));
                     st.setCodePostal(rs.getString("CodePostal"));
+                    st.setPrix(rs.getInt("prix"));
                     SalleDesSports.add(st);
 
                 }
@@ -108,6 +112,7 @@ public class GestionSalleDeSportController implements Initializable {
             VilleColmn.setCellValueFactory(new PropertyValueFactory("Ville"));
             RueColmn.setCellValueFactory(new PropertyValueFactory("Rue"));
             CodePostalColmn.setCellValueFactory(new PropertyValueFactory("codePostal"));
+            PrixColmn.setCellValueFactory(new PropertyValueFactory("prix"));
 
         } catch (SQLException ex) {
             Logger.getLogger(GestionSalleDeSportController.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,6 +130,7 @@ public class GestionSalleDeSportController implements Initializable {
                     txtVille.setText(table.getItems().get(myIndex).getVille());
                     txtRue.setText(table.getItems().get(myIndex).getRue());
                     txtCodePostal.setText(table.getItems().get(myIndex).getCodePostal());
+                    txtPrix.setText(String.valueOf(table.getItems().get(myIndex).getPrix()));
 
                 }
             });
@@ -139,12 +145,9 @@ public class GestionSalleDeSportController implements Initializable {
         txtVille.clear();
         txtRue.clear();
         txtCodePostal.clear();
+        txtPrix.clear();
     }
 
-    @FXML
-    private void AjouterSalleDeSport(ActionEvent event) {
-        
-    }
 
     @FXML
     private void ModifierSalleDeSport(ActionEvent event) {
@@ -167,13 +170,8 @@ public class GestionSalleDeSportController implements Initializable {
             pst.setString(5, codepostal);
             pst.setInt(6, id);
             pst.executeUpdate();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("modification terminée");
+                   Notification.notificationSuccess("SALLE DE SPORT MODIFIER AVEC SUCCESS", "Merci");
 
-            alert.setHeaderText("modification terminée");
-            alert.setContentText("modification de salle de sport!");
-
-            alert.showAndWait();
             table();
 
         } catch (SQLException ex) {
@@ -191,13 +189,7 @@ public class GestionSalleDeSportController implements Initializable {
             pst.setInt(1, id);
             pst.executeUpdate();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("supprimer de salle de sport");
-
-            alert.setHeaderText("supprimer de salle de sport terminée");
-            alert.setContentText("supprimer de salle de sport terminée");
-
-            alert.showAndWait();
+            Notification.notificationSuccess("SALLE DE SPORT SUPPRIMER AVEC SUCCESS", "Merci");
             table();
 
         } catch (SQLException ex) {

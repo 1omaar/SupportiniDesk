@@ -68,6 +68,11 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
+                  <Label prefHeight="40.0" prefWidth="170.0" text="   Nom Salle De Sport :">
+                     <font>
+                        <Font name="Cambria Bold" size="15.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="txtNom" prefHeight="31.0" prefWidth="161.0" promptText="Nom Salle De Sport" />
                </children>
             </HBox>

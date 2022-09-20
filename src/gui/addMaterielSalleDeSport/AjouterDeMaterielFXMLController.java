@@ -153,25 +153,33 @@ public class AjouterDeMaterielFXMLController implements Initializable {
     
 
     @FXML
-    private void Ajouter(ActionEvent event) {
+    private void Ajouter(ActionEvent event) throws IOException {
            Imateriel ip = new MaterielServices();
         MaterielSalle m = new MaterielSalle();
     clear();
             if (txtNom.getText().isEmpty()) {
-                NomMaterielValid.setText(" entrer le nom de materiel ");
+//                NomMaterielValid.setText(" entrer le nom de materiel ");
+                            Notification.notificationError("ERREUR", "entrer le nom de materiel");
+
                 return;
             }
             if (txtQuantite.getText().isEmpty()) {
-                QuantiteValid.setText(" entrer la quantité");
+//                QuantiteValid.setText(" entrer la quantité");
+                            Notification.notificationError("ERREUR", "entrer la quantité");
+
                 return;
             }
             if (txtSpecialite.getText().isEmpty()) {
-                SpecialiteValid.setText("entrer une specialite");
+//                SpecialiteValid.setText("entrer une specialite");
+                            Notification.notificationError("ERREUR", "entrer une specialite");
+
                 return;
             }
 
             if (txtDescription.getText().isEmpty()) {
-                DescriptionValid.setText(" entrer une description");
+//                DescriptionValid.setText(" entrer une description");
+                            Notification.notificationError("ERREUR", "entrer une description");
+
                 return; 
             }
 //            if (imgVitrine.getText().isEmpty()) {
@@ -186,8 +194,24 @@ public class AjouterDeMaterielFXMLController implements Initializable {
         m.setImageVitrine(String.valueOf(filepath.getFileName()));
 //        m.setFk_idSalle(Integer.parseInt(txt.getText()));
         ip.ajouterMaterielSalle(m);
-          Stage stage = (Stage) btnAjouter.getScene().getWindow();
-         stage.close();
+       
+//          Stage stage = (Stage) btnAjouter.getScene().getWindow();
+//         stage.close();
+                Stage stage = (Stage) btnAjouter.getScene().getWindow();
+
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Dashboard");
+        primaryStage.setScene(scene);
+
+        primaryStage.sizeToScene();
+        primaryStage.show();
          Notification.notificationSuccess("AJOUTER MATERIEL AVEC SUCCESS", "Merci");
     }
       private void clear() {
@@ -204,10 +228,21 @@ public class AjouterDeMaterielFXMLController implements Initializable {
 
     @FXML
     private void backToDashboard(ActionEvent event) throws IOException {
-             Stage stage = (Stage) back.getScene().getWindow();
+                Stage stage = (Stage) back.getScene().getWindow();
 
         stage.close();
-        
+
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Dashboard");
+        primaryStage.setScene(scene);
+
+        primaryStage.sizeToScene();
+        primaryStage.show();
        
     }
     }
