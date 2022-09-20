@@ -44,6 +44,30 @@
                               <Image url="@../uicontrolers/Lovepik_com-400282196-shopping-cart-linear-icon.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="iconSuivi" mnemonicParsing="false" onAction="#affsuivi" prefHeight="62.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="48.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../uicontrolers/suivi.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnowner" mnemonicParsing="false" onAction="#ownerEspace" style="-fx-background-color: transport;">
+                           <graphic>
+                              <ImageView fx:id="espaceCoach" fitHeight="52.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../uicontrolers/coach.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" />
@@ -87,11 +111,13 @@
          <children>
             <VBox fx:id="iconBar" prefHeight="700.0" prefWidth="66.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <GridPane prefHeight="350.0" prefWidth="38.0">
+                  <GridPane prefHeight="479.0" prefWidth="66.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -135,7 +161,7 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                        <HBox fx:id="containIcon" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <children>
                               <ImageView fx:id="iconMesSalle" fitHeight="50.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -145,21 +171,26 @@
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                            <children>
-                              <ImageView fx:id="iconCoach" fitHeight="30.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="iconMesSalle1" fitHeight="50.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../uicontrolers/77-777303_referee-whistle-whistle-icon-hd-png-download.png" />
+                                    <Image url="@../uicontrolers/OIP.jpg" />
                                  </image>
                               </ImageView>
                            </children>
                         </HBox>
+                        <HBox fx:id="containIcon1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
             <VBox fx:id="sideAnchorPane" prefHeight="700.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;" HBox.hgrow="ALWAYS">
                <children>
-                  <GridPane prefHeight="349.0" prefWidth="139.0">
+                  <GridPane prefHeight="491.0" prefWidth="171.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -169,11 +200,13 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#addCoaching" prefHeight="47.0" prefWidth="205.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Ajouter Coaching">
+                              <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ListCachings" prefHeight="47.0" prefWidth="205.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text=" Dash Board">
                                  <font>
                                     <Font name="Cambria" size="18.0" />
                                  </font>
@@ -209,7 +242,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
-                              <Button fx:id="btnCoachs" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="62.0" prefWidth="171.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Entraineurs">
+                              <Button fx:id="btnListRegime" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#LIstRegime" prefHeight="62.0" prefWidth="171.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text=" Regimes">
                                  <font>
                                     <Font name="Cambria" size="18.0" />
                                  </font>
@@ -219,7 +252,8 @@
                               </Button>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+
+                        <HBox fx:id="containBtn" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <children>
                               <Button fx:id="btnMesSalleDeSport" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#MesSalleDeSport" prefHeight="62.0" prefWidth="171.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Mes salle de sport">
                                  <font>
@@ -231,6 +265,16 @@
                               </Button>
                            </children>
                         </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6" />
+                        <Button fx:id="btnMesRegimes" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#ListCachings" prefHeight="62.0" prefWidth="171.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Acceuil">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </GridPane>
                </children>

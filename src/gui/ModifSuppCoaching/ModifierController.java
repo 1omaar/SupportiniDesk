@@ -6,8 +6,10 @@
 package gui.ModifSuppCoaching;
 
 import static gui.ModifSuppCoaching.MesCoaching.idselect;
+import gui.PssAffiche.PssAfficheController;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.sql.Connection;
@@ -17,6 +19,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +64,6 @@ public class ModifierController implements Initializable {
     private Button btnAjouter;
     @FXML
     private ImageView img;
-    @FXML
     private TextField TxtImage;
     @FXML
     private Button btnImage;
@@ -77,7 +79,19 @@ public class ModifierController implements Initializable {
     private File file ;
     File xxx = null ;
     @FXML
-    private Button retour;
+    private Label VerifTitre;
+    @FXML
+    private Label VerifPlanning;
+    @FXML
+    private Label VerifPrix;
+    @FXML
+    private Label VerifNB;
+    @FXML
+    private Label VerifDiscipline;
+    @FXML
+    private Label VerifDescription;
+    @FXML
+    private Button btnRetour;
     ///////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,20 +101,60 @@ public class ModifierController implements Initializable {
        txtNbMax.setText(String.valueOf(Statics.cc.getNbmax()));
        txtDescription.setText(Statics.cc.getDescription());
        txtPrix.setText(Statics.cc.getPrix());
+                 
+         Image im;
+        try {
+            im = new Image(getClass().getResource("../uicontrolers/images/" + Statics.cc.getImage()).toURI().toString());
+            img.setImage(im);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       
         
     }    
 
 
     @FXML
     private void AjouterImage(ActionEvent event) throws IOException, IOException {
-                fc.setTitle("Uplode Image");
+//                fc.setTitle("Uplode Image");
+//        fc.setInitialDirectory(new File(System.getProperty("user.home")));
+//        fc.getExtensionFilters().clear();
+//        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all file", "*.*"),
+//                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+//        File file = fc.showOpenDialog(null);
+//        if (file != null) {
+//           
+//            String x = file.getAbsolutePath();
+//            String newpath = "src/gui/uicontrolers/images/";
+//            File dir = new File(newpath);
+//            if (!dir.exists()) {
+//                // folder wa7dd ken barchaa mkdirs
+//                dir.mkdirs();
+//            }
+//            File sourceFile = null;
+//            File destinationFile = null;
+//            String extension = x.substring(x.lastIndexOf('.') + 1);
+//            sourceFile = new File(x);
+//            String name=randomStringforimage();
+//            xxx = new File(newpath + name + "." + extension);
+//            Files.copy(sourceFile.toPath(), xxx.toPath());
+//            //   System.out.println(destinationFile);
+//            nameImage=name + "." + extension;
+//          
+//            img.setImage(new Image(file.toURI().toString()));
+//        } else {
+//            System.out.println("file is invalide");
+//        }
+
+ fc.setTitle("Uplode Image");
         fc.setInitialDirectory(new File(System.getProperty("user.home")));
         fc.getExtensionFilters().clear();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all file", "*.*"),
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File file = fc.showOpenDialog(null);
         if (file != null) {
-           
+
             String x = file.getAbsolutePath();
             String newpath = "src/gui/uicontrolers/images/";
             File dir = new File(newpath);
@@ -112,16 +166,17 @@ public class ModifierController implements Initializable {
             File destinationFile = null;
             String extension = x.substring(x.lastIndexOf('.') + 1);
             sourceFile = new File(x);
-            String name=randomStringforimage();
+            String name = randomStringforimage();
             xxx = new File(newpath + name + "." + extension);
             Files.copy(sourceFile.toPath(), xxx.toPath());
             //   System.out.println(destinationFile);
-            nameImage=name + "." + extension;
-          
+            nameImage = name + "." + extension;
+
             img.setImage(new Image(file.toURI().toString()));
         } else {
             System.out.println("file is invalide");
         }
+
     }
 
     
@@ -156,11 +211,57 @@ public class ModifierController implements Initializable {
     }    
     
     
+    private void clear() {
+
+        VerifTitre.setText("");
+
+        VerifDescription.setText("");
+
+        VerifDiscipline.setText("");
+
+//        VerifImage.setText("");
+
+        VerifNB.setText("");
+
+        VerifPrix.setText("");
+
+        VerifPlanning.setText("");
+
+    }
     
-    
-    
+      String number = "[0-9]+";
+     Pattern x =Pattern.compile(number);
     @FXML
     private void modifier(ActionEvent event) throws IOException {
+        clear();
+        if (txtTitre.getText().isEmpty()) {
+            VerifTitre.setText("Entrez un Titre");
+            return;
+        }
+
+        if (txtDescription.getText().isEmpty()) {
+            VerifDescription.setText("Entrez une Description");
+            return;
+        }
+
+        if (txtNbMax.getText().isEmpty()) {
+            VerifNB.setText("Entrez un nombre");
+            return;
+        }
+        if (txtDiscipline.getText().isEmpty()) {
+            VerifDiscipline.setText("Entrez une Discipline");
+            return;
+        }
+
+        if (txtPrix.getText().isEmpty()||!x.matcher(txtPrix.getText()).matches()) {
+            VerifPrix.setText("Entrez le Prix");
+            return;
+        }
+
+        if (txtPlaning.getText().isEmpty()) {
+            VerifPlanning.setText("Entrez un planing");
+            return;
+        }
         String req = "UPDATE coachings SET titre=?,discipline=?,description= ?,planing=?,prix=?,nbmax=?,image=? WHERE id= ?";
      
         try {
@@ -172,7 +273,7 @@ public class ModifierController implements Initializable {
             ps.setString(5, txtPrix.getText());
             ps.setString(6, txtNbMax.getText());
             /////////////
-          ps.setString(7, TxtImage.getText());
+          ps.setString(7, nameImage);
            
           /////////////////
             ps.setInt(8, Statics.cc.getId());
@@ -190,7 +291,7 @@ public class ModifierController implements Initializable {
  Stage stage = (Stage)btnAjouter.getScene().getWindow();
              stage.close();
              
-             Parent root = FXMLLoader.load(getClass().getResource("/gui/ModifSuppCoaching/MesCoaching.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("/gui/dashboard/DashboardFXML.fxml"));
      
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -206,7 +307,7 @@ public class ModifierController implements Initializable {
  Stage stage = (Stage)btnAjouter.getScene().getWindow();
              stage.close();
              
-             Parent root = FXMLLoader.load(getClass().getResource("../AffichCoaching/ListCoachings.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("../ModifSuppCoaching/MesCoaching.fxml"));
      
         Scene scene = new Scene(root);
         stage.setScene(scene);

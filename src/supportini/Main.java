@@ -11,7 +11,7 @@ public class Main extends Application {
    
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../gui/ajoutCoaching/AjouterCoach.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../gui/RRegime/AjouterRegime.fxml"));
         primaryStage.setTitle("liste des annonces");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

@@ -41,6 +41,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import org.json.JSONException;
 import util.JWebToken;
 import util.MaConnexion;
@@ -71,7 +73,7 @@ public class ListCoachings implements Initializable {
     @FXML
     private Label prixlab;
     @FXML
-    private TextArea txtDescription;
+    private TextFlow txtDescription;
     @FXML
     private ComboBox CombiDiscipline;
   
@@ -116,7 +118,7 @@ public class ListCoachings implements Initializable {
                     ItemController itemController = fxmlLoader.getController();
                     itemController.setData(clist.get(i), CoachingsListener);
 
-                    if (column == 2) {
+                    if (column == 1) {
                         column = 0;
                         row++;
                     }
@@ -193,7 +195,7 @@ public class ListCoachings implements Initializable {
                     gui.ModifSuppCoaching.ItemController itemController = fxmlLoader.getController();
                     itemController.setData(clist.get(i), CoachingsListener);
 
-                    if (column == 2) {
+                    if (column == 1) {
                         column = 0;
                         row++;
                     }
@@ -277,8 +279,9 @@ public class ListCoachings implements Initializable {
         fruitNameLable.setText(Coachings.getTitre());
        prixlab.setText(Coachings.getPrix());
 //       labdiscipline.setText(Coachings.getDiscipline());
-       txtDescription.setText(Coachings.getDescription());
-      
+       txtDescription.getChildren().clear();
+        Text t1 = new Text(Coachings.getDescription());
+        txtDescription.getChildren().add(t1);
 
         //   this.img.setImage(image);
      

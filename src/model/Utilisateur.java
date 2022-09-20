@@ -111,7 +111,10 @@ public class Utilisateur {
 
     @Override
     public String toString() {
+       
+
         return "Utilisateur{" + "id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + ", cin=" + cin + ", phone=" + phone + ", imageName=" + imageName + ", status=" + status + '}';
+
     }
 
 

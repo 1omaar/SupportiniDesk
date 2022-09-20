@@ -226,7 +226,7 @@ public class UpdateProfilController implements Initializable {
     private void attachImage(ActionEvent event) throws URISyntaxException, FileNotFoundException, IOException {
     
        FileChooser chooser = new  FileChooser();
-         chooser.setTitle("Uplode Image");
+         chooser.setTitle("Upload Image");
         chooser.setInitialDirectory(new File(System.getProperty("user.home")));
         chooser.getExtensionFilters().clear();
         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all file", "*.*"),

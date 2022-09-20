@@ -192,15 +192,19 @@ public class AjouterCoachController implements Initializable {
       
         ip.ajouterCoaching(p);
         Notification.notificationSuccess("Coaching AJOUTER AVEC SUCCES", "Merci pour voter contribution ");
-         Stage stage = (Stage) btnAjouter.getScene().getWindow();
-        stage.close();
-
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/ModifSuppCoaching/MesCoaching.fxml"));
-
+         
+    
+        
+        /////////////////////
+              Stage stage = (Stage)btnAjouter.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("/gui/dashboard/DashboardFXML.fxml"));
+     
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+///////////////////////////////
     }
 
     private void clear() {

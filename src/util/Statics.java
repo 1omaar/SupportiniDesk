@@ -7,6 +7,7 @@ package util;
 
 import model.SalleSport;
 import model.Coachings;
+import model.Regime;
 /**
  *
  * @author Elife-Kef-107
@@ -15,5 +16,6 @@ public class Statics {
     public static SalleSport xx = new SalleSport();
     ///////////// coachings cc = new coaching ();
         public static Coachings cc = new Coachings();
+          public static Regime rr = new Regime();
 
 }

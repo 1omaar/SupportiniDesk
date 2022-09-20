@@ -133,6 +133,11 @@ public class Coachings {
     public void setNbinscri(int nbinscri) {
         this.nbinscri = nbinscri;
     }
+
+    @Override
+    public String toString() {
+        return "Coachings{" + "id=" + id + ", idcoach=" + idcoach + ", titre=" + titre + ", discipline=" + discipline + ", description=" + description + ", planing=" + planing + ", prix=" + prix + ", nbmax=" + nbmax + ", nbinscri=" + nbinscri + ", image=" + image + '}';
+    }
      
      
      

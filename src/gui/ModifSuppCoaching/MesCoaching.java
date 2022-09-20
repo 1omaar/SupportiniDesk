@@ -43,6 +43,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import org.json.JSONException;
 import util.JWebToken;
@@ -74,9 +76,7 @@ public class MesCoaching implements Initializable {
     @FXML
     private Label prixlab;
     @FXML
-    private TextArea txtDescription;
-    @FXML
-    private ComboBox CombiDiscipline;
+    private TextFlow txtDescription;
     static int idRole, idUser , idselect , nb , idcoach, nbI;
     static String des , disc , titre,prx,pl ,img;
     
@@ -88,7 +88,7 @@ public class MesCoaching implements Initializable {
     
     private Coachings acoaching ;
     @FXML
-    private Label Txtid;
+    private Button btnRetour;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -115,7 +115,7 @@ public class MesCoaching implements Initializable {
                     ItemController itemController = fxmlLoader.getController();
                     itemController.setData(clist.get(i), CoachingsListener);
 
-                    if (column == 2) {
+                    if (column == 1) {
                         column = 0;
                         row++;
                     }
@@ -210,7 +210,11 @@ public class MesCoaching implements Initializable {
         fruitNameLable.setText(Coachings.getTitre());
         prixlab.setText(Coachings.getPrix());
 //       labdiscipline.setText(Coachings.getDiscipline());
-        txtDescription.setText(Coachings.getDescription());
+
+txtDescription.getChildren().clear();
+        Text t1 = new Text(Coachings.getDescription());
+        txtDescription.getChildren().add(t1);
+       
          
         
         //   this.img.setImage(image);
@@ -293,15 +297,41 @@ public class MesCoaching implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(MesCoaching.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        Stage stage = (Stage)fruitNameLable.getScene().getWindow();
+       ////////////////////////////////
+              Stage stage = (Stage)btnSupprimer.getScene().getWindow();
              stage.close();
              
-             Parent root = FXMLLoader.load(getClass().getResource("/gui/ModifSuppCoaching/MesCoaching.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("/gui/dashboard/DashboardFXML.fxml"));
      
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
+        ///////////////////////////////
+    }
+
+    @FXML
+    private void AjouterAnnonce(ActionEvent event) throws IOException {
+          //Statics.xx.setIdcoach(acoaching.getIdcoach());
+             Stage stage = (Stage)btnmodifier.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("../ajoutCoaching/AjouterCoach.fxml"));
+     
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void RetourToEspace(ActionEvent event) throws IOException {
+          Stage stage = (Stage)btnRetour.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+     
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
