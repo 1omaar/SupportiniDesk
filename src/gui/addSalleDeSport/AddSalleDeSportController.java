@@ -23,14 +23,18 @@ import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -68,7 +72,7 @@ public class AddSalleDeSportController implements Initializable {
     private Button BtnUpload;
     @FXML
     private Button btnAjouter;
-     @FXML
+    @FXML
     private Label validationNom;
     @FXML
     private Label validationtNumtel;
@@ -91,37 +95,39 @@ public class AddSalleDeSportController implements Initializable {
     private Path filepath;
     File xxx = null;
     String filename = null;
-     private String path;
-    
-    private int idRole, idUser ;
+    private String path;
+
+    private int idRole, idUser;
     @FXML
     private TextField taimage;
-   
+    @FXML
+    private Button back;
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-  //recieve the bearer token
+
+        //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
         //verify and use
         JWebToken incomingToken;
         try {
             incomingToken = new JWebToken(bearerToken);
-               if (!incomingToken.isValid()) {
+            if (!incomingToken.isValid()) {
 
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
-                idRole= Integer.parseInt(audience);
-                 idUser =Integer.parseInt(subject);
-                   System.out.println(idUser);
-               
+                idRole = Integer.parseInt(audience);
+                idUser = Integer.parseInt(subject);
+                System.out.println(idUser);
+
             }
         } catch (JSONException | AuthException | IOException | InvalidKeyException ex) {
             Logger.getLogger(AddSalleDeSportController.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,49 +135,63 @@ public class AddSalleDeSportController implements Initializable {
     }
 
     @FXML
-    private void Ajouter(ActionEvent event) {
+    private void Ajouter(ActionEvent event) throws IOException {
         ISalleSport ip = new SalleSportServices();
+        clear();
         if (txtNom.getText().isEmpty()) {
-            validationNom.setText("svp entrer le nom de salle de sport");
+            Notification.notificationError("ERREUR", "entrer le nom de salle de sport");
             return;
         }
         if (txtNumtel.getText().isEmpty()) {
-            validationtNumtel.setText("svp entrer le num_tel");
+            Notification.notificationError("ERREUR", "entrer le numéro de téléphone");
             return;
         }
         if (txtNumtel.getText().length() != 8) {
-            validationtNumtel.setText("Il faut 8 chiffre");
+            Notification.notificationError("ERREUR", "numéro de téléphone doit contenir 8 chiffres");
             return;
-
         }
         if (txtVille.getText().isEmpty()) {
-            validationtVille.setText("svp entrer le nom de la ville");
+            Notification.notificationError("ERREUR", "entrer le nom de la ville");
             return;
         }
         if (txtRue.getText().isEmpty()) {
-            validationtRue.setText("svp entrer le rue de la ville");
+
+            Notification.notificationError("ERREUR", "entrer le rue de la ville");
             return;
         }
         if (txtCodePostal.getText().isEmpty()) {
-            validationtCodePostal.setText("svp entrer le code postal");
+
+            Notification.notificationError("ERREUR", "entrer le code postal");
             return;
         }
         if (txtCodePostal.getText().length() != 4) {
-            validationtCodePostal.setText("Il faut 4 chiffre");
+
+            Notification.notificationError("ERREUR", "code postale doit contenir 4 chiffre");
             return;
         }
         if (txtPrix.getText().isEmpty()) {
-            validationtPrix.setText("svp entrer le prix");
+
+            Notification.notificationError("ERREUR", "entrer le prix");
             return;
         }
-        if (txtDuration.getText().isEmpty()){
-        validationtDuration.setText("svp entrer la duration ");
-        return;
+        if (Integer.valueOf(txtPrix.getText()) <= 0) {
+            Notification.notificationError("ERREUR", "Prix doit étre positif");
+            return;
+        }
+
+        if (txtDuration.getText().isEmpty()) {
+            Notification.notificationError("ERREUR", "entrer la duration");
+            return;
         }
         if (txtDescription.getText().isEmpty()) {
-            validationtDescription.setText("svp entrer la description");
+
+            Notification.notificationError("ERREUR", "entrer la description");
             return;
-            
+        }
+        if (txtDescription.getText().isEmpty()) {
+
+            Notification.notificationError("ERREUR", "entrer la description");
+            return;
         }
 
 //        SalleSport p = new SalleSport(Integer.parseInt(txtNumtel.getText()), Integer.parseInt(txtCodePostal.getText()), (txtNom.getText()), txtVille.getText(), txtRue.getText(), txtDescription.getText(), txtDuration.getText(),Float.valueOf(txtPrix.getText()) );
@@ -186,8 +206,31 @@ public class AddSalleDeSportController implements Initializable {
         p.setPrix(Float.valueOf(txtPrix.getText()));
         p.setImageVitrine(String.valueOf(filepath.getFileName()));
         p.setFk_idUser(idUser);
+        System.out.println();
         ip.ajouterSalleSport(p);
-//        init();
+        Notification.notificationSuccess("SALLE DE SPORT AJOUTER AVEC SUCCESS", "Merci");
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+        Scene scene = new Scene(root);
+
+    }
+
+    private void clear() {
+
+        validationNom.setText("");
+
+        validationtNumtel.setText("");
+
+        validationtVille.setText("");
+
+        validationtRue.setText("");
+        //////
+        validationtCodePostal.setText("");
+
+        validationtDuration.setText("");
+
+        validationtDescription.setText("");
+
     }
 
     @FXML
@@ -214,18 +257,19 @@ public class AddSalleDeSportController implements Initializable {
             xxx = new File(newpath + randomStringforimage() + "." + extension);
             filepath = Files.copy(sourceFile.toPath(), xxx.toPath());
             System.out.println(filepath);
-               //System.out.println(destinationFile);
+            //System.out.println(destinationFile);
             System.out.println(xxx);
             //taimage.appendText(file.getAbsolutePath() + "\n");
             imgVitrine.setImage(new Image(file.toURI().toString()));
             //System.out.println(imgVitrine);
-            System.out.println("********************"+file.toURI().toString());
-            System.out.println("filename = " +filepath.getFileName());
+            System.out.println("********************" + file.toURI().toString());
+            System.out.println("filename = " + filepath.getFileName());
         } else {
+
             System.out.println("file is invalide");
         }
     }
-    
+
     public static String randomStringforimage() {
         //   String  randomString  =null;
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -254,5 +298,24 @@ public class AddSalleDeSportController implements Initializable {
         String randomString = sb.toString();
 
         return randomString;
+    }
+
+    @FXML
+    private void backToDashboard(ActionEvent event) throws IOException {
+        Stage stage = (Stage) back.getScene().getWindow();
+
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+        Scene scene = new Scene(root);
+        Image icon;
+        icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Dashboard");
+        primaryStage.setScene(scene);
+
+        primaryStage.sizeToScene();
+        primaryStage.show();
     }
 }

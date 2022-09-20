@@ -35,6 +35,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -66,8 +67,12 @@ public class ListSallePssController implements Initializable {
     private ComboBox<String> clientComboBox;
     @FXML
     private ScrollPane scrollListSalle;
+    private int idRole;
+    private int idUser;
     @FXML
-    private int idRole, idUser;
+    private Button ajoutSalleDeSport;
+    @FXML
+    private HBox hboxScene;
    
  
 
@@ -256,5 +261,15 @@ public class ListSallePssController implements Initializable {
         myCircle.setFill(new ImagePattern(im));
         myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
         myCircle.setStroke(Color.WHITESMOKE);
+    }
+
+    @FXML
+    private void ajoutSalleDeSport(ActionEvent event) throws IOException {
+           Parent root = FXMLLoader.load(getClass().getResource("../addSalleDeSport/addSalleDeSport.fxml"));
+ 
+        
+      
+        hboxScene.getChildren().removeAll();
+        hboxScene.getChildren().setAll(root);
     }
 }

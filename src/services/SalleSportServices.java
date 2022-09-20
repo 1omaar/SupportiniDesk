@@ -83,14 +83,7 @@ public class SalleSportServices implements ISalleSport {
             ps.setInt(10, s.getFk_idUser());
 
             ps.executeUpdate();
-            System.out.println("PS :Salle ajoutée avec succés!");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Salle De Sport AJOUTER");
-
-            alert.setHeaderText("AJOUTER AVEC SUCCES");
-            alert.setContentText("Salle De Sport AJOUTER AVEC SUCCES!");
-
-            alert.showAndWait();
+           
         } catch (SQLException ex) {
             Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,14 +132,7 @@ public class SalleSportServices implements ISalleSport {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, s.getId());
             ps.executeUpdate();
-            System.out.println("PS : sallesport supprimé avec succés!");
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("supprimer de coaching");
-
-            alert.setHeaderText("supprission de caoching terminée");
-            alert.setContentText("supprission de caoching terminée");
-            alert.showAndWait();
+          
         } catch (SQLException ex) {
             Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
         }

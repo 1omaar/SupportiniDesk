@@ -52,14 +52,7 @@ public class MaterielServices implements Imateriel {
             ps.setInt(6, m.getFk_idSalle());
 
             ps.executeUpdate();
-            System.out.println("PS :material Salle De Sport ajoutée avec succés!");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("material Salle De Sport AJOUTER");
-
-            alert.setHeaderText("AJOUTER AVEC SUCCES");
-            alert.setContentText("material Salle De Sport AJOUTER AVEC SUCCES!");
-
-            alert.showAndWait();
+  
         } catch (SQLException ex) {
             Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,5 +87,19 @@ public class MaterielServices implements Imateriel {
             Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public void supprimerMateriel(MaterielSalle m) {
+                String req = "DELETE FROM materialsalle where id =?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, m.getId());
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

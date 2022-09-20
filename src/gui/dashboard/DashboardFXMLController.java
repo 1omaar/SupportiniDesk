@@ -333,7 +333,6 @@ public class DashboardFXMLController implements Initializable {
         scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
     }
-
     @FXML
     private void MesSalleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
@@ -355,20 +354,32 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     public void salleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
-        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
-        scenePane.getChildren().removeAll();
-        scenePane.getChildren().setAll(root);
 
-        scenePane.setHgrow(root, Priority.ALWAYS);
-        scenePane.setAlignment(Pos.CENTER);
-        scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-//        Scene newScene;
-//        newScene = new Scene(root);
-//        Stage mainWindow;
-//        mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        
-//        mainWindow.setScene(newScene);
+        Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
+          scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);
+        
+         scenePane.setHgrow( root, Priority.ALWAYS);
+          scenePane.setAlignment(Pos.CENTER);
+          scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+//    public void dashPss(ActionEvent event) throws IOException {
+//    switch (idRole) {
+//        case 4:{
+//               clientComboBox.getSelectionModel().clearSelection();
+//        Parent root = FXMLLoader.load(getClass().getResource("../dashPss/dashPss.fxml"));
+//        scenePane.getChildren().removeAll();
+//        scenePane.getChildren().setAll(root);
+//        }
+////        default:{
+////               clientComboBox.getSelectionModel().clearSelection();
+////        Parent root = FXMLLoader.load(getClass().getResource("../xxx/xxx.fxml"));
+////        scenePane.getChildren().removeAll();
+////        scenePane.getChildren().setAll(root);
+////        }
+  
 
     @FXML
     public void itemDash(ActionEvent event) throws IOException {
@@ -455,6 +466,13 @@ public class DashboardFXMLController implements Initializable {
 //        scenePane.setHgrow( root, Priority.ALWAYS);
 //    }
 
+    
+   
+
+
+
+
+
    
     @FXML
     private void affsuivi(ActionEvent event) throws IOException {
@@ -471,6 +489,7 @@ public class DashboardFXMLController implements Initializable {
             scenePane.getChildren().setAll(root);
         }
     }
+
 
 
 }

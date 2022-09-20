@@ -164,4 +164,13 @@ public class DashboardController implements Initializable {
 
         });
     }
+
+    @FXML
+    private void gestionSalleDeSport(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("../dashboardSalleDeSport/GestionSalleDeSport.fxml"));
+        scene.getChildren().removeAll();
+        scene.getChildren().setAll(root);
+        scene.setAlignment(Pos.CENTER);
+        VBox.setVgrow(root, Priority.ALWAYS);
+    }
 }

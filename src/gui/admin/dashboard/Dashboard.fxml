@@ -39,7 +39,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="211.0" styleClass="btnSidebar" text="Gestion Salle de Sports">
+            <Button mnemonicParsing="false" onAction="#gestionSalleDeSport" prefHeight="35.0" prefWidth="211.0" styleClass="btnSidebar" text="Gestion Salle de Sports">
                <font>
                   <Font name="Cambria" size="19.0" />
                </font>
