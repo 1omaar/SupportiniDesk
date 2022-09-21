@@ -82,7 +82,7 @@ public class ProduitsFXMLController implements Initializable {
                     ItemController itemController = fxmlLoader.getController();
                     itemController.setData(produits.get(i), myListener);
 
-                    if (column == 2) {
+                    if (column == 4) {
                         column = 0;
                         row++;
                     }
