@@ -117,35 +117,7 @@ public class ModifierController implements Initializable {
 
     @FXML
     private void AjouterImage(ActionEvent event) throws IOException, IOException {
-//                fc.setTitle("Uplode Image");
-//        fc.setInitialDirectory(new File(System.getProperty("user.home")));
-//        fc.getExtensionFilters().clear();
-//        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all file", "*.*"),
-//                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-//        File file = fc.showOpenDialog(null);
-//        if (file != null) {
-//           
-//            String x = file.getAbsolutePath();
-//            String newpath = "src/gui/uicontrolers/images/";
-//            File dir = new File(newpath);
-//            if (!dir.exists()) {
-//                // folder wa7dd ken barchaa mkdirs
-//                dir.mkdirs();
-//            }
-//            File sourceFile = null;
-//            File destinationFile = null;
-//            String extension = x.substring(x.lastIndexOf('.') + 1);
-//            sourceFile = new File(x);
-//            String name=randomStringforimage();
-//            xxx = new File(newpath + name + "." + extension);
-//            Files.copy(sourceFile.toPath(), xxx.toPath());
-//            //   System.out.println(destinationFile);
-//            nameImage=name + "." + extension;
-//          
-//            img.setImage(new Image(file.toURI().toString()));
-//        } else {
-//            System.out.println("file is invalide");
-//        }
+                                    
 
  fc.setTitle("Uplode Image");
         fc.setInitialDirectory(new File(System.getProperty("user.home")));

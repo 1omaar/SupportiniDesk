@@ -89,8 +89,14 @@
                            <children>
                               <Pane prefHeight="66.0" prefWidth="469.0">
                                  <children>
-                                    <Button fx:id="btnmodifier" layoutX="107.0" layoutY="21.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-                                    <Button fx:id="btnSupprimer" layoutX="219.0" layoutY="21.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+                                    <Button fx:id="btnmodifier" layoutX="70.0" layoutY="34.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #ffffff;" text="Modifier">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font></Button>
+                                    <Button fx:id="btnSupprimer" layoutX="178.0" layoutY="34.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #ffffff;" text="Supprimer">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Button>
                                  </children>
                               </Pane>
                            </children>
@@ -115,7 +121,7 @@
                      <children>
                         <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Hyperlink layoutX="14.0" layoutY="13.0" onAction="#AjouterAnnonce" text="Ajouter une Annonce">
+                              <Hyperlink layoutX="95.0" layoutY="20.0" onAction="#AjouterAnnonce" text="Ajouter une Annonce" textFill="#f16c31">
                                  <font>
                                     <Font name="Cambria" size="24.0" />
                                  </font>
@@ -135,9 +141,9 @@
                      <children>
                         <Pane prefHeight="100.0" prefWidth="656.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label layoutX="88.0" layoutY="14.0" prefHeight="46.0" prefWidth="129.0" text="Mes annonces ">
+                              <Label layoutX="146.0" layoutY="14.0" prefHeight="46.0" prefWidth="159.0" text="Mes annonces " textFill="#f16c31">
                                  <font>
-                                    <Font name="Cambria" size="18.0" />
+                                    <Font name="Cambria Bold" size="18.0" />
                                  </font>
                               </Label>
                            </children></Pane>

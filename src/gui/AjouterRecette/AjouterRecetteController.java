@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -38,9 +39,9 @@ public class AjouterRecetteController implements Initializable {
     @FXML
     private TextField Txtnom;
     @FXML
-    private TextField TxtIng;
+    private TextArea TxtIng;
     @FXML
-    private TextField Txtpreparation;
+    private TextArea Txtpreparation;
       private String nameImage;
 
       final FileChooser fc = new FileChooser();

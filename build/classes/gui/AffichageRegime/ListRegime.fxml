@@ -22,11 +22,10 @@
    <children>
       <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="644.0" prefWidth="436.0" style="-fx-background-color: transparant;" styleClass="right-bar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="644.0" prefWidth="436.0" style="-fx-background-color: transparan;" styleClass="right-bar" stylesheets="@style.css" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0" />
                   <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
-                  <VBox fx:id="chosenFruitCard" alignment="TOP_CENTER" prefHeight="607.0" prefWidth="336.0" stylesheets="@../values/style.css">
+                  <VBox fx:id="chosenFruitCard" alignment="TOP_CENTER" prefHeight="645.0" prefWidth="336.0" stylesheets="@../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
@@ -35,7 +34,7 @@
                            <children>
                               <Pane prefHeight="222.0" prefWidth="540.0">
                                  <children>
-                                    <Label prefHeight="48.0" prefWidth="149.0" text="Petit Dej" textFill="#1a04e1">
+                                    <Label prefHeight="48.0" prefWidth="275.0" text="Petit déjeuner" textFill="WHITE">
                                        <font>
                                           <Font name="Cambria" size="36.0" />
                                        </font>
@@ -55,7 +54,7 @@
                            <children>
                               <Pane prefHeight="252.0" prefWidth="540.0">
                                  <children>
-                                    <Label prefHeight="48.0" prefWidth="149.0" text="dej" textFill="#1a04e1">
+                                    <Label layoutX="14.0" prefHeight="48.0" prefWidth="149.0" text="Déjeuner" textFill="WHITE">
                                        <font>
                                           <Font name="Cambria" size="36.0" />
                                        </font>
@@ -69,7 +68,7 @@
                            <children>
                               <Pane prefHeight="252.0" prefWidth="540.0">
                                  <children>
-                                    <Label prefHeight="48.0" prefWidth="149.0" text="Dinner" textFill="#1a04e1">
+                                    <Label layoutX="14.0" prefHeight="48.0" prefWidth="149.0" text="Dinner" textFill="WHITE">
                                        <font>
                                           <Font name="Cambria" size="36.0" />
                                        </font>
@@ -83,9 +82,9 @@
                            <children>
                               <Pane prefHeight="24.0" prefWidth="336.0">
                                  <children>
-                                    <Button fx:id="btnSuppRegime" layoutX="113.0" layoutY="15.0" mnemonicParsing="false" onAction="#SupprimerRegime" text="Supprimer" />
-                                    <Button fx:id="btnmodifier" layoutX="32.0" layoutY="15.0" mnemonicParsing="false" onAction="#ModifierR" text="modifier" />
-                                    <Button layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#AjouterRecette" text="Ajouter Recette" />
+                                    <Button fx:id="btnSuppRegime" layoutX="110.0" layoutY="15.0" mnemonicParsing="false" onAction="#SupprimerRegime" style="-fx-background-color: #ffffff;" text="Supprimer" />
+                                    <Button fx:id="btnmodifier" layoutX="25.0" layoutY="15.0" mnemonicParsing="false" onAction="#ModifierR" style="-fx-background-color: #ffffff;" text="modifier" />
+                                    <Button layoutX="212.0" layoutY="15.0" mnemonicParsing="false" onAction="#AjouterRecette" style="-fx-background-color: #ffffff;" text="Ajouter Recette" />
                                  </children>
                               </Pane>
                            </children>
@@ -140,16 +139,16 @@
                                     </GridPane>
                                  </content>
                               </ScrollPane>
-                              <Hyperlink fx:id="lienAjouReg" layoutX="194.0" layoutY="34.0" onAction="#AjouterRegime" text="Ajouter un Regime" />
-                              <Button fx:id="btnRetour" layoutX="369.0" layoutY="4.0" mnemonicParsing="false" onAction="#RetourToEspace" prefHeight="49.0" prefWidth="52.0">
-                                 <graphic>
-                                    <ImageView fitHeight="43.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../uicontrolers/icone_retour.jpg" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
+                              <Hyperlink fx:id="lienAjouReg" layoutX="129.0" layoutY="37.0" onAction="#AjouterRegime" text="Ajouter un Regime" textFill="#f16c31">
+                                 <font>
+                                    <Font name="Cambria" size="20.0" />
+                                 </font></Hyperlink>
+                              <Button fx:id="btnRetour" layoutX="369.0" layoutY="4.0" mnemonicParsing="false" onAction="#RetourToEspace" prefHeight="49.0" prefWidth="52.0" />
+                              <ImageView fitHeight="43.0" fitWidth="55.0" layoutX="374.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../uicontrolers/icone_retour.jpg" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Pane>
                      </children>

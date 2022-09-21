@@ -32,7 +32,7 @@
                            <children>
                               <Pane prefHeight="222.0" prefWidth="540.0">
                                  <children>
-                                    <Label prefHeight="48.0" prefWidth="149.0" text="Petit Dej" textFill="#1a04e1">
+                                    <Label prefHeight="48.0" prefWidth="240.0" text="Petit déjeuner" textFill="WHITE">
                                        <font>
                                           <Font name="Cambria" size="36.0" />
                                        </font>
@@ -52,7 +52,7 @@
                            <children>
                               <Pane prefHeight="252.0" prefWidth="540.0">
                                  <children>
-                                    <Label prefHeight="48.0" prefWidth="149.0" text="dej" textFill="#1a04e1">
+                                    <Label prefHeight="48.0" prefWidth="149.0" text="Déjeuner" textFill="WHITE">
                                        <font>
                                           <Font name="Cambria" size="36.0" />
                                        </font>
@@ -66,7 +66,7 @@
                            <children>
                               <Pane prefHeight="252.0" prefWidth="540.0">
                                  <children>
-                                    <Label prefHeight="48.0" prefWidth="149.0" text="Dinner" textFill="#1a04e1">
+                                    <Label prefHeight="48.0" prefWidth="149.0" text="Dinner" textFill="WHITE">
                                        <font>
                                           <Font name="Cambria" size="36.0" />
                                        </font>
@@ -80,7 +80,10 @@
                            <children>
                               <Pane prefHeight="98.0" prefWidth="564.0">
                                  <children>
-                                    <Button fx:id="ConsulterRecette" layoutX="93.0" layoutY="15.0" mnemonicParsing="false" onAction="#ConsulterRecette" text="Recette pour vous aider" />
+                                    <Button fx:id="ConsulterRecette" layoutX="66.0" layoutY="2.0" mnemonicParsing="false" onAction="#ConsulterRecette" prefHeight="38.0" prefWidth="184.0" style="-fx-background-color: #ffffff;" text="Recette pour vous aider">
+                                       <font>
+                                          <Font name="Cambria" size="14.0" />
+                                       </font></Button>
                                  </children></Pane>
                            </children>
                         </HBox>

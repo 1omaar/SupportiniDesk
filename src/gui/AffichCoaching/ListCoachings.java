@@ -92,7 +92,7 @@ public class ListCoachings implements Initializable {
         @Override
     public void initialize(URL location, ResourceBundle resources) {
         /////////liste de combobox//////
-        ObservableList<String> ListD = FXCollections.observableArrayList("tous","natation","foot","equitation");
+        ObservableList<String> ListD = FXCollections.observableArrayList("tous","natation","foot","equitation","kayak","Box","dance");
         CombiDiscipline.setItems(ListD);
         
         
@@ -279,9 +279,13 @@ public class ListCoachings implements Initializable {
         fruitNameLable.setText(Coachings.getTitre());
        prixlab.setText(Coachings.getPrix());
 //       labdiscipline.setText(Coachings.getDiscipline());
+
+
+
        txtDescription.getChildren().clear();
         Text t1 = new Text(Coachings.getDescription());
         txtDescription.getChildren().add(t1);
+        t1.setStyle("-fx-font-family: serif;-fx-font-size: 20px;");
 
         //   this.img.setImage(image);
      
