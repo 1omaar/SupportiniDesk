@@ -53,9 +53,9 @@
                               <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="TxtType" layoutX="111.0" layoutY="40.0" text="labType">
+                        <Label fx:id="TxtType" layoutX="95.0" layoutY="42.0" prefHeight="30.0" prefWidth="257.0" text="labType">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="Cambria" size="24.0" />
                            </font>
                         </Label>
                      </children>

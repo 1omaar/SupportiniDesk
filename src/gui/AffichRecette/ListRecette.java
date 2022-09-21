@@ -184,11 +184,13 @@ public class ListRecette implements Initializable {
        TxtIng.getChildren().clear();
         Text t1 = new Text(Recette.getIngredien());
         TxtIng.getChildren().add(t1);
+        t1.setStyle("-fx-font-family: serif;-fx-font-size: 20px;");
 
       
      TxtPreparation.getChildren().clear();
         Text t2 = new Text(Recette.getPrepatation());
         TxtPreparation.getChildren().add(t2);
+        t1.setStyle("-fx-font-family: serif;-fx-font-size: 20px;");
 
      
     

@@ -93,7 +93,7 @@ public class ListCoachings implements Initializable {
     private ComboBox CombiDiscipline;
   
     
-    
+    private String path;
      static int idRole, idUser , idselect , nb , nbI,idCoach;
     static String des , disc , titre,prx,pl ;
     
@@ -107,7 +107,7 @@ public class ListCoachings implements Initializable {
         @Override
     public void initialize(URL location, ResourceBundle resources) {
         /////////liste de combobox//////
-        ObservableList<String> ListD = FXCollections.observableArrayList("tous","natation","foot","equitation");
+        ObservableList<String> ListD = FXCollections.observableArrayList("tous","natation","foot","equitation","kayak","Box","dance");
         CombiDiscipline.setItems(ListD);
         
         try {
@@ -285,11 +285,15 @@ public class ListCoachings implements Initializable {
         fruitNameLable.setText(Coachings.getTitre());
         prixlab.setText(Coachings.getPrix());
 //       labdiscipline.setText(Coachings.getDiscipline());
-      
-          txtDescription.getChildren().clear();
+
+
+
+
+       txtDescription.getChildren().clear();
         Text t1 = new Text(Coachings.getDescription());
         txtDescription.getChildren().add(t1);
-        String path;
+        t1.setStyle("-fx-font-family: serif;-fx-font-size: 20px;");
+
 
         //   this.img.setImage(image);
         path = Coachings.getImage();
