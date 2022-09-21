@@ -110,12 +110,6 @@ public class DatePickerController implements Initializable {
         return suivis;
     }
     
-    public <List>Suivi filterData(Date date){
-
-        
-        return null;
-        
-    }
 
     private void setChosenSuivi(Suivi suivi) {
         name_perdate.setText(String.valueOf("Date Suivi : " + suivi.getDateSuivi()));
