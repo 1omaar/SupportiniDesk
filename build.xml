@@ -7,8 +7,10 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="Supportini" default="default" basedir=".">
-    <description>Builds, tests, and runs the project Supportini.</description>
+
+<project name="Supportini_Mouhib" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Supportini_Mouhib.</description>
+
     <import file="nbproject/build-impl.xml"/>
     <!--
 
@@ -58,7 +60,11 @@
 
     An example of overriding the target for project execution could look like this:
 
-        <target name="run" depends="Supportini-impl.jar">
+<<<<<<< HEAD
+        <target name="run" depends="Supportini_Mouhib-impl.jar">
+=======
+        <target name="run" depends="SupportiniHassen-impl.jar">
+>>>>>>> 651dfc5c180193db3190608696d60e406e298779
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>
             </exec>

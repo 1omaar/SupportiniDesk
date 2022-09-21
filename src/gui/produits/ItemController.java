@@ -1,6 +1,7 @@
 
 package gui.produits;
 import Exception.AuthException;
+import static gui.produits.ProduitsFXMLController.chosenproduct;
 import interfaces.ILignePanier;
 import interfaces.IPanier;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import org.json.JSONException;
 import services.LignePanierservices;
 import services.Panierservices;
 import util.JWebToken;
+import util.Notification;
 
 /**
  * FXML Controller class
@@ -85,7 +87,7 @@ public class ItemController implements Initializable{
     private void Ajoutpanier(ActionEvent event) {
         IPanier ip =new Panierservices();
            ILignePanier il = new LignePanierservices();
-           
+          if(isStock()) {
            if (ip.querypanier(idUser)instanceof Panier){
                Panier panier= ip.querypanier(idUser);
                
@@ -102,7 +104,8 @@ public class ItemController implements Initializable{
 ////                 finpp.setPrix(prix);
 //                
 ////                 ip.updateprixpanier(finpp);
-//                 
+                 Preferences userPreferences = Preferences.userRoot();
+               userPreferences.put("id_panier", String.valueOf(panier.getId()));
 //               }else{
                   // create ligne  panier 
                  LignePanier newLignePanier = new LignePanier(panier.getId(), Prod.getId(), 1, Prod.getPrix());
@@ -112,12 +115,16 @@ public class ItemController implements Initializable{
                    ip.updateprixpanier(panier);
               
                
-               
-               System.out.println("panier");
+               Notification.notificationSuccess("Produit ajouté avec succés", "Merci");
+
+               System.out.println("produit ajouté au panier");
            }else{
                Panier p = new Panier(Prod.getPrix(), idUser);
+               
                ip.addPanier(p);
                int idPanier= ip.querypanier(idUser).getId();
+               Preferences userPreferences = Preferences.userRoot();
+               userPreferences.put("id_panier", String.valueOf(idPanier));
                System.out.println(ip.querypanier(idUser));
              
                   // create ligne  panier 
@@ -126,7 +133,16 @@ public class ItemController implements Initializable{
                  il.AjoutLignePanier(newLignePanier);
                
            }
+    }else 
+             Notification.notificationError("ERREUR", "Le produit est hors stock");
     }
+    private boolean isStock() {
+     if (Prod.getQuantite()<chosenproduct.getQuantite()) {
+         return false;
+    }else
+         return true;
+        
     
     
+    }   
 }

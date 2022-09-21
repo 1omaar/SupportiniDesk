@@ -11,15 +11,13 @@ package model;
  */
 public class Utilisateur {
 
-    private int id, idRole;
+    private int id, idRole ,status;
     private String nom, prenom, password, email, cin, phone,imageName;
     //constructeur
 
     public Utilisateur() {
     }
-public Utilisateur(int id){
-    this.id=id;
-}
+
     public Utilisateur(String nom, String prenom, String password, String email, String cin, String phone) {
         this.nom = nom;
         this.prenom = prenom;
@@ -29,7 +27,7 @@ public Utilisateur(int id){
         this.phone = phone;
     }
 
-    public Utilisateur(int id, String nom, String prenom, String password, String email, String cin, String phone, int idRole,String image) {
+    public Utilisateur(int id, String nom, String prenom, String password, String email, String cin, String phone, int idRole,String image, int status) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -39,6 +37,7 @@ public Utilisateur(int id){
         this.idRole = idRole;
         this.phone = phone;
         this.imageName=image;
+        this.status=status;
 
     }
      
@@ -51,6 +50,10 @@ public Utilisateur(int id){
    
 
    
+
+    public int getStatus() {
+        return status;
+    }
 
     public String getImageName() {
         return imageName;
@@ -112,7 +115,10 @@ public Utilisateur(int id){
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", prenom=" + prenom +", email=" + email + ", cin=" + cin + ", phone=" + phone + '}';
+       
+
+        return "Utilisateur{" + "id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + ", cin=" + cin + ", phone=" + phone + ", imageName=" + imageName + ", status=" + status + '}';
+
     }
 
     public void setEmail(String email) {
@@ -129,6 +135,10 @@ public Utilisateur(int id){
 
     public String getEmail() {
         return email;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
    

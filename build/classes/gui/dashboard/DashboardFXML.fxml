@@ -39,10 +39,30 @@
                               <Image url="@../uicontrolers/36-365828_navbar-toggle-icon-menu-hamburger-png-white.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="Ajout" mnemonicParsing="false" onAction="#Consultercommande" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../uicontrolers/Lovepik_com-400282196-shopping-cart-linear-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="iconSuivi" mnemonicParsing="false" onAction="#affsuivi" prefHeight="62.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView fitHeight="48.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../uicontrolers/Lovepik_com-400282196-shopping-cart-linear-icon.png" />
+                              <Image url="@../uicontrolers/suivi.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </ImageView>
                      </children>
                   </HBox>
@@ -87,11 +107,12 @@
          <children>
             <VBox fx:id="iconBar" prefHeight="700.0" prefWidth="66.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <GridPane prefHeight="350.0" prefWidth="38.0">
+                  <GridPane prefHeight="350.0" prefWidth="66.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -134,15 +155,24 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                        <HBox fx:id="containIcon" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                           <children>
+                              <ImageView fx:id="iconMesSalle" fitHeight="50.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../uicontrolers/ownerGym.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                            <children>
                               <ImageView fx:id="iconCoach" fitHeight="30.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../uicontrolers/77-777303_referee-whistle-whistle-icon-hd-png-download.png" />
                                  </image>
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
                               </ImageView>
                            </children>
                         </HBox>
@@ -157,6 +187,7 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -211,6 +242,20 @@
                               </Button>
                            </children>
                         </HBox>
+
+                        <HBox fx:id="containBtn" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                           <children>
+                              <Button fx:id="btnMesSalleDeSport" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#MesSalleDeSport" prefHeight="62.0" prefWidth="171.0" styleClass="btnDashboard" stylesheets="@dashboardfxml.css" text="Mes salle de sport">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+
                      </children>
                   </GridPane>
                </children>

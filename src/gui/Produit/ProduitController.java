@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.Produit;
 
 import interfaces.ICategories;
 import interfaces.IProduits;
 import services.Categorieservices;
 import services.Produitservices;
-import gui.Categorie.CategoriesController;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,15 +56,11 @@ import util.MaConnexion;
  * @author Anis-PC
  */
 public class ProduitController implements Initializable {
-  @FXML
-    private ImageView image;
    int index = -1;
    String filename = null;
     byte[] person_image = null;
     // appel connexion 
     Connection cnx = MaConnexion.getInstance().getCnx();
-    @FXML 
-    private Button Acceuil;
 
     @FXML
     private TextField Description;
@@ -90,6 +81,7 @@ public class ProduitController implements Initializable {
 
     @FXML
     private ComboBox<Categories> categorie;
+    @FXML
     private Button pp;
     @FXML
     private TextField id;
@@ -135,6 +127,8 @@ public class ProduitController implements Initializable {
     private InputStream input;
      @FXML
     private ImageView img;
+    @FXML
+    private Button Catégories;
   
      
    
@@ -217,12 +211,12 @@ public class ProduitController implements Initializable {
     private void delete(ActionEvent event) throws SQLException {
 
         if (id.getText().equals("")) {
-            showMessageDialog(null, "you must select produit");
+            showMessageDialog(null, "vous devez selectionné un produit");
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Supprimer");
-            alert.setHeaderText("You're about to delete product!");
-            alert.setContentText("Do you want to delete ");
+            alert.setHeaderText("Vous êtes sur le point de supprimer le produit!");
+            alert.setContentText("Voulez-vous supprimer ");
             if (alert.showAndWait().get() == ButtonType.OK) {
 
                 PreparedStatement ps;
@@ -304,29 +298,29 @@ public class ProduitController implements Initializable {
         Pattern x = Pattern.compile(number);
         if (nomproduit.getText().equals("")) {
 
-            showMessageDialog(null, "nom produit text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte nom du produit ne peut pas être vide.");
             nomproduit.requestFocus();
         } else if (prix.getText().equals("")) {
-            showMessageDialog(null, "prix text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte prix ne peut pas être vide.");
             prix.requestFocus();
         
         } else if (Description.getText().equals("")) {
-            showMessageDialog(null, "Description text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte Description ne peut pas être vide.");
             Description.requestFocus();
         } else if (Quantite.getText().equals("") && Quantite.equals("[a-zA-Z_]+")) {
-            showMessageDialog(null, "Quantite text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte Quantite ne peut pas être vide.");
             Quantite.requestFocus();
         } else if (!x.matcher(Quantite.getText()).matches()) {
             showMessageDialog(null, "Quantite contains only number.");
             Quantite.requestFocus();
         } else if (!x.matcher(prix.getText()).matches()) {
-            showMessageDialog(null, "prix contains only number.");
+            showMessageDialog(null, "prix contient seulement des nombre.");
             prix.requestFocus();
         } else if (categorie.getSelectionModel().isSelected(-1)) {
-            showMessageDialog(null, "categorie  must be selected");
+            showMessageDialog(null, "vous devez sélectionner une catégorie");
             categorie.requestFocus();
         } else if (filename == null) {
-            showMessageDialog(null, "image required");
+            showMessageDialog(null, "image Obligatoire");
             pp.requestFocus();} 
         else {
             return true;
@@ -340,7 +334,7 @@ public class ProduitController implements Initializable {
     private void update(ActionEvent event) throws SQLException {
 
         if (id.getText().equals("")) {
-            showMessageDialog(null, "you must select produit");
+            showMessageDialog(null, "vous devez sélectionner un produit");
         } else {
 
             PreparedStatement cat;
@@ -413,11 +407,11 @@ public class ProduitController implements Initializable {
             if (fd.accept(f)) {
                 filename = f.getAbsolutePath();
             } else {
-                showMessageDialog(null, "invalid extension");
+                showMessageDialog(null, "extension invalide");
             }
 
         } else {
-            showMessageDialog(null, "you must select photo");
+            showMessageDialog(null, "vous devez sélectionner une photo");
         }
 
     }
@@ -445,4 +439,21 @@ public class ProduitController implements Initializable {
 
      
 
-    }}
+    }
+
+    @FXML
+    private void Catégoriesrediractor(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("../Categorie/Categories.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            
+            stage.setTitle("Gestion Catégories");
+            stage.setScene(scene);
+           
+            stage.sizeToScene();
+            stage.show();
+            
+      
+           
+        }
+    }

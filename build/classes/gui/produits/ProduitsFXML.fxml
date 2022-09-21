@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,92 +14,96 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" style="-fx-background-color: #fbb03c;" styleClass="produitsfxml" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.produits.ProduitsFXMLController">
-   <children>
-      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <VBox prefHeight="200.0" prefWidth="435.0" style="-fx-background-color: white;" styleClass="right-bar" BorderPane.alignment="CENTER">
+<BorderPane prefHeight="594.0" prefWidth="835.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="788.0" prefWidth="435.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@produitsfxml.css" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="search-box" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </HBox>
+            <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="chosenProdCard" alignment="CENTER" prefHeight="792.0" prefWidth="435.0" stylesheets="@produitsfxml.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
-                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@../../../../../../Downloads/test/src/values/style.css" VBox.vgrow="NEVER">
-                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="search-box" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                  </HBox>
-                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
-                  <VBox fx:id="chosenProdCard" alignment="CENTER" prefHeight="896.0" prefWidth="435.0" style="-fx-background-color: white;">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="335.0">
                      <children>
-                        <HBox prefHeight="60.0" prefWidth="335.0">
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="ProdNameLable" prefHeight="48.0" prefWidth="276.0" text="Vélo">
                                  <font>
                                     <Font name="Cambria" size="36.0" />
                                  </font>
                               </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
                               <Label fx:id="ProdPriceLabel" prefHeight="48.0" prefWidth="232.0" text="250TND">
                                  <font>
                                     <Font name="Cambria" size="36.0" />
                                  </font>
                               </Label>
                            </children>
-                           <VBox.margin>
-                              <Insets left="20.0" top="30.0" />
-                           </VBox.margin>
                         </HBox>
-                        <ImageView fx:id="ProdImg" fitHeight="500.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../img/velo.jpg" />
-                           </image>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </ImageView>
                      </children>
-                     <styleClass>
-                        <String fx:value="chosen-fruit-card" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                  </VBox>
-                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
-         </left>
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" top="30.0" />
                      </VBox.margin>
-                     <children>
-                        <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS" />
-                     </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" style="-fx-background-color: #fbb03c;" styleClass="transparent">
-                           <content>
-                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                 </rowConstraints>
-                              </GridPane>
-                           </content>
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                        </ScrollPane>
-                     </children>
-                  </HBox>
+                  <ImageView fx:id="ProdImg" fitHeight="500.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/velo.jpg" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
+               <styleClass>
+                  <String fx:value="right-bar" />
+                  <String fx:value="shadow" />
+               </styleClass>
             </VBox>
-         </center>
-      </BorderPane>
-   </children>
-</AnchorPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+               <children>
+                  <Pane prefHeight="65.0" prefWidth="393.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" style="-fx-background-color: #fbb03c;" styleClass="transparent">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

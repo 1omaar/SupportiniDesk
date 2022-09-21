@@ -30,7 +30,7 @@ import services.Categorieservices;
 
 public class ProduitsFXMLController implements Initializable {
 
-    Produit chosenproduct;
+   static Produit chosenproduct;
 
     @FXML
     private ImageView ProdImg;
@@ -82,7 +82,7 @@ public class ProduitsFXMLController implements Initializable {
                     ItemController itemController = fxmlLoader.getController();
                     itemController.setData(produits.get(i), myListener);
 
-                    if (column == 3) {
+                    if (column == 2) {
                         column = 0;
                         row++;
                     }

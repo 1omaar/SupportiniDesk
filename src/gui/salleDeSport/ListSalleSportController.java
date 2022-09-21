@@ -90,8 +90,9 @@ public class ListSalleSportController implements Initializable {
         int row = 1;
         try {
             incomingToken = new JWebToken(bearerToken);
+            System.out.println(bearerToken);
             if (!incomingToken.isValid()) {
-
+                
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
@@ -100,7 +101,8 @@ public class ListSalleSportController implements Initializable {
                 for (int i = 0; i < listSalleSport.size(); i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../ItemSalleSport/ItemSalleSportFXML.fxml"));
 
-                    HBox hbox = loader.load();
+                    HBox hbox;
+                    hbox = loader.load();
 
                     ItemSalleSportFXMLController c = loader.getController();
                     c.setData(listSalleSport.get(i));
@@ -124,7 +126,7 @@ public class ListSalleSportController implements Initializable {
                 
             }
 
-        } catch (IOException | JSONException | AuthException | InvalidKeyException ex) {
+        } catch (IOException | JSONException | AuthException | InvalidKeyException | URISyntaxException ex) {
             Logger.getLogger(ListSalleSportController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
