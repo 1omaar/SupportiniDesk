@@ -23,8 +23,10 @@ is divided into following sections:
 
 
 
+
 <project xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" basedir=".." default="default" name="Supportini-impl">
-1
+
+
 
     <fail message="Please build using Ant 1.8.0 or higher.">
         <condition>
@@ -458,7 +460,9 @@ is divided into following sections:
                 <taskdef classname="org.testng.TestNGAntTask" classpath="${run.test.classpath}" name="testng"/>
 
 
+
                 <testng classfilesetref="test.set" failureProperty="tests.failed" listeners="org.testng.reporters.VerboseReporter" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="Supportini" testname="TestNG tests" workingDir="${work.dir}">
+
 
 
                     <xmlfileset dir="${build.test.classes.dir}" includes="@{testincludes}"/>
@@ -612,7 +616,9 @@ is divided into following sections:
                     <isset property="test.method"/>
                 </condition>
 
+
                 <condition else="-suitename Supportini -testname @{testClass} ${test.class.or.method}" property="testng.cmd.args" value="@{testClass}">
+
 
 
                     <matches pattern=".*\.xml" string="@{testClass}"/>
@@ -908,7 +914,9 @@ is divided into following sections:
     <target if="already.built.jar.${basedir}" name="-warn-already-built-jar">
 
 
+
         <echo level="warn" message="Cycle detected: Supportini was already built"/>
+
 
 
     </target>
@@ -1397,7 +1405,9 @@ is divided into following sections:
     <target if="already.built.clean.${basedir}" name="-warn-already-built-clean">
 
 
+
         <echo level="warn" message="Cycle detected: Supportini was already built"/>
+
 
 
     </target>

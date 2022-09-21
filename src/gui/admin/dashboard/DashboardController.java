@@ -173,4 +173,13 @@ public class DashboardController implements Initializable {
         scene.setAlignment(Pos.CENTER);
         VBox.setVgrow(root, Priority.ALWAYS);
     }
+
+    @FXML
+    private void GestionCoachings(ActionEvent event) throws IOException {
+          Parent root = FXMLLoader.load(getClass().getResource("../dashboardCoachings/GestionCoachings.fxml"));
+        scene.getChildren().removeAll();
+        scene.getChildren().setAll(root);
+        scene.setAlignment(Pos.CENTER);
+        VBox.setVgrow(root, Priority.ALWAYS);
+    }
 }

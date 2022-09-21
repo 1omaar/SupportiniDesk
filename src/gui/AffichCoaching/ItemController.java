@@ -1,5 +1,8 @@
 package gui.AffichCoaching;
 
+
+import gui.PssAffiche.PssAfficheController;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,6 +11,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import interfaces.CoachingsListener;
+
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import model.Coachings;
 
 public class ItemController {
@@ -33,10 +41,16 @@ public class ItemController {
         this.Coachings = Coachings;
         this.CoachingsListener = CoachingsListener;
         nameLabel.setText(Coachings.getTitre());
-      
-        String path = Coachings.getImage();
-        Image aa = new Image("file:" + path);
 
-        img.setImage(aa);
+        
+         Image im;
+        try {
+            im = new Image(getClass().getResource("../uicontrolers/images/" + Coachings.getImage()).toURI().toString());
+            img.setImage(im);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+
     }
 }

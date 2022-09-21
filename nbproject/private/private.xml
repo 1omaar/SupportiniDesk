@@ -2,56 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/modifierSalleSport/ModifierSalleSportController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/addMaterielSalleDeSport/ItemMaterielController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/salleDeSport/ListSalleSportController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/addMaterielSalleDeSport/AjouterDeMaterielFXMLController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/addSalleDeSport/AddSalleDeSportController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/addMaterielSalleDeSport/AddMaterielSalleDeSportController.java</file>
-=======
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IEntrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/supportini/MainSupportini.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/profilcoachfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/dashboardfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/listsallesport.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IUtilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profilCoach/ProfilCoachFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Coach.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Entrainee.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/MaConnexion.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/UtilisateurServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/EntraineeServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/ItemSalleSport/ItemSalleSportFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/updateProfil/updateprofil.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IAuthentification.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/profilfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/Categorie/CategoriesController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/salleDeSport/ListSalleSportController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/login/LoginFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/CoachServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/profil/ProfilFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/util/Validation.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/Utilisateur.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/SalleSportServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/choice_profil/ChoiceProfilFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/ItemSalleSport/itemsallesportfxml.css</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/register/RegisterFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoTrainee/InfoTraineeFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/admin/dashboardUser/GestionUserController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/IGalerie.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/GalerieServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/dashboard/DashboardFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/interfaces/ICoach.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/gui/infoCoach/InfoCoachFXMLController.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/services/AuthServices.java</file>
-            <file>file:/C:/Users/Asus/Desktop/my_project/Supportini/src/model/GalerieImage.java</file>
->>>>>>> 1e7a0d82180343e656761d3ad0820efadabe00da
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/AffichRecette/style.css</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/AffichRecette/ListRecette.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-113/Desktop/Supportini/src/gui/AffichageRegime/style.css</file>
         </group>
-=======
-        <group/>
->>>>>>> fde8899a0f182ed05b58de364654b5f6b82907e1
     </open-files>
 </project-private>

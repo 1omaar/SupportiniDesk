@@ -50,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="215.0" styleClass="btnSidebar" text="Gestion Coaching">
+            <Button mnemonicParsing="false" onAction="#GestionCoachings" prefHeight="35.0" prefWidth="215.0" styleClass="btnSidebar" text="Gestion Coaching">
                <font>
                   <Font name="Cambria" size="19.0" />
                </font>
