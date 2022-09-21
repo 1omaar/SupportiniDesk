@@ -2,7 +2,9 @@ package gui.AffichCoaching;
 
 import Exception.AuthException;
 import gui.ModifSuppCoaching.MesCoaching;
-import gui.profil.ProfilFXMLController;
+
+import gui.PssAffiche.PssAfficheController;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,10 +27,12 @@ import interfaces.Isuivi;
 import model.Coachings;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.InvalidKeyException;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,10 +45,13 @@ import java.util.prefs.Preferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import model.Suivi;
 import org.json.JSONException;
 import services.DemandeSuivi_Service;
@@ -54,6 +61,7 @@ import services.UtilisateurServices;
 import services.feedback_Services;
 import util.JWebToken;
 import util.MaConnexion;
+import util.Notification;
 
 public class ListCoachings implements Initializable {
 
@@ -79,22 +87,29 @@ public class ListCoachings implements Initializable {
     @FXML
     private Label prixlab;
     @FXML
-    private TextArea txtDescription;
+
+    private TextFlow txtDescription;
     @FXML
     private ComboBox CombiDiscipline;
+  
+    
+    
+     static int idRole, idUser , idselect , nb , nbI,idCoach;
+    static String des , disc , titre,prx,pl ;
+    
 
-    static int idRole, idUser, idselect, nb;
-    static String des, disc, titre, prx, pl;
-    @FXML
-    private Button addcoaching;
-    int idCoach;
-
-    @Override
+    
+    
+    
+    
+    
+    
+        @Override
     public void initialize(URL location, ResourceBundle resources) {
         /////////liste de combobox//////
-        ObservableList<String> ListD = FXCollections.observableArrayList("tous", "natation", "foot", "equitation");
+        ObservableList<String> ListD = FXCollections.observableArrayList("tous","natation","foot","equitation");
         CombiDiscipline.setItems(ListD);
-
+        
         try {
             clist.addAll(getData());
             if (clist.size() > 0) {
@@ -117,7 +132,9 @@ public class ListCoachings implements Initializable {
                     ItemController itemController = fxmlLoader.getController();
                     itemController.setData(clist.get(i), CoachingsListener);
 
-                    if (column == 2) {
+
+                    if (column == 1) {
+
                         column = 0;
                         row++;
                     }
@@ -177,13 +194,15 @@ public class ListCoachings implements Initializable {
             try {
                 for (int i = 0; i < clist.size(); i++) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/gui/ModifSuppCoaching/item.fxml"));
+
+                    fxmlLoader.setLocation(getClass().getResource("./item.fxml"));
                     AnchorPane anchorPane = fxmlLoader.load();
 
-                    gui.ModifSuppCoaching.ItemController itemController = fxmlLoader.getController();
+                   ItemController itemController = fxmlLoader.getController();
                     itemController.setData(clist.get(i), CoachingsListener);
 
-                    if (column == 2) {
+                    if (column == 1) {
+
                         column = 0;
                         row++;
                     }
@@ -240,19 +259,21 @@ public class ListCoachings implements Initializable {
         List<Coachings> clist = new ArrayList<>();
         Coachings Coachings;
         String tt = "SELECT * FROM `coachings` ";
-
+    
         Statement statement;
 
         statement = cnx.createStatement();
         ResultSet queryoutput = statement.executeQuery(tt);
         while (queryoutput.next()) {
             Coachings = new Coachings();
+
             Coachings.setIdcoach(queryoutput.getInt("idcoach"));
             Coachings.setTitre(queryoutput.getString("titre"));
             Coachings.setPrix(queryoutput.getString("prix"));
             Coachings.setImage(queryoutput.getString("image"));
             Coachings.setDiscipline(queryoutput.getString("discipline"));
             Coachings.setDescription(queryoutput.getString("description"));
+
             clist.add(Coachings);
 
         }
@@ -264,18 +285,29 @@ public class ListCoachings implements Initializable {
         fruitNameLable.setText(Coachings.getTitre());
         prixlab.setText(Coachings.getPrix());
 //       labdiscipline.setText(Coachings.getDiscipline());
-        txtDescription.setText(Coachings.getDescription());
+      
+          txtDescription.getChildren().clear();
+        Text t1 = new Text(Coachings.getDescription());
+        txtDescription.getChildren().add(t1);
         String path;
 
         //   this.img.setImage(image);
         path = Coachings.getImage();
-        Image aa = new Image("file:" + path);
-        System.out.println(image);
-        fruitImg.setImage(aa);
+       
         chosenFruitCard.setStyle("-fx-background-color: #" + ";\n"
                 + "    -fx-background-radius: 30;");
-        idCoach = Coachings.getIdcoach();
+         int idCoach = Coachings.getIdcoach();
         System.out.println(idCoach);
+          idselect = Coachings.getId();
+  nbI=Coachings.getNbinscri();
+        System.out.println(nb);
+         Image im;
+        try {
+            im = new Image(getClass().getResource("../uicontrolers/images/" + Coachings.getImage()).toURI().toString());
+            fruitImg.setImage(im);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -313,9 +345,32 @@ public class ListCoachings implements Initializable {
             is.ajouterSuivi(suiviinit);
 
         } catch (JSONException | AuthException | IOException ex) {
-            Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListCoachings.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-}
+    
+
+    @FXML
+    private void inscrire(ActionEvent event) throws SQLException {
+        System.out.println("inscri");
+       
+         String req = "UPDATE coachings SET nbinscri=? WHERE id= ?";
+      
+            
+        System.out.println(nbI);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1,nbI+1 );
+            ps.setInt(2,idselect);
+        
+            
+
+            ps.executeUpdate();
+          Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "veuiller consulter vos suivies ");
+    }
+
+} 
+
+
+

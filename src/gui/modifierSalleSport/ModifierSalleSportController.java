@@ -165,7 +165,7 @@ public class ModifierSalleSportController implements Initializable {
 
         primaryStage.sizeToScene();
         primaryStage.show();
-    }
+        }     
     }
 
 

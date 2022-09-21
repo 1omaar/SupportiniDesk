@@ -1,6 +1,9 @@
 package gui.ModifSuppCoaching;
 
 import Exception.AuthException;
+
+import gui.PssAffiche.PssAfficheController;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +21,9 @@ import interfaces.CoachingsListener;
 import model.Coachings;
 
 import java.io.IOException;
+
+import java.net.URISyntaxException;
+
 import java.net.URL;
 import java.security.InvalidKeyException;
 import java.sql.Connection;
@@ -41,10 +47,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+
 import javafx.stage.Stage;
 import org.json.JSONException;
 import util.JWebToken;
 import util.MaConnexion;
+
+import util.Notification;
+
 import util.Statics;
 
 public class MesCoaching implements Initializable {
@@ -71,13 +84,11 @@ public class MesCoaching implements Initializable {
     @FXML
     private Label prixlab;
     @FXML
-    private TextArea txtDescription;
-    @FXML
-    private ComboBox CombiDiscipline;
-    static int idRole, idUser , idselect , nb , idcoach;
-    static String des , disc , titre,prx,pl ;
-    
-    
+
+    private TextFlow txtDescription;
+    static int idRole, idUser , idselect , nb , idcoach, nbI;
+    static String des , disc , titre,prx,pl ,img;
+
     @FXML
     private Button btnmodifier;
     @FXML
@@ -85,7 +96,11 @@ public class MesCoaching implements Initializable {
     
     private Coachings acoaching ;
     @FXML
-    private Label Txtid;
+
+ 
+
+    private Button btnRetour;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -106,13 +121,16 @@ public class MesCoaching implements Initializable {
             try {
                 for (int i = 0; i < clist.size(); i++) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/gui/ModifSuppCoaching/item.fxml"));
+
+                    fxmlLoader.setLocation(getClass().getResource("./item.fxml"));
+
                     AnchorPane anchorPane = fxmlLoader.load();
 
                     ItemController itemController = fxmlLoader.getController();
                     itemController.setData(clist.get(i), CoachingsListener);
 
-                    if (column == 2) {
+          if (column == 1) {
+
                         column = 0;
                         row++;
                     }
@@ -194,6 +212,9 @@ public class MesCoaching implements Initializable {
             Coachings.setImage(queryoutput.getString("image"));
             Coachings.setDiscipline(queryoutput.getString("discipline"));
             Coachings.setDescription(queryoutput.getString("description"));
+
+            Coachings.setNbmax(queryoutput.getInt("nbmax"));
+
             clist.add(Coachings);
 
 
@@ -206,18 +227,30 @@ public class MesCoaching implements Initializable {
         fruitNameLable.setText(Coachings.getTitre());
         prixlab.setText(Coachings.getPrix());
 //       labdiscipline.setText(Coachings.getDiscipline());
-        txtDescription.setText(Coachings.getDescription());
-           Txtid.setText(String.valueOf(Coachings.getId()));
-        String path;
+
+
+txtDescription.getChildren().clear();
+        Text t1 = new Text(Coachings.getDescription());
+        txtDescription.getChildren().add(t1);
+       
+         
+        
         //   this.img.setImage(image);
-        path = Coachings.getImage();
-        Image aa = new Image("file:" + path);
-        System.out.println(image);
-        fruitImg.setImage(aa);
+     
+       
         chosenFruitCard.setStyle("-fx-background-color: #" + ";\n"
                 + "    -fx-background-radius: 30;");
         
-        
+              
+         Image im;
+        try {
+            im = new Image(getClass().getResource("../uicontrolers/images/" + Coachings.getImage()).toURI().toString());
+            fruitImg.setImage(im);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         
 // recuperer les données dune annonce de coachings
   idselect = Coachings.getId();
@@ -227,10 +260,12 @@ public class MesCoaching implements Initializable {
   prx=Coachings.getPrix();
   pl=Coachings.getPrix();
   nb=Coachings.getNbmax();
-  
+
+   nbI=Coachings.getNbinscri();
   idcoach=Coachings.getIdcoach();
-  
- 
+  img=Coachings.getImage();
+      
+
        
         
        
@@ -250,6 +285,7 @@ public class MesCoaching implements Initializable {
            Statics.cc.setPlaning(pl);
             Statics.cc.setPrix(prx);
              Statics.cc.setNbmax(nb);
+
             
                //Statics.xx.setIdcoach(acoaching.getIdcoach());
              
@@ -262,26 +298,55 @@ public class MesCoaching implements Initializable {
     }
 
     @FXML
-    private void supprimer(ActionEvent event) {
-        
-      
+    private void supprimer(ActionEvent event) throws IOException {
+           
+            
            String req = "DELETE FROM  coachings where id =?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, idselect);
             ps.executeUpdate();
-            System.out.println("PS : sallesport supprimé avec succés!");
-             
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("supprimer de coaching");
 
-            alert.setHeaderText("supprission de caoching terminée");
-            alert.setContentText("supprission de caoching terminée");
- alert.showAndWait();
+            Notification.notificationSuccess("Coaching SUPPRIMER AVEC SUCCES", "Merci pour voter contribution ");
         } catch (SQLException ex) {
             Logger.getLogger(MesCoaching.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        
+       ////////////////////////////////
+              Stage stage = (Stage)btnSupprimer.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("/gui/dashboard/DashboardFXML.fxml"));
+     
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        ///////////////////////////////
+    }
+
+    @FXML
+    private void AjouterAnnonce(ActionEvent event) throws IOException {
+          //Statics.xx.setIdcoach(acoaching.getIdcoach());
+             Stage stage = (Stage)btnmodifier.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("../ajoutCoaching/AjouterCoach.fxml"));
+     
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void RetourToEspace(ActionEvent event) throws IOException {
+          Stage stage = (Stage)btnRetour.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+     
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }

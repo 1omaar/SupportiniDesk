@@ -12,7 +12,9 @@ package model;
 public class Regime {
     private int idregime ;
     private int idcoach;
-    private float nbkg ;
+
+    private int nbkg ;
+
     private String type ;
     private String nom ;
     private String petitdej ;
@@ -22,7 +24,9 @@ public class Regime {
     public Regime() {
     }
 
-    public Regime(int idcoach, float nbkg, String type, String nom, String petitdej, String dej, String dinner) {
+
+    public Regime(int idcoach, int nbkg, String type, String nom, String petitdej, String dej, String dinner) {
+
         this.idcoach = idcoach;
         this.nbkg = nbkg;
         this.type = type;
@@ -31,6 +35,18 @@ public class Regime {
         this.dej = dej;
         this.dinner = dinner;
     }
+
+    public Regime( int nbkg, String type, String nom, String petitdej, String dej, String dinner) {
+      
+        this.nbkg = nbkg;
+        this.type = type;
+        this.nom = nom;
+        this.petitdej = petitdej;
+        this.dej = dej;
+        this.dinner = dinner;
+    }
+
+    
 
     public int getIdregime() {
         return idregime;
@@ -52,7 +68,9 @@ public class Regime {
         return nbkg;
     }
 
-    public void setNbkg(float nbkg) {
+
+    public void setNbkg(int nbkg) {
+
         this.nbkg = nbkg;
     }
 
@@ -95,10 +113,14 @@ public class Regime {
     public void setDinner(String dinner) {
         this.dinner = dinner;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Regime{" + "idregime=" + idregime + ", idcoach=" + idcoach + ", nbkg=" + nbkg + ", type=" + type + ", nom=" + nom + ", petitdej=" + petitdej + ", dej=" + dej + ", dinner=" + dinner + '}';
+    }
 
     
     
+
     
 }

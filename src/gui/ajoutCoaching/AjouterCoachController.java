@@ -26,7 +26,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
+
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,11 +47,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
+import javafx.stage.Stage;
+
 import model.Coachings;
+import model.Salle;
+
 import org.json.JSONException;
 
 import services.CoachingsService;
 import util.JWebToken;
+
+import util.Notification;
+import util.Validation;
+
 
 /**
  * FXML Controller class
@@ -80,16 +94,38 @@ public class AjouterCoachController implements Initializable {
     
     
     
-    private int idRole , idUser ; 
 
-      ICoachings ic = new CoachingsService();
-  ObservableList<Coachings> listCoachings = FXCollections.observableArrayList();
-     PreparedStatement pst,ps;
+
+    private String nameImage;
+
+    private int idRole, idUser;
+
+    ICoachings ic = new CoachingsService();
+    ObservableList<Coachings> listCoachings = FXCollections.observableArrayList();
+    PreparedStatement pst, ps;
     int myIndex;
     int id;
     final FileChooser fc = new FileChooser();
-    private File file ;
-    File xxx = null ;
+    private File file;
+    File xxx = null;
+    @FXML
+    private Label VerifTitre;
+    @FXML
+    private Label VerifDiscipline;
+    @FXML
+    private Label VerifPlanning;
+    @FXML
+    private Label VerifPrix;
+    @FXML
+    private Label VerifNB;
+    @FXML
+    private Label VerifDescription;
+    @FXML
+    private Label VerifImage;
+    private Button retour;
+    private Button owner;
+    @FXML
+    private Button btnRetour;
 
     /**
      * Initializes the controller class.
@@ -111,43 +147,97 @@ public class AjouterCoachController implements Initializable {
                 String subject = incomingToken.getSubject();
                 idRole= Integer.parseInt(audience);
                  idUser =        Integer.parseInt(subject);
-                   System.out.println(idUser);
-                
+                  
             }
         } catch (JSONException | AuthException | IOException | InvalidKeyException ex) {
             Logger.getLogger(ListCoachings.class.getName()).log(Level.SEVERE, null, ex); ////////ItemDashFXMLController////
         }
     }    
 
+
+
     @FXML
-    private void Ajouter(ActionEvent event) {
-        
-         ICoachings ip = new CoachingsService();
+    private void Ajouter(ActionEvent event) throws IOException {
+        clear();
+        if (txtTitre.getText().isEmpty()) {
+            VerifTitre.setText("Entrez un Titre");
+            return;
+        }
+
+        if (txtDescription.getText().isEmpty()) {
+            VerifDescription.setText("Entrez une Description");
+            return;
+        }
+
+        if (txtNbMax.getText().isEmpty()) {
+            VerifNB.setText("Entrez un nombre");
+            return;
+        }
+        if (txtDiscipline.getText().isEmpty()) {
+            VerifDiscipline.setText("Entrez une Discipline");
+            return;
+        }
+
+        if (txtPrix.getText().isEmpty()) {
+            VerifPrix.setText("Entrez le Prix");
+            return;
+        }
+
+        if (txtPlaning.getText().isEmpty()) {
+            VerifPlanning.setText("Entrez un planing");
+            return;
+        }
+
+        ICoachings ip = new CoachingsService();
         Coachings p = new Coachings();
-        
-        
-        
+
 //       Coachings p = new Coachings(Integer.parseInt(txtIdCoach.getText()),txtTitre.getText(),  txtDiscipline.getText(), txtDescription.getText(),txtPlaning.getText(), txtPrix.getText());
         p.setIdcoach(idUser);
-              
+
+
         p.setTitre(txtTitre.getText());
         p.setDiscipline(txtDiscipline.getText());
         p.setDescription(txtDescription.getText());
         p.setPlaning(txtPlaning.getText());
         p.setPrix(txtPrix.getText());
-         p.setNbmax(Integer.parseInt(txtNbMax.getText()));
-          p.setNbinscri(0);
-          p.setImage(TxtImage.getText());
-        System.out.println(idUser);
+        p.setNbmax(Integer.parseInt(txtNbMax.getText()));
+        p.setNbinscri(0);
+        p.setImage(nameImage);
+      
         ip.ajouterCoaching(p);
-           Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("le coaching a ete ajouter avec succee");
-
-            alert.setHeaderText("le coaching a ete ajouter avec succee");
-            alert.setContentText("le coaching a ete ajouter avec succee");
-
-            alert.showAndWait();
+        Notification.notificationSuccess("ANNONCE DE COACHING AJOUTER AVEC SUCCES", "Merci pour voter contribution ");
+         
+    
         
+        /////////////////////
+              Stage stage = (Stage)btnAjouter.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("/gui/dashboard/DashboardFXML.fxml"));
+     
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+///////////////////////////////
+    }
+
+    private void clear() {
+
+        VerifTitre.setText("");
+
+        VerifDescription.setText("");
+
+        VerifDiscipline.setText("");
+
+        VerifImage.setText("");
+
+        VerifNB.setText("");
+
+        VerifPrix.setText("");
+
+        VerifPlanning.setText("");
+
+
     }
 
     @FXML
@@ -162,7 +252,7 @@ public class AjouterCoachController implements Initializable {
         if (file != null) {
            
             String x = file.getAbsolutePath();
-            String newpath = "src/images/";
+                String newpath = "src/gui/uicontrolers/images/";
             File dir = new File(newpath);
             if (!dir.exists()) {
                 // folder wa7dd ken barchaa mkdirs
@@ -172,11 +262,15 @@ public class AjouterCoachController implements Initializable {
             File destinationFile = null;
             String extension = x.substring(x.lastIndexOf('.') + 1);
             sourceFile = new File(x);
-            xxx = new File(newpath + randomStringforimage() + "." + extension);
+
+
+            String name = randomStringforimage();
+            xxx = new File(newpath + name + "." + extension);
             Files.copy(sourceFile.toPath(), xxx.toPath());
             //   System.out.println(destinationFile);
-            System.out.println(xxx);
-            TxtImage.appendText(file.getAbsolutePath() + "\n");
+            nameImage = name + "." + extension;
+
+
             img.setImage(new Image(file.toURI().toString()));
         } else {
             System.out.println("file is invalide");
@@ -215,4 +309,32 @@ public class AjouterCoachController implements Initializable {
     }
     
     
+    
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+
+  
+ Stage stage = (Stage)btnAjouter.getScene().getWindow();
+             stage.close();
+             
+             Parent root = FXMLLoader.load(getClass().getResource("/gui/dashboard/DashboardFXML.fxml"));
+     
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void redirectToOwner(ActionEvent event) throws IOException {
+         Stage stage = (Stage) owner.getScene().getWindow();
+        stage.close();
+
+        Parent root = FXMLLoader.load(getClass().getResource("../ModifSuppCoaching/MesCoaching.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
