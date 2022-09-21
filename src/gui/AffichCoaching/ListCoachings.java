@@ -367,7 +367,7 @@ public class ListCoachings implements Initializable {
             
 
             ps.executeUpdate();
-          Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "veuiller consulter vos suivies ");
+          Notification.notificationSuccess("INSCRIPTION AVEC SUCCES", "Veuiller consulter vos suivies");
     }
 
 } 

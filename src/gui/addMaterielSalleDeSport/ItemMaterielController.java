@@ -7,7 +7,11 @@ package gui.addMaterielSalleDeSport;
 
 import gui.PssAffiche.PssAfficheController;
 import interfaces.Imateriel;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,7 +67,7 @@ public class ItemMaterielController implements Initializable {
         // TODO
     }    
     
-     public void  setData (MaterielSalle MaterielSalle) throws URISyntaxException   {
+     public void  setData (MaterielSalle MaterielSalle) throws URISyntaxException, FileNotFoundException   {
        
     
     this.Materiel=MaterielSalle;
@@ -76,14 +80,10 @@ public class ItemMaterielController implements Initializable {
   
          
    Image img;
-        try {
-            img = new Image(getClass().getResource("../uicontrolers/materiel/" + Materiel.getImageVitrine()).toURI().toString());
-      
-         
-            image.setImage(img);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       File initialFile = new File("src/gui/uicontrolers/materiel/" + Materiel.getImageVitrine());
+
+                InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
+            image.setImage(new Image(is));
       
         
     }
