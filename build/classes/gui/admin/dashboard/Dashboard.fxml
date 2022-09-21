@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1275.0" style="-fx-background-color: #333645;" stylesheets="@gestionuser.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.admin.dashboardUser.DashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1275.0" style="-fx-background-color: #333645;" stylesheets="@gestionuser.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.admin.dashboard.DashboardController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="694.0" prefWidth="245.0" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +28,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="211.0" styleClass="btnSidebar" text="Gestion Produits">
+            <Button fx:id="gest" mnemonicParsing="false" onAction="#gestionproduit" prefHeight="35.0" prefWidth="211.0" styleClass="btnSidebar" text="Gestion Produits">
                <font>
                   <Font name="Cambria" size="19.0" />
                </font>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.admin.dashboardUser;
+package gui.admin.dashboard;
 
 import Exception.AuthException;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -70,6 +70,8 @@ public class DashboardController implements Initializable {
     ObservableList<Utilisateur> list = FXCollections.observableArrayList();
     @FXML
     private VBox scene;
+    @FXML
+    private Button gest;
 
     /**
      * Initializes the controller class.
@@ -177,6 +179,15 @@ public class DashboardController implements Initializable {
     @FXML
     private void GestionCoachings(ActionEvent event) throws IOException {
           Parent root = FXMLLoader.load(getClass().getResource("../dashboardCoachings/GestionCoachings.fxml"));
+  scene.getChildren().removeAll();
+        scene.getChildren().setAll(root);
+        scene.setAlignment(Pos.CENTER);
+        VBox.setVgrow(root, Priority.ALWAYS);
+    }
+    @FXML
+    private void gestionproduit(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../../Produit/produit.fxml"));
+
         scene.getChildren().removeAll();
         scene.getChildren().setAll(root);
         scene.setAlignment(Pos.CENTER);

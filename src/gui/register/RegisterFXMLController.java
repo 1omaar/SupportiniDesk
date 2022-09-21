@@ -139,7 +139,7 @@ public class RegisterFXMLController implements Initializable {
         
         iu.addUser(newUser);
         Utilisateur queryUser = iu.queryByCin(newUser.getCin());
-
+        System.out.println(queryUser);
         Preferences userPreferences = Preferences.userRoot();
         userPreferences.put("x_id_user", String.valueOf(queryUser.getId()));
         Parent root = FXMLLoader.load(getClass().getResource("../choice_profil/ChoiceProfilFXML.fxml"));

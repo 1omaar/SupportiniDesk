@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui.Produit;
 
 import interfaces.ICategories;
 import interfaces.IProduits;
 import services.Categorieservices;
 import services.Produitservices;
-import gui.Categorie.CategoriesController;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,6 +42,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -53,6 +50,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Categories;
 import model.Produit;
 import util.MaConnexion;
+import util.Notification;
+import util.Validation;
 
   
 /**
@@ -61,15 +60,11 @@ import util.MaConnexion;
  * @author Anis-PC
  */
 public class ProduitController implements Initializable {
-  @FXML
-    private ImageView image;
    int index = -1;
    String filename = null;
     byte[] person_image = null;
     // appel connexion 
     Connection cnx = MaConnexion.getInstance().getCnx();
-    @FXML 
-    private Button Acceuil;
 
     @FXML
     private TextField Description;
@@ -90,6 +85,7 @@ public class ProduitController implements Initializable {
 
     @FXML
     private ComboBox<Categories> categorie;
+    @FXML
     private Button pp;
     @FXML
     private TextField id;
@@ -133,10 +129,13 @@ public class ProduitController implements Initializable {
     ObservableList<Categories> dataList = FXCollections.observableArrayList();
     ObservableList<Produit> Produitlist = FXCollections.observableArrayList();
     private InputStream input;
-     @FXML
     private ImageView img;
+    @FXML
+    private Button Catégories;
+    @FXML
+    private ImageView imgProd;
   
-     
+     private String path;
    
 
    @Override
@@ -160,7 +159,7 @@ public class ProduitController implements Initializable {
         }
 
         // afficahage produit
-        IProduits x = Produitservices.getInstance();
+        IProduits x = new Produitservices();
         Produitlist = x.DisplayAllproduit();
 
         idcol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -217,12 +216,12 @@ public class ProduitController implements Initializable {
     private void delete(ActionEvent event) throws SQLException {
 
         if (id.getText().equals("")) {
-            showMessageDialog(null, "you must select produit");
+            showMessageDialog(null, "vous devez selectionné un produit");
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Supprimer");
-            alert.setHeaderText("You're about to delete product!");
-            alert.setContentText("Do you want to delete ");
+            alert.setHeaderText("Vous êtes sur le point de supprimer le produit!");
+            alert.setContentText("Voulez-vous supprimer ");
             if (alert.showAndWait().get() == ButtonType.OK) {
 
                 PreparedStatement ps;
@@ -239,7 +238,7 @@ public class ProduitController implements Initializable {
                 Description.clear();
                 Quantite.clear();
                 refreshTable();
-                this.img.setVisible(false);
+                this.imgProd.setVisible(false);
                 search();
             }
         }
@@ -278,8 +277,8 @@ public class ProduitController implements Initializable {
                     ICategories deptdao = Categorieservices.getInstance();
                     produit.setCat(deptdao.findcatBynom(s));
                     produit.setQuantite(Integer.parseInt(Quantite.getText()));
-                    produit.setImage(filename);
-                   IProduits x = Produitservices.getInstance();
+                    produit.setImage(path);
+                   IProduits x = new Produitservices();
                     x.insertproduit(produit);
 
                     System.out.println("PS : produit ajoutée avec succés!");
@@ -288,7 +287,7 @@ public class ProduitController implements Initializable {
                     Description.clear();
                     Quantite.clear();
                     refreshTable();
-                      this.img.setVisible(false);
+                      this.imgProd.setVisible(false);
                     showMessageDialog(null, "produit ajouter avec succes");
                     search();
 
@@ -304,29 +303,29 @@ public class ProduitController implements Initializable {
         Pattern x = Pattern.compile(number);
         if (nomproduit.getText().equals("")) {
 
-            showMessageDialog(null, "nom produit text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte nom du produit ne peut pas être vide.");
             nomproduit.requestFocus();
         } else if (prix.getText().equals("")) {
-            showMessageDialog(null, "prix text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte prix ne peut pas être vide.");
             prix.requestFocus();
         
         } else if (Description.getText().equals("")) {
-            showMessageDialog(null, "Description text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte Description ne peut pas être vide.");
             Description.requestFocus();
         } else if (Quantite.getText().equals("") && Quantite.equals("[a-zA-Z_]+")) {
-            showMessageDialog(null, "Quantite text field cannot be blank.");
+            showMessageDialog(null, "Le champ de texte Quantite ne peut pas être vide.");
             Quantite.requestFocus();
         } else if (!x.matcher(Quantite.getText()).matches()) {
             showMessageDialog(null, "Quantite contains only number.");
             Quantite.requestFocus();
         } else if (!x.matcher(prix.getText()).matches()) {
-            showMessageDialog(null, "prix contains only number.");
+            showMessageDialog(null, "prix contient seulement des nombre.");
             prix.requestFocus();
         } else if (categorie.getSelectionModel().isSelected(-1)) {
-            showMessageDialog(null, "categorie  must be selected");
+            showMessageDialog(null, "vous devez sélectionner une catégorie");
             categorie.requestFocus();
-        } else if (filename == null) {
-            showMessageDialog(null, "image required");
+        } else if (path == null) {
+            showMessageDialog(null, "image Obligatoire");
             pp.requestFocus();} 
         else {
             return true;
@@ -340,7 +339,7 @@ public class ProduitController implements Initializable {
     private void update(ActionEvent event) throws SQLException {
 
         if (id.getText().equals("")) {
-            showMessageDialog(null, "you must select produit");
+            showMessageDialog(null, "vous devez sélectionner un produit");
         } else {
 
             PreparedStatement cat;
@@ -379,7 +378,7 @@ public class ProduitController implements Initializable {
     @FXML
     private void refreshTable() {
         dataList.clear();
-        IProduits x = Produitservices.getInstance();
+        IProduits x = new Produitservices();
         Produitlist = x.DisplayAllproduit();
         produitTable.setItems(Produitlist);
         String tt = "SELECT * FROM `categories`";
@@ -400,25 +399,41 @@ public class ProduitController implements Initializable {
 
     }
      @FXML
-    private void uploud(ActionEvent event) {
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter fd = new FileNameExtensionFilter("PNG JPG", "png", "jpg");
-        chooser.addChoosableFileFilter(fd);
-
-        int response = chooser.showOpenDialog(null); //select file to open
-        //int response = fileChooser.showSaveDialog(null); //select file to save
-
-        if (response == JFileChooser.APPROVE_OPTION) {
-            File f = chooser.getSelectedFile();
-            if (fd.accept(f)) {
-                filename = f.getAbsolutePath();
-            } else {
-                showMessageDialog(null, "invalid extension");
+    private void uploud(ActionEvent event) throws IOException {
+        FileChooser chooser = new  FileChooser();
+         chooser.setTitle("Choisir une  Image");
+        chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        chooser.getExtensionFilters().clear();
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("all file", "*.*"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File file = chooser.showOpenDialog(null);
+        if (file.isFile()) {
+           
+            String absPath = file.getAbsolutePath();
+            String newpath = "src/gui/uicontrolers/imagesproduits/";
+            File dir = new File(newpath);
+            if (!dir.exists()) {
+                // folder wa7dd ken barchaa mkdirs
+                dir.mkdir();
             }
-
+            File sourceFile = null;
+            File destinationFile = null;
+            String extension = absPath.substring(absPath.lastIndexOf('.') + 1);
+            sourceFile = new File(absPath);
+            String nameFile = Validation.randomString();
+            File newFile = new File(newpath + nameFile+ "." + extension);
+            Files.copy(sourceFile.toPath(), newFile.toPath());
+            //   System.out.println(destinationFile);
+            
+             path= nameFile+ "." + extension;
+            System.out.println(file.toURI().toString());
+            imgProd.setImage(new Image(file.toURI().toString()));
         } else {
-            showMessageDialog(null, "you must select photo");
+           Notification.notificationError("ERREUR", "Il faut choisir une image");
         }
+           Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
+        Scene scene = new Scene(root);
 
     }
 
@@ -445,4 +460,21 @@ public class ProduitController implements Initializable {
 
      
 
-    }}
+    }
+
+    @FXML
+    private void Catégoriesrediractor(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("../Categorie/Categories.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            
+            stage.setTitle("Gestion Catégories");
+            stage.setScene(scene);
+           
+            stage.sizeToScene();
+            stage.show();
+            
+      
+           
+        }
+    }

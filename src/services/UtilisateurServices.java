@@ -53,7 +53,7 @@ public class UtilisateurServices implements IUtilisateur {
         } catch (Exception ex) {
             System.err.println("Utilisateur existe déja");
             Notification.notificationError("DESOLE", "E-mail ou Mot De Passe existe déja !!");
-            
+            Logger.getLogger(UtilisateurServices.class.getName()).log(Level.SEVERE, null, ex); 
         }
 
     }

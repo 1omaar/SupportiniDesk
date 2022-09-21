@@ -52,7 +52,7 @@
 
          </children>
       </Pane>
-      <Button fx:id="btnAjouter" layoutX="493.0" layoutY="606.0" mnemonicParsing="false" onAction="#modifier" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #ff8c09; -fx-font-weight: BOLD;" text="Modifier" textFill="WHITE">
+      <Button fx:id="btnAjouter" layoutX="462.0" layoutY="604.0" mnemonicParsing="false" onAction="#modifier" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #ff8c09; -fx-font-weight: BOLD;" text="Modifier" textFill="WHITE">
          
       </Button>
       <ImageView fx:id="img" fitHeight="242.0" fitWidth="277.0" layoutX="660.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
