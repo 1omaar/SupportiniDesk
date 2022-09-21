@@ -123,7 +123,7 @@
             <VBox prefHeight="812.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="8.0" prefWidth="593.0" />
-                  <HBox alignment="BOTTOM_CENTER" prefHeight="66.0" prefWidth="775.0">
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="66.0" prefWidth="775.0" stylesheets="@profilcoachfxml.css">
                      <children>
                         <Label text="Ma Galerie">
                            <font>
@@ -134,7 +134,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="65.0" prefWidth="775.0">
                      <children>
-                        <Button fx:id="addImages" mnemonicParsing="false" onAction="#attachImages" styleClass="btnAdd" stylesheets="@../profil/profilfxml.css" text="+ Ajouter vos photos" textFill="#5093ff">
+                        <Button fx:id="addImages" mnemonicParsing="false" onAction="#attachImages" styleClass="attachBtn" stylesheets="@../profil/profilfxml.css" text="+ Ajouter vos photos">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>

@@ -145,8 +145,10 @@ public class ProfilFXMLController implements Initializable {
 
         if (listImg.size() == 0) {
             sceneGalerie.setVisible(false);
+            sceneGalerie.setVisible(false);
         } else {
               sceneGalerie.setVisible(true);
+              sceneGalerie.setManaged(true);
             int column = 1;
             int row = 0;
             for (int i = 0; i < listImg.size(); i++) {
@@ -172,7 +174,7 @@ public class ProfilFXMLController implements Initializable {
 
                 InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
 
-                ImageView image = new ImageView(new Image(is, 350, 200, false, false));
+                ImageView image = new ImageView(new Image(is, 320, 400, false, false));
 
                 hBox.getChildren().add(image);
 
