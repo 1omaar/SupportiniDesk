@@ -13,7 +13,6 @@ public class Utilisateur {
 
     private int id, idRole ,status;
     private String nom, prenom, password, email, cin, phone,imageName;
-  
     //constructeur
 
     public Utilisateur() {
@@ -41,14 +40,19 @@ public class Utilisateur {
         this.status=status;
 
     }
+     
     //getters & setters
+
+    
+
+   
+   
+   
+
+   
 
     public int getStatus() {
         return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public String getImageName() {
@@ -117,7 +121,6 @@ public class Utilisateur {
 
     }
 
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -132,6 +135,10 @@ public class Utilisateur {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
    

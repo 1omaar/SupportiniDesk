@@ -23,9 +23,9 @@
                      <children>
                         <StackPane layoutX="-9.0" prefHeight="576.0" prefWidth="1060.0" style="-fx-background-color: #02030A;">
                            <children>
-                              <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #9AC8EB;">
+                              <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #333645;">
                                  <children>
-                                    <TextField fx:id="rechercher" layoutX="185.0" layoutY="29.0" prefHeight="27.0" prefWidth="431.0" promptText="search" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 2em;" />
+                                    <TextField fx:id="rechercher" layoutX="185.0" layoutY="29.0" prefHeight="27.0" prefWidth="431.0" promptText="search" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" />
                                     <Label fx:id="welcome" layoutX="57.0" layoutY="25.0" textFill="#e7e5e5">
                                        <font>
                                           <Font size="24.0" />
@@ -39,22 +39,22 @@
                                           <Font name="System Italic" size="22.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="Supp" layoutX="639.0" layoutY="278.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: RED;" text="Supprimer" textFill="#fff7f7">
+                                    <Button fx:id="Supp" layoutX="639.0" layoutY="278.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #333645; -fx-border-radius: 2em; -fx-border-color: orange;" text="Supprimer" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="addd" layoutX="482.0" layoutY="277.0" mnemonicParsing="false" onAction="#add" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: green;" text="Ajouter" textFill="#fff7f7">
+                                    <Button fx:id="addd" layoutX="482.0" layoutY="277.0" mnemonicParsing="false" onAction="#add" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #333645; -fx-border-radius: 2em; -fx-border-color: orange;" text="Ajouter" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="Mdf" layoutX="482.0" layoutY="324.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: blue;" text="Modifier" textFill="#fff7f7">
+                                    <Button fx:id="Mdf" layoutX="482.0" layoutY="324.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" text="Modifier" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="639.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: orange;" text="refresh" textFill="WHITE">
+                                    <Button layoutX="639.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" text="refresh" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -114,8 +114,13 @@
                                           <Font name="System Italic" size="22.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="pp" layoutX="224.0" layoutY="145.0" mnemonicParsing="false" onAction="#uploud" prefHeight="42.0" prefWidth="137.0" text="UPloud image" />
-                                    <ImageView fx:id="img" fitHeight="126.0" fitWidth="207.0" layoutX="170.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button fx:id="pp" layoutX="224.0" layoutY="145.0" mnemonicParsing="false" onAction="#uploud" prefHeight="42.0" prefWidth="137.0" text="Attacher votre photo" />
+                                    <ImageView fx:id="imgProd" fitHeight="126.0" fitWidth="207.0" layoutX="170.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Button fx:id="Catégories" layoutX="904.0" layoutY="98.0" mnemonicParsing="false" onAction="#Catégoriesrediractor" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #333645; -fx-border-radius: 2em; -fx-border-color: orange;" text="Catégories" textFill="WHITE">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </Pane>
                            </children>

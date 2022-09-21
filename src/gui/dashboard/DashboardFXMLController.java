@@ -116,6 +116,7 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private HBox containIcon1;
     @FXML
+
     private ImageView iconMesSalle1;
     @FXML
     private Button btnListRegime;
@@ -126,6 +127,11 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private Button btnowner;
 
+
+    @FXML
+    private Button Ajout;
+
+
     /**
      * Initializes the controller class.
      */
@@ -134,7 +140,7 @@ public class DashboardFXMLController implements Initializable {
         //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
-
+        
         JWebToken incomingToken;
 
         try {
@@ -594,5 +600,20 @@ clientComboBox.getSelectionModel().clearSelection();
     }
 
 
+
+
+
+    @FXML
+    private void Consultercommande(ActionEvent event) throws IOException {
+        clientComboBox.getSelectionModel().clearSelection();
+         Parent root = FXMLLoader.load(getClass().getResource("../Commande/consulterCommande_Produit.fxml"));
+            scenePane.getChildren().removeAll();
+            scenePane.getChildren().setAll(root);
+           
+    }
+
 }
+
+
+
 

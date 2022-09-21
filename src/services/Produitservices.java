@@ -47,14 +47,7 @@ public class Produitservices implements IProduits{
             System.out.println("erreur lors de l'insertion " + ex.getMessage());
         }
     }
-  private static IProduits daoproduit;
-
-    public static IProduits getInstance() {
-        if (daoproduit == null) {
-            daoproduit = new Produitservices();
-        }
-        return daoproduit;
-    }
+ 
     @Override
     public ObservableList<Produit> DisplayAllproduit() {
         
@@ -85,8 +78,11 @@ public class Produitservices implements IProduits{
             return null;
         }
     }
+   
+        }
     
-}
+    
+
 
 
 

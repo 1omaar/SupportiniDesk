@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Categorie.CategoriesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Categorie.CategoriesController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -22,9 +22,9 @@
                         <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
                         <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
                         <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
-                        <Pane fx:id="pnlOverview" prefHeight="576.0" prefWidth="1048.0" style="-fx-background-image: #9AC8EB;">
+                        <Pane fx:id="pnlOverview" prefHeight="576.0" prefWidth="1048.0" style="-fx-background-color: #333645;">
                            <children>
-                              <TextField fx:id="rechercher" layoutX="115.0" layoutY="87.0" prefHeight="27.0" prefWidth="431.0" promptText="search" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 2em;" />
+                              <TextField fx:id="rechercher" layoutX="115.0" layoutY="87.0" prefHeight="27.0" prefWidth="431.0" promptText="search" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" />
                               <Label fx:id="welcome" layoutX="57.0" layoutY="25.0" textFill="#e7e5e5">
                                  <font>
                                     <Font size="24.0" />
@@ -43,22 +43,22 @@
                                     <Font name="System Italic" size="29.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="addd11" layoutX="682.0" layoutY="162.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: RED;" text="Supprimer" textFill="#fff7f7">
+                              <Button fx:id="addd11" layoutX="682.0" layoutY="162.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" text="Supprimer" textFill="#fff7f7">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="addd" layoutX="567.0" layoutY="162.0" mnemonicParsing="false" onAction="#add" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: green;" text="Ajouter" textFill="#fff7f7">
+                              <Button fx:id="addd" layoutX="567.0" layoutY="162.0" mnemonicParsing="false" onAction="#add" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" text="Ajouter" textFill="#fff7f7">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="addd1" layoutX="567.0" layoutY="226.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: blue;" text="Modifier" textFill="#fff7f7">
+                              <Button fx:id="addd1" layoutX="567.0" layoutY="226.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" text="Modifier" textFill="#fff7f7">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="682.0" layoutY="226.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: yellow;" text="refresh">
+                              <Button layoutX="682.0" layoutY="226.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #333645; -fx-border-color: orange; -fx-border-radius: 2em;" text="Actualiser" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
