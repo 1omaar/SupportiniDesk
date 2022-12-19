@@ -55,12 +55,12 @@ public class AuthServices implements IAuthentification {
             existUser.setCin(res.getString(4));
             existUser.setEmail(res.getString(5));
             existUser.setPassword(res.getString(6));
-            existUser.setIdRole(res.getInt(7));
+            existUser.setIdRole(res.getInt(11));
             existUser.setPhone(res.getString(8));
-            existUser.setImageName(res.getString(9));
-            existUser.setStatus(res.getInt(10));
+            existUser.setImageName(res.getString(8));
+            existUser.setStatus(res.getInt(9));
             ps.close();
-
+            System.out.println(existUser.getStatus());
 //           
 //          if (existUser.getPassword().equals(hachePwd)){
               if(existUser.getStatus()!=0){

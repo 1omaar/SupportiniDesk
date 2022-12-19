@@ -27,6 +27,7 @@ public class EntraineeServices implements IEntrainee{
         String req = "INSERT INTO entrainees (age,taille,poids,sexe,fk_idUser) VALUES (?,?,?,?,?)";
      try {
          PreparedStatement ps = cnx.prepareStatement(req);
+       
          ps.setInt(1, e.getAge());
          ps.setInt(2, e.getTaille());
          ps.setInt(3, e.getPoids());

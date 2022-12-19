@@ -24,7 +24,7 @@
          <children>
             <ImageView fitHeight="294.0" fitWidth="459.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../uicontrolers/logologo.jpg" />
+                  <Image url="@../uicontrolers/logologo.png" />
                </image>
             </ImageView>
          </children>
