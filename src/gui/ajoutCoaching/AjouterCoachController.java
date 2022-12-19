@@ -6,7 +6,7 @@
 package gui.ajoutCoaching;
 
 import Exception.AuthException;
-//import com.mysql.jdbc.PreparedStatement;
+
 import gui.AffichCoaching.ListCoachings;
 //import gui.itemDash.ItemDashFXMLController;
 
