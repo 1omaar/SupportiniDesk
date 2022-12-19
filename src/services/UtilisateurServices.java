@@ -45,7 +45,7 @@ public class UtilisateurServices implements IUtilisateur {
             ps.setString(2, user.getPrenom());
             ps.setString(3, user.getCin());
             ps.setString(4, user.getEmail());
-            ps.setString(5, mdp);
+            ps.setString(5,  mdp);
             ps.setString(6, user.getPhone());
             ps.executeUpdate();
            
@@ -73,10 +73,10 @@ public class UtilisateurServices implements IUtilisateur {
                 user.setCin(rs.getString(4));
                 user.setEmail(rs.getString(5));
                 user.setPassword(rs.getString(6));
-                user.setIdRole(rs.getInt(7));
-                user.setPhone(rs.getString(8));
-                 user.setImageName(rs.getString(9));
-                  user.setStatus(rs.getInt(10));
+                user.setIdRole(rs.getInt(11));
+                user.setPhone(rs.getString(7));
+                 user.setImageName(rs.getString(8));
+                  user.setStatus(rs.getInt(9));
                 listUser.add(user);
 
             }
@@ -105,10 +105,10 @@ public class UtilisateurServices implements IUtilisateur {
             user.setCin(res.getString(4));
             user.setEmail(res.getString(5));
             user.setPassword(res.getString(6));
-            user.setIdRole(res.getInt(7));
-            user.setPhone(res.getString(8));
-            user.setImageName(res.getString(9));
-             user.setStatus(res.getInt(10));
+            user.setIdRole(res.getInt(11));
+            user.setPhone(res.getString(7));
+            user.setImageName(res.getString(8));
+             user.setStatus(res.getInt(9));
             ps.close();
            
             return user;
@@ -194,10 +194,10 @@ public class UtilisateurServices implements IUtilisateur {
             user.setCin(res.getString(4));
             user.setEmail(res.getString(5));
             user.setPassword(res.getString(6));
-            user.setIdRole(res.getInt(7));
-            user.setPhone(res.getString(8));
-            user.setImageName(res.getString(9));
-            user.setStatus(res.getInt(10));
+            user.setIdRole(res.getInt(11));
+            user.setPhone(res.getString(7));
+            user.setImageName(res.getString(8));
+            user.setStatus(res.getInt(9));
             ps.close();
             return user;
 
@@ -271,10 +271,10 @@ public class UtilisateurServices implements IUtilisateur {
                 user.setCin(rs.getString(4));
                 user.setEmail(rs.getString(5));
                 user.setPassword(rs.getString(6));
-                user.setIdRole(rs.getInt(7));
-                user.setPhone(rs.getString(8));
-                 user.setImageName(rs.getString(9));
-                  user.setStatus(rs.getInt(10));
+                user.setIdRole(rs.getInt(11));
+                user.setPhone(rs.getString(7));
+                 user.setImageName(rs.getString(8));
+                  user.setStatus(rs.getInt(9));
                 listUser.add(user);
 
             }

@@ -145,19 +145,18 @@ public class DashboardFXMLController implements Initializable {
             incomingToken = new JWebToken(bearerToken);
 
             if (!incomingToken.isValid()) {
-
+                   
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
                 idRole = Integer.parseInt(audience);
                 idUser = Integer.parseInt(subject);
+                 System.out.println(idRole+" "+idUser);
 //                control user  side bar
                 itemComboBox(idRole);
 
                 espaceCoach.setVisible(idRole == 3);
-
                 espaceCoach.setManaged(idRole == 3);
-
                 iconSuivi.setVisible(idRole != 4);
                 iconSuivi.setManaged(idRole != 4);
 
@@ -184,7 +183,7 @@ public class DashboardFXMLController implements Initializable {
 
         } catch (JSONException | InvalidKeyException | IOException ex) {
             redirectToLogin();
-
+             Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException | AuthException ex) {
             redirectToLogin();
             Logger.getLogger(DashboardFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -453,6 +452,7 @@ public class DashboardFXMLController implements Initializable {
             Scene scene = new Scene(root);
             Image icon;
             icon = new Image(getClass().getResourceAsStream("../uicontrolers/logosportstrnsprt.png"));
+          
             Stage stage = new Stage();
             stage.getIcons().add(icon);
             stage.setTitle("Se Connecter chez Supportini");
@@ -467,7 +467,9 @@ public class DashboardFXMLController implements Initializable {
     }
 
     public void getImageProfil(String path) throws URISyntaxException, FileNotFoundException {
+
         File initialFile = new File(path);
+
 
         InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
         Image im = new Image(is);
@@ -478,16 +480,14 @@ public class DashboardFXMLController implements Initializable {
 
     public void getCurrentUser() throws URISyntaxException, FileNotFoundException {
         IUtilisateur iu = new UtilisateurServices();
-
+            
         String nom = iu.queryUserById(idUser).getNom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getNom().substring(1);
         String prenom = iu.queryUserById(idUser).getPrenom().substring(0, 1).toUpperCase() + iu.queryUserById(idUser).getPrenom().substring(1);
-        if (iu.queryUserById(idUser).getImageName() == null) {
-            String path = "src/gui/uicontrolers/user.png";
-            getImageProfil(path);
-        } else {
+        
+     
             String path = "src/gui/uicontrolers/users/" + iu.queryUserById(idUser).getImageName();
-            getImageProfil(path);
-        }
+           getImageProfil(path);
+        
         nomPrenom.setText(nom + " " + prenom);
 
     }

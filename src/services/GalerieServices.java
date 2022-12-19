@@ -27,7 +27,7 @@ public class GalerieServices implements IGalerie{
 
     @Override
     public void addImage(GalerieImage gi) {
-        String req = "INSERT INTO galerie( `fk_idUser`, `image`) VALUES (?,?)";
+        String req = "INSERT INTO galeries( `fk_idUser`, `image`) VALUES (?,?)";
         PreparedStatement ps ; 
      try {
          ps=cnx.prepareStatement(req);
@@ -45,7 +45,7 @@ public class GalerieServices implements IGalerie{
 
     @Override
     public List<GalerieImage> selectImageById(int idUser) {
-       String req="SELECT * FROM galerie WHERE fk_idUSer=?";
+       String req="SELECT * FROM galeries WHERE fk_idUSer=?";
        PreparedStatement ps;
      try {
          ps=cnx.prepareStatement(req);
@@ -53,7 +53,7 @@ public class GalerieServices implements IGalerie{
          ResultSet res= ps.executeQuery();
          List<GalerieImage> listImg =new ArrayList<>();
          while (res.next()) {             
-             GalerieImage gi = new GalerieImage(res.getInt(1), res.getInt(2), res.getString(3));
+             GalerieImage gi = new GalerieImage(res.getInt(1), res.getInt(3), res.getString(2));
              listImg.add(gi);
          }
          return listImg;
@@ -65,7 +65,7 @@ public class GalerieServices implements IGalerie{
 
     @Override
     public void deleteImg(int id) {
-       String req = "DELETE FROM galerie WHERE id = ?";
+       String req = "DELETE FROM galeries WHERE id = ?";
        PreparedStatement ps ; 
      try {
          ps=cnx.prepareStatement(req);

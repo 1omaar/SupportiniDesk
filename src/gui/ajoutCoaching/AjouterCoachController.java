@@ -6,7 +6,7 @@
 package gui.ajoutCoaching;
 
 import Exception.AuthException;
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
 import gui.AffichCoaching.ListCoachings;
 //import gui.itemDash.ItemDashFXMLController;
 
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.security.InvalidKeyException;
+import java.sql.PreparedStatement;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
