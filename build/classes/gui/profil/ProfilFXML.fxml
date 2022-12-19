@@ -73,15 +73,18 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <ImageView fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="54.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../uicontrolers/png-clipart-gmail-logo-digital-marketing-professional-certification-search-engine-optimization-email-icon-angle-content-marketing.png" />
+                              <Image url="@../uicontrolers/email.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="email" prefHeight="47.0" prefWidth="220.0" text="email" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font name="Cambria Bold" size="24.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
                      </children>
                   </HBox>
@@ -89,7 +92,7 @@
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../uicontrolers/téléchargement.jpg" />
+                              <Image url="@../uicontrolers/phone.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
@@ -174,7 +177,7 @@
                   </HBox>
                   <HBox fx:id="boxAdd" alignment="CENTER" prefHeight="65.0" prefWidth="775.0">
                      <children>
-                        <Button fx:id="addImages" mnemonicParsing="false" onAction="#attachImages" styleClass="btnAdd" stylesheets="@profilfxml.css" text="+ Ajouter vos photos" textFill="#5093ff">
+                        <Button fx:id="addImages" mnemonicParsing="false" onAction="#attachImages" styleClass="attachBtn" stylesheets="@profilfxml.css" text="+ Ajouter vos photos">
                            <font>
                               <Font name="Cambria Bold" size="18.0" />
                            </font>

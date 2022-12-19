@@ -7,7 +7,11 @@ package gui.PssAffiche;
 
 import gui.PssAfficheList.ListSallePssController;
 import interfaces.ISalleSport;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -75,7 +79,7 @@ public class PssAfficheController implements Initializable {
         // TODO
     }
 
-    public void setData(SalleSport SalleSport) {
+    public void setData(SalleSport SalleSport) throws FileNotFoundException {
 
         this.Salle = SalleSport;
 //        System.out.println(Salle);
@@ -85,14 +89,15 @@ public class PssAfficheController implements Initializable {
         adresse.setText(Salle.getVille() + " ," + Salle.getRue() + " " + Salle.getCodePostal());
         description.setText(Salle.getDescription());
         idSalleSport = Salle.getId();
-
+       
         Image im;
-        try {
-            im = new Image(getClass().getResource("../uicontrolers/imageSalleSport" + Salle.getImageVitrine()).toURI().toString());
-            image.setImage(im);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(PssAfficheController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                File initialFile = new File("src/gui/uicontrolers/imageSalleSport/" + Salle.getImageVitrine());
+
+                InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
+       
+          
+            image.setImage(new Image(is));
+     
 
     }
 

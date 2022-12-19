@@ -186,7 +186,10 @@ public class ProfilCoachFXMLController implements Initializable {
         listImg.addAll(ig.selectImageById(idUser));
         if (listImg.size() == 0) {
             sceneGalerie.setVisible(false);
+            sceneGalerie.setVisible(false);
         } else {
+              sceneGalerie.setVisible(true);
+            sceneGalerie.setVisible(true);
             int column = 1;
             int row = 0;
             for (int i = 0; i < listImg.size(); i++) {

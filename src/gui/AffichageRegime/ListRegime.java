@@ -154,14 +154,17 @@ public class ListRegime implements Initializable {
      TxtDej.getChildren().clear();
         Text t1 = new Text(Regime.getDej());
         TxtDej.getChildren().add(t1);
+        t1.setStyle("-fx-font-family: serif;-fx-font-size: 20px;");
       ///////////////////////////////////////////////
        TxtPtitDej.getChildren().clear();
         Text t2 = new Text(Regime.getPetitdej() );
         TxtPtitDej.getChildren().add(t2);
+        t2.setStyle("-fx-font-family: serif;-fx-font-size: 20px;");
 //////////////////////////////////////////////////
      TxtDinner.getChildren().clear();
         Text t3 = new Text(Regime.getDinner());
         TxtDinner.getChildren().add(t3);
+        t3.setStyle("-fx-font-family: serif;-fx-font-size: 20px;");
         ///////////////
          IdRegime = Regime.getIdregime();
         

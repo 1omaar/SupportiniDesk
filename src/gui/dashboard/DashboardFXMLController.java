@@ -110,7 +110,7 @@ public class DashboardFXMLController implements Initializable {
     private Button btnMesSalleDeSport;
     @FXML
     private ImageView iconMesSalle;
-   
+
     @FXML
     private Button iconSuivi;
     @FXML
@@ -127,10 +127,8 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private Button btnowner;
 
-
     @FXML
     private Button Ajout;
-
 
     /**
      * Initializes the controller class.
@@ -140,7 +138,7 @@ public class DashboardFXMLController implements Initializable {
         //recieve the bearer token
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
-        
+
         JWebToken incomingToken;
 
         try {
@@ -156,10 +154,12 @@ public class DashboardFXMLController implements Initializable {
                  System.out.println(idRole+" "+idUser);
 //                control user  side bar
                 itemComboBox(idRole);
+
                 espaceCoach.setVisible(idRole == 3);
                 espaceCoach.setManaged(idRole == 3);
                 iconSuivi.setVisible(idRole != 4);
                 iconSuivi.setManaged(idRole != 4);
+
                 btnMesSalleDeSport.setVisible(idRole == 4);
                 btnMesSalleDeSport.setManaged(idRole == 4);
                 iconMesSalle.setVisible(idRole == 4);
@@ -304,8 +304,7 @@ public class DashboardFXMLController implements Initializable {
 
         scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
-        scenePane.setHgrow( root, Priority.ALWAYS);
-
+        scenePane.setHgrow(root, Priority.ALWAYS);
 
     }
 
@@ -349,6 +348,7 @@ public class DashboardFXMLController implements Initializable {
         scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
     }
+
     @FXML
     private void MesSalleDeSport(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
@@ -386,18 +386,18 @@ public class DashboardFXMLController implements Initializable {
 //        
 //        mainWindow.setScene(newScene);
     }
-     public void mesSalle () throws IOException{
-         
+
+    public void mesSalle() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("../salleDeSport/ListSalleSport.fxml"));
-          scenePane.getChildren().removeAll();
+        scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-        
-         scenePane.setHgrow( root, Priority.ALWAYS);
-          scenePane.setAlignment(Pos.CENTER);
-          scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+        scenePane.setHgrow(root, Priority.ALWAYS);
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 //    public void dashPss(ActionEvent event) throws IOException {
 //    switch (idRole) {
@@ -413,8 +413,6 @@ public class DashboardFXMLController implements Initializable {
 ////        scenePane.getChildren().removeAll();
 ////        scenePane.getChildren().setAll(root);
 ////        }
-  
-
     @FXML
     public void itemDash(ActionEvent event) throws IOException {
         switch (idRole) {
@@ -459,7 +457,7 @@ public class DashboardFXMLController implements Initializable {
             stage.getIcons().add(icon);
             stage.setTitle("Se Connecter chez Supportini");
             stage.setScene(scene);
-           
+
             stage.sizeToScene();
             stage.show();
         } catch (IOException ex) {
@@ -469,10 +467,11 @@ public class DashboardFXMLController implements Initializable {
     }
 
     public void getImageProfil(String path) throws URISyntaxException, FileNotFoundException {
-        System.out.println(path);
-                       File initialFile = new File(path);
 
-                InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
+        File initialFile = new File(path);
+
+
+        InputStream is = new FileInputStream(initialFile.getAbsolutePath());;
         Image im = new Image(is);
         myCircle.setFill(new ImagePattern(im));
         myCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITESMOKE));
@@ -501,21 +500,12 @@ public class DashboardFXMLController implements Initializable {
 //         scenePane.setAlignment(Pos.CENTER);
 //        scenePane.setHgrow( root, Priority.ALWAYS);
 //    }
-
-    
-   
-
-
-
-
-
-   
     @FXML
     private void affsuivi(ActionEvent event) throws IOException {
-            clientComboBox.getSelectionModel().clearSelection();
+        clientComboBox.getSelectionModel().clearSelection();
         if (idRole == 3) {
 
-                Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivicoach/SuiviCoach2.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../suivi/suivicoach/SuiviCoach2.fxml"));
             scenePane.getChildren().removeAll();
             scenePane.getChildren().setAll(root);
         } else {
@@ -526,89 +516,75 @@ public class DashboardFXMLController implements Initializable {
         }
     }
 
-
-
-
-    
-    
     //////////// en affichage mes coachings//////////////
     private void addCoaching(ActionEvent event) throws IOException {
-         clientComboBox.getSelectionModel().clearSelection();
+        clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../ajoutCoaching/AjouterCoach.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-         scenePane.setAlignment(Pos.CENTER);
-        scenePane.setHgrow( root, Priority.ALWAYS);
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow(root, Priority.ALWAYS);
     }
 
     @FXML
     private void ListCachings(ActionEvent event) throws IOException {
-         clientComboBox.getSelectionModel().clearSelection();
+        clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../AffichCoaching/ListCoachings.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-         scenePane.setAlignment(Pos.CENTER);
-        scenePane.setHgrow( root, Priority.ALWAYS);
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow(root, Priority.ALWAYS);
     }
 
     private void MesCoachings(ActionEvent event) throws IOException {
-         clientComboBox.getSelectionModel().clearSelection();
+        clientComboBox.getSelectionModel().clearSelection();
         Parent root = FXMLLoader.load(getClass().getResource("../ModifSuppCoaching/MesCoaching.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-         scenePane.setAlignment(Pos.CENTER);
-        scenePane.setHgrow( root, Priority.ALWAYS);
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow(root, Priority.ALWAYS);
     }
 
     @FXML
-    private void LIstRegime(ActionEvent event)  throws IOException {
-clientComboBox.getSelectionModel().clearSelection();
-      
+    private void LIstRegime(ActionEvent event) throws IOException {
+        clientComboBox.getSelectionModel().clearSelection();
+
         Parent root = FXMLLoader.load(getClass().getResource("../TousLesRegimes/ListRegime.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-         scenePane.setAlignment(Pos.CENTER);
-        scenePane.setHgrow( root, Priority.ALWAYS);
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow(root, Priority.ALWAYS);
     }
 
     private void MesRegimes(ActionEvent event) throws IOException {
-         clientComboBox.getSelectionModel().clearSelection();
-      
+        clientComboBox.getSelectionModel().clearSelection();
+
         Parent root = FXMLLoader.load(getClass().getResource("../AffichageRegime/ListRegime.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-         scenePane.setAlignment(Pos.CENTER);
-        scenePane.setHgrow( root, Priority.ALWAYS);
-        
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow(root, Priority.ALWAYS);
+
     }
 
-
     @FXML
-    private void ownerEspace(ActionEvent event) throws IOException{
-         clientComboBox.getSelectionModel().clearSelection();
-      
+    private void ownerEspace(ActionEvent event) throws IOException {
+        clientComboBox.getSelectionModel().clearSelection();
+
         Parent root = FXMLLoader.load(getClass().getResource("../EspaceCoach/EspaceCoach.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
-         scenePane.setAlignment(Pos.CENTER);
-        scenePane.setHgrow( root, Priority.ALWAYS);
+        scenePane.setAlignment(Pos.CENTER);
+        scenePane.setHgrow(root, Priority.ALWAYS);
     }
-
-
-
-
 
     @FXML
     private void Consultercommande(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
-         Parent root = FXMLLoader.load(getClass().getResource("../Commande/consulterCommande_Produit.fxml"));
-            scenePane.getChildren().removeAll();
-            scenePane.getChildren().setAll(root);
-           
+        Parent root = FXMLLoader.load(getClass().getResource("../Commande/consulterCommande_Produit.fxml"));
+        scenePane.getChildren().removeAll();
+        scenePane.getChildren().setAll(root);
+
     }
 
 }
-
-
-
-

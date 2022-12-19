@@ -16,17 +16,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#refresh" prefHeight="828.0" prefWidth="1736.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.suivi.suivitrainer.SuiviTrainerController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#refresh" prefHeight="784.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.suivi.suivitrainer.SuiviTrainerController">
    <children>
-      <VBox prefHeight="682.0" prefWidth="465.0">
+      <VBox alignment="CENTER_RIGHT" prefHeight="682.0" prefWidth="465.0">
          <children>
-            <HBox prefHeight="504.0" prefWidth="510.0" />
             <ImageView fitHeight="510.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                <image>
                   <Image url="@../../uicontrolers/suivibackground.png" />
                </image>
             </ImageView>
-            <HBox prefHeight="504.0" prefWidth="510.0" />
          </children>
          <padding>
             <Insets left="100.0" />
@@ -34,12 +32,11 @@
       </VBox>
       <VBox onMouseMoved="#refresh" prefHeight="804.0" prefWidth="1156.0">
          <children>
-            <HBox fx:id="sceneAdd" alignment="CENTER" prefHeight="20.0" prefWidth="1159.0" />
             <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1395.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="1154.0" text="Derniére Note" textAlignment="CENTER" textFill="#e1940d">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="84.0" prefWidth="800.0" text="Derniére Note" textAlignment="CENTER" textFill="#e1940d">
                      <font>
-                        <Font name="Cambria Bold" size="64.0" />
+                        <Font name="Cambria Bold" size="50.0" />
                      </font>
                      <HBox.margin>
                         <Insets bottom="20.0" />
@@ -53,7 +50,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
                            <font>
-                              <Font name="Cambria Bold" size="36.0" />
+                              <Font name="Cambria Bold" size="29.0" />
                            </font>
                         </Text>
                      </children>
@@ -76,7 +73,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom :">
                            <font>
-                              <Font name="Cambria Bold" size="36.0" />
+                              <Font name="Cambria Bold" size="29.0" />
                            </font>
                         </Text>
                      </children>
@@ -99,7 +96,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age :">
                            <font>
-                              <Font name="Cambria Bold" size="36.0" />
+                              <Font name="Cambria Bold" size="29.0" />
                            </font>
                         </Text>
                      </children>
@@ -109,7 +106,7 @@
                      <children>
                         <Label fx:id="ageSuivi">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="29.0" />
                            </font>
                         </Label>
                      </children>
@@ -122,7 +119,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poids Actuel  :">
                            <font>
-                              <Font name="Cambria Bold" size="36.0" />
+                              <Font name="Cambria Bold" size="29.0" />
                            </font>
                         </Text>
                      </children>
@@ -132,7 +129,7 @@
                      <children>
                         <Label fx:id="PoidsActuelle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -145,7 +142,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Taille Actuel :">
                            <font>
-                              <Font name="Cambria Bold" size="36.0" />
+                              <Font name="Cambria Bold" size="29.0" />
                            </font>
                         </Text>
                      </children>
@@ -155,7 +152,7 @@
                      <children>
                         <Label fx:id="tailleshow">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -168,7 +165,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMC :">
                            <font>
-                              <Font name="Cambria Bold" size="36.0" />
+                              <Font name="Cambria Bold" size="29.0" />
                            </font>
                         </Text>
                      </children>
@@ -178,7 +175,7 @@
                      <children>
                         <Label fx:id="imclbl">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -191,7 +188,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Suivi :">
                            <font>
-                              <Font name="Cambria Bold" size="36.0" />
+                              <Font name="Cambria Bold" size="29.0" />
                            </font>
                         </Text>
                      </children>
@@ -201,7 +198,7 @@
                      <children>
                         <Label fx:id="DateSuivi">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -220,9 +217,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="370.0" prefWidth="874.0">
+            <HBox alignment="CENTER" prefHeight="425.0" prefWidth="800.0">
                <children>
-                  <BarChart fx:id="chart" prefHeight="266.0" prefWidth="974.0" title="Suivi par Mois">
+                  <BarChart fx:id="chart" prefHeight="321.0" prefWidth="800.0" title="Suivi par Mois">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>

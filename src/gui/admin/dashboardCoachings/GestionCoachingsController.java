@@ -5,10 +5,10 @@
  */
 package gui.admin.dashboardCoachings;
 
-import com.mysql.jdbc.PreparedStatement;
 import gui.admin.dashboardSalleDeSport.GestionSalleDeSportController;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -69,7 +69,7 @@ public class GestionCoachingsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         table();
     }    
- PreparedStatement pst;
+    PreparedStatement pst;
     int myIndex;
     int id;
 

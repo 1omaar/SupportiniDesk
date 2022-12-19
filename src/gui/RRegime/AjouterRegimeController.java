@@ -6,12 +6,13 @@
 package gui.RRegime;
 
 import Exception.AuthException;
-import com.mysql.jdbc.PreparedStatement;
+
 import gui.AffichCoaching.ListCoachings;
 import interfaces.IRegime;
 import java.io.IOException;
 import java.net.URL;
 import java.security.InvalidKeyException;
+import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
