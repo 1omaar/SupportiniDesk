@@ -25,7 +25,7 @@ public class CodeResetServices implements ICodeReset {
 
     @Override
     public void addCode(CodeReset code) {
-        String req = "INSERT INTO `reset_password`( `code`, `fk_idUser`, `date_exp`) VALUES (?,?,?)";
+        String req = "INSERT INTO `reset_passwords`( `code`, `fk_idUser`, `date_exp`) VALUES (?,?,?)";
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
@@ -42,7 +42,7 @@ public class CodeResetServices implements ICodeReset {
 
     @Override
     public CodeReset queryCode(String code) {
-        String req = "SELECT * FROM reset_password WHERE code=?";
+        String req = "SELECT * FROM reset_passwords WHERE code=?";
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
@@ -52,9 +52,9 @@ public class CodeResetServices implements ICodeReset {
             CodeReset c = new CodeReset();
             c.setId(res.getInt(1));
             c.setCode(res.getString(2));
-            c.setDateExp(res.getTimestamp(5));
-            c.setDateTime(res.getTimestamp(4));
-            c.setIdUser(res.getInt(3));
+            c.setDateExp(res.getTimestamp(4));
+            c.setDateTime(res.getTimestamp(3));
+            c.setIdUser(res.getInt(5));
             ps.close();
             return c;
         } catch (SQLException ex) {
@@ -65,7 +65,7 @@ public class CodeResetServices implements ICodeReset {
 
     @Override
     public void deleteCode(int id) {
-       String req = "DELETE FROM reset_password WHERE id=?";
+       String req = "DELETE FROM reset_passwords WHERE id=?";
        PreparedStatement ps ; 
         try {
             ps=cnx.prepareStatement(req);
