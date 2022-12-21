@@ -39,7 +39,7 @@ public class MaterielServices implements Imateriel {
     @Override
     public void ajouterMaterielSalle(MaterielSalle m) {
 
-        String req = "INSERT INTO materialsalle( nomMaterial, Specialite, Quantite, description,imageVitrine, fk_idSalle) VALUES (?,?,?,?,?,?) ";
+        String req = "INSERT INTO materialsalles( nomMaterial, Specialite, Quantite, description,imageVitrine, fk_idSalle) VALUES (?,?,?,?,?,?) ";
 //       String req = "INSERT INTO materialsalle( nomMaterial, Specialite, Quantite, description,imageVitrine,) VALUES (?,?,?,?,?) ";
         try {
             java.sql.PreparedStatement ps = cnx.prepareStatement(req);
@@ -60,7 +60,7 @@ public class MaterielServices implements Imateriel {
 
     @Override
     public List<MaterielSalle> affichageById(int fk_idSalle) {
-        String req = "SELECT * FROM `materialsalle` where `fk_idSalle` = ?";
+        String req = "SELECT * FROM `materialsalles` where `fk_idSalle` = ?";
         PreparedStatement ps;
 
         try {
@@ -75,8 +75,8 @@ public class MaterielServices implements Imateriel {
                 ms.setQuantite(res.getInt(4));
                 ms.setSpecialite(res.getString(3));
                 ms.setDescription(res.getString(5));
-                ms.setFk_idSalle(res.getInt(6));
-                ms.setImageVitrine(res.getString(7));
+                ms.setFk_idSalle(res.getInt(7));
+                ms.setImageVitrine(res.getString(6));
 
                 listMateriel.add(ms);
 
@@ -91,7 +91,7 @@ public class MaterielServices implements Imateriel {
 
     @Override
     public void supprimerMateriel(MaterielSalle m) {
-                String req = "DELETE FROM materialsalle where id =?";
+                String req = "DELETE FROM materialsalles where id =?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, m.getId());

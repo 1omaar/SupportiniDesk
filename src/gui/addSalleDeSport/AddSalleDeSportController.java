@@ -5,6 +5,11 @@
  */
 package gui.addSalleDeSport;
 
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+
 import Exception.AuthException;
 import gui.dashboard.DashboardFXMLController;
 import interfaces.ISalleSport;
@@ -45,12 +50,14 @@ import util.JWebToken;
 import util.Notification;
 import util.Validation;
 
+
 /**
  * FXML Controller class
  *
  * @author Elife-Kef-113
  */
 public class AddSalleDeSportController implements Initializable {
+
 
     @FXML
     private TextField txtNom;
@@ -318,4 +325,5 @@ public class AddSalleDeSportController implements Initializable {
         primaryStage.sizeToScene();
         primaryStage.show();
     }
+
 }
