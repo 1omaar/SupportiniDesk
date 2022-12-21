@@ -21,6 +21,8 @@ public interface IUtilisateur {
 
     public Utilisateur queryUserById(int id);
 
+    public List queryUserByRoleId(int idRole);
+
     public void updateUser(Utilisateur user);
 
     public void deleteUser(Utilisateur user);
@@ -28,6 +30,14 @@ public interface IUtilisateur {
     public Utilisateur queryByCin(String cin);
 
     public void updateRoleUser(int id, int role);
-    public void uploadUserImg(String path,int id);
- 
+
+    public void uploadUserImg(String path, int id);
+
+    public void banUser(int id, int status);
+
+    public void updateUserByAdmin(int id, String nom, String prenom, String email, String cin, String phone, int role);
+
+    public  int checkUser (String email);
+    
+    public void resetPwd(int id , String pwd);
 }

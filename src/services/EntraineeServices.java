@@ -27,6 +27,7 @@ public class EntraineeServices implements IEntrainee{
         String req = "INSERT INTO entrainees (age,taille,poids,sexe,fk_idUser) VALUES (?,?,?,?,?)";
      try {
          PreparedStatement ps = cnx.prepareStatement(req);
+       
          ps.setInt(1, e.getAge());
          ps.setInt(2, e.getTaille());
          ps.setInt(3, e.getPoids());
@@ -66,6 +67,26 @@ public class EntraineeServices implements IEntrainee{
             System.err.println(ex);
             return null;
         }
+    }
+
+    @Override
+    public Entrainee selectProfil(int id) {
+       String req="SELECT e.id ,e.age,e.taille,e.poids,e.sexe,u.nom,u.prenom,u.email,u.phone,u.fk_idRole,u.image_name FROM utilisateurs u  JOIN entrainees e WHERE e.fk_idUser = ? AND u.id=?";
+       PreparedStatement ps ;
+     try {
+         ps=cnx.prepareStatement(req);
+         ps.setInt(1, id);
+             ps.setInt(2, id);
+       ResultSet res =  ps.executeQuery();
+        res.first();
+                 Utilisateur user = new Utilisateur();
+             Entrainee ent = new Entrainee(res.getInt(1), res.getInt(2), res.getInt(3), res.getInt(4), res.getString(5),res.getString(6), res.getString(7), res.getString(8), res.getString(9), res.getInt(10), res.getString(11));
+           return ent;
+     } catch (SQLException ex) {
+         Logger.getLogger(EntraineeServices.class.getName()).log(Level.SEVERE, null, ex);
+          return null;
+     }
+       
     }
     
 }

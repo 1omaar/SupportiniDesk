@@ -35,8 +35,10 @@ public class DashPssController implements Initializable {
 
     @FXML
     private HBox hboxScene;
+
     @FXML
     private Button goToAddSalle;
+
 
     /**
      * Initializes the controller class.
@@ -65,6 +67,7 @@ public class DashPssController implements Initializable {
         Logger.getLogger(DashPssController.class.getName()).log(Level.SEVERE, null, ex);
     }
            
+
     }
     @FXML
     private void redirectToAddSalleSport (ActionEvent event) throws IOException{
@@ -77,3 +80,4 @@ public class DashPssController implements Initializable {
     }  
     
 }
+

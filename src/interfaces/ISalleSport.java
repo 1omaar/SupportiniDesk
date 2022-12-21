@@ -6,6 +6,7 @@
 package interfaces;
 
 import java.util.List;
+import model.MaterielSalle;
 import model.SalleSport;
 
 /**
@@ -14,6 +15,13 @@ import model.SalleSport;
  */
 public interface ISalleSport {
     
-   public List<SalleSport> affichage (); 
-    
+   public List<SalleSport> affichage ();
+   public void ajouterSalleSport(SalleSport s);
+   public List<SalleSport> affichageByIdPss(int idUser);
+     public void supprimerSalleSport( SalleSport s);
+      public void modifierSalleSport( SalleSport s );
+ public SalleSport affichageById (int id);
+     
+   
+   
 }

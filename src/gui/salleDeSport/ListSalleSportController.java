@@ -29,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -61,18 +62,11 @@ public class ListSalleSportController implements Initializable {
 
     @FXML
     private GridPane Lsport;
-    @FXML
     private Label nomPrenom;
-    @FXML
     private Circle myCircle;
-    @FXML
     private ComboBox<String> clientComboBox;
     @FXML
-    private AnchorPane listSalle;
-    @FXML
     private ScrollPane scrollListSalle;
-    @FXML
-    private Button backDash;
     private int idRole, idUser;
 
     /**
@@ -96,8 +90,9 @@ public class ListSalleSportController implements Initializable {
         int row = 1;
         try {
             incomingToken = new JWebToken(bearerToken);
+            System.out.println(bearerToken);
             if (!incomingToken.isValid()) {
-
+                
 //                get id and idRole for current user
                 String audience = incomingToken.getAudience();
                 String subject = incomingToken.getSubject();
@@ -106,7 +101,8 @@ public class ListSalleSportController implements Initializable {
                 for (int i = 0; i < listSalleSport.size(); i++) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../ItemSalleSport/ItemSalleSportFXML.fxml"));
 
-                    HBox hbox = loader.load();
+                    HBox hbox;
+                    hbox = loader.load();
 
                     ItemSalleSportFXMLController c = loader.getController();
                     c.setData(listSalleSport.get(i));
@@ -123,9 +119,11 @@ public class ListSalleSportController implements Initializable {
 //                Lsport.setMaxHeight(400);
 
                     GridPane.setMargin(hbox, new Insets(25));
+                    GridPane.setValignment(scrollListSalle, VPos.CENTER);
                 }
-                getInfoCurrentUser(idUser);
-                itemComboBox();
+//                getInfoCurrentUser(idUser);
+//                itemComboBox();
+                
             }
 
         } catch (IOException | JSONException | AuthException | InvalidKeyException | URISyntaxException ex) {
@@ -180,7 +178,6 @@ public void logout(ActionEvent event) {
         }
 
     }
-    @FXML
     public void goDashboard(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../dashboard/DashboardFXML.fxml"));
         Scene newScene;

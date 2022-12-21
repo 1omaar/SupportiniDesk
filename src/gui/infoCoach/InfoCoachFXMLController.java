@@ -98,7 +98,7 @@ public class InfoCoachFXMLController implements Initializable {
         Preferences userPreferences = Preferences.userRoot();
         String idUser = userPreferences.get("x_id_user", "root");
         //fk id planning static will change
-        Coach newCoach = new Coach(Integer.parseInt(idUser), 0, DescrSpecialite);
+        Coach newCoach = new Coach(Integer.parseInt(idUser), DescrSpecialite);
         ic.addCoach(newCoach);
         LoginFXMLController login = new LoginFXMLController();
         IUtilisateur iu = new UtilisateurServices();

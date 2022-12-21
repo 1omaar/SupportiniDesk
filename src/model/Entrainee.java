@@ -13,7 +13,8 @@ public class Entrainee {
 
     private int id, fk_idUser,age, taille, poids;
     private String sexe;
-
+    public String nom, prenom,email, phone, image;
+    public int idRole;
     public Entrainee() {
     }
 
@@ -35,6 +36,23 @@ public class Entrainee {
        
         this.sexe = sexe;
     }
+
+    public Entrainee(int id, int age, int taille, int poids, String sexe, String nom, String prenom, String email, String phone,int idRole, String image ) {
+        this.id = id;
+        this.age = age;
+        this.taille = taille;
+        this.poids = poids;
+        this.sexe = sexe;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.phone = phone;
+        this.image = image;
+        this.idRole = idRole;
+    }
+    
+
+  
 
     public int getId() {
         return id;
@@ -86,6 +104,11 @@ public class Entrainee {
         this.sexe = sexe;
     }
 
+    @Override
+    public String toString() {
+        return "Entrainee{" + "id=" + id + ", fk_idUser=" + fk_idUser + ", age=" + age + ", taille=" + taille + ", poids=" + poids + ", sexe=" + sexe + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", phone=" + phone + ", image=" + image + ", idRole=" + idRole + '}';
+    }
+
    
 
     
@@ -96,9 +119,6 @@ public class Entrainee {
 
   
 
-    @Override
-    public String toString() {
-        return "Entrainee{" + "id=" + id + ", fk_idUser=" + fk_idUser + ", age=" + age + ", taille=" + taille + ", poids=" + poids + ", sexe=" + sexe + '}';
-    }
+  
 
 }
