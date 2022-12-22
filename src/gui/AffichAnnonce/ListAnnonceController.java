@@ -74,7 +74,7 @@ public class ListAnnonceController implements Initializable {
                   private List<Annonce> clist = new ArrayList<>();
                   
                   
-                  
+                      
                   
  private List<Annonce> getData() throws SQLException {
         List<Annonce> clist = new ArrayList<>();
