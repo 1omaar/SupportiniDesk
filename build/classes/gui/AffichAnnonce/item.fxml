@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMousePressed="#click" prefHeight="343.0" prefWidth="346.0" stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AffichCoaching.ItemController">
+<AnchorPane onMousePressed="#click" prefHeight="343.0" prefWidth="346.0" stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AffichAnnonce.ItemAnnonceController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="328.0" prefWidth="328.0" AnchorPane.bottomAnchor="-113.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-103.0" AnchorPane.topAnchor="0.0">
          <children>
