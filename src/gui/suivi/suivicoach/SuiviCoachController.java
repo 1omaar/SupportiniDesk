@@ -266,7 +266,7 @@ public class SuiviCoachController implements Initializable {
         Suivi s = ListEntrainer.getSelectionModel().getSelectedItem();
         //int identr = ie.queryById(s.getFk_id_entr()).getId();
         int idSuivi = is.afficherEntrainerList().getId();
-        System.out.println(idSuivi);
+        //System.out.println(idSuivi);
         //System.out.println(idfeedback);
         if (ifeedback.afficherfeedback(idSuivi) == null) {
             Feedback feedback = new Feedback(sendfeedback.getText(), s.getId());
@@ -274,7 +274,7 @@ public class SuiviCoachController implements Initializable {
             sendfeedback.setStyle("-fx-border: 12px; -fx-text-box-border: green; -fx-focus-color: green;");
             System.out.println(sendfeedback.getText());
         } else if (ifeedback.afficherfeedback(idSuivi) != null && ifeedback.afficherfeedback(idSuivi).getId_suivi() == s.getId()) {
-            System.out.println("Un feedback pour ce suivi existe déja");
+            //System.out.println("Un feedback pour ce suivi existe déja");
             Notification.notificationError("Alerte !", "Un feedback pour ce suivi existe déja");
             sendfeedback.setStyle("-fx-border: 12px; -fx-text-box-border: red; -fx-focus-color: red;");
         }
@@ -299,7 +299,7 @@ public class SuiviCoachController implements Initializable {
         Suivi s = ListEntrainer.getSelectionModel().getSelectedItem();
         //int identr = ie.queryById(s.getFk_id_entr()).getId();
         int idSuivi = is.afficherEntrainerList().getId();
-        System.out.println(idSuivi);
+       // System.out.println(idSuivi);
         //System.out.println(idfeedback);
         if (ifeedback.afficherfeedback(idSuivi) == null) {
             Feedback feedback = new Feedback(sendfeedback.getText(), s.getId());

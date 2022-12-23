@@ -6,7 +6,7 @@
 package gui.Annonce;
 
 import Exception.AuthException;
-import com.mysql.jdbc.PreparedStatement;
+
 import gui.AffichCoaching.ListCoachings;
 import interfaces.IAnnonce;
 import java.io.File;
@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.security.InvalidKeyException;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

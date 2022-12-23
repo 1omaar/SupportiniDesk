@@ -31,7 +31,7 @@ public class SalleSportServices implements ISalleSport {
     @Override
     public List<SalleSport> affichage() {
 //    String req =  "SELECT * FROM `salledessport` where `fk_idUser` = idUser";
-        String req = "SELECT * FROM `salledessport`";
+        String req = "SELECT * FROM `salledessports`";
         PreparedStatement ps;
 
         try {
@@ -67,7 +67,7 @@ public class SalleSportServices implements ISalleSport {
 
     @Override
     public void ajouterSalleSport(SalleSport s) {
-        String req = " INSERT INTO salledessport( nomSalle, numTel, ville, rue, codePostal, description, duration, prix,imageVitrine,fk_idUser) VALUES  (?, ?,?, ?, ?,?,?,?,?,?)";
+        String req = " INSERT INTO salledessports( nomSalle, numTel, ville, rue, codePostal, description, duration, prix,imageVitrine,fk_idUser) VALUES  (?, ?,?, ?, ?,?,?,?,?,?)";
         try {
             java.sql.PreparedStatement ps = cnx.prepareStatement(req);
 
@@ -91,7 +91,7 @@ public class SalleSportServices implements ISalleSport {
 
     @Override
     public List<SalleSport> affichageByIdPss(int idUser) {
-        String req = "SELECT * FROM `salledessport` where `fk_idUser` = ?";
+        String req = "SELECT * FROM `salledessports` where `fk_idUser` = ?";
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
@@ -127,7 +127,7 @@ public class SalleSportServices implements ISalleSport {
 
     @Override
     public void supprimerSalleSport(SalleSport s) {
-        String req = "DELETE FROM salledessport where id =?";
+        String req = "DELETE FROM salledessports where id =?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, s.getId());
@@ -141,8 +141,8 @@ public class SalleSportServices implements ISalleSport {
 
     @Override
     public void modifierSalleSport(SalleSport s) {
-//        String req = "UPDATE salledessport SET nomSalle=?,numTel=?,ville= ?,rue=?,codePostal=?,description=?,prix=?,duration=? WHERE id= ?";
-//        try {
+       String req = "UPDATE salledessport SET nomSalle=?,numTel=?,ville= ?,rue=?,codePostal=?,description=?,prix=?,duration=? WHERE id= ?";
+//       try {
 //            PreparedStatement ps = cnx.prepareStatement(req);
 //            ps.setString(1, s.getNomSalle());
 //            ps.setInt(2, s.getNumTel());
@@ -159,12 +159,12 @@ public class SalleSportServices implements ISalleSport {
 //        } catch (SQLException ex) {
 //            Logger.getLogger(SalleSportServices.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-//    
+
     }
 
     @Override
     public SalleSport affichageById(int id) {
-        String req = "select * from salledessport where id = ?";
+        String req = "select * from salledessports where id = ?";
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
