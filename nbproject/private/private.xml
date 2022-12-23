@@ -3,6 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/RRegime/AjouterRegimeController.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichageRegime/ListRegime.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichAnnonce/ListAnnonceController.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/services/RegimeService.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/TousLesRegimes/ListRegime.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichAnnonce/ItemAnnonceController.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/model/Regime.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/Annonce/AjouterAnnonceController.java</file>
+=======
             <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/salleDeSport/ListSalleSportController.java</file>
             <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/CoachingsService.java</file>
             <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/dashPss/dashPss.fxml</file>
@@ -27,6 +37,7 @@
             <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/addMaterielSalleDeSport/AddMaterielSalleDeSportController.java</file>
             <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/CoachServices.java</file>
             <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/AffichageListeSalle/ItemMaterielAfficheController.java</file>
+>>>>>>> 3cd7f338a80cfe3aed17e1192fdcccadc38d8d86
         </group>
     </open-files>
 </project-private>
