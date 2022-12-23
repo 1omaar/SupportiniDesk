@@ -3,7 +3,7 @@ package gui.Produit;
 
 import interfaces.ICategories;
 import interfaces.IProduits;
-import services.Categorieservices;
+import services.Categoriservices;
 import services.Produitservices;
 import java.io.File;
 import java.io.IOException;
@@ -44,10 +44,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import model.Categories;
+import model.Categorie;
 import model.Produit;
 import util.MaConnexion;
 import util.Notification;
@@ -84,7 +82,7 @@ public class ProduitController implements Initializable {
     private Button addd;
 
     @FXML
-    private ComboBox<Categories> categorie;
+    private ComboBox<Categorie> categorie;
     @FXML
     private Button pp;
     @FXML
@@ -121,12 +119,12 @@ public class ProduitController implements Initializable {
     @FXML
     private TableColumn<Produit, String> iddescription;
     @FXML
-    private TableColumn<Produit, Categories> idcategorie;
+    private TableColumn<Produit, Categorie> idcategorie;
      @FXML
     private TableColumn<Produit, String> idimage;
     @FXML
     private TableColumn<Produit, Integer> idquantite;
-    ObservableList<Categories> dataList = FXCollections.observableArrayList();
+    ObservableList<Categorie> dataList = FXCollections.observableArrayList();
     ObservableList<Produit> Produitlist = FXCollections.observableArrayList();
     private InputStream input;
     private ImageView img;
@@ -141,7 +139,7 @@ public class ProduitController implements Initializable {
    @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        String tt = "SELECT * FROM `categories`";
+        String tt = "SELECT * FROM `categorie`";
 
         Statement statement;
         try {
@@ -149,9 +147,9 @@ public class ProduitController implements Initializable {
             statement = cnx.createStatement();
             ResultSet queryoutput = statement.executeQuery(tt);
             while (queryoutput.next()) {
-                String x = queryoutput.getString("name");
+                String x = queryoutput.getString("nom");
 
-                dataList.add(new Categories(x));
+                dataList.add(new Categorie(x));
                 categorie.setItems(dataList);
             }
         } catch (SQLException ex) {
@@ -163,13 +161,13 @@ public class ProduitController implements Initializable {
         Produitlist = x.DisplayAllproduit();
 
         idcol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        idnomproduit.setCellValueFactory(new PropertyValueFactory<>("nom_produit"));
+        idnomproduit.setCellValueFactory(new PropertyValueFactory<>("nomproduit"));
 
         idprix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        iddescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        idcategorie.setCellValueFactory(new PropertyValueFactory<>("cat"));
+        iddescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        idcategorie.setCellValueFactory(new PropertyValueFactory<>("categorieId"));
         idquantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-        idimage.setCellValueFactory(new PropertyValueFactory<>("image"));
+        idimage.setCellValueFactory(new PropertyValueFactory<>("imageProduit"));
 
         produitTable.setItems(Produitlist);
         search();
@@ -190,7 +188,7 @@ public class ProduitController implements Initializable {
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (pr.getNom_produit().toLowerCase().contains(lowerCaseFilter)) {
+                if (pr.getNomproduit().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches first name.
 
                 } else {
@@ -257,9 +255,9 @@ public class ProduitController implements Initializable {
                 String s = categorie.getSelectionModel().getSelectedItem().toString();
                 PreparedStatement ps, cat;
                 ResultSet rs, rs2;
-                String req = "INSERT INTO `produits` ( `nom_Produit`, `prix`, `Description`, `categories`, `quantite`,`image`) VALUES (?,?,?,?,?,?)";
-                String yy = "SELECT * FROM produits WHERE nom_Produit ='" + nomproduit.getText() + "'";
-                 String query = "select * from Categories WHERE Name = ?";
+                String req = "INSERT INTO `produit` ( `nomproduit`, `prix`, `quantite`,`imageProduit`, `description`, ` categorieId`) VALUES (?,?,?,?,?,?)";
+                String yy = "SELECT * FROM produit WHERE nomproduit ='" + nomproduit.getText() + "'";
+                 String query = "select * from Categorie WHERE nom = ?";
                 ps = cnx.prepareStatement(yy);
                  cat = cnx.prepareStatement(query);
                 cat.setString(1, s);
@@ -274,10 +272,10 @@ public class ProduitController implements Initializable {
                    
                     produit.setPrix(Integer.parseInt(prix.getText()));
                     produit.setDescription(Description.getText());
-                    ICategories deptdao = Categorieservices.getInstance();
-                    produit.setCat(deptdao.findcatBynom(s));
+                    ICategories deptdao = Categoriservices.getInstance();
+//                 produit.setCategorieId(deptdao.findcatBynom(s));
                     produit.setQuantite(Integer.parseInt(Quantite.getText()));
-                    produit.setImage(path);
+                    produit.setImageProduit(path);
                    IProduits x = new Produitservices();
                     x.insertproduit(produit);
 
@@ -345,8 +343,8 @@ public class ProduitController implements Initializable {
             PreparedStatement cat;
             ResultSet rs2;
             String s = categorie.getSelectionModel().getSelectedItem().toString();
-            ICategories x = Categorieservices.getInstance();
-            String query = "select * from categories WHERE name = ?";
+            ICategories x = Categoriservices.getInstance();
+            String query = "select * from categorie WHERE nom = ?";
             cat = cnx.prepareStatement(query);
             cat.setString(1, s);
             rs2 = cat.executeQuery();
@@ -358,7 +356,7 @@ public class ProduitController implements Initializable {
                 String nom = nomproduit.getText();
                 String xx = id.getText();
 
-                String yy = "update   produits set nom_Produit ='" + nom + "' , prix ='" + prix.getText() + "', Description ='" + Description.getText() + "' , quantite ='" + Quantite.getText() + "' , categories ='" + s1 + "' ,image =?  where id = '" + xx + "' ";
+                String yy = "update   produits set nomproduit ='" + nom + "' , prix ='" + prix.getText() + "', Description ='" + Description.getText() + "' , quantite ='" + Quantite.getText() + "' , categories ='" + s1 + "' ,image =?  where id = '" + xx + "' ";
 
                 ps = cnx.prepareStatement(yy);
                ps.setString(1, filename);
@@ -381,16 +379,16 @@ public class ProduitController implements Initializable {
         IProduits x = new Produitservices();
         Produitlist = x.DisplayAllproduit();
         produitTable.setItems(Produitlist);
-        String tt = "SELECT * FROM `categories`";
+        String tt = "SELECT * FROM `categorie`";
 
         Statement statement;
         try {
             statement = cnx.createStatement();
             ResultSet queryoutput = statement.executeQuery(tt);
             while (queryoutput.next()) {
-                String xx = queryoutput.getString("name");
+                String xx = queryoutput.getString("nom");
 
-                dataList.add(new Categories(xx));
+                dataList.add(new Categorie(xx));
                 categorie.setItems(dataList);
             }
         } catch (SQLException ex) {
@@ -450,7 +448,7 @@ public class ProduitController implements Initializable {
         prix.setText(String.valueOf(idprix.getCellData(index)));
         Description.setText(iddescription.getCellData(index));
         Quantite.setText(String.valueOf(idquantite.getCellData(index)));
-        Categories xx = idcategorie.getCellData(index);
+        Categorie xx = idcategorie.getCellData(index);
 
         categorie.getSelectionModel().select(xx);
         this.img.setVisible(true);

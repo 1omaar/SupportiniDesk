@@ -6,35 +6,35 @@ import javafx.scene.image.ImageView;
 
 public class Produit {
  
-    private Integer id, quantite;
+    private Integer id, quantite,categorieId;
     private String  Description;
-        private String nom_produit;
+        private String nomproduit;
     private float prix;
     
-  private Categories cat;
-  private String image ;
+ 
+  private String imageProduit ;
     public Produit() {
     }
 
-    public Produit(Integer quantite, String Description, String nom_produit, float prix, Categories cat,String image) {
+    public Produit(Integer quantite, String Description, String nomproduit, float prix, Integer categorieId,String imageProduit) {
         this.quantite = quantite;
         this.Description = Description;
-        this.nom_produit = nom_produit;
+        this.nomproduit = nomproduit;
         this.prix = prix;
-        this.cat = cat;
-        this.image=image;
+       this.categorieId=categorieId;
+        this.imageProduit=imageProduit;
     }
 
   
 
-    public Produit(Integer id, Integer quantite, String Description, String nom, float prix, Categories cat, String image) {
+    public Produit(Integer id, Integer quantite, String Description, String nomproduit, float prix,Integer categorieId, String imageProduit) {
         this.id = id;
         this.quantite = quantite;
         this.Description = Description;
-        this.nom_produit = nom_produit;
+        this.nomproduit = nomproduit;
         this.prix = prix;
-        this.cat = cat;
-        this.image=image;
+         this.categorieId=categorieId;
+        this.imageProduit=imageProduit;
     }
 
   
@@ -66,12 +66,12 @@ public class Produit {
         this.Description = Description;
     }
 
-    public String getNom_produit() {
-        return nom_produit;
+    public String getNomproduit() {
+        return nomproduit;
     }
 
-    public void setNom_produit(String nom_produit) {
-        this.nom_produit = nom_produit;
+    public void setNom_produit(String nomproduit) {
+        this.nomproduit = nomproduit;
     }
 
     public float getPrix() {
@@ -82,31 +82,32 @@ public class Produit {
         this.prix = prix;
     }
 
-   
-
-    
-
-    public Categories getCat() {
-        return cat;
+    public Integer getCategorieId() {
+        return categorieId;
     }
 
-    public void setCat(Categories cat) {
-        this.cat = cat;
+    public void setCategorieId(Integer categorieId) {
+        this.categorieId = categorieId;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageProduit() {
+        return imageProduit;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageProduit(String imageProduit) {
+        this.imageProduit = imageProduit;
     }
 
     @Override
     public String toString() {
-        return "Produit{" + "id=" + id + ", quantite=" + quantite + ", Description=" + Description + ", nom_produit=" + nom_produit + ", prix=" + prix + ", cat=" + cat + ", image=" + image + '}';
+        return "Produit{" + "id=" + id + ", quantite=" + quantite + ", categorieId=" + categorieId + ", Description=" + Description + ", nomproduit=" + nomproduit + ", prix=" + prix + ", imageProduit=" + imageProduit + '}';
     }
 
+   
+
+    
+
+  
    
 
    

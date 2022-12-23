@@ -57,7 +57,7 @@ public class EspaceCoachController implements Initializable {
          Stage stage = (Stage)btnAnnonce.getScene().getWindow();
              stage.close();
              
-              Parent root = FXMLLoader.load(getClass().getResource("../ModifSuppCoaching/MesCoaching.fxml"));
+              Parent root = FXMLLoader.load(getClass().getResource("../Annonce/AjouterAnnonce.fxml"));
      
         Scene scene = new Scene(root);
         stage.setScene(scene);

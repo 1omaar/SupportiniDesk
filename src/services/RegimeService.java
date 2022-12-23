@@ -36,18 +36,18 @@ Connection cnx = MaConnexion.getInstance().getCnx();
     
     @Override
     public void ajouterRegime(Regime r) {
-        String req = "INSERT INTO `regime`(`idcoach`, `nomregime`, `type`, `nbkg`,`petitdej`,`dej`,`dinner`) VALUES (?,?,?,?,?,?,?)";
+        String req = "INSERT INTO `regime`( `nom`, `type`, `nbrkg`,`petidej`,`dejeuner`,`dinner`) VALUES (?,?,?,?,?,?)";
         
          try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, r.getIdcoach());/////
-            ps.setString(2,r.getNom());
-            ps.setString(3, r.getType());
-            ps.setFloat(4, r.getNbkg());
-            ps.setString(5, r.getPetitdej());
-              ps.setString(6, r.getDej());
+        
+            ps.setString(1,r.getNom());
+            ps.setString(2, r.getType());
+            ps.setFloat(3, r.getNbkg());
+            ps.setString(4, r.getPetitdej());
+              ps.setString(5, r.getDej());
            
-               ps.setString(7, r.getDinner());
+               ps.setString(6, r.getDinner());
            
            
 //            

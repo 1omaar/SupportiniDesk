@@ -56,7 +56,7 @@ public class AuthServices implements IAuthentification {
             existUser.setEmail(res.getString(5));
             existUser.setPassword(res.getString(6));
             existUser.setIdRole(res.getInt(11));
-            existUser.setPhone(res.getString(8));
+            existUser.setPhone(res.getString(7));
             existUser.setImageName(res.getString(8));
             existUser.setStatus(res.getInt(9));
             ps.close();
