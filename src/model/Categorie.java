@@ -1,22 +1,22 @@
 package model;
 
 
-public class Categories {
+public class Categorie {
 
  
     private Integer id;
-    private String name;
+    private String nom;
 
-    public Categories() {
+    public Categorie() {
     }
 
-    public Categories(String name) {
-        this.name = name;
+    public Categorie(String nom) {
+        this.nom = nom;
     }
 
-    public Categories(Integer id, String name) {
+    public Categorie(Integer id, String nom) {
         this.id = id;
-        this.name = name;
+        this.nom = nom;
     }
 
     public int getId() {
@@ -28,16 +28,16 @@ public class Categories {
     }
 
     public String getName() {
-        return name;
+        return nom;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nom = name;
     }
 
     @Override
     public String toString() {
-        return  name ;
+        return  nom ;
     }
    
   

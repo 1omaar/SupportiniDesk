@@ -26,7 +26,7 @@ import util.MaConnexion;
 import model.Produit;
 import javafx.scene.layout.GridPane;
 import java.net.URISyntaxException;
-import services.Categorieservices;
+import services.Categoriservices;
 
 public class ProduitsFXMLController implements Initializable {
 
@@ -113,7 +113,7 @@ public class ProduitsFXMLController implements Initializable {
     private List<Produit> getData() throws SQLException {
         List<Produit> Produits = new ArrayList<>();
         Produit Prod;
-        String tt = "SELECT * FROM `produits`";
+        String tt = "SELECT * FROM `produit`";
 
         Statement statement;
 
@@ -122,12 +122,12 @@ public class ProduitsFXMLController implements Initializable {
         while (queryoutput.next()) {
             Prod = new Produit();
             Prod.setId(queryoutput.getInt("id"));
-            Prod.setNom_produit(queryoutput.getString("Nom_produit"));
+            Prod.setNom_produit(queryoutput.getString("nomproduit"));
             Prod.setPrix(Integer.parseInt(queryoutput.getString("prix")));
-            Prod.setDescription(queryoutput.getString("Description"));
-            ICategories deptdao = Categorieservices.getInstance();
-            Prod.setQuantite(Integer.parseInt(queryoutput.getString("Quantite")));
-            Prod.setImage(queryoutput.getString("image"));
+            Prod.setDescription(queryoutput.getString("description"));
+          ICategories deptdao = Categoriservices.getInstance();
+            Prod.setQuantite(Integer.parseInt(queryoutput.getString("quantite")));
+            Prod.setImageProduit(queryoutput.getString("imageProduit"));
 
             Produits.add(Prod);
 
@@ -137,16 +137,16 @@ public class ProduitsFXMLController implements Initializable {
     }
 
     private void setChosenProd(Produit prod) {
-        ProdNameLable.setText(prod.getNom_produit());
+        ProdNameLable.setText(prod.getNomproduit());
         ProdPriceLabel.setText(prod.getPrix() + "DT");
         String path;
 
 //          this.img.setImage(image);
-        path = prod.getImage();
+        path = prod.getImageProduit();
 
         Image aa;
         try {
-            aa = new Image(getClass().getResource("../uicontrolers/imagesproduits/" + prod.getImage()).toURI().toString());
+            aa = new Image(getClass().getResource("../uicontrolers/" + prod.getImageProduit()).toURI().toString());
 
             ProdImg.setImage(aa);
             chosenproduct = prod;

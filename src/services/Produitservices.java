@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package services;
 
 import interfaces.ICategories;
@@ -18,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Categories;
+import model.Categorie;
 import model.Produit;
 import util.MaConnexion;
 
@@ -31,15 +27,17 @@ public class Produitservices implements IProduits{
 
     @Override
     public void insertproduit(Produit st) {
-         String requete = "INSERT INTO `produits` (`nom_Produit`, `prix`, `Description`, `categories`, `quantite`, `image`) VALUES(?,?,?,?,?,?)";
+         String requete = "INSERT INTO `produit` (`nomproduit`, `prix`, `quantite`, `imageProduit`,`description` ) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
-            ps.setString(1, st.getNom_produit());
+            ps.setString(1, st.getNomproduit());
             ps.setFloat(2 , st.getPrix());
-            ps.setString(3, st.getDescription());
-            ps.setInt(4, st.getCat().getId());
-            ps.setInt(5, st.getQuantite());
-            ps.setString(6, st.getImage());
+            ps.setInt(3, st.getQuantite());
+            ps.setString(4, st.getImageProduit());
+            ps.setString(5, st.getDescription());
+//            ps.setInt(6, st.getCategorieId());
+           
+           
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -52,11 +50,11 @@ public class Produitservices implements IProduits{
     public ObservableList<Produit> DisplayAllproduit() {
         
         ObservableList<Produit> listedepots = FXCollections.observableArrayList();
-        String requete = "select * from produits";
+        String requete = "select * from produit";
         try {
             Statement statement = cnx.createStatement();
             ResultSet resultat = statement.executeQuery(requete);
-            ICategories deptdao =Categorieservices.getInstance();
+            ICategories deptdao =Categoriservices.getInstance();
 
             while (resultat.next()) {
                 Produit pr = new Produit();
@@ -64,10 +62,12 @@ public class Produitservices implements IProduits{
                 pr.setNom_produit(resultat.getString(2));
               
                 pr.setPrix(resultat.getInt(3));
-                pr.setDescription(resultat.getString("Description"));
-                pr.setCat(deptdao.findcatById(resultat.getInt(5)));
-                pr.setQuantite(resultat.getInt(6));
-                pr.setImage(resultat.getString(7));
+            pr.setQuantite(resultat.getInt(4));
+             pr.setImageProduit(resultat.getString(5));
+//     pr.setCategorieId(deptdao.findcatById(resultat.getInt(5)));
+                
+                    pr.setDescription(resultat.getString("description"));
+               
 
                 listedepots.add(pr);
             }

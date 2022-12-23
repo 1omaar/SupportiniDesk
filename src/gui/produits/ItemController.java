@@ -75,11 +75,11 @@ public class ItemController implements Initializable{
     public void setData(Produit Prod, MyListener_Produit myListener) throws URISyntaxException {
         this.Prod = Prod;
         this.myListener = myListener;
-        nameLabel.setText(Prod.getNom_produit());
+        nameLabel.setText(Prod.getNomproduit());
         priceLable.setText(Prod.getPrix()+"DT" );
-        System.out.println(Prod.getImage());
+        System.out.println(Prod.getImageProduit());
       
-        Image aa = new Image(getClass().getResource("../uicontrolers/imagesproduits/"+Prod.getImage()).toURI().toString());
+        Image aa = new Image(getClass().getResource("../uicontrolers/imagesproduits/"+Prod.getImageProduit()).toURI().toString());
       
         img.setImage(aa);
     }

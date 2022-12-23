@@ -1,7 +1,7 @@
 package gui.Categorie;
 
 import interfaces.ICategories;
-import services.Categorieservices;
+import services.Categoriservices;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -28,7 +28,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import static javax.swing.JOptionPane.showMessageDialog;
-import model.Categories;
+import model.Categorie;
 import util.MaConnexion;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -61,24 +61,24 @@ public class CategoriesController implements Initializable {
     @FXML
     private Button addd1;
     @FXML
-    private TableColumn<Categories, Integer> idCol;
+    private TableColumn<Categorie, Integer> idCol;
     @FXML
-    private TableColumn<Categories, String> cat;
+    private TableColumn<Categorie, String> cat;
     @FXML
     private TextField nomcategorie;
-    ObservableList<Categories> listM;
-    ObservableList<Categories> data;
-    private final ObservableList<Categories> dataList = FXCollections.observableArrayList();
+    ObservableList<Categorie> listM;
+    ObservableList<Categorie> data;
+    private final ObservableList<Categorie> dataList = FXCollections.observableArrayList();
 
     Connection cnx = MaConnexion.getInstance().getCnx();
-    private final ObservableList<Categories> catlist = FXCollections.observableArrayList();
+    private final ObservableList<Categorie> catlist = FXCollections.observableArrayList();
     String query = null;
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    Categories catego = null;
+    Categorie catego = null;
     @FXML
-    private TableView<Categories> categoTable;
+    private TableView<Categorie> categoTable;
     @FXML
     private Label validationcat;
     @FXML
@@ -94,7 +94,7 @@ public class CategoriesController implements Initializable {
 @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        String tt = "SELECT * FROM `categories`";
+        String tt = "SELECT * FROM `categorie`";
 
         Statement statement;
 
@@ -102,11 +102,11 @@ public class CategoriesController implements Initializable {
             statement = cnx.createStatement();
             ResultSet queryoutput = statement.executeQuery(tt);
             while (queryoutput.next()) {
-                String x = queryoutput.getString("name");
+                String x = queryoutput.getString("nom");
                 Integer y = queryoutput.getInt("id");
-                dataList.add(new Categories(y, x));
+                dataList.add(new Categorie(y, x));
             }
-            cat.setCellValueFactory(new PropertyValueFactory<>("name"));
+            cat.setCellValueFactory(new PropertyValueFactory<>("nom"));
             idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
             categoTable.setItems(dataList);
             search();
@@ -117,7 +117,7 @@ public class CategoriesController implements Initializable {
 
     }
     public void search(){
-        FilteredList<Categories> filteredData = new FilteredList<>(dataList, b -> true);
+        FilteredList<Categorie> filteredData = new FilteredList<>(dataList, b -> true);
             rechercher.textProperty().addListener((observable, oldValue, newValue) -> {
                 filteredData.setPredicate((Categories) -> {
                     // If filter text is empty, display all persons.
@@ -139,7 +139,7 @@ public class CategoriesController implements Initializable {
             });
 
             // 3. Wrap the FilteredList in a SortedList. 
-            SortedList<Categories> sortedData = new SortedList<>(filteredData);
+            SortedList<Categorie> sortedData = new SortedList<>(filteredData);
 
             // 4. Bind the SortedList comparator to the TableView comparator.
             // 	  Otherwise, sorting the TableView would have no effect.
@@ -164,7 +164,7 @@ public class CategoriesController implements Initializable {
             ResultSet rs;
             String nom = nomcategorie.getText();
             String xx = id.getText();
-            String yy = "delete   from  categories where name = '" + nom + "' ";
+            String yy = "delete   from  categorie where nom = '" + nom + "' ";
             ps = cnx.prepareStatement(yy);
             ps.execute();
 
@@ -184,7 +184,7 @@ public class CategoriesController implements Initializable {
             PreparedStatement ps;
             ResultSet rs;
             // String req = "INSERT INTO `categories`(`name`) VALUES ( ?)";
-            String yy = "SELECT * FROM categories WHERE name ='" + nomcategorie.getText() + "'";
+            String yy = "SELECT * FROM categorie WHERE nom ='" + nomcategorie.getText() + "'";
             ps = cnx.prepareStatement(yy);
 
             rs = ps.executeQuery();
@@ -192,9 +192,9 @@ public class CategoriesController implements Initializable {
                 showMessageDialog(null, "deja existe");
             } else {
 
-                Categories cat = new Categories();
+                Categorie cat = new Categorie();
                 cat.setName(nomcategorie.getText());
-                ICategories deptdao = Categorieservices.getInstance();
+                ICategories deptdao = Categoriservices.getInstance();
                 deptdao.insertcat(cat);
                 showMessageDialog(null, "categorie ajouter avec succes");
                 nomcategorie.clear();
@@ -227,7 +227,7 @@ public class CategoriesController implements Initializable {
             ResultSet rs;
             String nom = nomcategorie.getText();
             String xx = id.getText();
-            String yy = "update   categories set  name ='" + nom + "' where id = '" + xx + "' ";
+            String yy = "update   categorie set  nom ='" + nom + "' where id = '" + xx + "' ";
             ps = cnx.prepareStatement(yy);
             ps.execute();
 
@@ -244,14 +244,14 @@ public class CategoriesController implements Initializable {
         dataList.clear();
         try {
 
-            String query = "SELECT * FROM `categories`";
+            String query = "SELECT * FROM `categorie`";
             preparedStatement = cnx.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                dataList.add(new Categories(
+                dataList.add(new Categorie(
                         resultSet.getInt("id"),
-                        resultSet.getString("name")
+                        resultSet.getString("nom")
                 ));
                categoTable.setItems(dataList);
 
