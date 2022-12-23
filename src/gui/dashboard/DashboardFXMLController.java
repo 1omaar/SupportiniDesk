@@ -502,6 +502,7 @@ public class DashboardFXMLController implements Initializable {
 //    }
     @FXML
     private void affsuivi(ActionEvent event) throws IOException {
+        System.out.println("IdRole = "+idRole);
         clientComboBox.getSelectionModel().clearSelection();
         if (idRole == 3) {
 
