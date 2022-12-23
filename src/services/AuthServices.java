@@ -38,7 +38,7 @@ public class AuthServices implements IAuthentification {
     @Override
 
     public Utilisateur login(String email, String pwd) {
-        String req = "SELECT * FROM utilisateurs WHERE email = ? AND password = ?";
+        String req = "SELECT * FROM utilisateurs WHERE email = ? ";
 
         try {
             String hachePwd = Validation.hachePassword(pwd);
