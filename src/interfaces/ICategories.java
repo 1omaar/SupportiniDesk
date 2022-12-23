@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package interfaces;
-import model.Categories;
+import model.Categorie;
 
 /**
  *
@@ -15,14 +15,13 @@ public interface ICategories {
 
 
 
-    void insertcat(Categories st);
+    void insertcat(Categorie st);
 
-    Categories findcatById(int id);
+    Categorie findcatById(int id);
 
-    Categories findcatBynom(String nom);
+    Categorie findcatBynom(String nom);
 
 
 }
-
     
 

@@ -15,27 +15,27 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Categories;
+import model.Categorie;
 import util.MaConnexion;
 
 /**
  *
  * @author Anis-PC
  */
-public class Categorieservices implements ICategories{
+public class Categoriservices implements ICategories{
    
 
 
   Connection cnx = MaConnexion.getInstance().getCnx();
   @Override
-    public void insertcat(Categories st) {
-        String requete = "insert into categories (name) values (?)";
+    public void insertcat(Categorie st) {
+        String requete = "insert into categorie (nom) values (?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ps.setString(1, st.getName());
             ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(Categorieservices .class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Categoriservices .class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -47,14 +47,14 @@ public class Categorieservices implements ICategories{
 
     public static ICategories getInstance() {
         if (daoCategories == null) {
-           daoCategories = new Categorieservices();
+           daoCategories = new Categoriservices();
         }
         return daoCategories;
     }
 @Override
-    public Categories findcatBynom(String nom) {
-      Categories cat = new Categories();
-        String requete = "select * from categories where name=?";
+    public Categorie findcatBynom(String nom) {
+      Categorie cat = new Categorie();
+        String requete = "select * from categorie where nom=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ps.setString(1, nom);
@@ -66,15 +66,15 @@ public class Categorieservices implements ICategories{
             return cat;
 
         } catch (SQLException ex) {
-           Logger.getLogger(Categorieservices .class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Categoriservices .class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la recherche du Categories " + ex.getMessage());
             return null;
         }
     }
 @Override
-    public Categories findcatById(int id) {
-          Categories cat = new Categories();
-        String requete = "select * from categories where id=?";
+    public Categorie findcatById(int id) {
+          Categorie cat = new Categorie();
+        String requete = "select * from categorie where id=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ps.setInt(1, id);
@@ -86,7 +86,7 @@ public class Categorieservices implements ICategories{
             return cat;
 
         } catch (SQLException ex) {
-           Logger.getLogger(Categorieservices .class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Categoriservices .class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la recherche du Categories " + ex.getMessage());
             return null;
         }

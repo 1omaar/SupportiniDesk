@@ -3,41 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/RRegime/AjouterRegimeController.java</file>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichageRegime/ListRegime.java</file>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichAnnonce/ListAnnonceController.java</file>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/services/RegimeService.java</file>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/TousLesRegimes/ListRegime.java</file>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichAnnonce/ItemAnnonceController.java</file>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/model/Regime.java</file>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/Annonce/AjouterAnnonceController.java</file>
-=======
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/salleDeSport/ListSalleSportController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/CoachingsService.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/dashPss/dashPss.fxml</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/admin/dashboard/DashboardController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/salleDeSport/ListSalleSport.fxml</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/model/SalleSport.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/AuthServices.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/dashboard/DashboardFXMLController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/SalleSportServices.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/UtilisateurServices.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/updateProfil/UpdateProfilController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/infoCoach/InfoCoachFXMLController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/dashPss/DashPssController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/addSalleDeSport/AddSalleDeSportController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/Suivie_Services.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/register/RegisterFXMLController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/dashboard/DashboardFXML.fxml</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/PssAfficheList/ListSallePssController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/MaterielServices.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/addSalleDeSport/addSalleDeSport.fxml</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/PssAffiche/PssAfficheController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/addMaterielSalleDeSport/AddMaterielSalleDeSportController.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/services/CoachServices.java</file>
-            <file>file:/C:/Users/ELIFE-KEF-099/Desktop/SupportiniDesk/src/gui/AffichageListeSalle/ItemMaterielAfficheController.java</file>
->>>>>>> 3cd7f338a80cfe3aed17e1192fdcccadc38d8d86
+            <file>file:/C:/Users/ELIFE-KEF-138/Desktop/Asma/SupportiniDesk/src/gui/dashboard/DashboardFXMLController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-138/Desktop/Asma/SupportiniDesk/src/gui/produits/ProduitsFXML.fxml</file>
+            <file>file:/C:/Users/ELIFE-KEF-138/Desktop/Asma/SupportiniDesk/src/gui/produits/ItemController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-138/Desktop/Asma/SupportiniDesk/src/gui/Produit/ProduitController.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-138/Desktop/Asma/SupportiniDesk/src/gui/produits/MyListener_Produit.java</file>
+            <file>file:/C:/Users/ELIFE-KEF-138/Desktop/Asma/SupportiniDesk/src/gui/produits/ProduitsFXMLController.java</file>
         </group>
     </open-files>
 </project-private>
