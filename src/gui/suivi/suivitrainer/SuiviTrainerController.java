@@ -43,6 +43,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -65,10 +66,6 @@ import util.MaConnexion;
  */
 public class SuiviTrainerController implements Initializable {
 
-    @FXML
-    private Label NomEntrainer;
-    @FXML
-    private Label PrenomEntrainer;
     @FXML
     private Label DateSuivi;
     @FXML
@@ -93,6 +90,10 @@ public class SuiviTrainerController implements Initializable {
     private Label imclbl;
     @FXML
     private Label alerteDemande;
+    @FXML
+    private Label tailleshow1;
+    @FXML
+    private Label PoidsActuelle1;
 
     /**
      * Initializes the controller class.
@@ -149,8 +150,7 @@ public class SuiviTrainerController implements Initializable {
             int idsuivi = is.queryById(id).getId();
             //System.out.println(is.queryById(idUser).getId());
             ListCoachings lic = new ListCoachings();
-            NomEntrainer.setText(nom);
-            PrenomEntrainer.setText(prenom);
+         
             //Isuivi is = new Suivie_Services();
             //Suivi s = new Suivi();
             if (is.queryById(id).getPoidsActuelle() != 0 || is.queryById(id).getTaille() != 0 || is.queryById(id).getDateSuivi() != null || is.queryById(id).getImc() != 0) {
@@ -191,14 +191,15 @@ public class SuiviTrainerController implements Initializable {
             ageSuivi.setText(String.valueOf(ie.queryById(idUser).getAge()));
 //            System.out.println(date.toLocalDate().isEqual(date_suiviDate.toLocalDate()));
             //System.out.println(date);
-            //System.out.println(date_suiviDate);
+                        //System.out.println(idsuivi);
             if (date_suiviDate == null) {
                 DateSuivi.setText("Ajouter une nouvelle Suivi");
             } else if (date.before(date_suiviDate) || date.toLocalDate().isEqual(date_suiviDate.toLocalDate())) {
                 DateSuivi.setText(String.valueOf(date_suiviDate));
                 if (ifeedback.afficherfeedback(idsuivi) == null) {
+                    alerteDemande.setText("Aucun Feedback Dans ce Moment");
                 } else {
-                    alerteDemande.setText((ifeedback.afficherfeedback(idsuivi).getFeedback()));
+                    alerteDemande.setText("Votre Coach Vous dites : "+"\""+(ifeedback.afficherfeedback(idsuivi).getFeedback())+"\"");
                 }
 
             } else {
@@ -288,8 +289,10 @@ public class SuiviTrainerController implements Initializable {
         }
     }
 
+    
+
     @FXML
-    private void refresh(MouseEvent event) throws URISyntaxException {
+    private void refresh(ActionEvent event) {
         Preferences userPreferences = Preferences.userRoot();
         String bearerToken = userPreferences.get("BearerToken", "root");
         //verify and use
@@ -315,7 +318,9 @@ public class SuiviTrainerController implements Initializable {
         } catch (URISyntaxException | JSONException | AuthException | IOException ex) {
             Logger.getLogger(ProfilFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
+
+    
 
 }

@@ -502,6 +502,7 @@ public class DashboardFXMLController implements Initializable {
 //    }
     @FXML
     private void affsuivi(ActionEvent event) throws IOException {
+        System.out.println("IdRole = "+idRole);
         clientComboBox.getSelectionModel().clearSelection();
         if (idRole == 3) {
 
@@ -529,7 +530,7 @@ public class DashboardFXMLController implements Initializable {
     @FXML
     private void ListCachings(ActionEvent event) throws IOException {
         clientComboBox.getSelectionModel().clearSelection();
-        Parent root = FXMLLoader.load(getClass().getResource("../AffichCoaching/ListCoachings.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../AffichAnnonce/ListAnnonce.fxml"));
         scenePane.getChildren().removeAll();
         scenePane.getChildren().setAll(root);
         scenePane.setAlignment(Pos.CENTER);

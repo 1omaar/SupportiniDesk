@@ -116,7 +116,7 @@ public class AjouterRegimeController implements Initializable {
     private void Publier(ActionEvent event) throws IOException {
          IRegime Rg = new RegimeService();
          Regime r = new Regime() ; 
-         r.setIdcoach(idUser);
+       
           r.setNom(TxtNom.getText());
           //////////////////////////////////
   

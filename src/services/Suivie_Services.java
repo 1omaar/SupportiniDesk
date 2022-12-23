@@ -47,7 +47,7 @@ public class Suivie_Services implements Isuivi {
 
     @Override
     public void ajouterSuivi(Suivi s) {
-        String req = "INSERT INTO `suivi`(`nom`, `prenom`, `age`, `poids`, `taille`, `imc`, `date_suivi`, `fk_id_coach`, `fk_id_entr`) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String req = "INSERT INTO `suivi`(`nom`, `prenom`, `age`, `poids`, `taille`, `imc`, `date_suivi`, `fk_id_entr`, `fk_id_coach`) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             System.out.println(s);
@@ -58,8 +58,8 @@ public class Suivie_Services implements Isuivi {
             ps.setInt(5, s.getTaille());
             ps.setDate(7, s.getDateSuivi());
             ps.setDouble(6, s.getImc());
-            ps.setInt(9, s.getFk_id_entr());
-            ps.setInt(8, s.getId_coach());
+            ps.setInt(8, s.getFk_id_entr());
+            ps.setInt(9, s.getId_coach());
             ps.executeUpdate();
             System.out.println("PS : Suivi ajoutée avec succés!");
         } catch (SQLException ex) {
@@ -101,8 +101,8 @@ public class Suivie_Services implements Isuivi {
 //                p.setNom(rs.getString(2));
 //                p.setPrenom(rs.getString("prenom"));
                 s.setPrenomE(rs.getString("prenom"));
-                s.setFk_id_entr(rs.getInt(10));
-                s.setId_coach(rs.getInt(9));
+                s.setFk_id_entr(rs.getInt(9));
+                s.setId_coach(rs.getInt(10));
 //                p.setCin(rs.getInt(4));
 //                p.setAge(rs.getInt(5));
                 suivis.add(s);

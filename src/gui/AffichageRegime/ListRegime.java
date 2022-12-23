@@ -119,7 +119,7 @@ public class ListRegime implements Initializable {
  List<Regime> clist = new ArrayList<>();
         Regime Regime;
 //        String tt = "SELECT * FROM `regime`";
-           String   tt = "SELECT * FROM `regime` where idcoach ='" + jwt() + "' ";
+           String   tt = "SELECT * FROM `regime` ";
 
         Statement statement;
 
@@ -127,7 +127,7 @@ public class ListRegime implements Initializable {
         ResultSet queryoutput = statement.executeQuery(tt);
         while (queryoutput.next()) {
           Regime = new Regime();
-          Regime.setIdcoach(queryoutput.getInt("idcoach"));
+       
             Regime.setIdregime(queryoutput.getInt("id"));
             Regime.setNom(queryoutput.getString("nomregime"));
             Regime.setNbkg(queryoutput.getInt("nbkg"));
@@ -168,7 +168,7 @@ public class ListRegime implements Initializable {
         ///////////////
          IdRegime = Regime.getIdregime();
         
-         idcoach=Regime.getIdcoach();
+   
          nbkg=(int) Regime.getNbkg();
          type=Regime.getType();
          dej=Regime.getDej();
@@ -264,7 +264,7 @@ public class ListRegime implements Initializable {
            Statics.rr.setIdregime(IdRegime);
       
         Statics.rr.setNbkg(nbkg);
-         Statics.rr.setIdcoach(idcoach);
+       
           Statics.rr.setDej(dej);
            Statics.rr.setDinner(din);
             Statics.rr.setPetitdej(ptitdej);
