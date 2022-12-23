@@ -115,7 +115,8 @@ public class SuiviCoach2Controller implements Initializable {
             int idcoach = ic.queryById(idUser).getId();
             Isuivi is = new Suivie_Services();
             System.out.println(idcoach);
-            ObservableList<Suivi> suivis = FXCollections.observableArrayList(iS.afficherEntrainer(idUser));
+            ObservableList<Suivi> suivis = FXCollections.observableArrayList(iS.afficherEntrainer(idcoach));
+            System.out.println(iS.afficherEntrainer(5));
             ListEntrainer.setItems(suivis);
 
         } catch (JSONException | AuthException | IOException ex) {
