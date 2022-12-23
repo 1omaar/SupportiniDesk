@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/dashboard/DashboardFXMLController.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/RRegime/AjouterRegimeController.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichageRegime/ListRegime.java</file>
             <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichAnnonce/ListAnnonceController.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/services/RegimeService.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/TousLesRegimes/ListRegime.java</file>
             <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/AffichAnnonce/ItemAnnonceController.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/model/Regime.java</file>
+            <file>file:/C:/Users/Elife-kef-100/Documents/NetBeansProjects/SupportiniDesk/src/gui/Annonce/AjouterAnnonceController.java</file>
         </group>
     </open-files>
 </project-private>

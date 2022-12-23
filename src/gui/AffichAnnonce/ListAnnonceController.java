@@ -39,6 +39,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import static javax.xml.bind.DatatypeConverter.parseString;
 
 import util.MaConnexion;
 import model.Annonce;
@@ -104,7 +105,7 @@ public class ListAnnonceController implements Initializable {
       private String path;             
  private void seletedCoaching(Annonce Annonce) {
         fruitNameLable.setText(Annonce.getTitre());
-        //prixlab.setText(parse Annonce.getPrix());
+        prixlab.setText(Integer.toString(Annonce.getPrix()));
 //       labdiscipline.setText(Coachings.getDiscipline());
 
 

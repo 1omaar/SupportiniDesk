@@ -121,13 +121,13 @@ public class ListRegime implements Initializable {
         ResultSet queryoutput = statement.executeQuery(tt);
         while (queryoutput.next()) {
           Regime = new Regime();
-          Regime.setIdcoach(queryoutput.getInt("idcoach"));
+       
             Regime.setIdregime(queryoutput.getInt("id"));
-            Regime.setNom(queryoutput.getString("nomregime"));
-            Regime.setNbkg(queryoutput.getInt("nbkg"));
+            Regime.setNom(queryoutput.getString("nom"));
+            Regime.setNbkg(queryoutput.getInt("nbrkg"));
             Regime.setType(queryoutput.getString("type"));
-            Regime.setDej(queryoutput.getString("dej"));
-            Regime.setPetitdej(queryoutput.getString("petitdej"));
+            Regime.setDej(queryoutput.getString("dejeuner"));
+            Regime.setPetitdej(queryoutput.getString("petidej"));
             Regime.setDinner(queryoutput.getString("dinner"));
         
            
@@ -159,7 +159,7 @@ public class ListRegime implements Initializable {
         ///////////////
          IdRegime = Regime.getIdregime();
         
-         idcoach=Regime.getIdcoach();
+      
          nbkg=(int) Regime.getNbkg();
          type=Regime.getType();
          dej=Regime.getDej();
